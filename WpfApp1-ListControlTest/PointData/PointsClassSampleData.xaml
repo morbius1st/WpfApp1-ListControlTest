@@ -1,0 +1,7 @@
+﻿<pointsData:PointClass
+	xmlns:pointsData="clr-namespace:WpfApp1_ListControlTest.PointData"
+	YValue   ="A Aenean donec integer maecenas mauris"
+	ZValue   ="A Quisque cras"
+	XValue ="A Class vestibulum curae nam aliquam"
+	XyValue   ="A Quisque cras"
+	XyzValue  ="A Quisque cras"/>

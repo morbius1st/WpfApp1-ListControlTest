@@ -1,0 +1,7 @@
+﻿<sampleData:SampleDataClass
+	xmlns:sampleData="clr-namespace:WpfApp1_ListControlTest.SampleData"
+	SheetName   ="A Aenean donec integer maecenas mauris"
+	SheetData   ="A Quisque cras"
+	SheetNumber ="A Class vestibulum curae nam aliquam"
+	SheetInfo   ="A Quisque cras"
+	SheetInfo2  ="A Quisque cras"/>

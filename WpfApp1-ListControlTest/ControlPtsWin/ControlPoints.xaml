@@ -1,0 +1,1537 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib"
+	xmlns:local="clr-namespace:WpfApp1_ListControlTest"
+	xmlns:validation="clr-namespace:WpfApp1_ListControlTest.ControlPtsWin"
+	xmlns:controlPts="clr-namespace:WpfApp1_ListControlTest.ControlPtsWin"
+	x:Class="WpfApp1_ListControlTest.ControlPtsWin.ControlPoints"
+	mc:Ignorable="d"
+	Name="ctrlPts"
+	d:DataContext="{d:DesignInstance Type=controlPts:ControlPoints, IsDesignTimeCreatable=True}"
+	Title="{Binding WinTitle}"
+	Height="730"
+	Width="1024.8"
+	Background="#FF2C2C2C"
+	DataContext="{Binding ElementName=ctrlPts}"
+	>
+
+	<!-- d:DataContext="{Binding -->
+	<!-- Source={d:DesignInstance Type=controlPts:ControlPoints, IsDesignTimeCreatable=True}}" -->
+
+	<Window.Resources>
+
+		<controlPts:ControlPointXYZConverter x:Key="xyzConverter"/>
+		<controlPts:ControlPointSlopeConverter x:Key="slopeConverter"/>
+
+		<!--#region +Values -->
+		<sys:Int32 x:Key="pointRow">0</sys:Int32>
+		<sys:Int32 x:Key="valueRow">2</sys:Int32>
+
+		<sys:Int32 x:Key="detailValueRow">0</sys:Int32>
+		<sys:Int32 x:Key="detailInfoRow">1</sys:Int32>
+		<sys:Int32 x:Key="editPanelRow">2</sys:Int32>
+
+		<sys:Int32 x:Key="btnRow">0</sys:Int32>
+		<sys:Int32 x:Key="msgRow">1</sys:Int32>
+
+		<GridLength x:Key="hdrRowHeight">18</GridLength>
+		<GridLength x:Key="dtlRowHeightTop">18</GridLength>
+		<GridLength x:Key="dtlRowHeightBottom">18</GridLength>
+
+		<GridLength x:Key="editPnlRowHeightTop">32</GridLength>
+		<GridLength x:Key="editPnlRowHeightBottom">*</GridLength>
+
+		<GridLength x:Key="col00">*</GridLength>
+		<GridLength x:Key="col01">*</GridLength>
+		<GridLength x:Key="col02">*</GridLength>
+		<GridLength x:Key="col03">*</GridLength>
+		<GridLength x:Key="col04">*</GridLength>
+		<GridLength x:Key="col05">*</GridLength>
+		<GridLength x:Key="col06">*</GridLength>
+		<GridLength x:Key="col07">*</GridLength>
+		<GridLength x:Key="col08">17</GridLength>
+
+		<Color
+			x:Key="ctrlBkg">White</Color>
+		<Color
+			x:Key="greyXXtraLight">#FFFFFF</Color>
+		<Color
+			x:Key="greyXtraLight">#EEEEEE</Color>
+		<Color
+			x:Key="greyLight">#DDDDDD</Color>
+		<Color
+			x:Key="greyMedXtraLight">#BBBBBB</Color>
+		<Color
+			x:Key="greyMed">#AAAAAA</Color>
+		<Color
+			x:Key="greyMedDark">#888888</Color>
+		<Color
+			x:Key="borderColor">#777777</Color>
+		<Color
+			x:Key="greyDark">#666666</Color>
+		<Color
+			x:Key="greyXtraDark">#444444</Color>
+		<Color
+			x:Key="greyVeryDark">#333333</Color>
+		<Color
+			x:Key="greyXtraVeryDark">#282828</Color>
+		<Color
+			x:Key="black">#000000</Color>
+		<Color
+			x:Key="blueXtraLight">#EDFAFF</Color>
+
+
+
+		<!-- general -->
+		<SolidColorBrush x:Key="red"
+			Color="Red" />
+
+		<SolidColorBrush x:Key="bdrColor"
+			Color="{StaticResource borderColor}" />
+
+		<SolidColorBrush x:Key="controlBkg"
+			Color="{StaticResource ctrlBkg}"/>
+
+		<SolidColorBrush x:Key="dockpnlBkg"
+			Color="LightGray"/>
+
+		<SolidColorBrush x:Key="dkBkgBdr"
+			Color="{StaticResource greyVeryDark}"/>
+
+		<SolidColorBrush x:Key="disabledBkg"
+			Color="{StaticResource greyXtraLight}"/>
+
+		<SolidColorBrush x:Key="disabledText"
+			Color="{StaticResource black}"/>
+
+		<SolidColorBrush x:Key="enabledBkg"
+			Color="{StaticResource blueXtraLight}"/>
+
+		<SolidColorBrush x:Key="enabledText"
+			Color="Black"/>
+
+		<!-- main header -->
+
+		<SolidColorBrush x:Key="hdrUsedBkg"
+			Color="{StaticResource greyXtraDark}" />
+
+		<SolidColorBrush x:Key="hdrUnusedBkg"
+			Color="{StaticResource greyVeryDark}" />
+
+		<!-- end header -->
+
+		<SolidColorBrush x:Key="endPointHdrBkg"
+			Color="{StaticResource greyDark}"/>
+
+		<SolidColorBrush x:Key="endPointDtlBkg"
+			Color="{StaticResource greyMedXtraLight}"/>
+
+		<SolidColorBrush x:Key="endPointUnusedBkg"
+			Color="{StaticResource greyVeryDark}"/>
+
+		<SolidColorBrush x:Key="endPointBdr"
+			Color="{StaticResource borderColor}"/>
+
+		<!-- detail -->
+		<SolidColorBrush x:Key="detailUnusedBkg"
+			Color="{StaticResource greyMed}" />
+
+		<LinearGradientBrush x:Key="shadow"
+			EndPoint="0.5,1"
+			StartPoint="0.5,0">
+			<GradientStop
+				Color="{StaticResource greyXtraVeryDark}"
+				Offset="0.89" />
+			<GradientStop
+				Color="{StaticResource ctrlBkg}"
+				Offset=".990" />
+		</LinearGradientBrush>
+
+		<!-- edit panel -->
+		<SolidColorBrush x:Key="editPanelBtnBkg"
+			Color="{StaticResource greyMed}"/>
+
+		<!--#endregion -->
+
+		<!--#region +Styles -->
+
+		<!-- general -->
+
+		<!-- main header -->
+
+		<Style x:Key="lblMainHeader"
+			TargetType="{x:Type Label}">
+			<Setter
+				Property="Foreground"
+				Value="White" />
+			<Setter
+				Property="VerticalAlignment"
+				Value="Center" />
+			<Setter
+				Property="Padding"
+				Value="8,0,0,2" />
+			<Setter
+				Property="HorizontalContentAlignment"
+				Value="Center" />
+		</Style>
+
+		<Style x:Key="bdrMainHdrTop"
+			TargetType="Border">
+			<Setter
+				Property="BorderBrush"
+				Value="{StaticResource bdrColor}" />
+			<Setter
+				Property="BorderThickness"
+				Value="0,0,1,1" />
+			<Setter
+				Property="Margin"
+				Value="0" />
+		</Style>
+
+		<Style x:Key="bdrMainHdrBottom"
+			TargetType="Border">
+			<Setter
+				Property="BorderBrush"
+				Value="{StaticResource bdrColor}" />
+			<Setter
+				Property="BorderThickness"
+				Value="0,0,1,0" />
+			<Setter
+				Property="Margin"
+				Value="0" />
+		</Style>
+
+		<Style x:Key="pointRowMainHdrBdr"
+			TargetType="Border"
+			BasedOn="{StaticResource bdrMainHdrTop}">
+			<Setter Property="Grid.Row" Value="{StaticResource pointRow}"/>
+		</Style>
+
+		<Style x:Key="valueRowMainHdrBdr"
+			TargetType="Border"
+			BasedOn="{StaticResource bdrMainHdrBottom}">
+			<Setter Property="Grid.Row" Value="{StaticResource valueRow}"></Setter>
+		</Style>
+
+		<!-- end point header -->
+
+		<Style x:Key="endHeaderLbl"
+			TargetType="{x:Type Label}">
+			<Setter
+				Property="Foreground"
+				Value="White"/>
+			<Setter
+				Property="VerticalAlignment"
+				Value="Center"/>
+			<Setter
+				Property="Padding"
+				Value="8,0,0,2"/>
+			<Setter
+				Property="HorizontalContentAlignment"
+				Value="Center"/>
+		</Style>
+
+		<Style x:Key="endDetailLbl"
+			BasedOn="{StaticResource endHeaderLbl}"
+			TargetType="{x:Type Label}">
+			<Setter
+				Property="Foreground"
+				Value="Black"/>
+
+		</Style>
+
+		<Style x:Key="pointTitle"
+			TargetType="Border"
+			BasedOn="{StaticResource bdrMainHdrTop}"
+			>
+			<Setter Property="Background"
+				Value="{StaticResource endPointHdrBkg}"/>
+			<Setter Property="BorderBrush"
+				Value="{StaticResource endPointBdr}"
+				/>
+		</Style>
+
+		<Style x:Key="endHdrTopBdr"
+			TargetType="Border"
+			BasedOn="{StaticResource bdrMainHdrTop}"
+			>
+			<Setter Property="Background"
+				Value="{StaticResource endPointDtlBkg}"/>
+			<Setter Property="BorderBrush"
+				Value="{StaticResource endPointBdr}"
+				/>
+		</Style>
+
+		<Style x:Key="endHdrBottomBdr"
+			BasedOn="{StaticResource bdrMainHdrBottom}"
+			TargetType="Border">
+			<Setter Property="Background"
+				Value="{StaticResource endPointDtlBkg}"
+				/>
+			<Setter
+				Property="BorderBrush"
+				Value="{StaticResource endPointBdr}"/>
+
+
+		</Style>
+
+		<!-- edit panel -->
+
+		<Style x:Key="editPanel"
+			TargetType="Grid">
+			<Setter Property="VerticalAlignment"
+				Value="Center"/>
+			<Setter Property="HorizontalAlignment"
+				Value="Left"/>
+			<Setter Property="Visibility"
+				Value="Visible"/>
+
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding IsBeingEdited, Mode=OneWay}"
+					Value="true">
+					<Setter Property="Visibility"
+						Value="Visible"/>
+				</DataTrigger>
+				<!-- <DataTrigger Binding="{Binding Slope}" Value="asdf"> -->
+				<!-- 	<Setter Property="Background" Value="Red"/> -->
+				<!-- 	<Setter Property="Visibility" -->
+				<!-- 		Value="Visible"/> -->
+				<!-- </DataTrigger> -->
+			</Style.Triggers>
+		</Style>
+
+		<!-- detail -->
+
+		<Style x:Key="tbkDetail"
+			TargetType="{x:Type TextBlock}">
+			<Setter
+				Property="VerticalAlignment"
+				Value="Center" />
+			<Setter
+				Property="Padding"
+				Value="4,2,2,5" />
+			<Setter Property="TextAlignment" 
+				Value="Center"/>
+			<Setter
+				Property="HorizontalAlignment"
+				Value="Stretch" />
+		</Style>
+
+		<!-- <Setter Property="IsHitTestVisible" Value="False"/> -->
+		<!-- <Setter Property="IsHitTestVisible" Value="True"/> -->
+
+		<Style x:Key="tbxValue"
+			TargetType="{x:Type TextBox}">
+			<Setter
+				Property="BorderThickness"
+				Value="1" />
+			<Setter Property="BorderBrush" Value="{StaticResource disabledBkg}"/>
+			<Setter
+				Property="VerticalAlignment"
+				Value="Stretch" />
+			<Setter
+				Property="VerticalContentAlignment"
+				Value="Center" />
+			<Setter
+				Property="HorizontalContentAlignment"
+				Value="Center" />
+			<!-- <EventSetter Event="GotFocus" Handler="tbxXYZ_OnGotFocus"/> -->
+			<!-- <EventSetter Event="LostFocus" Handler="tbxXYZ_OnLostFocus"/> -->
+			<Setter Property="IsEnabled" Value="False"/>
+			<Setter Property="Foreground" Value="{StaticResource disabledText}"/>
+			<Setter Property="Background" Value="{StaticResource disabledBkg}"/>
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding IsSelected,
+									RelativeSource={RelativeSource FindAncestor,
+									AncestorType={x:Type ListBoxItem}, AncestorLevel=1}}"
+					Value="True">
+					<Setter Property="IsEnabled" Value="True"/>
+					<Setter Property="Foreground"
+						Value="{StaticResource enabledText}"/>
+					<Setter Property="Background"
+						Value="{StaticResource enabledBkg}"/>
+					<Setter Property="BorderBrush"
+						Value="{StaticResource enabledBkg}"/>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+
+		<Style x:Key="bdrDetailTop"
+			TargetType="Border">
+			<Setter
+				Property="BorderBrush"
+				Value="{StaticResource bdrColor}" />
+			<Setter
+				Property="BorderThickness"
+				Value="0,0,1,1" />
+			<Setter
+				Property="Margin"
+				Value="0" />
+		</Style>
+
+		<Style x:Key="bdrDetailBottom"
+			TargetType="Border">
+			<Setter
+				Property="BorderBrush"
+				Value="{StaticResource bdrColor}" />
+			<Setter
+				Property="BorderThickness"
+				Value="0,0,1,0" />
+			<Setter
+				Property="Margin"
+				Value="0,0,0,-1" />
+		</Style>
+
+		<Style x:Key="pointRowDetailBdr"
+			TargetType="Border"
+			BasedOn="{StaticResource bdrDetailTop}"
+			>
+			<Setter Property="Grid.Row" Value="{StaticResource pointRow}"/>
+		</Style>
+
+		<Style x:Key="valueRowDetailBdr"
+			TargetType="Border"
+			BasedOn="{StaticResource bdrDetailBottom}"
+			>
+			<Setter Property="Grid.Row" Value="{StaticResource valueRow}"/>
+		</Style>
+
+		<!--#endregion -->
+
+		<!--#region +GroupBox Sep Color top row edit -->
+		<Style
+			x:Key="grpBxColoredSidesTopEditable"
+			TargetType="{x:Type GroupBox}">
+			<Setter
+				Property="BorderBrush"
+				Value="Transparent" />
+			<Setter
+				Property="BorderThickness"
+				Value="1" />
+			<Setter
+				Property="Template">
+				<Setter.Value>
+					<ControlTemplate
+						TargetType="{x:Type GroupBox}">
+						<Grid
+							SnapsToDevicePixels="True">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition
+									Width="0" />
+								<ColumnDefinition
+									Width="*" />
+								<ColumnDefinition
+									Width="1" />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition
+									Height="0" />
+								<RowDefinition
+									Height="*" />
+								<RowDefinition
+									Height="1" />
+
+							</Grid.RowDefinitions>
+							<Border
+								Grid.Row="0"
+								Grid.Column="0"
+								Grid.RowSpan="3"
+								BorderThickness="1,0,0,0"
+								BorderBrush="{StaticResource controlBkg}" />
+							<Border
+								Grid.Row="0"
+								Grid.Column="0"
+								Grid.ColumnSpan="3"
+								BorderThickness="0,1,0,0"
+								BorderBrush="{StaticResource controlBkg}" />
+							<Border
+								Grid.Row="0"
+								Grid.Column="2"
+								Grid.RowSpan="3"
+								BorderThickness="0,0,1,0"
+								BorderBrush="{StaticResource bdrColor}" />
+							<Border
+								Grid.Row="2"
+								Grid.Column="0"
+								Grid.ColumnSpan="3"
+								BorderThickness="0,0,0,1"
+								BorderBrush="{StaticResource bdrColor}"/>
+							<ContentPresenter
+								Grid.Row="1"
+								Grid.Column="1" />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<!--#endregion -->
+
+		<!--#region +GroupBox Sep Color bottom row edit -->
+		<Style
+			x:Key="grpBxColoredSidesBottomEditable"
+			TargetType="{x:Type GroupBox}">
+			<Setter
+				Property="BorderBrush"
+				Value="Transparent" />
+			<Setter
+				Property="BorderThickness"
+				Value="0" />
+			<Setter
+				Property="Template">
+				<Setter.Value>
+					<ControlTemplate
+						TargetType="{x:Type GroupBox}">
+						<Grid
+							SnapsToDevicePixels="True">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition
+									Width="0" />
+								<ColumnDefinition
+									Width="*" />
+								<ColumnDefinition
+									Width="1" />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition
+									Height="0" />
+								<RowDefinition
+									Height="*" />
+								<RowDefinition
+									Height="0" />
+							</Grid.RowDefinitions>
+
+							<!-- left -->
+							<Border
+								Grid.Row="0"
+								Grid.Column="0"
+								Grid.RowSpan="3"
+								BorderThickness="1,0,0,0"
+								BorderBrush="{StaticResource controlBkg}"/>
+							<!-- top -->
+							<Border
+								Grid.Row="0"
+								Grid.Column="0"
+								Grid.ColumnSpan="3"
+								BorderThickness="0,1,0,0"
+								BorderBrush="{StaticResource controlBkg}" />
+							<!-- right -->
+							<Border
+								Grid.Row="0"
+								Grid.Column="2"
+								Grid.RowSpan="3"
+								BorderThickness="0,0,1,0"
+								BorderBrush="{StaticResource bdrColor}" />
+							<!-- bottom -->
+							<Border
+								Grid.Row="2"
+								Grid.Column="0"
+								Grid.ColumnSpan="3"
+								BorderThickness="0,0,0,0"
+								BorderBrush="{StaticResource controlBkg}" />
+
+							<ContentPresenter
+								Grid.Row="1"
+								Grid.Column="1" />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<!--#endregion -->
+
+		<!--#region +GroupBox Sep Color bottom row fixed -->
+		<Style
+			x:Key="grpBxColoredSidesBottomFixed"
+			TargetType="{x:Type GroupBox}">
+			<Setter
+				Property="BorderBrush"
+				Value="Transparent" />
+			<Setter
+				Property="BorderThickness"
+				Value="0" />
+			<Setter
+				Property="Template">
+				<Setter.Value>
+					<ControlTemplate
+						TargetType="{x:Type GroupBox}">
+						<Grid
+							SnapsToDevicePixels="True">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition
+									Width="1" />
+								<ColumnDefinition
+									Width="*" />
+								<ColumnDefinition
+									Width="1" />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition
+									Height="1" />
+								<RowDefinition
+									Height="*" />
+								<RowDefinition
+									Height="1" />
+							</Grid.RowDefinitions>
+
+							<!-- left -->
+							<Border
+								Grid.Row="0"
+								Grid.Column="0"
+								Grid.RowSpan="3"
+								BorderThickness="1,0,0,0"
+								BorderBrush="Transparent"/>
+							<!-- top -->
+							<Border
+								Grid.Row="0"
+								Grid.Column="0"
+								Grid.ColumnSpan="3"
+								BorderThickness="0,1,0,0"
+								BorderBrush="Transparent" />
+							<!-- right -->
+							<Border
+								Grid.Row="0"
+								Grid.Column="2"
+								Grid.RowSpan="3"
+								BorderThickness="0,0,1,0"
+								BorderBrush="{StaticResource bdrColor}" />
+							<!-- bottom -->
+							<Border
+								Grid.Row="2"
+								Grid.Column="0"
+								Grid.ColumnSpan="3"
+								BorderThickness="0,0,0,1"
+								BorderBrush="Transparent" />
+
+							<ContentPresenter
+								Grid.Row="1"
+								Grid.Column="1" />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<!--#endregion -->
+
+		<!--#region +start point template -->
+
+		<ControlTemplate x:Key="startPoint">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<!-- 0 -->
+					<ColumnDefinition Width="{StaticResource col00}"/>
+					<!-- 1 -->
+					<ColumnDefinition Width="{StaticResource col01}"/>
+					<!-- 2 -->
+					<ColumnDefinition Width="{StaticResource col02}"/>
+					<!-- 3 -->
+					<ColumnDefinition Width="{StaticResource col03}"/>
+					<!-- 4 -->
+					<ColumnDefinition Width="{StaticResource col04}"/>
+					<!-- 5 -->
+					<ColumnDefinition Width="{StaticResource col05}"/>
+					<!-- 6 -->
+					<ColumnDefinition Width="{StaticResource col06}"/>
+					<!-- 7 -->
+					<ColumnDefinition Width="{StaticResource col07}"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="{StaticResource hdrRowHeight}"/>
+				</Grid.RowDefinitions>
+
+				<!-- start point row -->
+				<!-- <Border Grid.Row="1" -->
+				<!-- 	Grid.Column="0" -->
+				<!-- -->
+				<!-- 	BorderThickness="1,0,1,1" -->
+				<!-- 	Style="{StaticResource pointTitle}"> -->
+				<!-- 	<Label Content="Start Point" -->
+				<!-- 		Style="{StaticResource endHeaderLbl}"/> -->
+				<!-- </Border> -->
+
+				<Border Grid.Row="0"
+					Grid.Column="0"
+					Grid.ColumnSpan="2"
+					Style="{StaticResource endHdrBottomBdr}">
+					<Label Content="{Binding StartX}"
+						Style="{StaticResource endDetailLbl}"/>
+				</Border>
+
+				<Border Grid.Row="0"
+					Grid.Column="2"
+					Grid.ColumnSpan="2"
+					Style="{StaticResource endHdrBottomBdr}">
+					<Label Content="{Binding StartY}"
+						Style="{StaticResource endDetailLbl}"/>
+				</Border>
+
+				<Border Grid.Row="0"
+					Grid.Column="4"
+					Grid.ColumnSpan="2"
+					
+					Style="{StaticResource endHdrBottomBdr}">
+					<Label Content="{Binding StartZ}"
+						Style="{StaticResource endDetailLbl}"/>
+				</Border>
+
+				<Border Grid.Row="0"
+					Grid.Column="6"
+					Grid.ColumnSpan="1"
+					Style="{StaticResource pointTitle}">
+					<Label Content=""
+						Style="{StaticResource endHeaderLbl}"/>
+				</Border>
+
+				<Border Grid.Row="0"
+					Grid.Column="7"
+					Grid.ColumnSpan="1"
+					Style="{StaticResource pointTitle}">
+					<Label Content="Start Point"
+						Style="{StaticResource endHeaderLbl}"/>
+				</Border>
+
+			</Grid>
+		</ControlTemplate>
+		<!--#endregion -->
+
+		<!--#region +Header Control Template -->
+		<ControlTemplate
+			x:Key="headerControlTemplate"
+			>
+			<!-- perimeter border -->
+			<Border
+				BorderThickness="0"
+				Margin="0,0,0,0">
+
+					<!--#region +Header & Presenter -->
+					<!-- whole panel -->
+				<DockPanel
+					Background="{StaticResource dockpnlBkg}"
+					LastChildFill="True">
+
+					<!--#region main header + end point -->
+					<Grid
+						DockPanel.Dock="Top"
+						VerticalAlignment="Top"
+						Margin="0"
+						Background="{StaticResource dkBkgBdr}"
+					>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="18.5"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="41"/>
+							<RowDefinition Height="40"/>
+						</Grid.RowDefinitions>
+
+						<!--#region +Main header (description) -->
+						<Border
+							Grid.Row="0"
+							Grid.Column="0"
+							Margin="0,0,0,-1.5"
+							BorderBrush="{StaticResource shadow}"							
+							BorderThickness="0,0,0,8"
+						>
+							<Grid Margin="0,0,0,-1"
+								Background="{StaticResource hdrUsedBkg}"
+								DockPanel.Dock="Top">
+								<Grid.ColumnDefinitions>
+									<!-- 0 -->
+									<ColumnDefinition Width="{StaticResource col00}"/>
+									<!-- 1 -->
+									<ColumnDefinition Width="{StaticResource col01}"/>
+									<!-- 2 -->
+									<ColumnDefinition Width="{StaticResource col02}"/>
+									<!-- 3 -->
+									<ColumnDefinition Width="{StaticResource col03}"/>
+									<!-- 4 -->
+									<ColumnDefinition Width="{StaticResource col04}"/>
+									<!-- 5 -->
+									<ColumnDefinition Width="{StaticResource col05}"/>
+									<!-- 6 -->
+									<ColumnDefinition Width="{StaticResource col06}"/>
+									<!-- 7 -->
+									<ColumnDefinition Width="{StaticResource col07}"/>
+
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="{StaticResource hdrRowHeight}"/>
+									<RowDefinition Height="{StaticResource hdrRowHeight}"/>
+
+								</Grid.RowDefinitions>
+
+								<!-- main header -->
+
+								<!--#region +Point Row titles -->
+
+								<Border Grid.Column="0"
+									Grid.ColumnSpan="2"
+									Style="{StaticResource pointRowMainHdrBdr}">
+									<Label Content="X"
+										Style="{StaticResource lblMainHeader}"/>
+								</Border>
+								<Border Grid.Column="2"
+									Grid.ColumnSpan="2"
+									Style="{StaticResource pointRowMainHdrBdr}">
+									<Label Content="Y"
+										Style="{StaticResource lblMainHeader}"/>
+								</Border>
+								<Border Grid.Column="4"
+									Grid.ColumnSpan="2"
+									Style="{StaticResource pointRowMainHdrBdr}">
+									<Label Content="Z"
+										Style="{StaticResource lblMainHeader}"/>
+								</Border>
+
+								<Border Grid.Column="6"
+									Grid.ColumnSpan="2"
+									Style="{StaticResource pointRowMainHdrBdr}">
+									<Label Content="Slope"
+										Style="{StaticResource lblMainHeader}"/>
+								</Border>
+
+								<!--#endregion -->
+
+								<!--#region +Value Row titles-->
+
+								<Border Grid.Column="0"
+									Style="{StaticResource valueRowMainHdrBdr}"
+									Background="{StaticResource hdrUnusedBkg}">
+								</Border>
+
+								<Border Grid.Column="1"
+									Style="{StaticResource valueRowMainHdrBdr}"
+									Grid.ColumnSpan="2">
+									<Label Content="Delta XY"
+										Style="{StaticResource lblMainHeader}"/>
+								</Border>
+
+								<Border Grid.Column="3"
+									Grid.ColumnSpan="2"
+									Style="{StaticResource valueRowMainHdrBdr}">
+									<Label Content="Delta XYZ"
+										Style="{StaticResource lblMainHeader}"/>
+								</Border>
+
+								<Border Grid.Column="5"
+									Grid.ColumnSpan="2"
+									BorderThickness="0"
+									Style="{StaticResource valueRowMainHdrBdr}">
+									<Label Content="Delta Z"
+										Style="{StaticResource lblMainHeader}"/>
+								</Border>
+
+								<Border Grid.Column="7"
+									BorderThickness="0,0,0,1"
+									Style="{StaticResource valueRowMainHdrBdr}"
+									Background="{StaticResource hdrUnusedBkg}">
+								</Border>
+
+								<!--#endregion -->
+
+							</Grid>
+						</Border>
+						<!--#endregion -->
+
+						<!--#region +end point values -->
+						<Border
+							Grid.Row="1"
+							DockPanel.Dock="top"
+							VerticalAlignment="top"
+							Margin="0,0,0,-2"
+							
+							Background="{StaticResource endPointUnusedBkg}"
+							BorderThickness="0,0,0,7"
+							BorderBrush="{StaticResource shadow}"
+						>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<!-- 0 -->
+									<ColumnDefinition
+										Width="{StaticResource col00}"/>
+									<!-- 1 -->
+									<ColumnDefinition
+										Width="{StaticResource col01}"/>
+									<!-- 2 -->
+									<ColumnDefinition
+										Width="{StaticResource col02}"/>
+									<!-- 3 -->
+									<ColumnDefinition
+										Width="{StaticResource col03}"/>
+									<!-- 4 -->
+									<ColumnDefinition
+										Width="{StaticResource col04}"/>
+									<!-- 5 -->
+									<ColumnDefinition
+										Width="{StaticResource col05}"/>
+									<!-- 6 -->
+									<ColumnDefinition
+										Width="{StaticResource col06}"/>
+									<!-- 7 -->
+									<ColumnDefinition
+										Width="{StaticResource col07}"/>
+
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition
+										Height="{StaticResource hdrRowHeight}"/>
+									<RowDefinition
+										Height="{StaticResource hdrRowHeight}"/>
+								</Grid.RowDefinitions>
+
+								<!-- end point row -->
+
+								<Border Grid.Row="1"
+									Grid.Column="0"
+									BorderThickness="0,0,1,1"
+									Style="{StaticResource pointTitle}">
+									<Label Content=""
+										Style="{StaticResource endHeaderLbl}"/>
+								</Border>
+
+								<Border Grid.Row="0"
+									Grid.Column="0"
+									Grid.ColumnSpan="2"
+									Style="{StaticResource endHdrTopBdr}">
+									<Label
+										Content="{Binding EndX}"
+										Style="{StaticResource endDetailLbl}"/>
+								</Border>
+
+								<Border Grid.Row="0"
+									Grid.Column="2"
+									Grid.ColumnSpan="2"
+									Style="{StaticResource endHdrTopBdr}">
+									<Label
+										Content="{Binding EndY}"
+										Style="{StaticResource endDetailLbl}"/>
+								</Border>
+
+								<Border Grid.Row="0"
+									Grid.Column="4"
+									Grid.ColumnSpan="2"
+									Style="{StaticResource endHdrTopBdr}">
+									<Label
+										Content="{Binding EndZ}"
+										Style="{StaticResource endDetailLbl}"/>
+								</Border>
+
+								<Border Grid.Row="1"
+									Grid.Column="7"
+									Grid.ColumnSpan="1"
+									BorderThickness="0,0,0,1"
+									Style="{StaticResource pointTitle}">
+									<Label Content="End Point"
+										Style="{StaticResource endHeaderLbl}"/>
+								</Border>
+
+
+								<Border Grid.Row="0"
+									Grid.Column="6"
+									Grid.ColumnSpan="2"
+									BorderThickness="0,0,1,1"
+									Style="{StaticResource endHdrBottomBdr}">
+									<Label
+										Content="{Binding EndSlope}"
+										Style="{StaticResource endDetailLbl}"/>
+								</Border>
+
+								<Border Grid.Row="1"
+									Grid.Column="1"
+									Grid.ColumnSpan="2"
+									Style="{StaticResource endHdrBottomBdr}">
+									<Label
+										Content="{Binding EndDeltaXY}"
+										Style="{StaticResource endDetailLbl}"/>
+								</Border>
+
+								<Border Grid.Row="1"
+									Grid.Column="3"
+									Grid.ColumnSpan="2"
+									Style="{StaticResource endHdrBottomBdr}">
+									<Label
+										Content="{Binding EndDeltaXYZ}"
+										Style="{StaticResource endDetailLbl}"/>
+								</Border>
+
+
+								<Border Grid.Row="1"
+									Grid.Column="5"
+									Grid.ColumnSpan="2"
+									BorderThickness="0,0,0,1"
+									Style="{StaticResource endHdrBottomBdr}">
+									<Label Content="{Binding EndDeltaZ}"
+										Style="{StaticResource endDetailLbl}"/>
+								</Border>
+
+							</Grid>
+						</Border>
+						<!-- end end point header -->
+						<!--#endregion -->
+
+						<!--#region +scroll bar column -->
+						<Border
+							Grid.Row="0"
+							Grid.Column="1"
+							Grid.RowSpan="2"
+							BorderThickness="1,0,0,1"
+							BorderBrush="{StaticResource bdrColor}"
+						/>
+						<!--#endregion -->
+
+					</Grid>
+					<!-- end main header -->
+
+					<!--#endregion -->
+
+					<!--#region +Item Presentation -->
+					<!-- present the list box values -->
+					<ScrollViewer
+						VerticalScrollBarVisibility="Visible">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+							<ItemsPresenter
+								Margin="-6,0,-5,0" />
+							<ContentControl 
+								Margin="0,2,0,0"
+								Grid.Row="1"
+								VerticalAlignment="Top"
+								Template="{StaticResource startPoint}">
+
+							</ContentControl>
+						</Grid>
+					</ScrollViewer>
+					<!-- end -->
+					<!--#endregion -->
+
+				</DockPanel>
+				<!-- end of dock panel -->
+				<!--#endregion -->
+
+			</Border>
+			<!-- end perimeter border -->
+
+		</ControlTemplate>
+		<!--#endregion -->
+
+		<!--#region +Detail Data Template -->
+		<DataTemplate
+			x:Key="detailDataTemplate">
+			<Border
+				Margin="0,0,0,-4"
+				BorderThickness="0,0,0,5"
+				BorderBrush="{DynamicResource shadow}"
+				>
+				<Grid
+					Margin="2,0,0,0">
+					<Grid.ColumnDefinitions>
+						<!-- 0 -->
+						<ColumnDefinition
+							Width="{StaticResource col00}"/>
+						<!-- 1 -->
+						<ColumnDefinition
+							Width="{StaticResource col01}"/>
+						<!-- 2 -->
+						<ColumnDefinition
+							Width="{StaticResource col02}"/>
+						<!-- 3 -->
+						<ColumnDefinition
+							Width="{StaticResource col03}"/>
+						<!-- 4 -->
+						<ColumnDefinition
+							Width="{StaticResource col04}"/>
+						<!-- 5 -->
+						<ColumnDefinition
+							Width="{StaticResource col05}"/>
+						<!-- 6 -->
+						<ColumnDefinition
+							Width="{StaticResource col06}"/>
+						<!-- 7 -->
+						<ColumnDefinition
+							Width="{StaticResource col07}"/>
+
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="{StaticResource dtlRowHeightTop}"/>
+						<RowDefinition Height="{StaticResource dtlRowHeightBottom}"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+
+					<!--#region +Detail Value Row -->
+
+					<!--#region +X Tbx -->
+					<Border Grid.Row="{StaticResource detailValueRow}"
+						Grid.Column="0" Grid.ColumnSpan="2"
+						>
+						<GroupBox
+							Style="{StaticResource grpBxColoredSidesTopEditable}">
+							<TextBox x:Name="TbxXvalue"
+								Validation.Error="TbxXYZ_OnError"
+								Tag="{Binding Path=cpConsts.Xtag, ElementName=ctrlPts}"
+								Style="{StaticResource tbxValue}">
+								<!-- SourceUpdated="TbxXYZ_OnSourceUpdated" -->
+								<TextBox.Text>
+									<Binding Path="X"
+										Mode="TwoWay"
+										Converter="{StaticResource xyzConverter}"
+										NotifyOnSourceUpdated="True"
+										NotifyOnTargetUpdated="True"
+										NotifyOnValidationError="True"
+										>
+										<Binding.ValidationRules>
+											<validation:ControlPointXYZValidation
+												ValidationStep="RawProposedValue" />
+										</Binding.ValidationRules>
+									</Binding>
+								</TextBox.Text>
+							</TextBox>
+						</GroupBox>
+					</Border>
+					<!--#endregion -->
+
+					<!--#region +Y Tbx -->
+					<Border Grid.Row="{StaticResource detailValueRow}"
+						Grid.Column="2" Grid.ColumnSpan="2">
+						<GroupBox
+							Style="{StaticResource grpBxColoredSidesTopEditable}">
+							<TextBox x:Name="TbxYvalue"
+								Validation.Error="TbxXYZ_OnError"
+								Tag="{Binding Path=cpConsts.Ytag, ElementName=ctrlPts}"
+								Style="{StaticResource tbxValue}">
+								<!-- SourceUpdated="TbxXYZ_OnSourceUpdated" -->
+								<TextBox.Text>
+									<Binding Path="Y"
+										Mode="TwoWay"
+										Converter="{StaticResource xyzConverter}"
+										NotifyOnSourceUpdated="True"
+										NotifyOnTargetUpdated="True"
+										NotifyOnValidationError="True">
+										<Binding.ValidationRules>
+											<validation:ControlPointXYZValidation 
+												ValidationStep="RawProposedValue"/>
+										</Binding.ValidationRules>
+									</Binding>
+								</TextBox.Text>
+							</TextBox>
+						</GroupBox>
+					</Border>
+					<!--#endregion -->
+
+					<!--#region +Z Tbx -->
+					<Border Grid.Row="{StaticResource detailValueRow}"
+						Grid.Column="4" Grid.ColumnSpan="2">
+						<GroupBox
+							Style="{StaticResource grpBxColoredSidesTopEditable}">
+							<TextBox x:Name="TbxZvalue"
+								Validation.Error="TbxXYZ_OnError"
+								Tag="{Binding Path=cpConsts.Ztag, ElementName=ctrlPts}"
+								Style="{StaticResource tbxValue}">
+								<!-- SourceUpdated="TbxXYZ_OnSourceUpdated" -->
+								<TextBox.Text>
+									<Binding Path="Z"
+										Mode="TwoWay"
+										Converter="{StaticResource xyzConverter}"
+										NotifyOnSourceUpdated="True"
+										NotifyOnTargetUpdated="True"
+										NotifyOnValidationError="True">
+										<Binding.ValidationRules>
+											<validation:ControlPointXYZValidation 
+												ValidationStep="RawProposedValue"/>
+										</Binding.ValidationRules>
+									</Binding>
+								</TextBox.Text>
+							</TextBox>
+
+						</GroupBox>
+					</Border>
+					<!--#endregion -->
+					
+					<!--#region +Slope -->
+					<Border Grid.Row="{StaticResource detailValueRow}"
+						Grid.Column="6" 
+						Grid.ColumnSpan="2">
+						<GroupBox Style="{DynamicResource grpBxColoredSidesTopEditable}">
+							<TextBox x:Name="tbxSlope"
+								Validation.Error="TbxSlope_OnError"
+								Tag="{Binding Path=cpConsts.Stag, ElementName=ctrlPts}"
+								Style="{StaticResource tbxValue}">
+								<!-- SourceUpdated="TbxSlope_OnSourceUpdated" -->
+								<TextBox.Text>
+									<Binding Path="Slope"
+										Mode="TwoWay"
+										Converter="{StaticResource slopeConverter}"
+										NotifyOnSourceUpdated="True"
+										NotifyOnTargetUpdated="True"
+										NotifyOnValidationError="True">
+										<Binding.ValidationRules>
+											<validation:ControlPointSlopeValidation 
+												ValidationStep="RawProposedValue"/>
+										</Binding.ValidationRules>
+									</Binding>
+								</TextBox.Text>
+							</TextBox>
+
+						</GroupBox>
+					</Border>
+					<!--#endregion -->
+					
+					<!--#endregion -->
+
+					<!--#region +Detail info row -->
+
+					<Border Grid.Row="{StaticResource detailInfoRow}"
+						Grid.Column="0"
+						Style="{StaticResource valueRowDetailBdr}"
+						Background="{StaticResource detailUnusedBkg}"
+						>
+					</Border>
+
+					<!--#region +XyValue -->
+					<Border
+						Grid.Row="{StaticResource detailInfoRow}"
+						Grid.Column="1"
+						Grid.ColumnSpan="2">
+						<GroupBox Style="{StaticResource grpBxColoredSidesBottomFixed}">
+							<TextBlock Style="{DynamicResource tbkDetail}">
+								<TextBlock.Text>
+									<Binding Path="XyValue"
+										Mode="OneWay"
+										Converter="{StaticResource xyzConverter}"
+										NotifyOnSourceUpdated="True"/>
+								</TextBlock.Text>
+							</TextBlock>
+						</GroupBox>
+					</Border>
+					<!--#endregion -->
+
+					<!--#region +XyzValue -->
+					<Border Grid.Row="{StaticResource detailInfoRow}"
+						Grid.Column="3"
+						Grid.ColumnSpan="2">
+						<GroupBox Style="{StaticResource grpBxColoredSidesBottomFixed}">
+							<TextBlock Style="{DynamicResource tbkDetail}">
+								<TextBlock.Text>
+									<Binding Path="XyzValue"
+										Mode="OneWay"
+										Converter="{StaticResource xyzConverter}"
+										NotifyOnSourceUpdated="True"/>
+								</TextBlock.Text>
+							</TextBlock>
+						</GroupBox>
+					</Border>
+					<!--#endregion -->
+
+					<!--#region +ZDelta -->
+					<Border Grid.Row="{StaticResource detailInfoRow}"
+						Grid.Column="5"
+						Grid.ColumnSpan="2">
+						<GroupBox Style="{StaticResource grpBxColoredSidesBottomFixed}">
+							<TextBlock Style="{DynamicResource tbkDetail}">
+								<TextBlock.Text>
+									<Binding Path="ZDelta"
+									Mode="OneWay"
+									Converter="{StaticResource xyzConverter}"
+									NotifyOnSourceUpdated="True"
+									/>
+								</TextBlock.Text>
+							</TextBlock>
+							<!-- Text="{Binding ZDelta}" -->
+						</GroupBox>
+					</Border>
+					<!--#endregion -->
+
+					<Border Grid.Row="{StaticResource detailInfoRow}"
+						Grid.Column="7"
+						Style="{StaticResource valueRowDetailBdr}"
+						Background="{StaticResource detailUnusedBkg}"/>
+
+					<!--#endregion -->
+
+					<!--#region +EditPanel -->
+					<Border Grid.Row="{StaticResource editPanelRow}"
+						Grid.Column="0"
+						Grid.ColumnSpan="8"
+						BorderBrush="{StaticResource bdrColor}"
+						BorderThickness="0,1,1,1"
+						>
+						<Grid 
+							Style="{StaticResource editPanel}"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							>
+							<Grid.ColumnDefinitions>
+								<!-- 0 -->
+								<ColumnDefinition Width="{StaticResource col00}"/>
+								<!-- 1 -->
+								<ColumnDefinition Width="{StaticResource col01}"/>
+								<!-- 2 -->
+								<ColumnDefinition Width="{StaticResource col02}"/>
+								<!-- 3 -->
+								<ColumnDefinition Width="{StaticResource col03}"/>
+								<!-- 4 -->
+								<ColumnDefinition Width="{StaticResource col04}"/>
+								<!-- 5 -->
+								<ColumnDefinition Width="{StaticResource col05}"/>
+								<!-- 6 -->
+								<ColumnDefinition Width="{StaticResource col06}"/>
+								<!-- 7 -->
+								<ColumnDefinition Width="{StaticResource col07}"/>
+
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="{StaticResource editPnlRowHeightTop}"/>
+								<RowDefinition Height="{StaticResource editPnlRowHeightBottom}"/>
+							</Grid.RowDefinitions>
+
+							<TextBlock Grid.Row="{StaticResource msgRow}"
+								Grid.Column="0"
+								VerticalAlignment="Center"
+								Margin="4,0,0,0"
+								Text="Has Revisions (X)?"/>
+
+							<TextBlock Grid.Row="{StaticResource msgRow}"
+								Grid.Column="1"
+								Grid.ColumnSpan="1"
+								VerticalAlignment="Center"
+								Text="{Binding Path=HasRevisionX, Mode=OneWay}"
+								Margin="4,0,0,0"
+								/>
+
+							<TextBox Grid.Row="{StaticResource msgRow}"
+								Grid.Column="3"
+								Grid.ColumnSpan="3"
+								HorizontalAlignment="Left"
+								Margin="4,0,0,2"
+								Text="{Binding Path=ErrorMsg, ElementName=ctrlPts,	Mode=OneWay}"
+								/>
+
+
+							<Button Grid.Row="{StaticResource btnRow}"
+								Grid.Column="0"
+								Content="Save X"
+								IsEnabled="{Binding Path=HasRevisionX, Mode=OneWay}"
+								Margin="6"
+								/>
+
+							<Button Grid.Row="{StaticResource btnRow}"
+								Grid.Column="1"
+								Content="Restore X"
+								IsEnabled="{Binding Path=HasRevisionX, Mode=OneWay}"
+								Margin="6"
+								/>
+								
+							<Button Grid.Row="{StaticResource btnRow}"
+								Grid.Column="2"
+								Content="Save Y"
+								IsEnabled="{Binding Path=HasRevisionY, Mode=OneWay}"
+								Margin="6"
+								/>
+
+							<Button Grid.Row="{StaticResource btnRow}"
+								Grid.Column="3"
+								Content="Restore Y"
+								IsEnabled="{Binding Path=HasRevisionY, Mode=OneWay}"
+								Margin="6"
+								/>
+
+							<Button Grid.Row="{StaticResource btnRow}"
+								Grid.Column="4"
+								Content="Save Z"
+								IsEnabled="{Binding Path=HasRevisionZ, Mode=OneWay}"
+								Margin="6"
+								/>
+
+							<Button Grid.Row="{StaticResource btnRow}"
+								Grid.Column="5"
+								Content="Restore Z"
+								IsEnabled="{Binding Path=HasRevisionZ, Mode=OneWay}"
+								Margin="6"
+								/>
+								
+							<Button Grid.Row="{StaticResource btnRow}"
+								Grid.Column="6"
+								Content="Save Slope"
+								IsEnabled="{Binding Path=HasRevisionZ, Mode=OneWay}"
+								Margin="6"
+								/>
+
+							<Button Grid.Row="{StaticResource btnRow}"
+								Grid.Column="7"
+								Content="Restore Slope"
+								IsEnabled="{Binding Path=HasRevisionZ, Mode=OneWay}"
+								Margin="6"
+								/>
+
+
+						</Grid>
+					</Border>
+					<!--#endregion -->
+
+				</Grid>
+			</Border>
+		</DataTemplate>
+
+		<!--#endregion -->
+
+	</Window.Resources>
+
+	<Grid
+		Margin="0,0,0,7">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="168" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+
+			<RowDefinition
+				Height="463.2" />
+			<RowDefinition />
+
+		</Grid.RowDefinitions>
+
+		<ListBox
+			x:Name="listBox2"
+			Margin="10,10,0.8,0"
+			HorizontalAlignment="Stretch"
+			HorizontalContentAlignment="Stretch"
+			Background="LightGray"
+			Template="{StaticResource headerControlTemplate}"
+			ItemTemplate="{StaticResource detailDataTemplate}"
+			ItemsSource="{Binding Sx}"
+			Height="443"
+			VerticalAlignment="Top"
+			SelectionMode="Single"
+			SelectionChanged="ListBox2_SelectionChanged"
+			>
+
+		</ListBox>
+		<!---->
+		<Button x:Name="btnDone"
+			Grid.Column="1"
+			Grid.Row="1"
+			Content="Done"
+			HorizontalAlignment="right"
+			Height="42"
+      VerticalAlignment="Bottom"
+      Width="141"
+			IsCancel="True"
+			IsDefault="True"
+      Margin="0,0,9.6,9.8"
+      HorizontalContentAlignment="Center"
+      VerticalContentAlignment="Center" Click="BtnDone_Click" />
+		<Button
+			x:Name="btnTest"
+			Grid.Column="1"
+			Grid.Row="1"
+			Content="Test"
+			HorizontalAlignment="Right"
+			Height="42"
+      VerticalAlignment="Bottom"
+      Width="141"
+			Click="BtnTest_Click"
+      Margin="0,0,9.6,56.8" />
+		<ScrollViewer
+			Grid.Row="1"
+			Grid.Column="0"
+			HorizontalScrollBarVisibility="Visible"
+
+			Margin="10,4.8,0.8,9.8">
+			<TextBox
+				x:Name="messageBlock"
+				VerticalAlignment="Stretch"
+				HorizontalAlignment="Stretch"
+				TextWrapping="Wrap"
+				Text="{Binding MessageText}"
+				Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
+			/>
+		</ScrollViewer>
+		<Button
+			x:Name="btnDebug"
+			Grid.Column="1"
+			Grid.Row="1"
+			Content="Debug"
+			HorizontalAlignment="Right"
+			Height="42"
+			VerticalAlignment="Bottom"
+			Width="141"
+			
+			Margin="0,0,9.6,103.8"
+			Click="BtnDebug_Click" />
+	<Button
+		x:Name="btnDebug_Copy"
+		Grid.Column="1"
+		Content="{Binding StartX}"
+		HorizontalAlignment="Right"
+		Height="42"
+		VerticalAlignment="Bottom"
+		Width="141"
+			
+		Margin="0,0,10.4,411.2"
+		Click="BtnDebugSl_Click" />
+ <Button
+	 x:Name="btnDebug_Copy1"
+	 Grid.Column="1"
+	 Content="test x"
+	 HorizontalAlignment="Right"
+	 Height="42"
+	 VerticalAlignment="Bottom"
+	 Width="141"
+			
+	 Margin="0,0,10.4,317.2"
+	 Click="BtnDebugX_Click" />
+ <Button
+	 x:Name="btnDebug_Copy2"
+	 Grid.Column="1"
+	 Content="undo all"
+	 HorizontalAlignment="Right"
+	 Height="42"
+	 VerticalAlignment="Bottom"
+	 Width="141"
+	Tag="{Binding cpConsts.Atag}"
+	 Margin="0,0,10.4,10.2"
+	 Click="BtnDebugUndo_Click" />
+ <Button
+	 x:Name="btnDebug_Copy3"
+	 Grid.Column="1"
+	 Content="undo slope"
+	 HorizontalAlignment="Right"
+	 Height="42"
+	 VerticalAlignment="Bottom"
+	 Width="141"
+	Tag="{Binding cpConsts.Stag}"
+	 Margin="0,0,10.4,364.2"
+	 Click="BtnDebugUndo_Click" />
+ <!-- <Button -->
+	<!--  x:Name="btnDebug_Copy4" -->
+	<!--  Grid.Column="1" -->
+	<!--  Content="undo x2" -->
+	<!--  HorizontalAlignment="Right" -->
+	<!--  Height="42" -->
+	<!--  VerticalAlignment="Bottom" -->
+	<!--  Width="141" -->
+	<!-- Tag="{Binding CpConsts.Xtag}" -->
+	<!--  Margin="0,0,9.4,270.2" -->
+	<!--  Click="BtnDebugUndo2_Click" /> -->
+ <Button
+	 x:Name="btnDebug_Copy5"
+	 Grid.Column="1"
+	 Content="undo x"
+	 HorizontalAlignment="Right"
+	 Height="42"
+	 VerticalAlignment="Bottom"
+	 Width="141"
+	 Tag="{Binding cpConsts.Xtag}"
+	 Margin="0,0,10.4,270.2"
+	 Click="BtnDebugUndo_Click" />
+
+	</Grid>
+
+</Window>
