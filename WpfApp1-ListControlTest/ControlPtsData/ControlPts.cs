@@ -245,7 +245,9 @@ namespace WpfApp1_ListControlTest.ControlPtsData
 		{
 			MainWindow.Cps.MessageText += "at undo (" + which + ")" + MainWindow.nl;
 
+#pragma warning disable CS0219 // The variable 'cps' is assigned but its value is never used
 			ControlPts cps = null;
+#pragma warning restore CS0219 // The variable 'cps' is assigned but its value is never used
 
 			if (which == ControlPointsConsts.aTag)
 			{

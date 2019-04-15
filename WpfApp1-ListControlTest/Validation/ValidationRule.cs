@@ -33,7 +33,9 @@ namespace WpfApp1_ListControlTest.Validation
 
 		public bool HasErrors { get; }
 
+#pragma warning disable CS0067 // The event 'ErrorRule.ErrorsChanged' is never used
 		public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+#pragma warning restore CS0067 // The event 'ErrorRule.ErrorsChanged' is never used
 	}
 
 }

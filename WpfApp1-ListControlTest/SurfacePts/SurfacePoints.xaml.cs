@@ -93,8 +93,12 @@ namespace WpfApp1_ListControlTest.SurfacePts
 
 		public string MessageText { get; set; } = "Message Window\n";
 
+#pragma warning disable CS0169 // The field 'SurfacePoints.savedValue' is never used
 		private string savedValue;
+#pragma warning restore CS0169 // The field 'SurfacePoints.savedValue' is never used
+#pragma warning disable CS0169 // The field 'SurfacePoints.savedRow' is never used
 		private int savedRow;
+#pragma warning restore CS0169 // The field 'SurfacePoints.savedRow' is never used
 
 		private SavedInfo savedInfo = new SavedInfo();
 
@@ -140,15 +144,15 @@ namespace WpfApp1_ListControlTest.SurfacePts
 			Sx.Insert(0, new PointClass() { XValue = " 111.0", YValue = " 121.0", ZValue = " 131.0", XyValue = " 141.0", XyzValue = " 151.0", ZDelta = " 161.0", Slope = " 1.0" });
 			Sx.Insert(0, new PointClass() { XValue = " 211.0", YValue = " 221.0", ZValue = " 231.0", XyValue = " 241.0", XyzValue = " 251.0", ZDelta = " 261.0", Slope = " 2.0" });
             Sx.Insert(0, new PointClass() { XValue = " 311.0", YValue = " 321.0", ZValue = " 331.0", XyValue = " 341.0", XyzValue = " 351.0", ZDelta = " 361.0", Slope = " 3.0" });
-            Sx.Insert(0, new PointClass() { XValue = " 411.0", YValue = " 421.0", ZValue = " 431.0", XyValue = " 441.0", XyzValue = " 451.0", ZDelta = " 461.0", Slope = " 4.0" });
-            Sx.Insert(0, new PointClass() { XValue = " 511.0", YValue = " 521.0", ZValue = " 531.0", XyValue = " 541.0", XyzValue = " 551.0", ZDelta = " 561.0", Slope = " 5.0" });
-            Sx.Insert(0, new PointClass() { XValue = " 611.0", YValue = " 621.0", ZValue = " 631.0", XyValue = " 641.0", XyzValue = " 651.0", ZDelta = " 661.0", Slope = " 6.0" });
-            Sx.Insert(0, new PointClass() { XValue = " 711.0", YValue = " 721.0", ZValue = " 731.0", XyValue = " 741.0", XyzValue = " 751.0", ZDelta = " 761.0", Slope = " 7.0" });
-            Sx.Insert(0, new PointClass() { XValue = " 811.0", YValue = " 821.0", ZValue = " 831.0", XyValue = " 841.0", XyzValue = " 851.0", ZDelta = " 861.0", Slope = " 8.0" });
-            Sx.Insert(0, new PointClass() { XValue = " 911.0", YValue = " 921.0", ZValue = " 931.0", XyValue = " 941.0", XyzValue = " 951.0", ZDelta = " 961.0", Slope = " 9.0" });
-            Sx.Insert(0, new PointClass() { XValue = "1011.0", YValue = "1021.0", ZValue = "1031.0", XyValue = "1041.0", XyzValue = "1051.0", ZDelta = "1061.0", Slope = "10.0" });
-            Sx.Insert(0, new PointClass() { XValue = "1111.0", YValue = "1121.0", ZValue = "1131.0", XyValue = "1141.0", XyzValue = "1151.0", ZDelta = "1161.0", Slope = "11.0" });
-            Sx.Insert(0, new PointClass() { XValue = "1211.0", YValue = "1221.0", ZValue = "1231.0", XyValue = "1241.0", XyzValue = "1251.0", ZDelta = "1261.0", Slope = "12.0" });
+            //Sx.Insert(0, new PointClass() { XValue = " 411.0", YValue = " 421.0", ZValue = " 431.0", XyValue = " 441.0", XyzValue = " 451.0", ZDelta = " 461.0", Slope = " 4.0" });
+            //Sx.Insert(0, new PointClass() { XValue = " 511.0", YValue = " 521.0", ZValue = " 531.0", XyValue = " 541.0", XyzValue = " 551.0", ZDelta = " 561.0", Slope = " 5.0" });
+            //Sx.Insert(0, new PointClass() { XValue = " 611.0", YValue = " 621.0", ZValue = " 631.0", XyValue = " 641.0", XyzValue = " 651.0", ZDelta = " 661.0", Slope = " 6.0" });
+            //Sx.Insert(0, new PointClass() { XValue = " 711.0", YValue = " 721.0", ZValue = " 731.0", XyValue = " 741.0", XyzValue = " 751.0", ZDelta = " 761.0", Slope = " 7.0" });
+            //Sx.Insert(0, new PointClass() { XValue = " 811.0", YValue = " 821.0", ZValue = " 831.0", XyValue = " 841.0", XyzValue = " 851.0", ZDelta = " 861.0", Slope = " 8.0" });
+            //Sx.Insert(0, new PointClass() { XValue = " 911.0", YValue = " 921.0", ZValue = " 931.0", XyValue = " 941.0", XyzValue = " 951.0", ZDelta = " 961.0", Slope = " 9.0" });
+            //Sx.Insert(0, new PointClass() { XValue = "1011.0", YValue = "1021.0", ZValue = "1031.0", XyValue = "1041.0", XyzValue = "1051.0", ZDelta = "1061.0", Slope = "10.0" });
+            //Sx.Insert(0, new PointClass() { XValue = "1111.0", YValue = "1121.0", ZValue = "1131.0", XyValue = "1141.0", XyzValue = "1151.0", ZDelta = "1161.0", Slope = "11.0" });
+            //Sx.Insert(0, new PointClass() { XValue = "1211.0", YValue = "1221.0", ZValue = "1231.0", XyValue = "1241.0", XyzValue = "1251.0", ZDelta = "1261.0", Slope = "12.0" });
 			
 		}
 
@@ -334,6 +338,25 @@ namespace WpfApp1_ListControlTest.SurfacePts
 
 
 	}
+
+	public class PointTemplateSelector : DataTemplateSelector
+	{
+		public override DataTemplate SelectTemplate(object item, DependencyObject container) 
+		{
+			FrameworkElement elemnt = container as FrameworkElement;
+			PointClass pt = item as PointClass;
+			if(pt.Slope.Equals(" 1.0"))
+			{
+				return elemnt.FindResource("detailDataTemplate2") as DataTemplate;
+			}
+			else
+			{
+				return elemnt.FindResource("detailDataTemplate") as DataTemplate;
+			}
+		}
+
+	}
+
 }
 
 

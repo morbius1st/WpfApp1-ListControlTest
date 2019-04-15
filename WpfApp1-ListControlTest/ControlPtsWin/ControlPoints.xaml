@@ -707,8 +707,8 @@
 				BorderThickness="0"
 				Margin="0,0,0,0">
 
-					<!--#region +Header & Presenter -->
-					<!-- whole panel -->
+				<!--#region +Header & Presenter -->
+				<!-- whole panel -->
 				<DockPanel
 					Background="{StaticResource dockpnlBkg}"
 					LastChildFill="True">
@@ -1004,9 +1004,7 @@
 								Margin="0,2,0,0"
 								Grid.Row="1"
 								VerticalAlignment="Top"
-								Template="{StaticResource startPoint}">
-
-							</ContentControl>
+								Template="{StaticResource startPoint}"/>
 						</Grid>
 					</ScrollViewer>
 					<!-- end -->
@@ -1153,7 +1151,7 @@
 						</GroupBox>
 					</Border>
 					<!--#endregion -->
-					
+
 					<!--#region +Slope -->
 					<Border Grid.Row="{StaticResource detailValueRow}"
 						Grid.Column="6" 
@@ -1182,7 +1180,7 @@
 						</GroupBox>
 					</Border>
 					<!--#endregion -->
-					
+
 					<!--#endregion -->
 
 					<!--#region +Detail info row -->
@@ -1318,7 +1316,8 @@
 								Grid.Column="0"
 								Content="Save X"
 								IsEnabled="{Binding Path=HasRevisionX, Mode=OneWay}"
-								Margin="6"
+								Margin="6" 
+								
 								/>
 
 							<Button Grid.Row="{StaticResource btnRow}"
@@ -1327,7 +1326,7 @@
 								IsEnabled="{Binding Path=HasRevisionX, Mode=OneWay}"
 								Margin="6"
 								/>
-								
+
 							<Button Grid.Row="{StaticResource btnRow}"
 								Grid.Column="2"
 								Content="Save Y"
@@ -1355,7 +1354,7 @@
 								IsEnabled="{Binding Path=HasRevisionZ, Mode=OneWay}"
 								Margin="6"
 								/>
-								
+
 							<Button Grid.Row="{StaticResource btnRow}"
 								Grid.Column="6"
 								Content="Save Slope"
@@ -1426,7 +1425,9 @@
 			IsDefault="True"
       Margin="0,0,9.6,9.8"
       HorizontalContentAlignment="Center"
-      VerticalContentAlignment="Center" Click="BtnDone_Click" />
+      VerticalContentAlignment="Center" 
+			Click="BtnDone_Click"
+			/>
 		<Button
 			x:Name="btnTest"
 			Grid.Column="1"
@@ -1510,17 +1511,17 @@
 	 Margin="0,0,10.4,364.2"
 	 Click="BtnDebugUndo_Click" />
  <!-- <Button -->
-	<!--  x:Name="btnDebug_Copy4" -->
-	<!--  Grid.Column="1" -->
-	<!--  Content="undo x2" -->
-	<!--  HorizontalAlignment="Right" -->
-	<!--  Height="42" -->
-	<!--  VerticalAlignment="Bottom" -->
-	<!--  Width="141" -->
-	<!-- Tag="{Binding CpConsts.Xtag}" -->
-	<!--  Margin="0,0,9.4,270.2" -->
-	<!--  Click="BtnDebugUndo2_Click" /> -->
- <Button
+		<!--  x:Name="btnDebug_Copy4" -->
+		<!--  Grid.Column="1" -->
+		<!--  Content="undo x2" -->
+		<!--  HorizontalAlignment="Right" -->
+		<!--  Height="42" -->
+		<!--  VerticalAlignment="Bottom" -->
+		<!--  Width="141" -->
+		<!-- Tag="{Binding CpConsts.Xtag}" -->
+		<!--  Margin="0,0,9.4,270.2" -->
+		<!--  Click="BtnDebugUndo2_Click" /> -->
+		<Button
 	 x:Name="btnDebug_Copy5"
 	 Grid.Column="1"
 	 Content="undo x"
