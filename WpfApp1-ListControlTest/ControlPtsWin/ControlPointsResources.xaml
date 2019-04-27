@@ -1,0 +1,251 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="clr-namespace:WpfApp1_ListControlTest.ControlPtsWin">
+
+
+	<!--#region +Values-->
+
+	<Color x:Key="ctrlBkg">White</Color>
+	<Color x:Key="greyXXtraLight">
+		#FFFFFF
+	</Color>
+	<Color x:Key="greyXtraLight">
+		#EEEEEE
+	</Color>
+	<Color x:Key="greyLight">
+		#DDDDDD
+	</Color>
+	<Color x:Key="greyMedXtraLight">
+		#BBBBBB
+	</Color>
+	<Color x:Key="greyMed">
+		#AAAAAA
+	</Color>
+	<Color x:Key="greyMedDark">
+		#888888
+	</Color>
+	<Color x:Key="borderColor">
+		#777777
+	</Color>
+	<Color x:Key="greyDark">
+		#666666
+	</Color>
+	<Color x:Key="greyXtraDark">
+		#444444
+	</Color>
+	<Color x:Key="greyVeryDark">
+		#333333
+	</Color>
+	<Color x:Key="greyXtraVeryDark">
+		#282828
+	</Color>
+	<Color x:Key="black">
+		#000000
+	</Color>
+	<Color x:Key="blueXtraLight">
+		#EDFAFF
+	</Color>
+
+	<!--  general  -->
+	<SolidColorBrush x:Key="red" Color="Red" />
+	<SolidColorBrush x:Key="bdrColor" Color="{StaticResource borderColor}" />
+	<SolidColorBrush x:Key="controlBkg" Color="{StaticResource ctrlBkg}" />
+	<SolidColorBrush x:Key="dockpnlBkg" Color="LightGray" />
+	<SolidColorBrush x:Key="dkBkgBdr" Color="{StaticResource greyVeryDark}" />
+	<SolidColorBrush x:Key="disabledBkg" Color="{StaticResource greyXtraLight}" />
+	<SolidColorBrush x:Key="disabledText" Color="{StaticResource black}" />
+	<SolidColorBrush x:Key="enabledBkg" Color="{StaticResource blueXtraLight}" />
+	<SolidColorBrush x:Key="enabledText" Color="Black" />
+
+	<!--  main header  -->
+	<SolidColorBrush x:Key="hdrUsedBkg" Color="{StaticResource greyXtraDark}" />
+	<SolidColorBrush x:Key="hdrUnusedBkg" Color="{StaticResource greyVeryDark}" />
+
+	<!--  end header  -->
+	<SolidColorBrush x:Key="endPointHdrBkg" Color="{StaticResource greyDark}" />
+	<SolidColorBrush x:Key="endPointDtlBkg" Color="{StaticResource greyMedXtraLight}" />
+	<SolidColorBrush x:Key="endPointUnusedBkg" Color="{StaticResource greyVeryDark}" />
+	<SolidColorBrush x:Key="endPointBdr" Color="{StaticResource borderColor}" />
+
+	<!--  detail  -->
+	<SolidColorBrush x:Key="detailUnusedBkg" Color="{StaticResource greyMed}" />
+
+	<LinearGradientBrush x:Key="shadow" StartPoint="0.5,0" EndPoint="0.5,1">
+		<GradientStop Offset="0.89" Color="{StaticResource greyXtraVeryDark}" />
+		<GradientStop Offset=".990" Color="{StaticResource ctrlBkg}" />
+	</LinearGradientBrush>
+
+	<!--  edit panel  -->
+	<SolidColorBrush x:Key="editPanelBtnBkg" Color="{StaticResource greyMed}" />
+
+	<!--#endregion-->
+
+
+	<!--#region +GroupBox Sep Color top row edit-->
+	<Style x:Key="grpBxColoredSidesTopEditable" TargetType="{x:Type GroupBox}">
+		<Setter Property="BorderBrush" Value="Transparent" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type GroupBox}">
+					<Grid SnapsToDevicePixels="True">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="0" />
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="1" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="0" />
+							<RowDefinition Height="*" />
+							<RowDefinition Height="1" />
+
+						</Grid.RowDefinitions>
+						<Border
+							Grid.Row="0"
+							Grid.RowSpan="3"
+							Grid.Column="0"
+							BorderBrush="{StaticResource controlBkg}"
+							BorderThickness="1,0,0,0" />
+						<Border
+							Grid.Row="0"
+							Grid.Column="0"
+							Grid.ColumnSpan="3"
+							BorderBrush="{StaticResource controlBkg}"
+							BorderThickness="0,1,0,0" />
+						<Border
+							Grid.Row="0"
+							Grid.RowSpan="3"
+							Grid.Column="2"
+							BorderBrush="{StaticResource bdrColor}"
+							BorderThickness="0,0,1,0" />
+						<Border
+							Grid.Row="2"
+							Grid.Column="0"
+							Grid.ColumnSpan="3"
+							BorderBrush="{StaticResource bdrColor}"
+							BorderThickness="0,0,0,1" />
+						<ContentPresenter Grid.Row="1" Grid.Column="1" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--#endregion-->
+
+	<!--#region +GroupBox Sep Color bottom row edit-->
+	<Style x:Key="grpBxColoredSidesBottomEditable" TargetType="{x:Type GroupBox}">
+		<Setter Property="BorderBrush" Value="Transparent" />
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type GroupBox}">
+					<Grid SnapsToDevicePixels="True">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="0" />
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="1" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="0" />
+							<RowDefinition Height="*" />
+							<RowDefinition Height="0" />
+						</Grid.RowDefinitions>
+
+						<!--  left  -->
+						<Border
+							Grid.Row="0"
+							Grid.RowSpan="3"
+							Grid.Column="0"
+							BorderBrush="{StaticResource controlBkg}"
+							BorderThickness="1,0,0,0" />
+						<!--  top  -->
+						<Border
+							Grid.Row="0"
+							Grid.Column="0"
+							Grid.ColumnSpan="3"
+							BorderBrush="{StaticResource controlBkg}"
+							BorderThickness="0,1,0,0" />
+						<!--  right  -->
+						<Border
+							Grid.Row="0"
+							Grid.RowSpan="3"
+							Grid.Column="2"
+							BorderBrush="{StaticResource bdrColor}"
+							BorderThickness="0,0,1,0" />
+						<!--  bottom  -->
+						<Border
+							Grid.Row="2"
+							Grid.Column="0"
+							Grid.ColumnSpan="3"
+							BorderBrush="{StaticResource controlBkg}"
+							BorderThickness="0,0,0,0" />
+
+						<ContentPresenter Grid.Row="1" Grid.Column="1" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--#endregion-->
+
+	<!--#region +GroupBox Sep Color bottom row fixed-->
+	<Style x:Key="grpBxColoredSidesBottomFixed" TargetType="{x:Type GroupBox}">
+		<Setter Property="BorderBrush" Value="Transparent" />
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type GroupBox}">
+					<Grid SnapsToDevicePixels="True">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="1" />
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="1" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="1" />
+							<RowDefinition Height="*" />
+							<RowDefinition Height="1" />
+						</Grid.RowDefinitions>
+
+						<!--  left  -->
+						<Border
+							Grid.Row="0"
+							Grid.RowSpan="3"
+							Grid.Column="0"
+							BorderBrush="Transparent"
+							BorderThickness="1,0,0,0" />
+						<!--  top  -->
+						<Border
+							Grid.Row="0"
+							Grid.Column="0"
+							Grid.ColumnSpan="3"
+							BorderBrush="Transparent"
+							BorderThickness="0,1,0,0" />
+						<!--  right  -->
+						<Border
+							Grid.Row="0"
+							Grid.RowSpan="3"
+							Grid.Column="2"
+							BorderBrush="{StaticResource bdrColor}"
+							BorderThickness="0,0,1,0" />
+						<!--  bottom  -->
+						<Border
+							Grid.Row="2"
+							Grid.Column="0"
+							Grid.ColumnSpan="3"
+							BorderBrush="Transparent"
+							BorderThickness="0,0,0,1" />
+
+						<ContentPresenter Grid.Row="1" Grid.Column="1" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--#endregion-->
+
+
+</ResourceDictionary>

@@ -61,7 +61,7 @@ namespace WpfApp1_ListControlTest.ControlPtsData
 		private ControlPointsConsts cpConsts = new ControlPointsConsts();
 
 		private int currentIndex;
-		private bool isBeingEdited;
+		private bool isBeingEdited = false;
 
 		public int CurrentIndex
 		{

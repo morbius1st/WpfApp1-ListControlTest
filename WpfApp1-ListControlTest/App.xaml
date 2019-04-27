@@ -1,6 +1,10 @@
 ﻿<Application
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:WpfApp1_ListControlTest"
-    x:Class="WpfApp1_ListControlTest.App"
-    StartupUri="MainWindow.xaml" />
+	x:Class="WpfApp1_ListControlTest.App"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="clr-namespace:WpfApp1_ListControlTest"
+	StartupUri="MainWindow.xaml">
+	<Application.Resources>
+		<DependencyProperty x:Key="DependencyProperty1">Button.IsDefault</DependencyProperty>
+	</Application.Resources>
+</Application>

@@ -459,6 +459,26 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 
 
 	}
+
+	public class PointTemplateSelector : DataTemplateSelector
+	{
+		public override DataTemplate SelectTemplate(object item, DependencyObject container)
+		{
+			FrameworkElement elemnt = container as FrameworkElement;
+			ControlPts       pt     = item as ControlPts;
+
+			if (pt.IsBeingEdited)
+			{
+				return elemnt.FindResource("pointDataTemplateEditing") as DataTemplate;
+			}
+			else
+			{
+				return elemnt.FindResource("pointDataTemplate") as DataTemplate;
+			}
+		}
+
+	}
+
 }
 
 

@@ -1,0 +1,271 @@
+listBox2
+
+n/a					->	Style=					"{StaticResource ListBox.Normal.Style}"
+n/a					->	ItemContainerStyle=		"{StaticResource ListBox.Normal.ItemContainerStyle}"
+
+
+(control template)
+	(header)
+		top row
+		bottom row
+		end point row
+	(scrollviewer) (presenter)
+	(footer)
+		start point
+		
+(datatemplate)
+	(selector)
+		not editing
+			top row
+			bottom row
+		editing
+			top row
+			bottom row
+			edit panel
+			
+(general)
+	xyz+slope row	->		point value row (+ header) (+ item)
+	delta row		->		point delta row (+ header) (+ item)
+	start point row	->		start point value row (+ header)
+	end point row	->		end point value row
+					->		end point delta row
+
+pv = PointValue (row)
+pd = PointDelta (row)
+sp = StartPoint
+spv = StartPointValue (row)
+ep = EndPoint
+epv = EndPointValue (row)
+epd = EndPointDelta (row)
+					
+Bg = background
+Ct = control template
+Cc = content control
+
+Bdr = border
+Style = style
+Hdr = header
+Lbl = lable
+Btn = button
+Gbx = groupbox
+Tbx = textbox
+Tbk = textblock
+
+Filler = un-used cells
+
+
+					Header + Presenter
+					->	(control) Template=		"{StaticResource headerControlTemplate}"
+					
+listBoxControlTemplate
+
+					headerControlTemplate-> ListBoxControlTemplate
+
+						(dockpanel)
+						-> (resource) (background) dockpnlBkg
+
+dockpnlBkg	-> dockPanelBg
+						
+							(grid) main header + end point
+							->	(resource) (background) dkBkgBdr		
+							
+dkBkgBdr	->mainHeaderBg
+							
+								(border) main header
+								
+									(grid) point row + value row
+									-> (resource) (background) hdrUsedBkg	
+hdrUsedBkg	-> mainHeaderTitleBg
+									
+										point row
+point row -> point value header row
+
+										->	(border) (style) pointRowMainHdrBdr
+pointRowMainHdrBdr -> pvHdrRowStyle
+
+										->	(label) (style) lblMainHeader
+lblMainHeader -> pvHdrRowLblStyle
+										
+										value row
+value row -> point delta header row
+
+										->	(background) (resource) hdrUnusedBkg	
+hdrUnusedBkg -> pdHdrFillerBg								
+
+										->	(border)(style) valueRowMainHdrBdr
+valueRowMainHdrBdr -> pdHdrRowStyle
+
+										->	(label) (style) lblMainHeader
+lblMainHeader -> pdHdrRowLblStyle
+
+								(end border)
+								
+								(border) end point
+								-> (background) (resource) endPointUnusedBkg
+endPointUnusedBkg -> epHeaderTitleBg
+								
+									(grid)
+										
+										end point top row 
+										-> (border) (style) endHdrTopBdr
+endHdrTopBdr -> epvHdrRowStyle
+
+										-> (label) (style) endDetailLbl
+endDetailLbl -> epvHdrRowLblStyle
+						
+										end point bottom row
+										blank ends
+										-> (border) (style) pointTitle
+pointTitle -> epdHdrFillerStyle
+
+										-> (label) (style) endHeaderLbl
+endHeaderLbl -> epHdrRowLblStyle
+										
+										data cell
+										-> (border) (style) endHdrBottomBdr
+endHdrBottomBdr -> epdHdrRowStyle
+
+										-> (label) (style) endDetailLbl
+endDetailLbl -> epdHdrRowLblStyle
+								
+								(end border)
+								
+								(scroll viewer)
+								-> (resource) (borderbrush) bdrColor
+bdrColor -> stdBorderBrush
+
+									(template)
+									-> (resource) startPoint
+startPoint -> spTemplate
+						
+						(*** control template ***)
+						(*** startpoint ***)
+						(control) template	= startpoint (footer)
+startpoint -> spTemplate
+						
+							(grid)
+							
+								start point
+								-> (border) (style) endHdrBottomBdr
+endHdrBottomBdr -> epvHdrRowBdrStyle
+
+								-> (label) (style) endDetailLbl
+endDetailLbl -> epvRowHdrLblStyle
+								
+								ends
+								-> (border) (style) pointTitle
+pointTitle -> epdRowHdrBdrStyle
+
+								-> (label) (style) endHeaderLbl
+endHeaderLbl -> epdRowHdrLblStyle
+					
+					
+					->	(datatemplate) (selector) ItemTemplate=	"{StaticResource pointItemTemplate}"
+pointItemTemplate -> pointSelectorTemplate
+					
+						(being edited false)
+							
+							(datatemplate) (contentcontrol) -> pointDataTemplate
+pointDataTemplate -> pointTemplate
+							
+						(being edited true)
+						
+							(datatemplate) (contentcontrol) -> pointDataTemplateEditing	
+pointDataTemplateEditing -> pointTemplateEditing
+							
+							
+				************ datatemplates *********
+					
+					(datatemplate) = pointDataTemplate
+pointDataTemplate -> pointTemplate
+
+						(grid)
+
+							(contentcontrol)
+							-> (template) (resource) pointValueRow
+pointValueRow -> pvRowTemplate
+							
+							(contentcontrol)
+							-> (template) (resource) pointInfoRow
+pointInfoRow -> pdRowTemplate
+							
+					(datatemplate) = pointDataTemplateEditing
+pointDataTemplateEditing ->pointTemplateEditing
+
+						(grid)
+
+							(contentcontrol)
+							-> (template) (resource) pointValueRow
+pointValueRow -> pvRowTemplate
+							
+							(contentcontrol)
+							-> (template) (resource) pointInfoRow
+pointInfoRow -> pdRowTemplate
+							
+							(contentcontrol)
+							-> (template) (resource) editPanelTemplate
+editPanelTemplate -> editRowCt
+
+
+				************ controltemplates *********
+
+					(controltemplate) = pointValueRow
+pointValueRow -> pvRowTemplate
+
+						(grid)
+						
+							(border)
+								(groupbox)
+								-> (style) grpBxColoredSidesTopEditable
+grpBxColoredSidesTopEditable -> pvGbxColorSides
+
+								(textbox)
+								-> (style) tbxValue
+pvRowTbxStyle
+								
+					
+					(controltemplate) = pointInfoRow
+pointInfoRow -> pdRowTemplate
+
+						(grid)
+						
+							(border)
+							-> (style) valueRowDetailBdr
+valueRowDetailBdr -> pvRowBdrStyle
+
+							-> (resource) (background) detailUnusedBkg
+ detailUnusedBkg -> pvRowBdrBg
+ 
+							point
+								(groupbox)
+								-> (style) grpBxColoredSidesBottomFixed
+grpBxColoredSidesBottomFixed -> pdGbxColorSides
+
+								(textblock)
+								-> (style) tbkDetail
+tbkDetail -> pdRowTbkStyle
+							
+							(border)
+							end
+							-> (style) valueRowDetailBdr
+valueRowDetailBdr -> pdRowBdrStyle
+
+							-> (resource) (background) detailUnusedBkg
+detailUnusedBkg -> pdRowBdrBg
+
+							
+					(controltemplate) = editPanelTemplate
+editPanelTemplate -> editRowTemplate
+
+						(grid)
+						-> (style) editPanel
+editPanel -> editRowStyle
+						
+							(textblock)
+							
+							(button)
+n/a							-> (style) Button.Normal.Style
+n/a							-> (template) Button.Normal.ControlTemplate
+
+							
+				
