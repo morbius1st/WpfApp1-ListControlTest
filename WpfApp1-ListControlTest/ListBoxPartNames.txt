@@ -4,6 +4,100 @@ n/a					->	Style=					"{StaticResource ListBox.Normal.Style}"
 n/a					->	ItemContainerStyle=		"{StaticResource ListBox.Normal.ItemContainerStyle}"
 
 
+					+--------------------------------------------------+  --+   ---------------+  
+hdrPvRow			|     x      |     y      |     z      |   slope   |     \                 |
+					+--------------------------------------------------+      > header         |
+hdrPdRow			|     |  delta xy  |  delta xyz |   delta z  |     |     /                  \
+					+--------------------------------------------------+  --+                    > main header <-------------+
+					+--------------------------------------------------+  --+                   /                            |
+hdrEpvRow			|     1      |     2      |     3      |    4%     |     \                 |                             |
+					+--------------------------------------------------+      > end point      |                              \
+hdrEpdRow			|     |      5     |      6     |      7     |     |     /                 |                               > primary control template
+					+--------------------------------------------------+  --+   ---------------+                              /  (list box template)
+					+--------------------------------------------------+  --+   ---------------+                             |  = ListBox.ControlTemplate
+ptvRow				|     1      |     2      |     3      |    4%     |     \                 |                             |
+					+--------------------------------------------------+      > Point Row      |                             |
+ptdRow				|     |      5     |      6     |      7     |     |     /                  \                            |
+					+--------------------------------------------------+  --+                    > ptRowSelector             |
+					+--------------------------------------------------+  --+                   / (ItemTemplate)             |
+edPvRow				|     1      |     2      |     3      |    4%     |     \                 |                             |
+					+--------------------------------------------------+      > Edit Row       |                             |
+edPdRow				|     |      5     |      6     |      7     |     |     /                 |                             |
+					+--------------------------------------------------+  --+   ---------------+                             |
+					+--------------------------------------------------+  --+   ---------------+                             |
+ftrSpdRow			|     x      |     y      |     z      |           |     > footer           > start point <--------------+
+					+--------------------------------------------------+  --+   ---------------+ 
+		
+//********************************************************************************************************************************************************//
+//  primary control template                                                                                                                              //
+//  list box: template = ListBox.ControlTemplate                                                                                                          //
+//********************************************************************************************************************************************************//	
+					+--------------------------------------------------+  --+
+hdrPvRow			|     x      |     y      |     z      |   slope   |     \         	border=HdrPvRowStyle, label=HdrPvRowLblStyle
+					+--------------------------------------------------+      > header 				
+hdrPdRow			|     |  delta xy  |  delta xyz |   delta z  |  +  |     /         	border=HdrPdRowStyle, label=HdrPdRowLblStyle
+					+-----------------------------------------------|--+  --+
+																	+-----------------> border=HdrPdRowStyle
+					+--------------------------------------------------+  --+
+hdrEpPvRow			|     1      |     2      |     3      |    4%     |     \          border=HdrEpvRowStyle, label=HdrEpvRowLblStyle
+					+--------------------------------------------------+      > header end point
+hdrEpPdRow			|     |      5     |      6     |      7     |  +  |     /          border=HdrEpdRowStyle, label=HdrEpdRowLblStyle
+					+-----------------------------------------------|--+  --+
+																	+-----------------> border=Header.EndPoint.Filler.Background, label=HdrEpFillerLblStyle
+scrollviewer		+--------------------------------------------------+
+ |					+--------------------------------------------------+  --+
+ | ftrTemplate		|     x      |     y      |     z      |  +  |  +  |     > footer start point
+ +-->				+-----------------------------------------|-----|--+  --+           border=FtrSpdRowStyle, label=FtrSpdRowLblStyle
+                                                              +-----+-----------------> border=Footer.EndPoint.Filler.Background, label=FtrEpFillerLblStyle
+
+
+
+//********************************************************************************************************************************************************//
+//  primary data template                                                                                                                                 //
+//  list box: ItemTemplate = ptRowSelectorTemplate                                                                                                        //
+//********************************************************************************************************************************************************//
+
+when true = ptRowEditingTemplate
+
+when false = ptRowTemplate
+ 
+
+ptRowTemplate
++------------
++->	point value row = ptvRowTemplate
++->	point data row  = ptdRowTemplate
+
+ptRowEditingTemplate
++-------------------
++->	point value row = ptvRowTemplate
++->	point data row  = ptdRowTemplate
++->	edit Row        = edRowTemplate
+
+
+
+//*************************************************//
+//  point value row template = ptvRowTemplate      //
+//*************************************************//
+					+--------------------------------------------------+  --+  
+ptvRow				|     1      |     2      |     3      |    4%     |     \             grpbx=ptvRowGbxStyle, textbx=ptvRowTbxStyle
+					+--------------------------------------------------+      > Point Row 
+ptdRow				|     |      5     |      6     |      7     |  +  |     /             grpbx=ptdRowGbxStyle, textbx=ptdRowTbxStyle
+					+-----------------------------------------------|--+  --+             
+					                                                +--------------------> border: pdRowBdrStyle
+					
+					
+					+--------------------------------------------------+  --+             
+edPvRow				|  btn | btn |  btn | btn |  btn | btn | btn | btn |     \            
+					+--------------------------------------------------+      > Edit Row  
+edPdRow				|  lbl | tbk |      | msg tbx          |           |     /            
+					+--------------------------------------------------+  --+   ----------
+					
+					
+					
+					
+					
+					
+					
 (control template)
 	(header)
 		top row
@@ -37,6 +131,7 @@ spv = StartPointValue (row)
 ep = EndPoint
 epv = EndPointValue (row)
 epd = EndPointDelta (row)
+ed	= Edit (row)
 					
 Bg = background
 Ct = control template
@@ -57,209 +152,209 @@ Filler = un-used cells
 					Header + Presenter
 					->	(control) Template=		"{StaticResource headerControlTemplate}"
 					
-listBoxControlTemplate
+✔	listBoxControlTemplate
 
 					headerControlTemplate-> ListBoxControlTemplate
 
 						(dockpanel)
 						-> (resource) (background) dockpnlBkg
 
-dockpnlBkg	-> dockPanelBg
+✔	dockpnlBkg	-> dockPanelBg
 						
 							(grid) main header + end point
 							->	(resource) (background) dkBkgBdr		
 							
-dkBkgBdr	->mainHeaderBg
+✔	dkBkgBdr	-> mainHeaderBg
 							
 								(border) main header
 								
 									(grid) point row + value row
 									-> (resource) (background) hdrUsedBkg	
-hdrUsedBkg	-> mainHeaderTitleBg
+✔	hdrUsedBkg	-> mainHeaderTitleBg
 									
 										point row
-point row -> point value header row
+✔	point row -> point value header row
 
 										->	(border) (style) pointRowMainHdrBdr
-pointRowMainHdrBdr -> pvHdrRowStyle
+✔	pointRowMainHdrBdr -> pvHdrRowStyle
 
 										->	(label) (style) lblMainHeader
-lblMainHeader -> pvHdrRowLblStyle
+✔	lblMainHeader -> pvHdrRowLblStyle
 										
 										value row
-value row -> point delta header row
+✔	value row -> point delta header row
 
 										->	(background) (resource) hdrUnusedBkg	
-hdrUnusedBkg -> pdHdrFillerBg								
+✔	hdrUnusedBkg -> pdHdrFillerBg								
 
 										->	(border)(style) valueRowMainHdrBdr
-valueRowMainHdrBdr -> pdHdrRowStyle
+✔	valueRowMainHdrBdr -> pdHdrRowStyle
 
 										->	(label) (style) lblMainHeader
-lblMainHeader -> pdHdrRowLblStyle
+✔	vlblMainHeader -> pdHdrRowLblStyle
 
 								(end border)
 								
 								(border) end point
 								-> (background) (resource) endPointUnusedBkg
-endPointUnusedBkg -> epHeaderTitleBg
+✔	endPointUnusedBkg -> epHeaderTitleBg
 								
 									(grid)
 										
 										end point top row 
 										-> (border) (style) endHdrTopBdr
-endHdrTopBdr -> epvHdrRowStyle
+✔	endHdrTopBdr -> epvHdrRowStyle
 
 										-> (label) (style) endDetailLbl
-endDetailLbl -> epvHdrRowLblStyle
+✔	endDetailLbl -> epvHdrRowLblStyle
 						
 										end point bottom row
 										blank ends
 										-> (border) (style) pointTitle
-pointTitle -> epdHdrFillerStyle
+✔	pointTitle -> epdHdrFillerStyle
 
 										-> (label) (style) endHeaderLbl
-endHeaderLbl -> epHdrRowLblStyle
+✔	endHeaderLbl -> epHdrRowLblStyle
 										
 										data cell
 										-> (border) (style) endHdrBottomBdr
-endHdrBottomBdr -> epdHdrRowStyle
+✔	endHdrBottomBdr -> epdHdrRowStyle
 
 										-> (label) (style) endDetailLbl
-endDetailLbl -> epdHdrRowLblStyle
+✔	endDetailLbl -> epdHdrRowLblStyle
 								
 								(end border)
 								
 								(scroll viewer)
 								-> (resource) (borderbrush) bdrColor
-bdrColor -> stdBorderBrush
+✔	bdrColor -> stdBorderBrush
 
 									(template)
 									-> (resource) startPoint
-startPoint -> spTemplate
+✔	startPoint -> spTemplate
 						
 						(*** control template ***)
 						(*** startpoint ***)
 						(control) template	= startpoint (footer)
-startpoint -> spTemplate
+✔	startpoint -> spTemplate
 						
 							(grid)
 							
 								start point
 								-> (border) (style) endHdrBottomBdr
-endHdrBottomBdr -> epvHdrRowBdrStyle
+✔	endHdrBottomBdr -> epvHdrRowBdrStyle
 
 								-> (label) (style) endDetailLbl
-endDetailLbl -> epvRowHdrLblStyle
+✔	endDetailLbl -> epvRowHdrLblStyle
 								
 								ends
 								-> (border) (style) pointTitle
-pointTitle -> epdRowHdrBdrStyle
+✔	pointTitle -> epdRowHdrBdrStyle
 
 								-> (label) (style) endHeaderLbl
-endHeaderLbl -> epdRowHdrLblStyle
+✔	endHeaderLbl -> epdRowHdrLblStyle
 					
 					
 					->	(datatemplate) (selector) ItemTemplate=	"{StaticResource pointItemTemplate}"
-pointItemTemplate -> pointSelectorTemplate
+✔	pointItemTemplate -> pointSelectorTemplate
 					
 						(being edited false)
 							
 							(datatemplate) (contentcontrol) -> pointDataTemplate
-pointDataTemplate -> pointTemplate
+✔	pointDataTemplate -> pointTemplate
 							
 						(being edited true)
 						
 							(datatemplate) (contentcontrol) -> pointDataTemplateEditing	
-pointDataTemplateEditing -> pointTemplateEditing
+✔	pointDataTemplateEditing -> pointTemplateEditing
 							
 							
 				************ datatemplates *********
 					
 					(datatemplate) = pointDataTemplate
-pointDataTemplate -> pointTemplate
+✔	pointDataTemplate -> pointTemplate
 
 						(grid)
 
 							(contentcontrol)
 							-> (template) (resource) pointValueRow
-pointValueRow -> pvRowTemplate
+✔	pointValueRow -> pvRowTemplate
 							
 							(contentcontrol)
 							-> (template) (resource) pointInfoRow
-pointInfoRow -> pdRowTemplate
+✔	pointInfoRow -> pdRowTemplate
 							
 					(datatemplate) = pointDataTemplateEditing
-pointDataTemplateEditing ->pointTemplateEditing
+✔	pointDataTemplateEditing ->pointTemplateEditing
 
 						(grid)
 
 							(contentcontrol)
 							-> (template) (resource) pointValueRow
-pointValueRow -> pvRowTemplate
+✔	pointValueRow -> pvRowTemplate
 							
 							(contentcontrol)
 							-> (template) (resource) pointInfoRow
-pointInfoRow -> pdRowTemplate
+✔	pointInfoRow -> pdRowTemplate
 							
 							(contentcontrol)
 							-> (template) (resource) editPanelTemplate
-editPanelTemplate -> editRowCt
+✔	editPanelTemplate -> editRowTemplate
 
 
 				************ controltemplates *********
 
 					(controltemplate) = pointValueRow
-pointValueRow -> pvRowTemplate
+✔	pointValueRow -> pvRowTemplate
 
 						(grid)
 						
 							(border)
 								(groupbox)
 								-> (style) grpBxColoredSidesTopEditable
-grpBxColoredSidesTopEditable -> pvGbxColorSides
+✔	grpBxColoredSidesTopEditable -> pvGbxColorSides
 
 								(textbox)
 								-> (style) tbxValue
-pvRowTbxStyle
+✔	tbxValue -> pvRowTbxStyle
 								
 					
 					(controltemplate) = pointInfoRow
-pointInfoRow -> pdRowTemplate
+✔	pointInfoRow -> pdRowTemplate
 
 						(grid)
 						
 							(border)
 							-> (style) valueRowDetailBdr
-valueRowDetailBdr -> pvRowBdrStyle
+✔	valueRowDetailBdr -> pdRowBdrStyle
 
 							-> (resource) (background) detailUnusedBkg
- detailUnusedBkg -> pvRowBdrBg
+✔	detailUnusedBkg -> pdRowBdrBg
  
 							point
 								(groupbox)
 								-> (style) grpBxColoredSidesBottomFixed
-grpBxColoredSidesBottomFixed -> pdGbxColorSides
+✔	grpBxColoredSidesBottomFixed -> pdGbxColorSides
 
 								(textblock)
 								-> (style) tbkDetail
-tbkDetail -> pdRowTbkStyle
+✔	tbkDetail -> pdRowTbkStyle
 							
 							(border)
 							end
 							-> (style) valueRowDetailBdr
-valueRowDetailBdr -> pdRowBdrStyle
+✔	valueRowDetailBdr -> pdRowBdrStyle
 
 							-> (resource) (background) detailUnusedBkg
-detailUnusedBkg -> pdRowBdrBg
+✔	detailUnusedBkg -> pdRowBdrBg
 
 							
 					(controltemplate) = editPanelTemplate
-editPanelTemplate -> editRowTemplate
+✔	editPanelTemplate -> editRowTemplate
 
 						(grid)
 						-> (style) editPanel
-editPanel -> editRowStyle
+✔	editPanel -> editRowStyle
 						
 							(textblock)
 							

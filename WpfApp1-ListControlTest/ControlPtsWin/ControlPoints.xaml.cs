@@ -20,7 +20,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 
 		public string MessageText { get; set; } = "Message Window\n";
 
-		private int itemIndex;
+		private int itemIndex = -1;
 		private string _errorMsg = "error message 1";
 		private string _endSlope = "10%";
 		private string _endDeltaZ = "330'-0\"";
@@ -33,9 +33,11 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 		private string _startY = "120'-0\"";
 		private string _startX = "110'-0000\"";
 
-		public ControlPointsConsts cpConsts { get; private set; } = new ControlPointsConsts();
+		public ControlPointsConsts cpConsts { get; private set; } 
+			= new ControlPointsConsts();
 
-		public ObservableCollection<ControlPts> Sx { get; set; } = new ObservableCollection<ControlPts>();
+		public ObservableCollection<ControlPts> Sx { get; set; } 
+			= new ObservableCollection<ControlPts>();
 
 		public ControlPoints()
 		{
@@ -123,11 +125,11 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 			Sx.Insert(0, new ControlPts() { XOrig = " 1021.0", YOrig = " 2021.0", ZOrig = " 3021.0", SlopeOrig = " 1.0", XyOrig = " 4021.0", XyzOrig = " 5021.0", ZDeltaOrig = " 6021.0" });
 			Sx.Insert(0, new ControlPts() { XOrig = " 1031.0", YOrig = " 2031.0", ZOrig = " 3031.0", SlopeOrig = " 1.0", XyOrig = " 4031.0", XyzOrig = " 5031.0", ZDeltaOrig = " 6031.0" });
 			Sx.Insert(0, new ControlPts() { XOrig = " 1041.0", YOrig = " 2041.0", ZOrig = " 3041.0", SlopeOrig = " 1.0", XyOrig = " 4041.0", XyzOrig = " 5041.0", ZDeltaOrig = " 6041.0" });
-			Sx.Insert(0, new ControlPts() { XOrig = " 1051.0", YOrig = " 2051.0", ZOrig = " 3051.0", SlopeOrig = " 1.0", XyOrig = " 4051.0", XyzOrig = " 5051.0", ZDeltaOrig = " 6051.0" });
-			Sx.Insert(0, new ControlPts() { XOrig = " 1061.0", YOrig = " 2061.0", ZOrig = " 3061.0", SlopeOrig = " 1.0", XyOrig = " 4061.0", XyzOrig = " 5061.0", ZDeltaOrig = " 6061.0" });
-			Sx.Insert(0, new ControlPts() { XOrig = " 1071.0", YOrig = " 2071.0", ZOrig = " 3071.0", SlopeOrig = " 1.0", XyOrig = " 4071.0", XyzOrig = " 5071.0", ZDeltaOrig = " 6071.0" });
-			Sx.Insert(0, new ControlPts() { XOrig = " 1081.0", YOrig = " 2081.0", ZOrig = " 3081.0", SlopeOrig = " 1.0", XyOrig = " 4081.0", XyzOrig = " 5081.0", ZDeltaOrig = " 6081.0" });
-			Sx.Insert(0, new ControlPts() { XOrig = " 1091.0", YOrig = " 2091.0", ZOrig = " 3091.0", SlopeOrig = " 1.0", XyOrig = " 4091.0", XyzOrig = " 5091.0", ZDeltaOrig = " 6091.0" });
+//			Sx.Insert(0, new ControlPts() { XOrig = " 1051.0", YOrig = " 2051.0", ZOrig = " 3051.0", SlopeOrig = " 1.0", XyOrig = " 4051.0", XyzOrig = " 5051.0", ZDeltaOrig = " 6051.0" });
+//			Sx.Insert(0, new ControlPts() { XOrig = " 1061.0", YOrig = " 2061.0", ZOrig = " 3061.0", SlopeOrig = " 1.0", XyOrig = " 4061.0", XyzOrig = " 5061.0", ZDeltaOrig = " 6061.0" });
+//			Sx.Insert(0, new ControlPts() { XOrig = " 1071.0", YOrig = " 2071.0", ZOrig = " 3071.0", SlopeOrig = " 1.0", XyOrig = " 4071.0", XyzOrig = " 5071.0", ZDeltaOrig = " 6071.0" });
+//			Sx.Insert(0, new ControlPts() { XOrig = " 1081.0", YOrig = " 2081.0", ZOrig = " 3081.0", SlopeOrig = " 1.0", XyOrig = " 4081.0", XyzOrig = " 5081.0", ZDeltaOrig = " 6081.0" });
+//			Sx.Insert(0, new ControlPts() { XOrig = " 1091.0", YOrig = " 2091.0", ZOrig = " 3091.0", SlopeOrig = " 1.0", XyOrig = " 4091.0", XyzOrig = " 5091.0", ZDeltaOrig = " 6091.0" });
 
 		}
 
@@ -269,7 +271,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(memberName));
 		}
 
-		private void TbxXYZ_OnError(object sender, ValidationErrorEventArgs e)
+		public void TbxXYZ_OnError(object sender, ValidationErrorEventArgs e)
 		{
 			TextBox tbx = (TextBox)sender;
 
@@ -281,7 +283,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 			//			OnErrorEx();
 		}
 
-		private void TbxSlope_OnError(object sender, ValidationErrorEventArgs e)
+		public void TbxSlope_OnError(object sender, ValidationErrorEventArgs e)
 		{
 			TextBox tbx = (TextBox)sender;
 
@@ -295,13 +297,18 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 
 		private void ListBox2_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			TellMeTbx("at ListBox2_SelectionChanged");
+//			TellMeTbx("at ListBox2_SelectionChanged");
 
 			//			// uses the selectedindex property to get the correct index
 			//			TellMeLbx(sender as ListBox, "SelectionChanged");
 
-			if (!Sx[itemIndex].IsRevised)
+			if (itemIndex < 0 || !Sx[itemIndex].IsRevised)
 			{
+				if (itemIndex >= 0)
+				{
+					((ControlPts) listBox2.Items[itemIndex]).IsBeingEdited = false;
+				}
+
 				// begin editing a new item
 				// save the index of this item
 				itemIndex = listBox2.SelectedIndex;
@@ -313,10 +320,39 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 			}
 
 			// the current item is has changes - prevent them from switching to another item
-			// use this method to prevent a selction change.
+			// use this method to prevent a selection change.
 			listBox2.SelectedIndex = itemIndex;
 
-			//			SelectionChangedEx();
+			//SelectionChangedEx();
+		}
+
+		private bool clickTest = false;
+
+		private void Testx_Click(object sender, RoutedEventArgs e)
+		{
+			clickTest = !clickTest;
+
+
+			if (clickTest)
+			{
+				label.Content = "CLICKED";
+			}
+			else
+			{
+				label.Content = "UN-CLICKED";
+			}
+		}
+
+#pragma warning disable CS0108 // 'ControlPoints.LostFocus(object, RoutedEventArgs)' hides inherited member 'UIElement.LostFocus'. Use the new keyword if hiding was intended.
+		private void LostFocus(object sender, RoutedEventArgs e)
+#pragma warning restore CS0108 // 'ControlPoints.LostFocus(object, RoutedEventArgs)' hides inherited member 'UIElement.LostFocus'. Use the new keyword if hiding was intended.
+		{
+			if (itemIndex >=0 && !Sx[itemIndex].IsRevised)
+			{
+				Sx[itemIndex].IsBeingEdited = false;
+
+				listBox2.SelectedIndex = -1;
+			}
 		}
 		//
 		//		private void tbxXYZ_OnGotFocus(object sender, RoutedEventArgs e)

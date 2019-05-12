@@ -76,9 +76,8 @@
     </ApplicationDefinition>
     <Compile Include="ControlPtsData\ControlPts.cs" />
     <Compile Include="ControlPtsWin\ControlPointConverters.cs" />
-    <Compile Include="ControlPtsWin\ControlPoints.xaml.cs">
-      <DependentUpon>ControlPoints.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ControlPtsWin\ControlPointsResources.xaml.cs" />
+    <Compile Include="ControlPtsWin\ControlPoints.xaml.cs" />
     <Compile Include="ControlPtsWin\ControlPointsConsts.cs" />
     <Compile Include="ControlPtsWin\ControlPointValidation.cs" />
     <Compile Include="ListBoxWithXHeaderAndFooter.xaml.cs">
