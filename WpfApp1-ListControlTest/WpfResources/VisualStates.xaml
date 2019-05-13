@@ -248,7 +248,7 @@
 	    />
 
 	<!--  listbox item container style  -->
-	<Style x:Key="ListBox.Normal.ItemContainerStyle"
+	<Style x:Key="ListBox.Normal.ItemContainer"
 	    TargetType="{x:Type ListBoxItem}"
 	    >
 		<Setter Property="SnapsToDevicePixels" Value="True" />

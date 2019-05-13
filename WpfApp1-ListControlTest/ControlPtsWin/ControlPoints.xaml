@@ -54,14 +54,14 @@
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Top"
 				HorizontalContentAlignment="Stretch"
-				ItemContainerStyle="{StaticResource ListBox.Normal.ItemContainerStyle}"
-				ItemTemplate="{StaticResource ptRowSelectorTemplate}"
-				ItemsSource="{Binding Sx}"
 				SelectionChanged="ListBox2_SelectionChanged"
 				SelectionMode="Single"
 				Background="LightGray"
+				ItemContainerStyle="{StaticResource ListBox.Normal.ItemContainer}"
+				ItemTemplate="{StaticResource ListBox.Item.Selector}"
+				ItemsSource="{Binding Sx}"
 				Style="{StaticResource ListBox.Normal.Style}"
-				Template="{StaticResource ListBox.ControlTemplate}"
+				Template="{StaticResource ListBox.Overall}"
 				/>
 		<!--    -->
 		<Button x:Name="btnDone" Content="Done"

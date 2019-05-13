@@ -19,7 +19,7 @@
 	<validation:ControlPointSlopeConverter x:Key="slopeConverter" />
 	<validation:PointTemplateSelector x:Key="pointTemplateSelector" />
 
-	<!--#region > Values-->
+	<!--  Values  -->
 
 	<!--#region > Lengths-->
 
@@ -93,6 +93,8 @@
 	</GridLength>
 	<!--#endregion-->
 
+	<!--#region > Color & Brushes-->
+
 	<SolidColorBrush x:Key="Header.Background.C"
 			Color="{StaticResource gray.250}"
 			/>
@@ -145,6 +147,7 @@
 	<SolidColorBrush x:Key="Color.Blue.Light.Xtra.C"
 			Color="{StaticResource blue.900}"
 			/>
+
 
 
 
@@ -211,15 +214,13 @@
 	<SolidColorBrush x:Key="editPanelBtnBkg"
 			Color="{Binding Color, Source={StaticResource Color.Gray.Med.C}}"
 			/>
-
-
 	<!--#endregion-->
 
-	<!--#region > Styles-->
+	<!--  Styles  -->
 
-	<!--#region > Style: Point Value Row-->
+	<!--#region > Styles: General-->
 
-	<Style x:Key="pvBdrBase"
+	<Style x:Key="Hdr.Base.Bdr"
 			TargetType="Border"
 			>
 		<Setter Property="BorderBrush" Value="{StaticResource stdBorderBrush}" />
@@ -227,7 +228,11 @@
 		<Setter Property="Margin" Value="0" />
 	</Style>
 
-	<Style x:Key="HdrPvRowLblStyle"
+	<!--#endregion-->
+
+	<!--#region > Styles: Header: Column Labels: Point Value-->
+
+	<Style x:Key="Hdr.ColLables.Value.Lbl"
 			TargetType="{x:Type Label}"
 			>
 		<Setter Property="Foreground" Value="White" />
@@ -236,14 +241,14 @@
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 	</Style>
 
-	<Style x:Key="HdrPvRowStyle"
-			BasedOn="{StaticResource pvBdrBase}"
+	<Style x:Key="Hdr.ColLables.Value.Bdr"
+			BasedOn="{StaticResource Hdr.Base.Bdr}"
 			TargetType="Border"
 			>
 		<Setter Property="Grid.Row" Value="{StaticResource pointRow}" />
 	</Style>
 
-	<Style x:Key="ptvRowTbxStyle"
+	<Style x:Key="Field.Pt.Value.Tbx"
 			TargetType="{x:Type TextBox}"
 			>
 		<Setter Property="BorderThickness" Value="1" />
@@ -270,7 +275,7 @@
 
 	<!--#endregion-->
 
-	<!--#region > Style: Point data-->
+	<!--#region > Styles: Header: Column Labels: Point Data-->
 
 	<Style x:Key="pdBdrBase"
 			TargetType="Border"
@@ -280,7 +285,7 @@
 		<Setter Property="Margin" Value="0" />
 	</Style>
 
-	<Style x:Key="pdHdrRowLblStyle"
+	<Style x:Key="Hdr.ColLables.Data.Lbl"
 			TargetType="{x:Type Label}"
 			>
 		<Setter Property="Foreground" Value="White" />
@@ -289,14 +294,14 @@
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 	</Style>
 
-	<Style x:Key="HdrPdRowStyle"
+	<Style x:Key="Hdr.ColLables.Data.Bdr"
 			BasedOn="{StaticResource pdBdrBase}"
 			TargetType="Border"
 			>
 		<Setter Property="Grid.Row" Value="{StaticResource valueRow}" />
 	</Style>
 
-	<Style x:Key="ptdRowTbxStyle"
+	<Style x:Key="Field.Pt.Data.Tbx"
 			TargetType="{x:Type TextBlock}"
 			>
 		<Setter Property="Background" Value="{DynamicResource Normal.Inactive.Background}" />
@@ -307,7 +312,7 @@
 		<Setter Property="HorizontalAlignment" Value="Stretch" />
 	</Style>
 
-	<Style x:Key="Field.Pt.Data.Filler.Style"
+	<Style x:Key="Field.Pt.Data.Filler"
 			TargetType="Border"
 			>
 		<Setter Property="Background" Value="{StaticResource Point.Filler.Background.C}" />
@@ -319,9 +324,10 @@
 
 	<!--#endregion-->
 
-	<!--#region > Styles: End point-->
+	<!--#region > Styles: Header: End point-->
 
-	<Style x:Key="HdrEpFillerLblStyle"
+	<!--  must be before  -->
+	<Style x:Key="Hdr.EndPoint.Data.Filler.Lbl"
 			TargetType="{x:Type Label}"
 			>
 		<Setter Property="Foreground" Value="White" />
@@ -330,36 +336,37 @@
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 	</Style>
 
-	<Style x:Key="HdrEpvRowLblStyle"
-			BasedOn="{StaticResource HdrEpFillerLblStyle}"
-			TargetType="{x:Type Label}"
-			>
-		<Setter Property="Foreground" Value="Black" />
-	</Style>
-	<Style x:Key="HdrEpdRowLblStyle"
-			BasedOn="{StaticResource HdrEpFillerLblStyle}"
-			TargetType="{x:Type Label}"
-			>
-		<Setter Property="Foreground" Value="Black" />
-	</Style>
-
-	<Style x:Key="Header.EndPoint.Filler.Style"
-			BasedOn="{StaticResource pvBdrBase}"
+	<Style x:Key="Hdr.EndPoint.Data.Filler.Bdr"
+			BasedOn="{StaticResource Hdr.Base.Bdr}"
 			TargetType="Border"
 			>
 		<Setter Property="Background" Value="{StaticResource Header.EndPoint.Filler.Background.C}" />
 		<Setter Property="BorderBrush" Value="{StaticResource endPointBdr}" />
 	</Style>
 
-	<Style x:Key="HdrEpvRowStyle"
-			BasedOn="{StaticResource pvBdrBase}"
+	<Style x:Key="Hdr.EndPoint.Data.Lbl"
+			BasedOn="{StaticResource Hdr.EndPoint.Data.Filler.Lbl}"
+			TargetType="{x:Type Label}"
+			>
+		<Setter Property="Foreground" Value="Black" />
+	</Style>
+
+	<Style x:Key="Hdr.EndPoint.Value.Bdr"
+			BasedOn="{StaticResource Hdr.Base.Bdr}"
 			TargetType="Border"
 			>
 		<Setter Property="Background" Value="{StaticResource endPointDtlBkg}" />
 		<Setter Property="BorderBrush" Value="{StaticResource endPointBdr}" />
 	</Style>
 
-	<Style x:Key="HdrEpdRowStyle"
+	<Style x:Key="Hdr.EndPoint.Value.Lbl"
+			BasedOn="{StaticResource Hdr.EndPoint.Data.Filler.Lbl}"
+			TargetType="{x:Type Label}"
+			>
+		<Setter Property="Foreground" Value="Black" />
+	</Style>
+
+	<Style x:Key="Hdr.EndPoint.Data.Bdr"
 			BasedOn="{StaticResource pdBdrBase}"
 			TargetType="Border"
 			>
@@ -369,9 +376,9 @@
 
 	<!--#endregion-->
 
-	<!--#region > Style: Editing Row-->
+	<!--#region > Styles: Field: Editing Row-->
 
-	<Style x:Key="edRowGridStyle"
+	<Style x:Key="Field.Ed.Grid"
 			TargetType="Grid"
 			>
 		<Setter Property="VerticalAlignment" Value="Center" />
@@ -391,35 +398,33 @@
 
 	<!--#region > Styles: Footer: Start point-->
 
-	<Style x:Key="FtrSpdRowStyle"
-			BasedOn="{StaticResource HdrEpdRowStyle}"
+	<Style x:Key="Ftr.StartPoint.Bdr"
+			BasedOn="{StaticResource Hdr.EndPoint.Data.Bdr}"
 			TargetType="Border"
 			/>
 
-	<Style x:Key="FtrSpdRowLblStyle"
-			BasedOn="{StaticResource HdrEpdRowLblStyle}"
+	<Style x:Key="Ftr.StartPoint.Lbl"
+			BasedOn="{StaticResource Hdr.EndPoint.Data.Lbl}"
 			TargetType="{x:Type Label}"
 			/>
 
 
-	<Style x:Key="Footer.EndPoint.Filler.Background"
-			BasedOn="{StaticResource Header.EndPoint.Filler.Style}"
+	<Style x:Key="Ftr.StartPoint.Filler.Bdr"
+			BasedOn="{StaticResource Hdr.EndPoint.Data.Filler.Bdr}"
 			TargetType="Border"
 			/>
 
-	<Style x:Key="FtrEpFillerLblStyle"
-			BasedOn="{StaticResource HdrEpFillerLblStyle}"
+	<Style x:Key="Ftr.StartPoint.Filler.Lbl"
+			BasedOn="{StaticResource Hdr.EndPoint.Data.Filler.Lbl}"
 			TargetType="{x:Type Label}"
 			/>
 
 	<!--#endregion-->
 
-	<!--#endregion-->
+	<!--  Group Boxes  -->
 
-	<!--#region > Group Boxes-->
-
-	<!--#region > GroupBox: ptvRowGbxStyle-->
-	<Style x:Key="ptvRowGbxStyle"
+	<!--#region > GroupBox: Field.Pt.Value.Gbx-->
+	<Style x:Key="Field.Pt.Value.Gbx"
 			TargetType="{x:Type GroupBox}"
 			>
 		<Setter Property="BorderBrush" Value="Transparent" />
@@ -473,8 +478,8 @@
 	</Style>
 	<!--#endregion-->
 
-	<!--#region > GroupBox: ptdRowGbxStyle-->
-	<Style x:Key="ptdRowGbxStyle"
+	<!--#region > GroupBox: Field.Pt.Data.Gbx-->
+	<Style x:Key="Field.Pt.Data.Gbx"
 			TargetType="{x:Type GroupBox}"
 			>
 		<Setter Property="BorderBrush" Value="Transparent" />
@@ -534,77 +539,10 @@
 
 	<!--#endregion-->
 
-	<!--#region > GroupBox Sep Color bottom row edit-->
-
-	<Style x:Key="grpBxColoredSidesBottomEditable"
-			TargetType="{x:Type GroupBox}"
-			>
-		<Setter Property="BorderBrush" Value="Transparent" />
-		<Setter Property="BorderThickness" Value="0" />
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type GroupBox}">
-					<Grid SnapsToDevicePixels="True">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="0" />
-							<ColumnDefinition Width="*" />
-							<ColumnDefinition Width="1" />
-						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="0" />
-							<RowDefinition Height="*" />
-							<RowDefinition Height="0" />
-						</Grid.RowDefinitions>
-
-						<!--  left  -->
-						<Border Grid.Row="0"
-								Grid.RowSpan="3"
-								Grid.Column="0"
-								BorderThickness="1,0,0,0"
-								BorderBrush="{StaticResource controlBkg}"
-								/>
-						<!--  top  -->
-						<Border Grid.Row="0"
-								Grid.Column="0"
-								Grid.ColumnSpan="3"
-								BorderThickness="0,1,0,0"
-								BorderBrush="{StaticResource controlBkg}"
-								/>
-						<!--  right  -->
-						<Border Grid.Row="0"
-								Grid.RowSpan="3"
-								Grid.Column="2"
-								BorderThickness="0,0,1,0"
-								BorderBrush="{StaticResource stdBorderBrush}"
-								/>
-						<!--  bottom  -->
-						<Border Grid.Row="2"
-								Grid.Column="0"
-								Grid.ColumnSpan="3"
-								BorderThickness="0,0,0,0"
-								BorderBrush="{StaticResource controlBkg}"
-								/>
-
-						<ContentPresenter Grid.Row="1"
-								Grid.Column="1"
-								/>
-					</Grid>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-
-	<!--#endregion-->
-
-
-
-	<!--#endregion-->
-
-
 	<!--  Control Template  -->
 
 	<!--#region > Control Template: Hdr.Col.Labels-->
-	<ControlTemplate x:Key="Hdr.Col.Labels">
+	<ControlTemplate x:Key="Hdr.ColLabels">
 		<Grid Margin="0,0,0,-1"
 				DockPanel.Dock="Top"
 				Background="{StaticResource Header.Background.C}"
@@ -642,35 +580,35 @@
 
 			<Border Grid.Column="0"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource HdrPvRowStyle}"
+					Style="{StaticResource Hdr.ColLables.Value.Bdr}"
 					>
 				<Label Content="X"
-						Style="{StaticResource HdrPvRowLblStyle}"
+						Style="{StaticResource Hdr.ColLables.Value.Lbl}"
 						/>
 			</Border>
 			<Border Grid.Column="2"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource HdrPvRowStyle}"
+					Style="{StaticResource Hdr.ColLables.Value.Bdr}"
 					>
 				<Label Content="Y"
-						Style="{StaticResource HdrPvRowLblStyle}"
+						Style="{StaticResource Hdr.ColLables.Value.Lbl}"
 						/>
 			</Border>
 			<Border Grid.Column="4"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource HdrPvRowStyle}"
+					Style="{StaticResource Hdr.ColLables.Value.Bdr}"
 					>
 				<Label Content="Z"
-						Style="{StaticResource HdrPvRowLblStyle}"
+						Style="{StaticResource Hdr.ColLables.Value.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Column="6"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource HdrPvRowStyle}"
+					Style="{StaticResource Hdr.ColLables.Value.Bdr}"
 					>
 				<Label Content="Slope"
-						Style="{StaticResource HdrPvRowLblStyle}"
+						Style="{StaticResource Hdr.ColLables.Value.Lbl}"
 						/>
 			</Border>
 
@@ -680,41 +618,41 @@
 
 			<Border Grid.Column="0"
 					Background="{StaticResource Header.Filler.Background.C}"
-					Style="{StaticResource HdrPdRowStyle}"
+					Style="{StaticResource Hdr.ColLables.Data.Bdr}"
 					/>
 
 			<Border Grid.Column="1"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource HdrPdRowStyle}"
+					Style="{StaticResource Hdr.ColLables.Data.Bdr}"
 					>
 				<Label Content="Delta XY"
-						Style="{StaticResource pdHdrRowLblStyle}"
+						Style="{StaticResource Hdr.ColLables.Data.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Column="3"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource HdrPdRowStyle}"
+					Style="{StaticResource Hdr.ColLables.Data.Bdr}"
 					>
 				<Label Content="Delta XYZ"
-						Style="{StaticResource pdHdrRowLblStyle}"
+						Style="{StaticResource Hdr.ColLables.Data.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Column="5"
 					Grid.ColumnSpan="2"
 					BorderThickness="0"
-					Style="{StaticResource HdrPdRowStyle}"
+					Style="{StaticResource Hdr.ColLables.Data.Bdr}"
 					>
 				<Label Content="Delta Z"
-						Style="{StaticResource pdHdrRowLblStyle}"
+						Style="{StaticResource Hdr.ColLables.Data.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Column="7"
 					Background="{StaticResource Header.Filler.Background.C}"
 					BorderThickness="0,0,0,1"
-					Style="{StaticResource HdrPdRowStyle}"
+					Style="{StaticResource Hdr.ColLables.Data.Bdr}"
 					/>
 
 			<!--#endregion-->
@@ -728,9 +666,9 @@
 
 	<!--#endregion-->
 
-	<!--#region > Control Template: Hdr.EndPoint.Value-->
+	<!--#region > Control Template: Hdr.EndPoint-->
 
-	<ControlTemplate x:Key="Hdr.EndPoint.Value">
+	<ControlTemplate x:Key="Hdr.EndPoint">
 		<Grid>
 			<Grid.ColumnDefinitions>
 				<!--  0  -->
@@ -756,37 +694,37 @@
 				<RowDefinition Height="{StaticResource hdrRowHeight}" />
 			</Grid.RowDefinitions>
 
-			<!--  Header: end point pv row  -->
+			<!--  Header: end point value row  -->
 
 			<!--#region + Header: End point value row-->
 
 			<Border Grid.Row="0"
 					Grid.Column="0"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource HdrEpvRowStyle}"
+					Style="{StaticResource Hdr.EndPoint.Value.Bdr}"
 					>
 				<Label Content="{Binding EndX}"
-						Style="{StaticResource HdrEpvRowLblStyle}"
+						Style="{StaticResource Hdr.EndPoint.Value.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Row="0"
 					Grid.Column="2"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource HdrEpvRowStyle}"
+					Style="{StaticResource Hdr.EndPoint.Value.Bdr}"
 					>
 				<Label Content="{Binding EndY}"
-						Style="{StaticResource HdrEpvRowLblStyle}"
+						Style="{StaticResource Hdr.EndPoint.Value.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Row="0"
 					Grid.Column="4"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource HdrEpvRowStyle}"
+					Style="{StaticResource Hdr.EndPoint.Value.Bdr}"
 					>
 				<Label Content="{Binding EndZ}"
-						Style="{StaticResource HdrEpvRowLblStyle}"
+						Style="{StaticResource Hdr.EndPoint.Value.Lbl}"
 						/>
 			</Border>
 
@@ -794,10 +732,10 @@
 					Grid.Column="6"
 					Grid.ColumnSpan="2"
 					BorderThickness="0,0,1,1"
-					Style="{StaticResource HdrEpdRowStyle}"
+					Style="{StaticResource Hdr.EndPoint.Value.Bdr}"
 					>
 				<Label Content="{Binding EndSlope}"
-						Style="{StaticResource HdrEpvRowLblStyle}"
+						Style="{StaticResource Hdr.EndPoint.Value.Lbl}"
 						/>
 			</Border>
 			<!--#endregion-->
@@ -807,30 +745,30 @@
 			<Border Grid.Row="1"
 					Grid.Column="0"
 					BorderThickness="0,0,1,1"
-					Style="{StaticResource Header.EndPoint.Filler.Style}"
+					Style="{StaticResource Hdr.EndPoint.Data.Filler.Bdr}"
 					>
 				<Label Content=""
-						Style="{StaticResource HdrEpFillerLblStyle}"
+						Style="{StaticResource Hdr.EndPoint.Data.Filler.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Row="1"
 					Grid.Column="1"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource HdrEpdRowStyle}"
+					Style="{StaticResource Hdr.EndPoint.Data.Bdr}"
 					>
 				<Label Content="{Binding EndDeltaXY}"
-						Style="{StaticResource HdrEpdRowLblStyle}"
+						Style="{StaticResource Hdr.EndPoint.Data.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Row="1"
 					Grid.Column="3"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource HdrEpdRowStyle}"
+					Style="{StaticResource Hdr.EndPoint.Data.Bdr}"
 					>
 				<Label Content="{Binding EndDeltaXYZ}"
-						Style="{StaticResource HdrEpdRowLblStyle}"
+						Style="{StaticResource Hdr.EndPoint.Data.Lbl}"
 						/>
 			</Border>
 
@@ -838,10 +776,10 @@
 					Grid.Column="5"
 					Grid.ColumnSpan="2"
 					BorderThickness="0,0,0,1"
-					Style="{StaticResource HdrEpdRowStyle}"
+					Style="{StaticResource Hdr.EndPoint.Data.Bdr}"
 					>
 				<Label Content="{Binding EndDeltaZ}"
-						Style="{StaticResource HdrEpdRowLblStyle}"
+						Style="{StaticResource Hdr.EndPoint.Data.Lbl}"
 						/>
 			</Border>
 
@@ -849,10 +787,10 @@
 					Grid.Column="7"
 					Grid.ColumnSpan="1"
 					BorderThickness="0,0,0,1"
-					Style="{StaticResource Header.EndPoint.Filler.Style}"
+					Style="{StaticResource Hdr.EndPoint.Data.Filler.Bdr}"
 					>
 				<Label Content="End Point"
-						Style="{StaticResource HdrEpFillerLblStyle}"
+						Style="{StaticResource Hdr.EndPoint.Data.Filler.Lbl}"
 						/>
 			</Border>
 			<!--#endregion-->
@@ -863,9 +801,9 @@
 
 	<!--#endregion-->
 
-	<!--#region > Control Template: ptvRowTemplate-->
+	<!--#region > Control Template: Field.Pt.Value-->
 
-	<ControlTemplate x:Key="ptvRowTemplate">
+	<ControlTemplate x:Key="Field.Pt.Value">
 		<Grid>
 			<Grid.ColumnDefinitions>
 				<!--  0  -->
@@ -891,11 +829,11 @@
 					Grid.Column="0"
 					Grid.ColumnSpan="2"
 					>
-				<GroupBox Style="{StaticResource ptvRowGbxStyle}">
+				<GroupBox Style="{StaticResource Field.Pt.Value.Gbx}">
 					<TextBox x:Name="TbxXvalue"
 							Tag="{Binding Path=cpConsts.Xtag, ElementName=ctrlPts}"
 							Validation.Error="TbxXYZ_OnError"
-							Style="{StaticResource ptvRowTbxStyle}"
+							Style="{StaticResource Field.Pt.Value.Tbx}"
 							>
 						<!--  SourceUpdated="TbxXYZ_OnSourceUpdated"  -->
 						<TextBox.Text>
@@ -921,11 +859,11 @@
 					Grid.Column="2"
 					Grid.ColumnSpan="2"
 					>
-				<GroupBox Style="{StaticResource ptvRowGbxStyle}">
+				<GroupBox Style="{StaticResource Field.Pt.Value.Gbx}">
 					<TextBox x:Name="TbxYvalue"
 							Tag="{Binding Path=cpConsts.Ytag, ElementName=ctrlPts}"
 							Validation.Error="TbxXYZ_OnError"
-							Style="{StaticResource ptvRowTbxStyle}"
+							Style="{StaticResource Field.Pt.Value.Tbx}"
 							>
 
 						<!--  SourceUpdated="TbxXYZ_OnSourceUpdated"  -->
@@ -952,11 +890,11 @@
 					Grid.Column="4"
 					Grid.ColumnSpan="2"
 					>
-				<GroupBox Style="{StaticResource ptvRowGbxStyle}">
+				<GroupBox Style="{StaticResource Field.Pt.Value.Gbx}">
 					<TextBox x:Name="TbxZvalue"
 							Tag="{Binding Path=cpConsts.Ztag, ElementName=ctrlPts}"
 							Validation.Error="TbxXYZ_OnError"
-							Style="{StaticResource ptvRowTbxStyle}"
+							Style="{StaticResource Field.Pt.Value.Tbx}"
 							>
 						<!--  SourceUpdated="TbxXYZ_OnSourceUpdated"  -->
 						<TextBox.Text>
@@ -983,11 +921,11 @@
 					Grid.Column="6"
 					Grid.ColumnSpan="2"
 					>
-				<GroupBox Style="{DynamicResource ptvRowGbxStyle}">
+				<GroupBox Style="{DynamicResource Field.Pt.Value.Gbx}">
 					<TextBox x:Name="tbxSlope"
 							Tag="{Binding Path=cpConsts.Stag, ElementName=ctrlPts}"
 							Validation.Error="TbxSlope_OnError"
-							Style="{StaticResource ptvRowTbxStyle}"
+							Style="{StaticResource Field.Pt.Value.Tbx}"
 							>
 						<!--  SourceUpdated="TbxSlope_OnSourceUpdated"  -->
 						<TextBox.Text>
@@ -1014,9 +952,9 @@
 	</ControlTemplate>
 	<!--#endregion-->
 
-	<!--#region > Control Template: ptdRowTemplate-->
+	<!--#region > Control Template: Field.Pt.Data-->
 
-	<ControlTemplate x:Key="ptdRowTemplate">
+	<ControlTemplate x:Key="Field.Pt.Data">
 		<Grid Margin="0,0,0,-0.5">
 			<Grid.ColumnDefinitions>
 				<!--  0  -->
@@ -1039,7 +977,7 @@
 
 			<Border Grid.Row="{StaticResource detailInfoRow}"
 					Grid.Column="0"
-					Style="{StaticResource Field.Pt.Data.Filler.Style}"
+					Style="{StaticResource Field.Pt.Data.Filler}"
 					/>
 			<!--<TextBlock Text="{Binding IsBeingEdited}" />-->
 
@@ -1048,8 +986,8 @@
 					Grid.Column="1"
 					Grid.ColumnSpan="2"
 					>
-				<GroupBox Style="{StaticResource ptdRowGbxStyle}">
-					<TextBlock Style="{DynamicResource ptdRowTbxStyle}">
+				<GroupBox Style="{StaticResource Field.Pt.Data.Gbx}">
+					<TextBlock Style="{DynamicResource Field.Pt.Data.Tbx}">
 						<TextBlock.Text>
 							<Binding Converter="{StaticResource xyzConverter}"
 									Mode="OneWay"
@@ -1067,8 +1005,8 @@
 					Grid.Column="3"
 					Grid.ColumnSpan="2"
 					>
-				<GroupBox Style="{StaticResource ptdRowGbxStyle}">
-					<TextBlock Style="{DynamicResource ptdRowTbxStyle}">
+				<GroupBox Style="{StaticResource Field.Pt.Data.Gbx}">
+					<TextBlock Style="{DynamicResource Field.Pt.Data.Tbx}">
 						<TextBlock.Text>
 							<Binding Converter="{StaticResource xyzConverter}"
 									Mode="OneWay"
@@ -1086,8 +1024,8 @@
 					Grid.Column="5"
 					Grid.ColumnSpan="2"
 					>
-				<GroupBox Style="{StaticResource ptdRowGbxStyle}">
-					<TextBlock Style="{DynamicResource ptdRowTbxStyle}">
+				<GroupBox Style="{StaticResource Field.Pt.Data.Gbx}">
+					<TextBlock Style="{DynamicResource Field.Pt.Data.Tbx}">
 						<TextBlock.Text>
 							<Binding Converter="{StaticResource xyzConverter}"
 									Mode="OneWay"
@@ -1105,7 +1043,7 @@
 			<Border Grid.Row="{StaticResource detailInfoRow}"
 					Grid.Column="7"
 					Background="{StaticResource pdRowBdrBg}"
-					Style="{StaticResource Field.Pt.Data.Filler.Style}"
+					Style="{StaticResource Field.Pt.Data.Filler}"
 					/>
 
 			<!--#endregion End Filler-->
@@ -1117,9 +1055,9 @@
 
 	<!--#endregion-->
 
-	<!--#region > Control Template: ftrSpdTemplate-->
+	<!--#region > Control Template: Ftr.StartPoint-->
 
-	<ControlTemplate x:Key="Ftr.StartPoint.Data">
+	<ControlTemplate x:Key="Ftr.StartPoint">
 		<Grid Background="{StaticResource stdBorderBrush}">
 			<Grid.ColumnDefinitions>
 				<!--  0  -->
@@ -1146,50 +1084,50 @@
 			<Border Grid.Row="0"
 					Grid.Column="0"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource FtrSpdRowStyle}"
+					Style="{StaticResource Ftr.StartPoint.Bdr}"
 					>
 				<Label Content="{Binding StartX}"
-						Style="{StaticResource FtrSpdRowLblStyle}"
+						Style="{StaticResource Ftr.StartPoint.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Row="0"
 					Grid.Column="2"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource FtrSpdRowStyle}"
+					Style="{StaticResource Ftr.StartPoint.Bdr}"
 					>
 				<Label Content="{Binding StartY}"
-						Style="{StaticResource FtrSpdRowLblStyle}"
+						Style="{StaticResource Ftr.StartPoint.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Row="0"
 					Grid.Column="4"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource FtrSpdRowStyle}"
+					Style="{StaticResource Ftr.StartPoint.Bdr}"
 					>
 				<Label Content="{Binding StartZ}"
-						Style="{StaticResource FtrSpdRowLblStyle}"
+						Style="{StaticResource Ftr.StartPoint.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Row="0"
 					Grid.Column="6"
 					Grid.ColumnSpan="1"
-					Style="{StaticResource Footer.EndPoint.Filler.Background}"
+					Style="{StaticResource Ftr.StartPoint.Filler.Bdr}"
 					>
 				<Label Content=""
-						Style="{StaticResource FtrEpFillerLblStyle}"
+						Style="{StaticResource Ftr.StartPoint.Filler.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Row="0"
 					Grid.Column="7"
 					Grid.ColumnSpan="1"
-					Style="{StaticResource Footer.EndPoint.Filler.Background}"
+					Style="{StaticResource Ftr.StartPoint.Filler.Bdr}"
 					>
 				<Label Content="Start Point"
-						Style="{StaticResource FtrEpFillerLblStyle}"
+						Style="{StaticResource Ftr.StartPoint.Filler.Lbl}"
 						/>
 			</Border>
 
@@ -1198,16 +1136,16 @@
 
 	<!--#endregion-->
 
-	<!--#region > ControlTemplate edRowTemplate-->
+	<!--#region > ControlTemplate: Field.Ed-->
 
-	<ControlTemplate x:Key="edRowTemplate">
+	<ControlTemplate x:Key="Field.Ed">
 		<Border Margin="0,0,0,0"
 				BorderThickness="0,1,0,0"
 				>
 			<Grid HorizontalAlignment="Stretch"
 					VerticalAlignment="Stretch"
 					Background="{StaticResource Row.Edit.Background.C}"
-					Style="{StaticResource edRowGridStyle}"
+					Style="{StaticResource Field.Ed.Grid}"
 					>
 				<Grid.ColumnDefinitions>
 					<!--  0  -->
@@ -1233,6 +1171,7 @@
 					<RowDefinition Height="{StaticResource editPnlRowHeightBottom}" />
 				</Grid.RowDefinitions>
 
+				<!--#region > Field.Ed.Btns-->
 
 				<Button Content="Save X"
 						Grid.Row="{StaticResource btnRow}"
@@ -1313,6 +1252,9 @@
 						Style="{StaticResource Button.Normal.Style}"
 						Template="{StaticResource Button.Normal.ControlTemplate}"
 						/>
+				<!--#endregion-->
+
+				<!--#region > Field.Ed.Info-->
 
 				<TextBlock Grid.Row="{StaticResource msgRow}"
 						Grid.Column="0"
@@ -1336,6 +1278,7 @@
 						HorizontalAlignment="Left"
 						Text="{Binding Path=ErrorMsg, ElementName=ctrlPts, Mode=OneWay}"
 						/>
+				<!--#endregion-->
 
 			</Grid>
 		</Border>
@@ -1345,9 +1288,9 @@
 
 	<!--  Primary Template  -->
 
-	<!--#region > Primary Control Template: ListBox.ControlTemplate-->
+	<!--#region > Primary Control Template: ListBox.Overall-->
 
-	<ControlTemplate x:Key="ListBox.ControlTemplate">
+	<ControlTemplate x:Key="ListBox.Overall">
 		<!--  perimeter border  -->
 		<Border Margin="0,0,0,0"
 				BorderThickness="0"
@@ -1372,7 +1315,7 @@
 						<RowDefinition Height="40" />
 					</Grid.RowDefinitions>
 
-					<!--#region > Header: Column Labels-->
+					<!--#region > Header: Hdr.ColLabels-->
 					<Border Grid.Row="0"
 							Grid.Column="0"
 							Margin="0,0,-1,-1.5"
@@ -1381,154 +1324,14 @@
 							>
 
 						<ContentControl DockPanel.Dock="Top"
-								Template="{StaticResource Hdr.Col.Labels}"
+								Template="{StaticResource Hdr.ColLabels}"
 								/>
 
-						<!--<Grid Margin="0,0,0,-1"
-								DockPanel.Dock="Top"
-								Background="{StaticResource Header.Background.C}"
-								>
-							<Grid.ColumnDefinitions>
-								-->
-						<!--  0  -->
-						<!--
-								<ColumnDefinition Width="{StaticResource col00}" />
-								-->
-						<!--  1  -->
-						<!--
-								<ColumnDefinition Width="{StaticResource col01}" />
-								-->
-						<!--  2  -->
-						<!--
-								<ColumnDefinition Width="{StaticResource col02}" />
-								-->
-						<!--  3  -->
-						<!--
-								<ColumnDefinition Width="{StaticResource col03}" />
-								-->
-						<!--  4  -->
-						<!--
-								<ColumnDefinition Width="{StaticResource col04}" />
-								-->
-						<!--  5  -->
-						<!--
-								<ColumnDefinition Width="{StaticResource col05}" />
-								-->
-						<!--  6  -->
-						<!--
-								<ColumnDefinition Width="{StaticResource col06}" />
-								-->
-						<!--  7  -->
-						<!--
-								<ColumnDefinition Width="{StaticResource col07}" />
-
-							</Grid.ColumnDefinitions>
-							<Grid.RowDefinitions>
-								<RowDefinition Height="{StaticResource hdrRowHeight}" />
-								<RowDefinition Height="{StaticResource hdrRowHeight}" />
-
-							</Grid.RowDefinitions>
-
-							-->
-						<!--  Header rows  -->
-
-						<!--#region + Header: label rows-->
-
-						<!--#region + Header: Point value-->
-						<!--
-
-							<Border Grid.Column="0"
-									Grid.ColumnSpan="2"
-									Style="{StaticResource HdrPvRowStyle}"
-									>
-								<Label Content="X"
-										Style="{StaticResource HdrPvRowLblStyle}"
-										/>
-							</Border>
-							<Border Grid.Column="2"
-									Grid.ColumnSpan="2"
-									Style="{StaticResource HdrPvRowStyle}"
-									>
-								<Label Content="Y"
-										Style="{StaticResource HdrPvRowLblStyle}"
-										/>
-							</Border>
-							<Border Grid.Column="4"
-									Grid.ColumnSpan="2"
-									Style="{StaticResource HdrPvRowStyle}"
-									>
-								<Label Content="Z"
-										Style="{StaticResource HdrPvRowLblStyle}"
-										/>
-							</Border>
-
-							<Border Grid.Column="6"
-									Grid.ColumnSpan="2"
-									Style="{StaticResource HdrPvRowStyle}"
-									>
-								<Label Content="Slope"
-										Style="{StaticResource HdrPvRowLblStyle}"
-										/>
-							</Border>
-
-							-->
-						<!--#endregion-->
-
-						<!--#region + Header: Point data-->
-						<!--
-
-							<Border Grid.Column="0"
-									Background="{StaticResource Header.Filler.Background.C}"
-									Style="{StaticResource HdrPdRowStyle}"
-									/>
-
-							<Border Grid.Column="1"
-									Grid.ColumnSpan="2"
-									Style="{StaticResource HdrPdRowStyle}"
-									>
-								<Label Content="Delta XY"
-										Style="{StaticResource pdHdrRowLblStyle}"
-										/>
-							</Border>
-
-							<Border Grid.Column="3"
-									Grid.ColumnSpan="2"
-									Style="{StaticResource HdrPdRowStyle}"
-									>
-								<Label Content="Delta XYZ"
-										Style="{StaticResource pdHdrRowLblStyle}"
-										/>
-							</Border>
-
-							<Border Grid.Column="5"
-									Grid.ColumnSpan="2"
-									BorderThickness="0"
-									Style="{StaticResource HdrPdRowStyle}"
-									>
-								<Label Content="Delta Z"
-										Style="{StaticResource pdHdrRowLblStyle}"
-										/>
-							</Border>
-
-							<Border Grid.Column="7"
-									Background="{StaticResource Header.Filler.Background.C}"
-									BorderThickness="0,0,0,1"
-									Style="{StaticResource HdrPdRowStyle}"
-									/>
-
-							-->
-						<!--#endregion-->
-
-						<!--#endregion-->
-						<!--
-
-						</Grid>-->
-
-
 					</Border>
+
 					<!--#endregion-->
 
-					<!--#region > Header: end point-->
+					<!--#region > Header: Hdr.EndPoint-->
 					<Border Grid.Row="1"
 							Margin="0,0,-1,-2"
 							VerticalAlignment="top"
@@ -1538,7 +1341,7 @@
 							BorderBrush="{StaticResource shadow}"
 							>
 
-						<ContentControl Template="{StaticResource Hdr.EndPoint.Value}" />
+						<ContentControl Template="{StaticResource Hdr.EndPoint}" />
 
 					</Border>
 					<!--  end end point header  -->
@@ -1572,7 +1375,7 @@
 						<ContentControl Grid.Row="1"
 								Margin="0,2,0,0"
 								VerticalAlignment="Top"
-								Template="{StaticResource Ftr.StartPoint.Data}"
+								Template="{StaticResource Ftr.StartPoint}"
 								/>
 					</Grid>
 
@@ -1590,9 +1393,9 @@
 
 	<!--  Data Template  -->
 
-	<!--#region > Data Template: ptRowTemplate-->
+	<!--#region > Data Template: ListBox.Item.Selected.Normal-->
 
-	<DataTemplate x:Key="ptRowTemplate">
+	<DataTemplate x:Key="ListBox.Item.Selected.Normal">
 		<Border Margin="0,0,-1,-4"
 				BorderThickness="0,0,0,5"
 				BorderBrush="{DynamicResource shadow}"
@@ -1611,7 +1414,7 @@
 				<!--#region + Point Value Row-->
 				<ContentControl Grid.Row="{StaticResource detailValueRow}"
 						Grid.Column="0"
-						Template="{StaticResource ptvRowTemplate}"
+						Template="{StaticResource Field.Pt.Value}"
 						/>
 
 				<!--#endregion-->
@@ -1619,7 +1422,7 @@
 				<!--#region + Point Data row-->
 				<ContentControl Grid.Row="{StaticResource detailInfoRow}"
 						Grid.Column="0"
-						Template="{StaticResource ptdRowTemplate}"
+						Template="{StaticResource Field.Pt.Data}"
 						/>
 
 				<!--#endregion-->
@@ -1630,8 +1433,9 @@
 
 	<!--#endregion-->
 
-	<!--#region > Data Template: ptRowEditingTemplate-->
-	<DataTemplate x:Key="ptRowEditingTemplate">
+	<!--#region > Data Template: ListBox.Item.Selected.Edit-->
+
+	<DataTemplate x:Key="ListBox.Item.Selected.Edit">
 		<Border Margin="0,0,-2,-6"
 				BorderThickness="0,0,0,9"
 				BorderBrush="{DynamicResource shadow}"
@@ -1650,55 +1454,115 @@
 				<!--  Detail Value Row  -->
 				<ContentControl Grid.Row="{StaticResource detailValueRow}"
 						Grid.Column="0"
-						Template="{StaticResource ptvRowTemplate}"
+						Template="{StaticResource Field.Pt.Value}"
 						/>
 
 				<!--  Detail info row  -->
 				<ContentControl Grid.Row="{StaticResource detailInfoRow}"
 						Grid.Column="0"
-						Template="{StaticResource ptdRowTemplate}"
+						Template="{StaticResource Field.Pt.Data}"
 						/>
 
 				<!--  EditPanel  -->
 				<ContentControl Grid.Row="{StaticResource editPanelRow}"
 						Grid.Column="0"
-						Template="{StaticResource edRowTemplate}"
+						Template="{StaticResource Field.Ed}"
 						/>
 
 			</Grid>
 		</Border>
 	</DataTemplate>
 
-	<!--#endregion  ptRowEditingTemplate-->
+	<!--#endregion-->
 
-	<!--#region > Data Template: Selector: ptRowSelectorTemplate-->
+	<!--#region > Data Template: Selector: ListBox.Item.Selector-->
 
-	<DataTemplate x:Key="ptRowSelectorTemplate">
+	<DataTemplate x:Key="ListBox.Item.Selector">
 		<ContentPresenter x:Name="contentPresenter" Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}"
 				/>
 		<DataTemplate.Triggers>
 			<DataTrigger Binding="{Binding IsBeingEdited, UpdateSourceTrigger=PropertyChanged}"
 					Value="True"
 					>
-				<Setter TargetName="contentPresenter" Property="ContentTemplate" Value="{DynamicResource ptRowEditingTemplate}" />
+				<Setter TargetName="contentPresenter" Property="ContentTemplate" Value="{DynamicResource ListBox.Item.Selected.Edit}" />
 			</DataTrigger>
 			<DataTrigger Binding="{Binding IsBeingEdited, UpdateSourceTrigger=PropertyChanged}"
 					Value="False"
 					>
-				<Setter TargetName="contentPresenter" Property="ContentTemplate" Value="{DynamicResource ptRowTemplate}" />
+				<Setter TargetName="contentPresenter" Property="ContentTemplate" Value="{DynamicResource ListBox.Item.Selected.Normal}" />
 			</DataTrigger>
 		</DataTemplate.Triggers>
 
 	</DataTemplate>
 
-	<!--#endregion ptRowSelectorTemplate-->
+	<!--#endregion-->
 
 </ResourceDictionary>
 
 
 <!--#region > Not being used-->
+
 <!--
-			
+ ~1~#region > GroupBox Sep Color bottom row edit@1@
+
+ <Style x:Key="grpBxColoredSidesBottomEditable"
+ 		TargetType="{x:Type GroupBox}"
+ 		>
+ 	<Setter Property="BorderBrush" Value="Transparent" />
+ 	<Setter Property="BorderThickness" Value="0" />
+ 	<Setter Property="Template">
+ 		<Setter.Value>
+ 			<ControlTemplate TargetType="{x:Type GroupBox}">
+ 				<Grid SnapsToDevicePixels="True">
+ 					<Grid.ColumnDefinitions>
+ 						<ColumnDefinition Width="0" />
+ 						<ColumnDefinition Width="*" />
+ 						<ColumnDefinition Width="1" />
+ 					</Grid.ColumnDefinitions>
+ 					<Grid.RowDefinitions>
+ 						<RowDefinition Height="0" />
+ 						<RowDefinition Height="*" />
+ 						<RowDefinition Height="0" />
+ 					</Grid.RowDefinitions>
+
+ 					~1~  left  @1@
+ 					<Border Grid.Row="0"
+ 							Grid.RowSpan="3"
+ 							Grid.Column="0"
+ 							BorderThickness="1,0,0,0"
+ 							BorderBrush="{StaticResource controlBkg}"
+ 							/>
+ 					~1~  top  @1@
+ 					<Border Grid.Row="0"
+ 							Grid.Column="0"
+ 							Grid.ColumnSpan="3"
+ 							BorderThickness="0,1,0,0"
+ 							BorderBrush="{StaticResource controlBkg}"
+ 							/>
+ 					~1~  right  @1@
+ 					<Border Grid.Row="0"
+ 							Grid.RowSpan="3"
+ 							Grid.Column="2"
+ 							BorderThickness="0,0,1,0"
+ 							BorderBrush="{StaticResource stdBorderBrush}"
+ 							/>
+ 					~1~  bottom  @1@
+ 					<Border Grid.Row="2"
+ 							Grid.Column="0"
+ 							Grid.ColumnSpan="3"
+ 							BorderThickness="0,0,0,0"
+ 							BorderBrush="{StaticResource controlBkg}"
+ 							/>
+
+ 					<ContentPresenter Grid.Row="1"
+ 							Grid.Column="1"
+ 							/>
+ 				</Grid>
+ 			</ControlTemplate>
+ 		</Setter.Value>
+ 	</Setter>
+ </Style>
+
 			<Style x:Key="bdrDetailTop" TargetType="Border">
 				<Setter Property="BorderBrush" Value="{StaticResource stdBorderBrush}" />
 				<Setter Property="BorderThickness" Value="0,0,1,1" />
