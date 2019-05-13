@@ -76,7 +76,6 @@
     </ApplicationDefinition>
     <Compile Include="ControlPtsData\ControlPts.cs" />
     <Compile Include="ControlPtsWin\ControlPointConverters.cs" />
-    <Compile Include="ControlPtsWin\ControlPointsResources.xaml.cs" />
     <Compile Include="ControlPtsWin\ControlPoints.xaml.cs" />
     <Compile Include="ControlPtsWin\ControlPointsConsts.cs" />
     <Compile Include="ControlPtsWin\ControlPointValidation.cs" />

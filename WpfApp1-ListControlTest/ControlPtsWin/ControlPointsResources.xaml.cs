@@ -19,7 +19,7 @@ using System.Windows.Controls;
 
 namespace WpfApp1_ListControlTest.ControlPtsWin
 {
-	public partial class ControlPointsResources 
+	public partial class ControlPointsResources
 	{
 
 		private void TbxXYZ_OnError(object sender, ValidationErrorEventArgs e)

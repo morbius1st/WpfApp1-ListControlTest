@@ -1,10 +1,5 @@
-﻿<ResourceDictionary x:Class="WpfApp1_ListControlTest.ControlPtsWin.ControlPointsResources"
-		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:controlPts="clr-namespace:WpfApp1_ListControlTest.ControlPtsWin"
-		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-		xmlns:local="clr-namespace:WpfApp1_ListControlTest"
-		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
 		xmlns:validation="clr-namespace:WpfApp1_ListControlTest.ControlPtsWin"
 		>
@@ -12,7 +7,6 @@
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="..\WpfResources\MasterColorList.xaml" />
 		<ResourceDictionary Source="..\WpfResources\VisualStates.xaml" />
-
 	</ResourceDictionary.MergedDictionaries>
 
 	<validation:ControlPointXYZConverter x:Key="xyzConverter" />
@@ -30,13 +24,13 @@
 		2
 	</sys:Int32>
 
-	<sys:Int32 x:Key="detailValueRow">
+	<sys:Int32 x:Key="Field.Pt.Value.Row">
 		0
 	</sys:Int32>
-	<sys:Int32 x:Key="detailInfoRow">
+	<sys:Int32 x:Key="Field.Pt.Data.Row">
 		1
 	</sys:Int32>
-	<sys:Int32 x:Key="editPanelRow">
+	<sys:Int32 x:Key="Field.Ed.Row">
 		2
 	</sys:Int32>
 
@@ -50,10 +44,10 @@
 	<GridLength x:Key="hdrRowHeight">
 		18
 	</GridLength>
-	<GridLength x:Key="dtlRowHeightTop">
+	<GridLength x:Key="Field.Pt.Value.Row.Height">
 		18
 	</GridLength>
-	<GridLength x:Key="dtlRowHeightBottom">
+	<GridLength x:Key="Field.Pt.Data.Row.Height">
 		18
 	</GridLength>
 
@@ -64,31 +58,31 @@
 		*
 	</GridLength>
 
-	<GridLength x:Key="col00">
+	<GridLength x:Key="Col.00.Width">
 		*
 	</GridLength>
-	<GridLength x:Key="col01">
+	<GridLength x:Key="Col.01.Width">
 		*
 	</GridLength>
-	<GridLength x:Key="col02">
+	<GridLength x:Key="Col.02.Width">
 		*
 	</GridLength>
-	<GridLength x:Key="col03">
+	<GridLength x:Key="Col.03.Width">
 		*
 	</GridLength>
-	<GridLength x:Key="col04">
+	<GridLength x:Key="Col.04.Width">
 		*
 	</GridLength>
-	<GridLength x:Key="col05">
+	<GridLength x:Key="Col.05.Width">
 		*
 	</GridLength>
-	<GridLength x:Key="col06">
+	<GridLength x:Key="Col.06.Width">
 		*
 	</GridLength>
-	<GridLength x:Key="col07">
+	<GridLength x:Key="Col.07.Width">
 		*
 	</GridLength>
-	<GridLength x:Key="col08">
+	<GridLength x:Key="Col.08.Width">
 		17
 	</GridLength>
 	<!--#endregion-->
@@ -205,7 +199,7 @@
 			Color="{Binding Color, Source={StaticResource Color.Gray.Med.C}}"
 			/>
 
-	<LinearGradientBrush x:Key="shadow" StartPoint="0.5,0" EndPoint="0.5,1">
+	<LinearGradientBrush x:Key="Brush.Bdr.Shadow" StartPoint="0.5,0" EndPoint="0.5,1">
 		<GradientStop Offset="0.89" Color="{Binding Color, Source={StaticResource Color.Gray.Dark.Xtra.Very.C}}" />
 		<GradientStop Offset=".990" Color="{Binding Color, Source={StaticResource Color.Gray.Light.Very.C}}" />
 	</LinearGradientBrush>
@@ -549,21 +543,21 @@
 				>
 			<Grid.ColumnDefinitions>
 				<!--  0  -->
-				<ColumnDefinition Width="{StaticResource col00}" />
+				<ColumnDefinition Width="{StaticResource Col.00.Width}" />
 				<!--  1  -->
-				<ColumnDefinition Width="{StaticResource col01}" />
+				<ColumnDefinition Width="{StaticResource Col.01.Width}" />
 				<!--  2  -->
-				<ColumnDefinition Width="{StaticResource col02}" />
+				<ColumnDefinition Width="{StaticResource Col.02.Width}" />
 				<!--  3  -->
-				<ColumnDefinition Width="{StaticResource col03}" />
+				<ColumnDefinition Width="{StaticResource Col.03.Width}" />
 				<!--  4  -->
-				<ColumnDefinition Width="{StaticResource col04}" />
+				<ColumnDefinition Width="{StaticResource Col.04.Width}" />
 				<!--  5  -->
-				<ColumnDefinition Width="{StaticResource col05}" />
+				<ColumnDefinition Width="{StaticResource Col.05.Width}" />
 				<!--  6  -->
-				<ColumnDefinition Width="{StaticResource col06}" />
+				<ColumnDefinition Width="{StaticResource Col.06.Width}" />
 				<!--  7  -->
-				<ColumnDefinition Width="{StaticResource col07}" />
+				<ColumnDefinition Width="{StaticResource Col.07.Width}" />
 
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
@@ -672,21 +666,21 @@
 		<Grid>
 			<Grid.ColumnDefinitions>
 				<!--  0  -->
-				<ColumnDefinition Width="{StaticResource col00}" />
+				<ColumnDefinition Width="{StaticResource Col.00.Width}" />
 				<!--  1  -->
-				<ColumnDefinition Width="{StaticResource col01}" />
+				<ColumnDefinition Width="{StaticResource Col.01.Width}" />
 				<!--  2  -->
-				<ColumnDefinition Width="{StaticResource col02}" />
+				<ColumnDefinition Width="{StaticResource Col.02.Width}" />
 				<!--  3  -->
-				<ColumnDefinition Width="{StaticResource col03}" />
+				<ColumnDefinition Width="{StaticResource Col.03.Width}" />
 				<!--  4  -->
-				<ColumnDefinition Width="{StaticResource col04}" />
+				<ColumnDefinition Width="{StaticResource Col.04.Width}" />
 				<!--  5  -->
-				<ColumnDefinition Width="{StaticResource col05}" />
+				<ColumnDefinition Width="{StaticResource Col.05.Width}" />
 				<!--  6  -->
-				<ColumnDefinition Width="{StaticResource col06}" />
+				<ColumnDefinition Width="{StaticResource Col.06.Width}" />
 				<!--  7  -->
-				<ColumnDefinition Width="{StaticResource col07}" />
+				<ColumnDefinition Width="{StaticResource Col.07.Width}" />
 
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
@@ -801,188 +795,37 @@
 
 	<!--#endregion-->
 
-	<!--#region > Control Template: Field.Pt.Value-->
-
-	<ControlTemplate x:Key="Field.Pt.Value">
-		<Grid>
-			<Grid.ColumnDefinitions>
-				<!--  0  -->
-				<ColumnDefinition Width="{StaticResource col00}" />
-				<!--  1  -->
-				<ColumnDefinition Width="{StaticResource col01}" />
-				<!--  2  -->
-				<ColumnDefinition Width="{StaticResource col02}" />
-				<!--  3  -->
-				<ColumnDefinition Width="{StaticResource col03}" />
-				<!--  4  -->
-				<ColumnDefinition Width="{StaticResource col04}" />
-				<!--  5  -->
-				<ColumnDefinition Width="{StaticResource col05}" />
-				<!--  6  -->
-				<ColumnDefinition Width="{StaticResource col06}" />
-				<!--  7  -->
-				<ColumnDefinition Width="{StaticResource col07}" />
-			</Grid.ColumnDefinitions>
-
-			<!--#region ● X Tbx-->
-			<Border Grid.Row="{StaticResource detailValueRow}"
-					Grid.Column="0"
-					Grid.ColumnSpan="2"
-					>
-				<GroupBox Style="{StaticResource Field.Pt.Value.Gbx}">
-					<TextBox x:Name="TbxXvalue"
-							Tag="{Binding Path=cpConsts.Xtag, ElementName=ctrlPts}"
-							Validation.Error="TbxXYZ_OnError"
-							Style="{StaticResource Field.Pt.Value.Tbx}"
-							>
-						<!--  SourceUpdated="TbxXYZ_OnSourceUpdated"  -->
-						<TextBox.Text>
-							<Binding Converter="{StaticResource xyzConverter}"
-									Mode="TwoWay"
-									NotifyOnSourceUpdated="True"
-									NotifyOnTargetUpdated="True"
-									NotifyOnValidationError="True"
-									Path="X"
-									>
-								<Binding.ValidationRules>
-									<validation:ControlPointXYZValidation ValidationStep="RawProposedValue" />
-								</Binding.ValidationRules>
-							</Binding>
-						</TextBox.Text>
-					</TextBox>
-				</GroupBox>
-			</Border>
-			<!--#endregion ptvRowTemplate-->
-
-			<!--#region ● Y Tbx-->
-			<Border Grid.Row="{StaticResource detailValueRow}"
-					Grid.Column="2"
-					Grid.ColumnSpan="2"
-					>
-				<GroupBox Style="{StaticResource Field.Pt.Value.Gbx}">
-					<TextBox x:Name="TbxYvalue"
-							Tag="{Binding Path=cpConsts.Ytag, ElementName=ctrlPts}"
-							Validation.Error="TbxXYZ_OnError"
-							Style="{StaticResource Field.Pt.Value.Tbx}"
-							>
-
-						<!--  SourceUpdated="TbxXYZ_OnSourceUpdated"  -->
-						<TextBox.Text>
-							<Binding Converter="{StaticResource xyzConverter}"
-									Mode="TwoWay"
-									NotifyOnSourceUpdated="True"
-									NotifyOnTargetUpdated="True"
-									NotifyOnValidationError="True"
-									Path="Y"
-									>
-								<Binding.ValidationRules>
-									<validation:ControlPointXYZValidation ValidationStep="RawProposedValue" />
-								</Binding.ValidationRules>
-							</Binding>
-						</TextBox.Text>
-					</TextBox>
-				</GroupBox>
-			</Border>
-			<!--#endregion-->
-
-			<!--#region ● Z Tbx-->
-			<Border Grid.Row="{StaticResource detailValueRow}"
-					Grid.Column="4"
-					Grid.ColumnSpan="2"
-					>
-				<GroupBox Style="{StaticResource Field.Pt.Value.Gbx}">
-					<TextBox x:Name="TbxZvalue"
-							Tag="{Binding Path=cpConsts.Ztag, ElementName=ctrlPts}"
-							Validation.Error="TbxXYZ_OnError"
-							Style="{StaticResource Field.Pt.Value.Tbx}"
-							>
-						<!--  SourceUpdated="TbxXYZ_OnSourceUpdated"  -->
-						<TextBox.Text>
-							<Binding Converter="{StaticResource xyzConverter}"
-									Mode="TwoWay"
-									NotifyOnSourceUpdated="True"
-									NotifyOnTargetUpdated="True"
-									NotifyOnValidationError="True"
-									Path="Z"
-									>
-								<Binding.ValidationRules>
-									<validation:ControlPointXYZValidation ValidationStep="RawProposedValue" />
-								</Binding.ValidationRules>
-							</Binding>
-						</TextBox.Text>
-					</TextBox>
-
-				</GroupBox>
-			</Border>
-			<!--#endregion-->
-
-			<!--#region ● Slope-->
-			<Border Grid.Row="{StaticResource detailValueRow}"
-					Grid.Column="6"
-					Grid.ColumnSpan="2"
-					>
-				<GroupBox Style="{DynamicResource Field.Pt.Value.Gbx}">
-					<TextBox x:Name="tbxSlope"
-							Tag="{Binding Path=cpConsts.Stag, ElementName=ctrlPts}"
-							Validation.Error="TbxSlope_OnError"
-							Style="{StaticResource Field.Pt.Value.Tbx}"
-							>
-						<!--  SourceUpdated="TbxSlope_OnSourceUpdated"  -->
-						<TextBox.Text>
-							<Binding Converter="{StaticResource slopeConverter}"
-									Mode="TwoWay"
-									NotifyOnSourceUpdated="True"
-									NotifyOnTargetUpdated="True"
-									NotifyOnValidationError="True"
-									Path="Slope"
-									>
-								<Binding.ValidationRules>
-									<validation:ControlPointSlopeValidation ValidationStep="RawProposedValue" />
-								</Binding.ValidationRules>
-							</Binding>
-						</TextBox.Text>
-					</TextBox>
-
-				</GroupBox>
-			</Border>
-			<!--#endregion-->
-
-		</Grid>
-
-	</ControlTemplate>
-	<!--#endregion-->
-
 	<!--#region > Control Template: Field.Pt.Data-->
 
 	<ControlTemplate x:Key="Field.Pt.Data">
 		<Grid Margin="0,0,0,-0.5">
 			<Grid.ColumnDefinitions>
 				<!--  0  -->
-				<ColumnDefinition Width="{StaticResource col00}" />
+				<ColumnDefinition Width="{StaticResource Col.00.Width}" />
 				<!--  1  -->
-				<ColumnDefinition Width="{StaticResource col01}" />
+				<ColumnDefinition Width="{StaticResource Col.01.Width}" />
 				<!--  2  -->
-				<ColumnDefinition Width="{StaticResource col02}" />
+				<ColumnDefinition Width="{StaticResource Col.02.Width}" />
 				<!--  3  -->
-				<ColumnDefinition Width="{StaticResource col03}" />
+				<ColumnDefinition Width="{StaticResource Col.03.Width}" />
 				<!--  4  -->
-				<ColumnDefinition Width="{StaticResource col04}" />
+				<ColumnDefinition Width="{StaticResource Col.04.Width}" />
 				<!--  5  -->
-				<ColumnDefinition Width="{StaticResource col05}" />
+				<ColumnDefinition Width="{StaticResource Col.05.Width}" />
 				<!--  6  -->
-				<ColumnDefinition Width="{StaticResource col06}" />
+				<ColumnDefinition Width="{StaticResource Col.06.Width}" />
 				<!--  7  -->
-				<ColumnDefinition Width="{StaticResource col07}" />
+				<ColumnDefinition Width="{StaticResource Col.07.Width}" />
 			</Grid.ColumnDefinitions>
 
-			<Border Grid.Row="{StaticResource detailInfoRow}"
+			<Border Grid.Row="{StaticResource Field.Pt.Data.Row}"
 					Grid.Column="0"
 					Style="{StaticResource Field.Pt.Data.Filler}"
 					/>
 			<!--<TextBlock Text="{Binding IsBeingEdited}" />-->
 
 			<!--#region > XyValue-->
-			<Border Grid.Row="{StaticResource detailInfoRow}"
+			<Border Grid.Row="{StaticResource Field.Pt.Data.Row}"
 					Grid.Column="1"
 					Grid.ColumnSpan="2"
 					>
@@ -1001,7 +844,7 @@
 			<!--#endregion-->
 
 			<!--#region > XyzValue-->
-			<Border Grid.Row="{StaticResource detailInfoRow}"
+			<Border Grid.Row="{StaticResource Field.Pt.Data.Row}"
 					Grid.Column="3"
 					Grid.ColumnSpan="2"
 					>
@@ -1020,7 +863,7 @@
 			<!--#endregion-->
 
 			<!--#region > ZDelta-->
-			<Border Grid.Row="{StaticResource detailInfoRow}"
+			<Border Grid.Row="{StaticResource Field.Pt.Data.Row}"
 					Grid.Column="5"
 					Grid.ColumnSpan="2"
 					>
@@ -1040,7 +883,7 @@
 			<!--#endregion-->
 
 			<!--#region ● End Filler-->
-			<Border Grid.Row="{StaticResource detailInfoRow}"
+			<Border Grid.Row="{StaticResource Field.Pt.Data.Row}"
 					Grid.Column="7"
 					Background="{StaticResource pdRowBdrBg}"
 					Style="{StaticResource Field.Pt.Data.Filler}"
@@ -1061,21 +904,21 @@
 		<Grid Background="{StaticResource stdBorderBrush}">
 			<Grid.ColumnDefinitions>
 				<!--  0  -->
-				<ColumnDefinition Width="{StaticResource col00}" />
+				<ColumnDefinition Width="{StaticResource Col.00.Width}" />
 				<!--  1  -->
-				<ColumnDefinition Width="{StaticResource col01}" />
+				<ColumnDefinition Width="{StaticResource Col.01.Width}" />
 				<!--  2  -->
-				<ColumnDefinition Width="{StaticResource col02}" />
+				<ColumnDefinition Width="{StaticResource Col.02.Width}" />
 				<!--  3  -->
-				<ColumnDefinition Width="{StaticResource col03}" />
+				<ColumnDefinition Width="{StaticResource Col.03.Width}" />
 				<!--  4  -->
-				<ColumnDefinition Width="{StaticResource col04}" />
+				<ColumnDefinition Width="{StaticResource Col.04.Width}" />
 				<!--  5  -->
-				<ColumnDefinition Width="{StaticResource col05}" />
+				<ColumnDefinition Width="{StaticResource Col.05.Width}" />
 				<!--  6  -->
-				<ColumnDefinition Width="{StaticResource col06}" />
+				<ColumnDefinition Width="{StaticResource Col.06.Width}" />
 				<!--  7  -->
-				<ColumnDefinition Width="{StaticResource col07}" />
+				<ColumnDefinition Width="{StaticResource Col.07.Width}" />
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="{StaticResource hdrRowHeight}" />
@@ -1136,7 +979,7 @@
 
 	<!--#endregion-->
 
-	<!--#region > ControlTemplate: Field.Ed-->
+	<!--#region > Control Template: Field.Ed-->
 
 	<ControlTemplate x:Key="Field.Ed">
 		<Border Margin="0,0,0,0"
@@ -1149,21 +992,21 @@
 					>
 				<Grid.ColumnDefinitions>
 					<!--  0  -->
-					<ColumnDefinition Width="{StaticResource col00}" />
+					<ColumnDefinition Width="{StaticResource Col.00.Width}" />
 					<!--  1  -->
-					<ColumnDefinition Width="{StaticResource col01}" />
+					<ColumnDefinition Width="{StaticResource Col.01.Width}" />
 					<!--  2  -->
-					<ColumnDefinition Width="{StaticResource col02}" />
+					<ColumnDefinition Width="{StaticResource Col.02.Width}" />
 					<!--  3  -->
-					<ColumnDefinition Width="{StaticResource col03}" />
+					<ColumnDefinition Width="{StaticResource Col.03.Width}" />
 					<!--  4  -->
-					<ColumnDefinition Width="{StaticResource col04}" />
+					<ColumnDefinition Width="{StaticResource Col.04.Width}" />
 					<!--  5  -->
-					<ColumnDefinition Width="{StaticResource col05}" />
+					<ColumnDefinition Width="{StaticResource Col.05.Width}" />
 					<!--  6  -->
-					<ColumnDefinition Width="{StaticResource col06}" />
+					<ColumnDefinition Width="{StaticResource Col.06.Width}" />
 					<!--  7  -->
-					<ColumnDefinition Width="{StaticResource col07}" />
+					<ColumnDefinition Width="{StaticResource Col.07.Width}" />
 
 				</Grid.ColumnDefinitions>
 				<Grid.RowDefinitions>
@@ -1320,7 +1163,7 @@
 							Grid.Column="0"
 							Margin="0,0,-1,-1.5"
 							BorderThickness="0,0,0,8"
-							BorderBrush="{StaticResource shadow}"
+							BorderBrush="{StaticResource Brush.Bdr.Shadow}"
 							>
 
 						<ContentControl DockPanel.Dock="Top"
@@ -1338,7 +1181,7 @@
 							DockPanel.Dock="top"
 							Background="{StaticResource stdBorderBrush}"
 							BorderThickness="0,0,0,7.5"
-							BorderBrush="{StaticResource shadow}"
+							BorderBrush="{StaticResource Brush.Bdr.Shadow}"
 							>
 
 						<ContentControl Template="{StaticResource Hdr.EndPoint}" />
@@ -1391,111 +1234,6 @@
 	</ControlTemplate>
 	<!--#endregion-->
 
-	<!--  Data Template  -->
-
-	<!--#region > Data Template: ListBox.Item.Selected.Normal-->
-
-	<DataTemplate x:Key="ListBox.Item.Selected.Normal">
-		<Border Margin="0,0,-1,-4"
-				BorderThickness="0,0,0,5"
-				BorderBrush="{DynamicResource shadow}"
-				>
-			<Grid Margin="2,-1.5,-0.5,0">
-				<Grid.ColumnDefinitions>
-					<!--  0  -->
-					<ColumnDefinition Width="*" />
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="{StaticResource dtlRowHeightTop}" />
-					<RowDefinition Height="{StaticResource dtlRowHeightBottom}" />
-					<RowDefinition Height="Auto" />
-				</Grid.RowDefinitions>
-
-				<!--#region + Point Value Row-->
-				<ContentControl Grid.Row="{StaticResource detailValueRow}"
-						Grid.Column="0"
-						Template="{StaticResource Field.Pt.Value}"
-						/>
-
-				<!--#endregion-->
-
-				<!--#region + Point Data row-->
-				<ContentControl Grid.Row="{StaticResource detailInfoRow}"
-						Grid.Column="0"
-						Template="{StaticResource Field.Pt.Data}"
-						/>
-
-				<!--#endregion-->
-
-			</Grid>
-		</Border>
-	</DataTemplate>
-
-	<!--#endregion-->
-
-	<!--#region > Data Template: ListBox.Item.Selected.Edit-->
-
-	<DataTemplate x:Key="ListBox.Item.Selected.Edit">
-		<Border Margin="0,0,-2,-6"
-				BorderThickness="0,0,0,9"
-				BorderBrush="{DynamicResource shadow}"
-				>
-			<Grid Margin="2,0,0,0">
-				<Grid.ColumnDefinitions>
-					<!--  0  -->
-					<ColumnDefinition Width="*" />
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="{StaticResource dtlRowHeightTop}" />
-					<RowDefinition Height="{StaticResource dtlRowHeightBottom}" />
-					<RowDefinition Height="Auto" />
-				</Grid.RowDefinitions>
-
-				<!--  Detail Value Row  -->
-				<ContentControl Grid.Row="{StaticResource detailValueRow}"
-						Grid.Column="0"
-						Template="{StaticResource Field.Pt.Value}"
-						/>
-
-				<!--  Detail info row  -->
-				<ContentControl Grid.Row="{StaticResource detailInfoRow}"
-						Grid.Column="0"
-						Template="{StaticResource Field.Pt.Data}"
-						/>
-
-				<!--  EditPanel  -->
-				<ContentControl Grid.Row="{StaticResource editPanelRow}"
-						Grid.Column="0"
-						Template="{StaticResource Field.Ed}"
-						/>
-
-			</Grid>
-		</Border>
-	</DataTemplate>
-
-	<!--#endregion-->
-
-	<!--#region > Data Template: Selector: ListBox.Item.Selector-->
-
-	<DataTemplate x:Key="ListBox.Item.Selector">
-		<ContentPresenter x:Name="contentPresenter" Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}"
-				/>
-		<DataTemplate.Triggers>
-			<DataTrigger Binding="{Binding IsBeingEdited, UpdateSourceTrigger=PropertyChanged}"
-					Value="True"
-					>
-				<Setter TargetName="contentPresenter" Property="ContentTemplate" Value="{DynamicResource ListBox.Item.Selected.Edit}" />
-			</DataTrigger>
-			<DataTrigger Binding="{Binding IsBeingEdited, UpdateSourceTrigger=PropertyChanged}"
-					Value="False"
-					>
-				<Setter TargetName="contentPresenter" Property="ContentTemplate" Value="{DynamicResource ListBox.Item.Selected.Normal}" />
-			</DataTrigger>
-		</DataTemplate.Triggers>
-
-	</DataTemplate>
-
-	<!--#endregion-->
 
 </ResourceDictionary>
 
@@ -1821,3 +1559,263 @@
 <!--<Color x:Key="blueXtraLight">
 		#EDFAFF
 	</Color>-->
+
+
+<!--    -->
+<!--~1~#region > Control Template: Field.Pt.Value@1@-->
+<!--    -->
+<!-- <ControlTemplate x:Key="Field.Pt.Value"> -->
+<!-- 	<Grid> -->
+<!-- 		<Grid.ColumnDefinitions> -->
+<!--  ~1~  0  @1@  -->
+<!-- 			<ColumnDefinition Width="{StaticResource col00}" /> -->
+<!--  ~1~  1  @1@  -->
+<!-- 			<ColumnDefinition Width="{StaticResource col01}" /> -->
+<!--  ~1~  2  @1@  -->
+<!-- 			<ColumnDefinition Width="{StaticResource col02}" /> -->
+<!--  ~1~  3  @1@  -->
+<!-- 			<ColumnDefinition Width="{StaticResource col03}" /> -->
+<!--  ~1~  4  @1@  -->
+<!-- 			<ColumnDefinition Width="{StaticResource col04}" /> -->
+<!--  ~1~  5  @1@  -->
+<!-- 			<ColumnDefinition Width="{StaticResource col05}" /> -->
+<!--  ~1~  6  @1@  -->
+<!-- 			<ColumnDefinition Width="{StaticResource col06}" /> -->
+<!--  ~1~  7  @1@  -->
+<!-- 			<ColumnDefinition Width="{StaticResource col07}" /> -->
+<!-- 		</Grid.ColumnDefinitions> -->
+<!--    -->
+<!--~1~#region ● X Tbx@1@-->
+<!--  <Border Grid.Row="{StaticResource detailValueRow}"  -->
+<!--  Grid.Column="0"  -->
+<!--  Grid.ColumnSpan="2"  -->
+<!--  >  -->
+<!-- 			<GroupBox Style="{StaticResource Field.Pt.Value.Gbx}"> -->
+<!--  <TextBox x:Name="TbxXvalue"  -->
+<!--  Tag="{Binding Path=cpConsts.Xtag, ElementName=ctrlPts}"  -->
+<!--  Validation.Error="TbxXYZ_OnError"  -->
+<!--  Style="{StaticResource Field.Pt.Value.Tbx}"  -->
+<!--  >  -->
+<!--  ~1~  Validation.Error="TbxXYZ_OnError"  @1@  -->
+<!--  ~1~  SourceUpdated="TbxXYZ_OnSourceUpdated"  @1@  -->
+<!-- 					<TextBox.Text> -->
+<!--  <Binding Converter="{StaticResource xyzConverter}"  -->
+<!--  Mode="TwoWay"  -->
+<!--  NotifyOnSourceUpdated="True"  -->
+<!--  NotifyOnTargetUpdated="True"  -->
+<!--  NotifyOnValidationError="True"  -->
+<!--  Path="X"  -->
+<!--  >  -->
+<!-- 							<Binding.ValidationRules> -->
+<!-- 								<validation:ControlPointXYZValidation ValidationStep="RawProposedValue" /> -->
+<!-- 							</Binding.ValidationRules> -->
+<!-- 						</Binding> -->
+<!-- 					</TextBox.Text> -->
+<!-- 				</TextBox> -->
+<!-- 			</GroupBox> -->
+<!-- 		</Border> -->
+<!--~1~#endregion ptvRowTemplate@1@-->
+<!--    -->
+<!--~1~#region ● Y Tbx@1@-->
+<!--  <Border Grid.Row="{StaticResource detailValueRow}"  -->
+<!--  Grid.Column="2"  -->
+<!--  Grid.ColumnSpan="2"  -->
+<!--  >  -->
+<!-- 			<GroupBox Style="{StaticResource Field.Pt.Value.Gbx}"> -->
+<!--  <TextBox x:Name="TbxYvalue"  -->
+<!--  Tag="{Binding Path=cpConsts.Ytag, ElementName=ctrlPts}"  -->
+<!--  Validation.Error="TbxXYZ_OnError"  -->
+<!--  Style="{StaticResource Field.Pt.Value.Tbx}"  -->
+<!--  >  -->
+<!--    -->
+<!--  ~1~  SourceUpdated="TbxXYZ_OnSourceUpdated"  @1@  -->
+<!-- 					<TextBox.Text> -->
+<!--  <Binding Converter="{StaticResource xyzConverter}"  -->
+<!--  Mode="TwoWay"  -->
+<!--  NotifyOnSourceUpdated="True"  -->
+<!--  NotifyOnTargetUpdated="True"  -->
+<!--  NotifyOnValidationError="True"  -->
+<!--  Path="Y"  -->
+<!--  >  -->
+<!-- 							<Binding.ValidationRules> -->
+<!-- 								<validation:ControlPointXYZValidation ValidationStep="RawProposedValue" /> -->
+<!-- 							</Binding.ValidationRules> -->
+<!-- 						</Binding> -->
+<!-- 					</TextBox.Text> -->
+<!-- 				</TextBox> -->
+<!-- 			</GroupBox> -->
+<!-- 		</Border> -->
+<!--~1~#endregion@1@-->
+<!--    -->
+<!--~1~#region ● Z Tbx@1@-->
+<!--  <Border Grid.Row="{StaticResource detailValueRow}"  -->
+<!--  Grid.Column="4"  -->
+<!--  Grid.ColumnSpan="2"  -->
+<!--  >  -->
+<!-- 			<GroupBox Style="{StaticResource Field.Pt.Value.Gbx}"> -->
+<!--  <TextBox x:Name="TbxZvalue"  -->
+<!--  Tag="{Binding Path=cpConsts.Ztag, ElementName=ctrlPts}"  -->
+<!--  Validation.Error="TbxXYZ_OnError"  -->
+<!--  Style="{StaticResource Field.Pt.Value.Tbx}"  -->
+<!--  >  -->
+<!--  ~1~  SourceUpdated="TbxXYZ_OnSourceUpdated"  @1@  -->
+<!-- 					<TextBox.Text> -->
+<!--  <Binding Converter="{StaticResource xyzConverter}"  -->
+<!--  Mode="TwoWay"  -->
+<!--  NotifyOnSourceUpdated="True"  -->
+<!--  NotifyOnTargetUpdated="True"  -->
+<!--  NotifyOnValidationError="True"  -->
+<!--  Path="Z"  -->
+<!--  >  -->
+<!-- 							<Binding.ValidationRules> -->
+<!-- 								<validation:ControlPointXYZValidation ValidationStep="RawProposedValue" /> -->
+<!-- 							</Binding.ValidationRules> -->
+<!-- 						</Binding> -->
+<!-- 					</TextBox.Text> -->
+<!-- 				</TextBox> -->
+<!--    -->
+<!-- 			</GroupBox> -->
+<!-- 		</Border> -->
+<!--~1~#endregion@1@-->
+<!--    -->
+<!--~1~#region ● Slope@1@-->
+<!--  <Border Grid.Row="{StaticResource detailValueRow}"  -->
+<!--  Grid.Column="6"  -->
+<!--  Grid.ColumnSpan="2"  -->
+<!--  >  -->
+<!-- 			<GroupBox Style="{DynamicResource Field.Pt.Value.Gbx}"> -->
+<!--  <TextBox x:Name="tbxSlope"  -->
+<!--  Tag="{Binding Path=cpConsts.Stag, ElementName=ctrlPts}"  -->
+<!--  Validation.Error="TbxSlope_OnError"  -->
+<!--  Style="{StaticResource Field.Pt.Value.Tbx}"  -->
+<!--  >  -->
+<!--  ~1~  SourceUpdated="TbxSlope_OnSourceUpdated"  @1@  -->
+<!-- 					<TextBox.Text> -->
+<!--  <Binding Converter="{StaticResource slopeConverter}"  -->
+<!--  Mode="TwoWay"  -->
+<!--  NotifyOnSourceUpdated="True"  -->
+<!--  NotifyOnTargetUpdated="True"  -->
+<!--  NotifyOnValidationError="True"  -->
+<!--  Path="Slope"  -->
+<!--  >  -->
+<!-- 							<Binding.ValidationRules> -->
+<!-- 								<validation:ControlPointSlopeValidation ValidationStep="RawProposedValue" /> -->
+<!-- 							</Binding.ValidationRules> -->
+<!-- 						</Binding> -->
+<!-- 					</TextBox.Text> -->
+<!-- 				</TextBox> -->
+<!--    -->
+<!-- 			</GroupBox> -->
+<!-- 		</Border> -->
+<!--~1~#endregion@1@-->
+<!--    -->
+<!-- 	</Grid> -->
+<!--    -->
+<!-- </ControlTemplate> -->
+<!--~1~#endregion@1@-->
+<!--    -->
+<!--  ~1~  Data Template  @1@  -->
+<!--    -->
+<!--~1~#region > Data Template: ListBox.Item.Selected.Normal@1@-->
+<!--    -->
+<!-- <DataTemplate x:Key="ListBox.Item.Selected.Normal"> -->
+<!--  <Border Margin="0,0,-1,-4"  -->
+<!--  BorderThickness="0,0,0,5"  -->
+<!--  BorderBrush="{DynamicResource shadow}"  -->
+<!--  >  -->
+<!-- 		<Grid Margin="2,-1.5,-0.5,0"> -->
+<!-- 			<Grid.ColumnDefinitions> -->
+<!--  ~1~  0  @1@  -->
+<!-- 				<ColumnDefinition Width="*" /> -->
+<!-- 			</Grid.ColumnDefinitions> -->
+<!-- 			<Grid.RowDefinitions> -->
+<!-- 				<RowDefinition Height="{StaticResource dtlRowHeightTop}" /> -->
+<!-- 				<RowDefinition Height="{StaticResource dtlRowHeightBottom}" /> -->
+<!-- 				<RowDefinition Height="Auto" /> -->
+<!-- 			</Grid.RowDefinitions> -->
+<!--    -->
+<!--~1~#region + Point Value Row@1@-->
+<!--  <ContentControl Grid.Row="{StaticResource detailValueRow}"  -->
+<!--  Grid.Column="0"  -->
+<!--  Template="{StaticResource Field.Pt.Value}"  -->
+<!--  />  -->
+<!--    -->
+<!--~1~#endregion@1@-->
+<!--    -->
+<!--~1~#region + Point Data row@1@-->
+<!--  <ContentControl Grid.Row="{StaticResource detailInfoRow}"  -->
+<!--  Grid.Column="0"  -->
+<!--  Template="{StaticResource Field.Pt.Data}"  -->
+<!--  />  -->
+<!--    -->
+<!--~1~#endregion@1@-->
+<!--    -->
+<!-- 		</Grid> -->
+<!-- 	</Border> -->
+<!-- </DataTemplate> -->
+<!--    -->
+<!--~1~#endregion@1@-->
+<!--    -->
+<!--~1~#region > Data Template: ListBox.Item.Selected.Edit@1@-->
+<!--    -->
+<!-- <DataTemplate x:Key="ListBox.Item.Selected.Edit"> -->
+<!--  <Border Margin="0,0,-2,-6"  -->
+<!--  BorderThickness="0,0,0,9"  -->
+<!--  BorderBrush="{DynamicResource shadow}"  -->
+<!--  >  -->
+<!-- 		<Grid Margin="2,0,0,0"> -->
+<!-- 			<Grid.ColumnDefinitions> -->
+<!--  ~1~  0  @1@  -->
+<!-- 				<ColumnDefinition Width="*" /> -->
+<!-- 			</Grid.ColumnDefinitions> -->
+<!-- 			<Grid.RowDefinitions> -->
+<!-- 				<RowDefinition Height="{StaticResource dtlRowHeightTop}" /> -->
+<!-- 				<RowDefinition Height="{StaticResource dtlRowHeightBottom}" /> -->
+<!-- 				<RowDefinition Height="Auto" /> -->
+<!-- 			</Grid.RowDefinitions> -->
+<!--    -->
+<!--  ~1~  Detail Value Row  @1@  -->
+<!--  <ContentControl Grid.Row="{StaticResource detailValueRow}"  -->
+<!--  Grid.Column="0"  -->
+<!--  Template="{StaticResource Field.Pt.Value}"  -->
+<!--  />  -->
+<!--    -->
+<!--  ~1~  Detail info row  @1@  -->
+<!--  <ContentControl Grid.Row="{StaticResource detailInfoRow}"  -->
+<!--  Grid.Column="0"  -->
+<!--  Template="{StaticResource Field.Pt.Data}"  -->
+<!--  />  -->
+<!--    -->
+<!--  ~1~  EditPanel  @1@  -->
+<!--  <ContentControl Grid.Row="{StaticResource editPanelRow}"  -->
+<!--  Grid.Column="0"  -->
+<!--  Template="{StaticResource Field.Ed}"  -->
+<!--  />  -->
+<!--    -->
+<!-- 		</Grid> -->
+<!-- 	</Border> -->
+<!-- </DataTemplate> -->
+<!--    -->
+<!--~1~#endregion@1@-->
+<!--    -->
+<!--~1~#region > Data Template: Selector: ListBox.Item.Selector@1@-->
+<!--    -->
+<!-- <DataTemplate x:Key="ListBox.Item.Selector"> -->
+<!--  <ContentPresenter x:Name="contentPresenter" Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}"  -->
+<!--  />  -->
+<!-- 	<DataTemplate.Triggers> -->
+<!--  <DataTrigger Binding="{Binding IsBeingEdited, UpdateSourceTrigger=PropertyChanged}"  -->
+<!--  Value="True"  -->
+<!--  >  -->
+<!-- 			<Setter TargetName="contentPresenter" Property="ContentTemplate" Value="{DynamicResource ListBox.Item.Selected.Edit}" /> -->
+<!-- 		</DataTrigger> -->
+<!--  <DataTrigger Binding="{Binding IsBeingEdited, UpdateSourceTrigger=PropertyChanged}"  -->
+<!--  Value="False"  -->
+<!--  >  -->
+<!-- 			<Setter TargetName="contentPresenter" Property="ContentTemplate" Value="{DynamicResource ListBox.Item.Selected.Normal}" /> -->
+<!-- 		</DataTrigger> -->
+<!-- 	</DataTemplate.Triggers> -->
+<!--    -->
+<!-- </DataTemplate> -->
+<!--    -->
+<!--~1~#endregion@1@-->
