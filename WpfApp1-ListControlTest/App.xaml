@@ -5,6 +5,12 @@
 	xmlns:local="clr-namespace:WpfApp1_ListControlTest"
 	StartupUri="MainWindow.xaml">
 	<Application.Resources>
-		<DependencyProperty x:Key="DependencyProperty1">Button.IsDefault</DependencyProperty>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="WpfResources\MasterColorList.xaml" />
+				<ResourceDictionary Source="WpfResources\VisualStates.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+			<DependencyProperty x:Key="DependencyProperty1">Button.IsDefault</DependencyProperty>
+		</ResourceDictionary>
 	</Application.Resources>
 </Application>

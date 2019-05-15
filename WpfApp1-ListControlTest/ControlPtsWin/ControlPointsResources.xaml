@@ -4,11 +4,6 @@
 		xmlns:validation="clr-namespace:WpfApp1_ListControlTest.ControlPtsWin"
 		>
 
-	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="..\WpfResources\MasterColorList.xaml" />
-		<ResourceDictionary Source="..\WpfResources\VisualStates.xaml" />
-	</ResourceDictionary.MergedDictionaries>
-
 	<validation:ControlPointXYZConverter x:Key="xyzConverter" />
 	<validation:ControlPointSlopeConverter x:Key="slopeConverter" />
 	<validation:PointTemplateSelector x:Key="pointTemplateSelector" />
@@ -20,7 +15,7 @@
 	<sys:Int32 x:Key="pointRow">
 		0
 	</sys:Int32>
-	<sys:Int32 x:Key="valueRow">
+	<sys:Int32 x:Key="Row.General.Value">
 		2
 	</sys:Int32>
 
@@ -34,27 +29,27 @@
 		2
 	</sys:Int32>
 
-	<sys:Int32 x:Key="btnRow">
+	<sys:Int32 x:Key="Row.Field.Ed.Btn">
 		0
 	</sys:Int32>
-	<sys:Int32 x:Key="msgRow">
+	<sys:Int32 x:Key="Row.Field.Ed.Msg">
 		1
 	</sys:Int32>
 
-	<GridLength x:Key="hdrRowHeight">
+	<GridLength x:Key="Row.Header.EndPoint.Height">
 		18
 	</GridLength>
 	<GridLength x:Key="Field.Pt.Value.Row.Height">
-		18
+		19
 	</GridLength>
 	<GridLength x:Key="Field.Pt.Data.Row.Height">
 		18
 	</GridLength>
 
-	<GridLength x:Key="editPnlRowHeightTop">
+	<GridLength x:Key="Row.Field.Ed.Height.Top">
 		32
 	</GridLength>
-	<GridLength x:Key="editPnlRowHeightBottom">
+	<GridLength x:Key="Row.Field.Ed.Height.Bottom">
 		*
 	</GridLength>
 
@@ -112,7 +107,11 @@
 	<SolidColorBrush x:Key="ListBox.Background.C"
 			Color="{StaticResource red.050}"
 			/>
-	<SolidColorBrush x:Key="ListBox.Grid.Border.C"
+
+	<SolidColorBrush x:Key="Brush.Border.Std.C"
+			Color="{StaticResource gray.350}"
+			/>
+	<SolidColorBrush x:Key="Brush.Border.Light.C"
 			Color="{StaticResource gray.450}"
 			/>
 
@@ -137,9 +136,15 @@
 	<SolidColorBrush x:Key="Color.Gray.Dark.Xtra.Very.C"
 			Color="{StaticResource gray.150}"
 			/>
+	<SolidColorBrush x:Key="Color.Gray.Dark.Very.Very.C"
+			Color="{StaticResource gray.050}"
+			/>
 
 	<SolidColorBrush x:Key="Color.Blue.Light.Xtra.C"
 			Color="{StaticResource blue.900}"
+			/>
+	<SolidColorBrush x:Key="Color.Blue.Dark.Xtra.C"
+			Color="{StaticResource blue.gray.010}"
 			/>
 
 
@@ -147,22 +152,23 @@
 
 	<!--  general  -->
 
-	<SolidColorBrush x:Key="stdBorderBrush"
-			Color="{Binding Color, Source={StaticResource ListBox.Grid.Border.C}}"
+	<SolidColorBrush x:Key="Brush.Border.Std"
+			Color="{Binding Color, Source={StaticResource Brush.Border.Std.C}}"
 			/>
-	<SolidColorBrush x:Key="controlBkg"
+
+	<SolidColorBrush x:Key="Brush.Background.Std"
 			Color="{Binding Color, Source={StaticResource Normal.Background.C}}"
 			/>
-	<SolidColorBrush x:Key="dockpnlBkg"
-			Color="LightGray"
+	<SolidColorBrush x:Key="Brush.DockPanel.Background"
+			Color="{Binding Color, Source={StaticResource Color.Blue.Dark.Xtra.C}}"
 			/>
-	<SolidColorBrush x:Key="mainHeaderBg"
-			Color="{Binding Color, Source={StaticResource Color.Gray.Dark.Very.C}}"
-			/>
-	<SolidColorBrush x:Key="disabledBkg"
-			Color="{Binding Color, Source={StaticResource Color.Gray.Light.Xtra.C}}"
-			/>
-	<SolidColorBrush x:Key="disabledText"
+	<!--  <SolidColorBrush x:Key="Brush.Heading.Background"  -->
+	<!--  Color="{Binding Color, Source={StaticResource Color.Gray.Dark.Very.C}}"  -->
+	<!--  />  -->
+	<!--  <SolidColorBrush x:Key="Brush.Item.Disabled.Background"  -->
+	<!--  Color="{Binding Color, Source={StaticResource Color.Gray.Light.Xtra.C}}"  -->
+	<!--  />  -->
+	<SolidColorBrush x:Key="Brush.Item.Disabled.Text"
 			Color="Black"
 			/>
 	<SolidColorBrush x:Key="enabledBkg"
@@ -182,7 +188,7 @@
 
 	<!--  end header  -->
 	<SolidColorBrush x:Key="endPointHdrBkg"
-			Color="{Binding Color, Source={StaticResource ListBox.Grid.Border.C}}"
+			Color="{Binding Color, Source={StaticResource Brush.Border.Std.C}}"
 			/>
 	<SolidColorBrush x:Key="endPointDtlBkg"
 			Color="{Binding Color, Source={StaticResource Color.Gray.Med.Light.Xtra.C}}"
@@ -191,7 +197,7 @@
 			Color="{Binding Color, Source={StaticResource Color.Gray.Dark.Very.C}}"
 			/>
 	<SolidColorBrush x:Key="endPointBdr"
-			Color="{Binding Color, Source={StaticResource ListBox.Grid.Border.C}}"
+			Color="{Binding Color, Source={StaticResource Brush.Border.Std.C}}"
 			/>
 
 	<!--  detail  -->
@@ -214,10 +220,10 @@
 
 	<!--#region > Styles: General-->
 
-	<Style x:Key="Hdr.Base.Bdr"
+	<Style x:Key="Header.Base.Bdr"
 			TargetType="Border"
 			>
-		<Setter Property="BorderBrush" Value="{StaticResource stdBorderBrush}" />
+		<Setter Property="BorderBrush" Value="{StaticResource Brush.Border.Light.C}" />
 		<Setter Property="BorderThickness" Value="0,0,1,1" />
 		<Setter Property="Margin" Value="0" />
 	</Style>
@@ -226,7 +232,7 @@
 
 	<!--#region > Styles: Header: Column Labels: Point Value-->
 
-	<Style x:Key="Hdr.ColLables.Value.Lbl"
+	<Style x:Key="Header.ColLables.Value.Lbl"
 			TargetType="{x:Type Label}"
 			>
 		<Setter Property="Foreground" Value="White" />
@@ -235,17 +241,105 @@
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 	</Style>
 
-	<Style x:Key="Hdr.ColLables.Value.Bdr"
-			BasedOn="{StaticResource Hdr.Base.Bdr}"
+	<Style x:Key="Header.ColLables.Value.Bdr"
+			BasedOn="{StaticResource Header.Base.Bdr}"
 			TargetType="Border"
 			>
 		<Setter Property="Grid.Row" Value="{StaticResource pointRow}" />
 	</Style>
 
+
+	<!--#endregion-->
+
+	<!--#region > Styles: Header: Column Labels: Point Data-->
+
+	<Style x:Key="pdBdrBase"
+			TargetType="Border"
+			>
+		<Setter Property="BorderBrush" Value="{StaticResource Brush.Border.Light.C}" />
+		<Setter Property="BorderThickness" Value="0,0,1,0" />
+		<Setter Property="Margin" Value="0" />
+	</Style>
+
+	<Style x:Key="Header.ColLables.Data.Lbl"
+			TargetType="{x:Type Label}"
+			>
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="Padding" Value="8,0,0,2" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+	</Style>
+
+	<Style x:Key="Header.ColLables.Data.Bdr"
+			BasedOn="{StaticResource pdBdrBase}"
+			TargetType="Border"
+			>
+		<Setter Property="Grid.Row" Value="{StaticResource Row.General.Value}" />
+	</Style>
+
+	<!--#endregion-->
+
+	<!--#region > Styles: Header: End point-->
+
+	<!--  must be before  -->
+	<Style x:Key="Header.EndPoint.Data.Filler.Lbl"
+			TargetType="{x:Type Label}"
+			>
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="Padding" Value="8,0,0,2" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+	</Style>
+
+	<Style x:Key="Header.EndPoint.Data.Filler.Bdr"
+			BasedOn="{StaticResource Header.Base.Bdr}"
+			TargetType="Border"
+			>
+		<Setter Property="Background" Value="{StaticResource Header.EndPoint.Filler.Background.C}" />
+		<Setter Property="BorderBrush" Value="{StaticResource endPointBdr}" />
+	</Style>
+
+	<Style x:Key="Header.EndPoint.Data.Lbl"
+			BasedOn="{StaticResource Header.EndPoint.Data.Filler.Lbl}"
+			TargetType="{x:Type Label}"
+			>
+		<Setter Property="Foreground" Value="Black" />
+	</Style>
+
+	<Style x:Key="Header.EndPoint.Data.Bdr"
+			BasedOn="{StaticResource pdBdrBase}"
+			TargetType="Border"
+			>
+		<Setter Property="Background" Value="{StaticResource endPointDtlBkg}" />
+		<Setter Property="BorderBrush" Value="{StaticResource endPointBdr}" />
+	</Style>
+	
+	
+	
+	<Style x:Key="Header.EndPoint.Value.Bdr"
+			BasedOn="{StaticResource Header.Base.Bdr}"
+			TargetType="Border"
+			>
+		<Setter Property="Background" Value="{StaticResource endPointDtlBkg}" />
+		<Setter Property="BorderBrush" Value="{StaticResource endPointBdr}" />
+	</Style>
+
+	<Style x:Key="Header.EndPoint.Value.Lbl"
+			BasedOn="{StaticResource Header.EndPoint.Data.Filler.Lbl}"
+			TargetType="{x:Type Label}"
+			>
+		<Setter Property="Foreground" Value="Black" />
+	</Style>
+
+
+	<!--#endregion-->
+
+	<!--#region > Styles: Field: Field.Pt.Value.Tbx-->
+
 	<Style x:Key="Field.Pt.Value.Tbx"
 			TargetType="{x:Type TextBox}"
 			>
-		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="BorderThickness" Value="0" />
 		<Setter Property="BorderBrush" Value="{StaticResource Normal.Disabled.Background}" />
 		<Setter Property="VerticalAlignment" Value="Stretch" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />
@@ -253,7 +347,7 @@
 		<!-- <EventSetter Event="GotFocus" Handler="tbxXYZ_OnGotFocus"/> -->
 		<!-- <EventSetter Event="LostFocus" Handler="tbxXYZ_OnLostFocus"/> -->
 		<Setter Property="IsEnabled" Value="False" />
-		<Setter Property="Foreground" Value="{StaticResource disabledText}" />
+		<Setter Property="Foreground" Value="{StaticResource Normal.Inactive.Foreground}" />
 		<Setter Property="Background" Value="{StaticResource Normal.Disabled.Background}" />
 		<Style.Triggers>
 			<DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}, AncestorLevel=1}}"
@@ -266,34 +360,9 @@
 			</DataTrigger>
 		</Style.Triggers>
 	</Style>
-
 	<!--#endregion-->
 
-	<!--#region > Styles: Header: Column Labels: Point Data-->
-
-	<Style x:Key="pdBdrBase"
-			TargetType="Border"
-			>
-		<Setter Property="BorderBrush" Value="{StaticResource stdBorderBrush}" />
-		<Setter Property="BorderThickness" Value="0,0,1,0" />
-		<Setter Property="Margin" Value="0" />
-	</Style>
-
-	<Style x:Key="Hdr.ColLables.Data.Lbl"
-			TargetType="{x:Type Label}"
-			>
-		<Setter Property="Foreground" Value="White" />
-		<Setter Property="VerticalAlignment" Value="Center" />
-		<Setter Property="Padding" Value="8,0,0,2" />
-		<Setter Property="HorizontalContentAlignment" Value="Center" />
-	</Style>
-
-	<Style x:Key="Hdr.ColLables.Data.Bdr"
-			BasedOn="{StaticResource pdBdrBase}"
-			TargetType="Border"
-			>
-		<Setter Property="Grid.Row" Value="{StaticResource valueRow}" />
-	</Style>
+	<!--#region >> Styles: Field: Field.Pt.Data-->
 
 	<Style x:Key="Field.Pt.Data.Tbx"
 			TargetType="{x:Type TextBlock}"
@@ -310,67 +379,15 @@
 			TargetType="Border"
 			>
 		<Setter Property="Background" Value="{StaticResource Point.Filler.Background.C}" />
-		<Setter Property="Grid.Row" Value="{StaticResource valueRow}" />
-		<Setter Property="BorderBrush" Value="{StaticResource stdBorderBrush}" />
+		<Setter Property="Grid.Row" Value="{StaticResource Row.General.Value}" />
+		<Setter Property="BorderBrush" Value="{StaticResource Brush.Border.Std}" />
 		<Setter Property="BorderThickness" Value="0,0,1,0" />
 		<Setter Property="Margin" Value="0,0,0,0.25" />
 	</Style>
 
 	<!--#endregion-->
 
-	<!--#region > Styles: Header: End point-->
-
-	<!--  must be before  -->
-	<Style x:Key="Hdr.EndPoint.Data.Filler.Lbl"
-			TargetType="{x:Type Label}"
-			>
-		<Setter Property="Foreground" Value="White" />
-		<Setter Property="VerticalAlignment" Value="Center" />
-		<Setter Property="Padding" Value="8,0,0,2" />
-		<Setter Property="HorizontalContentAlignment" Value="Center" />
-	</Style>
-
-	<Style x:Key="Hdr.EndPoint.Data.Filler.Bdr"
-			BasedOn="{StaticResource Hdr.Base.Bdr}"
-			TargetType="Border"
-			>
-		<Setter Property="Background" Value="{StaticResource Header.EndPoint.Filler.Background.C}" />
-		<Setter Property="BorderBrush" Value="{StaticResource endPointBdr}" />
-	</Style>
-
-	<Style x:Key="Hdr.EndPoint.Data.Lbl"
-			BasedOn="{StaticResource Hdr.EndPoint.Data.Filler.Lbl}"
-			TargetType="{x:Type Label}"
-			>
-		<Setter Property="Foreground" Value="Black" />
-	</Style>
-
-	<Style x:Key="Hdr.EndPoint.Value.Bdr"
-			BasedOn="{StaticResource Hdr.Base.Bdr}"
-			TargetType="Border"
-			>
-		<Setter Property="Background" Value="{StaticResource endPointDtlBkg}" />
-		<Setter Property="BorderBrush" Value="{StaticResource endPointBdr}" />
-	</Style>
-
-	<Style x:Key="Hdr.EndPoint.Value.Lbl"
-			BasedOn="{StaticResource Hdr.EndPoint.Data.Filler.Lbl}"
-			TargetType="{x:Type Label}"
-			>
-		<Setter Property="Foreground" Value="Black" />
-	</Style>
-
-	<Style x:Key="Hdr.EndPoint.Data.Bdr"
-			BasedOn="{StaticResource pdBdrBase}"
-			TargetType="Border"
-			>
-		<Setter Property="Background" Value="{StaticResource endPointDtlBkg}" />
-		<Setter Property="BorderBrush" Value="{StaticResource endPointBdr}" />
-	</Style>
-
-	<!--#endregion-->
-
-	<!--#region > Styles: Field: Editing Row-->
+	<!--#region >> Styles: Field: Editing Row-->
 
 	<Style x:Key="Field.Ed.Grid"
 			TargetType="Grid"
@@ -390,26 +407,26 @@
 
 	<!--#endregion-->
 
-	<!--#region > Styles: Footer: Start point-->
+	<!--#region >> Styles: Footer: Start point-->
 
 	<Style x:Key="Ftr.StartPoint.Bdr"
-			BasedOn="{StaticResource Hdr.EndPoint.Data.Bdr}"
+			BasedOn="{StaticResource Header.EndPoint.Data.Bdr}"
 			TargetType="Border"
 			/>
 
 	<Style x:Key="Ftr.StartPoint.Lbl"
-			BasedOn="{StaticResource Hdr.EndPoint.Data.Lbl}"
+			BasedOn="{StaticResource Header.EndPoint.Data.Lbl}"
 			TargetType="{x:Type Label}"
 			/>
 
 
 	<Style x:Key="Ftr.StartPoint.Filler.Bdr"
-			BasedOn="{StaticResource Hdr.EndPoint.Data.Filler.Bdr}"
+			BasedOn="{StaticResource Header.EndPoint.Data.Filler.Bdr}"
 			TargetType="Border"
 			/>
 
 	<Style x:Key="Ftr.StartPoint.Filler.Lbl"
-			BasedOn="{StaticResource Hdr.EndPoint.Data.Filler.Lbl}"
+			BasedOn="{StaticResource Header.EndPoint.Data.Filler.Lbl}"
 			TargetType="{x:Type Label}"
 			/>
 
@@ -417,7 +434,7 @@
 
 	<!--  Group Boxes  -->
 
-	<!--#region > GroupBox: Field.Pt.Value.Gbx-->
+	<!--#region >> GroupBox: Field.Pt.Value.Gbx-->
 	<Style x:Key="Field.Pt.Value.Gbx"
 			TargetType="{x:Type GroupBox}"
 			>
@@ -442,25 +459,25 @@
 								Grid.RowSpan="3"
 								Grid.Column="0"
 								BorderThickness="0,0,0,0"
-								BorderBrush="{StaticResource controlBkg}"
+								BorderBrush="{StaticResource Brush.Background.Std}"
 								/>
 						<Border Grid.Row="0"
 								Grid.Column="0"
 								Grid.ColumnSpan="3"
 								BorderThickness="0,0,0,0"
-								BorderBrush="{StaticResource controlBkg}"
+								BorderBrush="{StaticResource Brush.Background.Std}"
 								/>
 						<Border Grid.Row="0"
 								Grid.RowSpan="3"
 								Grid.Column="2"
 								BorderThickness="0,0,1,0"
-								BorderBrush="{StaticResource stdBorderBrush}"
+								BorderBrush="{StaticResource Brush.Border.Std}"
 								/>
 						<Border Grid.Row="2"
 								Grid.Column="0"
 								Grid.ColumnSpan="3"
 								BorderThickness="0,0,0,1"
-								BorderBrush="{StaticResource stdBorderBrush}"
+								BorderBrush="{StaticResource Brush.Border.Std}"
 								/>
 						<ContentPresenter Grid.Row="1"
 								Grid.Column="1"
@@ -472,7 +489,7 @@
 	</Style>
 	<!--#endregion-->
 
-	<!--#region > GroupBox: Field.Pt.Data.Gbx-->
+	<!--#region >> GroupBox: Field.Pt.Data.Gbx-->
 	<Style x:Key="Field.Pt.Data.Gbx"
 			TargetType="{x:Type GroupBox}"
 			>
@@ -512,7 +529,7 @@
 								Grid.RowSpan="3"
 								Grid.Column="2"
 								BorderThickness="0,0,1,0"
-								BorderBrush="{StaticResource stdBorderBrush}"
+								BorderBrush="{StaticResource Brush.Border.Std}"
 								/>
 						<!--  bottom  -->
 						<Border Grid.Row="2"
@@ -535,8 +552,8 @@
 
 	<!--  Control Template  -->
 
-	<!--#region > Control Template: Hdr.Col.Labels-->
-	<ControlTemplate x:Key="Hdr.ColLabels">
+	<!--#region >> Control Template: Header.Col.Labels-->
+	<ControlTemplate x:Key="Header.ColLabels">
 		<Grid Margin="0,0,0,-1"
 				DockPanel.Dock="Top"
 				Background="{StaticResource Header.Background.C}"
@@ -561,92 +578,92 @@
 
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="{StaticResource hdrRowHeight}" />
-				<RowDefinition Height="{StaticResource hdrRowHeight}" />
+				<RowDefinition Height="{StaticResource Row.Header.EndPoint.Height}" />
+				<RowDefinition Height="{StaticResource Row.Header.EndPoint.Height}" />
 
 			</Grid.RowDefinitions>
 
 			<!--  Header rows  -->
 
-			<!--#region + Header: label rows-->
+			<!--#region >> Header: label rows-->
 
-			<!--#region + Header: Point value-->
+			<!--#region >> Header: Point value-->
 
 			<Border Grid.Column="0"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource Hdr.ColLables.Value.Bdr}"
+					Style="{StaticResource Header.ColLables.Value.Bdr}"
 					>
 				<Label Content="X"
-						Style="{StaticResource Hdr.ColLables.Value.Lbl}"
+						Style="{StaticResource Header.ColLables.Value.Lbl}"
 						/>
 			</Border>
 			<Border Grid.Column="2"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource Hdr.ColLables.Value.Bdr}"
+					Style="{StaticResource Header.ColLables.Value.Bdr}"
 					>
 				<Label Content="Y"
-						Style="{StaticResource Hdr.ColLables.Value.Lbl}"
+						Style="{StaticResource Header.ColLables.Value.Lbl}"
 						/>
 			</Border>
 			<Border Grid.Column="4"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource Hdr.ColLables.Value.Bdr}"
+					Style="{StaticResource Header.ColLables.Value.Bdr}"
 					>
 				<Label Content="Z"
-						Style="{StaticResource Hdr.ColLables.Value.Lbl}"
+						Style="{StaticResource Header.ColLables.Value.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Column="6"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource Hdr.ColLables.Value.Bdr}"
+					Style="{StaticResource Header.ColLables.Value.Bdr}"
 					>
 				<Label Content="Slope"
-						Style="{StaticResource Hdr.ColLables.Value.Lbl}"
+						Style="{StaticResource Header.ColLables.Value.Lbl}"
 						/>
 			</Border>
 
 			<!--#endregion-->
 
-			<!--#region + Header: Point data-->
+			<!--#region >> Header: Point data-->
 
 			<Border Grid.Column="0"
 					Background="{StaticResource Header.Filler.Background.C}"
-					Style="{StaticResource Hdr.ColLables.Data.Bdr}"
+					Style="{StaticResource Header.ColLables.Data.Bdr}"
 					/>
 
 			<Border Grid.Column="1"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource Hdr.ColLables.Data.Bdr}"
+					Style="{StaticResource Header.ColLables.Data.Bdr}"
 					>
 				<Label Content="Delta XY"
-						Style="{StaticResource Hdr.ColLables.Data.Lbl}"
+						Style="{StaticResource Header.ColLables.Data.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Column="3"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource Hdr.ColLables.Data.Bdr}"
+					Style="{StaticResource Header.ColLables.Data.Bdr}"
 					>
 				<Label Content="Delta XYZ"
-						Style="{StaticResource Hdr.ColLables.Data.Lbl}"
+						Style="{StaticResource Header.ColLables.Data.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Column="5"
 					Grid.ColumnSpan="2"
 					BorderThickness="0"
-					Style="{StaticResource Hdr.ColLables.Data.Bdr}"
+					Style="{StaticResource Header.ColLables.Data.Bdr}"
 					>
 				<Label Content="Delta Z"
-						Style="{StaticResource Hdr.ColLables.Data.Lbl}"
+						Style="{StaticResource Header.ColLables.Data.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Column="7"
 					Background="{StaticResource Header.Filler.Background.C}"
 					BorderThickness="0,0,0,1"
-					Style="{StaticResource Hdr.ColLables.Data.Bdr}"
+					Style="{StaticResource Header.ColLables.Data.Bdr}"
 					/>
 
 			<!--#endregion-->
@@ -660,9 +677,9 @@
 
 	<!--#endregion-->
 
-	<!--#region > Control Template: Hdr.EndPoint-->
+	<!--#region >> Control Template: Header.EndPoint-->
 
-	<ControlTemplate x:Key="Hdr.EndPoint">
+	<ControlTemplate x:Key="Header.EndPoint">
 		<Grid>
 			<Grid.ColumnDefinitions>
 				<!--  0  -->
@@ -684,41 +701,41 @@
 
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="{StaticResource hdrRowHeight}" />
-				<RowDefinition Height="{StaticResource hdrRowHeight}" />
+				<RowDefinition Height="{StaticResource Row.Header.EndPoint.Height}" />
+				<RowDefinition Height="{StaticResource Row.Header.EndPoint.Height}" />
 			</Grid.RowDefinitions>
 
 			<!--  Header: end point value row  -->
 
-			<!--#region + Header: End point value row-->
+			<!--#region >> Header: End point value row-->
 
 			<Border Grid.Row="0"
 					Grid.Column="0"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource Hdr.EndPoint.Value.Bdr}"
+					Style="{StaticResource Header.EndPoint.Value.Bdr}"
 					>
 				<Label Content="{Binding EndX}"
-						Style="{StaticResource Hdr.EndPoint.Value.Lbl}"
+						Style="{StaticResource Header.EndPoint.Value.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Row="0"
 					Grid.Column="2"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource Hdr.EndPoint.Value.Bdr}"
+					Style="{StaticResource Header.EndPoint.Value.Bdr}"
 					>
 				<Label Content="{Binding EndY}"
-						Style="{StaticResource Hdr.EndPoint.Value.Lbl}"
+						Style="{StaticResource Header.EndPoint.Value.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Row="0"
 					Grid.Column="4"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource Hdr.EndPoint.Value.Bdr}"
+					Style="{StaticResource Header.EndPoint.Value.Bdr}"
 					>
 				<Label Content="{Binding EndZ}"
-						Style="{StaticResource Hdr.EndPoint.Value.Lbl}"
+						Style="{StaticResource Header.EndPoint.Value.Lbl}"
 						/>
 			</Border>
 
@@ -726,43 +743,43 @@
 					Grid.Column="6"
 					Grid.ColumnSpan="2"
 					BorderThickness="0,0,1,1"
-					Style="{StaticResource Hdr.EndPoint.Value.Bdr}"
+					Style="{StaticResource Header.EndPoint.Value.Bdr}"
 					>
 				<Label Content="{Binding EndSlope}"
-						Style="{StaticResource Hdr.EndPoint.Value.Lbl}"
+						Style="{StaticResource Header.EndPoint.Value.Lbl}"
 						/>
 			</Border>
 			<!--#endregion-->
 
-			<!--#region + Header: End point data row-->
+			<!--#region >> Header: End point data row-->
 
 			<Border Grid.Row="1"
 					Grid.Column="0"
 					BorderThickness="0,0,1,1"
-					Style="{StaticResource Hdr.EndPoint.Data.Filler.Bdr}"
+					Style="{StaticResource Header.EndPoint.Data.Filler.Bdr}"
 					>
 				<Label Content=""
-						Style="{StaticResource Hdr.EndPoint.Data.Filler.Lbl}"
+						Style="{StaticResource Header.EndPoint.Data.Filler.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Row="1"
 					Grid.Column="1"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource Hdr.EndPoint.Data.Bdr}"
+					Style="{StaticResource Header.EndPoint.Data.Bdr}"
 					>
 				<Label Content="{Binding EndDeltaXY}"
-						Style="{StaticResource Hdr.EndPoint.Data.Lbl}"
+						Style="{StaticResource Header.EndPoint.Data.Lbl}"
 						/>
 			</Border>
 
 			<Border Grid.Row="1"
 					Grid.Column="3"
 					Grid.ColumnSpan="2"
-					Style="{StaticResource Hdr.EndPoint.Data.Bdr}"
+					Style="{StaticResource Header.EndPoint.Data.Bdr}"
 					>
 				<Label Content="{Binding EndDeltaXYZ}"
-						Style="{StaticResource Hdr.EndPoint.Data.Lbl}"
+						Style="{StaticResource Header.EndPoint.Data.Lbl}"
 						/>
 			</Border>
 
@@ -770,10 +787,10 @@
 					Grid.Column="5"
 					Grid.ColumnSpan="2"
 					BorderThickness="0,0,0,1"
-					Style="{StaticResource Hdr.EndPoint.Data.Bdr}"
+					Style="{StaticResource Header.EndPoint.Data.Bdr}"
 					>
 				<Label Content="{Binding EndDeltaZ}"
-						Style="{StaticResource Hdr.EndPoint.Data.Lbl}"
+						Style="{StaticResource Header.EndPoint.Data.Lbl}"
 						/>
 			</Border>
 
@@ -781,10 +798,10 @@
 					Grid.Column="7"
 					Grid.ColumnSpan="1"
 					BorderThickness="0,0,0,1"
-					Style="{StaticResource Hdr.EndPoint.Data.Filler.Bdr}"
+					Style="{StaticResource Header.EndPoint.Data.Filler.Bdr}"
 					>
 				<Label Content="End Point"
-						Style="{StaticResource Hdr.EndPoint.Data.Filler.Lbl}"
+						Style="{StaticResource Header.EndPoint.Data.Filler.Lbl}"
 						/>
 			</Border>
 			<!--#endregion-->
@@ -795,7 +812,7 @@
 
 	<!--#endregion-->
 
-	<!--#region > Control Template: Field.Pt.Data-->
+	<!--#region >> Control Template: Field.Pt.Data-->
 
 	<ControlTemplate x:Key="Field.Pt.Data">
 		<Grid Margin="0,0,0,-0.5">
@@ -898,10 +915,10 @@
 
 	<!--#endregion-->
 
-	<!--#region > Control Template: Ftr.StartPoint-->
+	<!--#region >> Control Template: Ftr.StartPoint-->
 
 	<ControlTemplate x:Key="Ftr.StartPoint">
-		<Grid Background="{StaticResource stdBorderBrush}">
+		<Grid Background="{StaticResource Brush.Border.Std}">
 			<Grid.ColumnDefinitions>
 				<!--  0  -->
 				<ColumnDefinition Width="{StaticResource Col.00.Width}" />
@@ -921,7 +938,7 @@
 				<ColumnDefinition Width="{StaticResource Col.07.Width}" />
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="{StaticResource hdrRowHeight}" />
+				<RowDefinition Height="{StaticResource Row.Header.EndPoint.Height}" />
 			</Grid.RowDefinitions>
 
 			<Border Grid.Row="0"
@@ -979,7 +996,7 @@
 
 	<!--#endregion-->
 
-	<!--#region > Control Template: Field.Ed-->
+	<!--#region >> Control Template: Field.Ed-->
 
 	<ControlTemplate x:Key="Field.Ed">
 		<Border Margin="0,0,0,0"
@@ -1010,14 +1027,14 @@
 
 				</Grid.ColumnDefinitions>
 				<Grid.RowDefinitions>
-					<RowDefinition Height="{StaticResource editPnlRowHeightTop}" />
-					<RowDefinition Height="{StaticResource editPnlRowHeightBottom}" />
+					<RowDefinition Height="{StaticResource Row.Field.Ed.Height.Top}" />
+					<RowDefinition Height="{StaticResource Row.Field.Ed.Height.Bottom}" />
 				</Grid.RowDefinitions>
 
 				<!--#region > Field.Ed.Btns-->
 
 				<Button Content="Save X"
-						Grid.Row="{StaticResource btnRow}"
+						Grid.Row="{StaticResource Row.Field.Ed.Btn}"
 						Grid.Column="0"
 						Margin="6"
 						BorderThickness="1"
@@ -1027,7 +1044,7 @@
 						/>
 
 				<Button Content="Restore X"
-						Grid.Row="{StaticResource btnRow}"
+						Grid.Row="{StaticResource Row.Field.Ed.Btn}"
 						Grid.Column="1"
 						Margin="6"
 						BorderThickness="1"
@@ -1037,7 +1054,7 @@
 						/>
 
 				<Button Content="Save Y"
-						Grid.Row="{StaticResource btnRow}"
+						Grid.Row="{StaticResource Row.Field.Ed.Btn}"
 						Grid.Column="2"
 						Margin="6"
 						BorderThickness="1"
@@ -1047,7 +1064,7 @@
 						/>
 
 				<Button Content="Restore Y"
-						Grid.Row="{StaticResource btnRow}"
+						Grid.Row="{StaticResource Row.Field.Ed.Btn}"
 						Grid.Column="3"
 						Margin="6"
 						BorderThickness="1"
@@ -1057,7 +1074,7 @@
 						/>
 
 				<Button Content="Save Z"
-						Grid.Row="{StaticResource btnRow}"
+						Grid.Row="{StaticResource Row.Field.Ed.Btn}"
 						Grid.Column="4"
 						Margin="6"
 						BorderThickness="1"
@@ -1067,7 +1084,7 @@
 						/>
 
 				<Button Content="Restore Z"
-						Grid.Row="{StaticResource btnRow}"
+						Grid.Row="{StaticResource Row.Field.Ed.Btn}"
 						Grid.Column="5"
 						Margin="6"
 						BorderThickness="1"
@@ -1077,7 +1094,7 @@
 						/>
 
 				<Button Content="Save Slope"
-						Grid.Row="{StaticResource btnRow}"
+						Grid.Row="{StaticResource Row.Field.Ed.Btn}"
 						Grid.Column="6"
 						Margin="6"
 						BorderThickness="1"
@@ -1087,7 +1104,7 @@
 						/>
 
 				<Button Content="Restore Slope"
-						Grid.Row="{StaticResource btnRow}"
+						Grid.Row="{StaticResource Row.Field.Ed.Btn}"
 						Grid.Column="7"
 						Margin="6"
 						BorderThickness="1"
@@ -1097,16 +1114,16 @@
 						/>
 				<!--#endregion-->
 
-				<!--#region > Field.Ed.Info-->
+				<!--#region >> Field.Ed.Info-->
 
-				<TextBlock Grid.Row="{StaticResource msgRow}"
+				<TextBlock Grid.Row="{StaticResource Row.Field.Ed.Msg}"
 						Grid.Column="0"
 						Margin="4,0,0,0"
 						VerticalAlignment="Center"
 						Text="Has Revisions (X)?"
 						/>
 
-				<TextBlock Grid.Row="{StaticResource msgRow}"
+				<TextBlock Grid.Row="{StaticResource Row.Field.Ed.Msg}"
 						Grid.Column="1"
 						Grid.ColumnSpan="1"
 						Margin="4,0,0,0"
@@ -1114,7 +1131,7 @@
 						Text="{Binding Path=HasRevisionX, Mode=OneWay}"
 						/>
 
-				<TextBox Grid.Row="{StaticResource msgRow}"
+				<TextBox Grid.Row="{StaticResource Row.Field.Ed.Msg}"
 						Grid.Column="3"
 						Grid.ColumnSpan="3"
 						Margin="4,0,0,2"
@@ -1131,7 +1148,7 @@
 
 	<!--  Primary Template  -->
 
-	<!--#region > Primary Control Template: ListBox.Overall-->
+	<!--#region >> Primary Control Template: ListBox.Overall-->
 
 	<ControlTemplate x:Key="ListBox.Overall">
 		<!--  perimeter border  -->
@@ -1141,7 +1158,7 @@
 
 			<DockPanel Margin="0"
 					LastChildFill="True"
-					Background="{StaticResource ListBox.Background.C}"
+					Background="{StaticResource Brush.DockPanel.Background}"
 					>
 
 				<!--#region > Main header w/ end point-->
@@ -1158,7 +1175,7 @@
 						<RowDefinition Height="40" />
 					</Grid.RowDefinitions>
 
-					<!--#region > Header: Hdr.ColLabels-->
+					<!--#region >> Header: Header.ColLabels-->
 					<Border Grid.Row="0"
 							Grid.Column="0"
 							Margin="0,0,-1,-1.5"
@@ -1167,36 +1184,36 @@
 							>
 
 						<ContentControl DockPanel.Dock="Top"
-								Template="{StaticResource Hdr.ColLabels}"
+								Template="{StaticResource Header.ColLabels}"
 								/>
 
 					</Border>
 
 					<!--#endregion-->
 
-					<!--#region > Header: Hdr.EndPoint-->
+					<!--#region >> Header: Header.EndPoint-->
 					<Border Grid.Row="1"
 							Margin="0,0,-1,-2"
 							VerticalAlignment="top"
 							DockPanel.Dock="top"
-							Background="{StaticResource stdBorderBrush}"
-							BorderThickness="0,0,0,7.5"
+							Background="{StaticResource Brush.Border.Std}"
+							BorderThickness="0,0,0,6"
 							BorderBrush="{StaticResource Brush.Bdr.Shadow}"
 							>
 
-						<ContentControl Template="{StaticResource Hdr.EndPoint}" />
+						<ContentControl Template="{StaticResource Header.EndPoint}" />
 
 					</Border>
 					<!--  end end point header  -->
 					<!--#endregion-->
 
-					<!--#region > Scroll bar column-->
+					<!--#region >> Scroll bar column-->
 					<Border Grid.Row="0"
 							Grid.RowSpan="2"
 							Grid.Column="1"
 							Background="{StaticResource Header.Background.C}"
 							BorderThickness="1,0,0,1"
-							BorderBrush="{StaticResource stdBorderBrush}"
+							BorderBrush="{StaticResource Brush.Border.Std}"
 							/>
 					<!--#endregion-->
 
@@ -1205,7 +1222,7 @@
 
 				<!--#endregion-->
 
-				<!--#region > ScrollViewer w/ start point-->
+				<!--#region >> ScrollViewer w/ start point-->
 
 				<!--  present the list box values  -->
 				<ScrollViewer VerticalScrollBarVisibility="Visible">
@@ -1214,7 +1231,7 @@
 							<RowDefinition Height="Auto" />
 							<RowDefinition Height="*" />
 						</Grid.RowDefinitions>
-						<ItemsPresenter Margin="-6,0,-6,0" />
+						<ItemsPresenter Margin="-8,0,-5,0" />
 						<ContentControl Grid.Row="1"
 								Margin="0,2,0,0"
 								VerticalAlignment="Top"
@@ -1232,6 +1249,112 @@
 		<!--  end perimeter border  -->
 
 	</ControlTemplate>
+	<!--#endregion-->
+
+	<!--  Data Template  -->
+
+	<!--#region >> Data Template: ListBox.Item.Selected.Normal-->
+
+	<DataTemplate x:Key="ListBox.Item.Selected.Normal">
+		<Border Margin="0,0,-1,-4"
+				BorderThickness="0,0,0,5"
+				BorderBrush="{DynamicResource Brush.Bdr.Shadow}"
+				>
+			<Grid Margin="2,-1.5,-0.5,0">
+				<Grid.ColumnDefinitions>
+					<!--  0  -->
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="{StaticResource Field.Pt.Value.Row.Height}" />
+					<RowDefinition Height="{StaticResource Field.Pt.Data.Row.Height}" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+
+				<!--#region + Point Value Row-->
+				<ContentControl Grid.Row="{DynamicResource Field.Pt.Value.Row}"
+						Grid.Column="0"
+						Template="{DynamicResource Field.Pt.Value}"
+						/>
+
+				<!--#endregion-->
+
+				<!--#region + Point Data row-->
+				<ContentControl Grid.Row="{DynamicResource Field.Pt.Data.Row}"
+						Grid.Column="0"
+						Template="{DynamicResource Field.Pt.Data}"
+						/>
+
+				<!--#endregion-->
+
+			</Grid>
+		</Border>
+	</DataTemplate>
+
+	<!--#endregion-->
+
+	<!--#region >> Data Template: ListBox.Item.Selected.Edit-->
+
+	<DataTemplate x:Key="ListBox.Item.Selected.Edit">
+		<Border Margin="0,0,-2,-6"
+				BorderThickness="0,0,0,9"
+				BorderBrush="{DynamicResource Brush.Bdr.Shadow}"
+				>
+			<Grid Margin="2,0,0,0">
+				<Grid.ColumnDefinitions>
+					<!--  0  -->
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="{StaticResource Field.Pt.Value.Row.Height}" />
+					<RowDefinition Height="{StaticResource Field.Pt.Data.Row.Height}" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+
+				<!--  Detail Value Row  -->
+				<ContentControl Grid.Row="{DynamicResource Field.Pt.Value.Row}"
+						Grid.Column="0"
+						Template="{DynamicResource Field.Pt.Value}"
+						/>
+
+				<!--  Detail info row  -->
+				<ContentControl Grid.Row="{DynamicResource Field.Pt.Data.Row}"
+						Grid.Column="0"
+						Template="{DynamicResource Field.Pt.Data}"
+						/>
+
+				<!--  EditPanel  -->
+				<ContentControl Grid.Row="{DynamicResource Field.Ed.Row}"
+						Grid.Column="0"
+						Template="{DynamicResource Field.Ed}"
+						/>
+
+			</Grid>
+		</Border>
+	</DataTemplate>
+
+	<!--#endregion-->
+
+	<!--#region >> Data Template: Selector: ListBox.Item.Selector-->
+
+	<DataTemplate x:Key="ListBox.Item.Selector">
+		<ContentPresenter x:Name="contentPresenter" Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}"
+				/>
+		<DataTemplate.Triggers>
+			<DataTrigger Binding="{Binding IsBeingEdited, UpdateSourceTrigger=PropertyChanged}"
+					Value="True"
+					>
+				<Setter TargetName="contentPresenter" Property="ContentTemplate" Value="{DynamicResource ListBox.Item.Selected.Edit}" />
+			</DataTrigger>
+			<DataTrigger Binding="{Binding IsBeingEdited, UpdateSourceTrigger=PropertyChanged}"
+					Value="False"
+					>
+				<Setter TargetName="contentPresenter" Property="ContentTemplate" Value="{DynamicResource ListBox.Item.Selected.Normal}" />
+			</DataTrigger>
+		</DataTemplate.Triggers>
+
+	</DataTemplate>
+
 	<!--#endregion-->
 
 

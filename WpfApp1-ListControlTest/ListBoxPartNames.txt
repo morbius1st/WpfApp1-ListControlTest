@@ -6,10 +6,11 @@ listBox2
 //                                                                                                                                                        //
 //********************************************************************************************************************************************************//
 
-Style=					"{StaticResource ListBox.Normal.Style}"
-Template=				"{StaticResource ListBox.Overall}"
+(note: order matters)
 ItemContainerStyle=		"{StaticResource ListBox.Normal.ItemContainer}"
 ItemTemplate=			"{StaticResource ListBox.Item.Selector}"
+Style=					"{StaticResource ListBox.Normal.Style}"
+Template=				"{StaticResource ListBox.Overall}"
 
 
 Hdr.ColLables				+--------------------------------------------------+  --+   ---------------+  
@@ -49,9 +50,9 @@ Hdr.ColLables				+--------------------------------------------------+  --+
 																			+-----------------> border=Hdr.ColLables.Data.Filler.Bdr, label=Hdr.ColLables.Data.Filler.Lbl
 
 Hdr.EndPoint				+--------------------------------------------------+  --+
-+->	Hdr.EndPoint.Value		|     1      |     2      |     3      |    4%     |     \          border=Hdr.EndPoint.Value.Bdr, label=Hdr.EndPoint.Value,Lbl
++->	Hdr.EndPoint.Value		|     1      |     2      |     3      |    4%     |     \          border=Hdr.EndPoint.Value.Bdr, label=Hdr.EndPoint.Value.Lbl
 |							+--------------------------------------------------+      > header: end point
-+->	Hdr.EndPoint.Data		|     |      5     |      6     |      7     |  +  |     /          border=Hdr.EndPoint.Data.Bdr, label=Hdr.EndPoint.Data,Lbl
++->	Hdr.EndPoint.Data		|     |      5     |      6     |      7     |  +  |     /          border=Hdr.EndPoint.Data.Bdr, label=Hdr.EndPoint.Data.Lbl
 							+-----------------------------------------------|--+  --+
 																			+-----------------> border=Hdr.EndPoint.Data.Filler.Bdr, label=Hdr.EndPoint.Data.Filler.Lbl
 
@@ -89,7 +90,7 @@ scrollviewer				+--------------------------------------------------+
 					|						+--------------------------------------------------+  --+             
 					+->	Field.Ed.Btns		|  btn | btn |  btn | btn |  btn | btn | btn | btn |     \            style=Button.Normal.Style, template=Button.Normal.ControlTemplate
 					|						+--------------------------------------------------+      > Edit Row  
-					+->	Field.Ed.Info		|  lbl | tbk |      | msg tbx          |           |     /            
+					+->	Field.Ed.Info		|  lbl | tbk |      | msg tbx          |           |     /            grid=Field.Ed.Grid
 											+--------------------------------------------------+  --+
 
 
