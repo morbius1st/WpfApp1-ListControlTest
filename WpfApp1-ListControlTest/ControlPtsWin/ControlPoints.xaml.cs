@@ -16,7 +16,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 	/// <summary>
 	/// Interaction logic for ControlPoints.xaml
 	/// </summary>
-	public partial class ControlPoints : Window, INotifyPropertyChanged
+	public partial class ControlPoints : Window //, INotifyPropertyChanged
 	{
 		public string WinTitle { get; set; } = "Control Points";
 
@@ -49,7 +49,11 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 		{
 			InitializeComponent();
 
+			ErrorMsg = "no error";
+
 			_canExecute = true;
+
+// this is the future event handling configuration - turned off for now
 
 			MainWindow.Cps = this;
 
@@ -65,6 +69,8 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 			this.AddHandler(Button.ClickEvent, new RoutedEventHandler(CommandClickHandler1));
 
 			System.Windows.Controls.Validation.AddErrorHandler(this, new EventHandler<ValidationErrorEventArgs>(ValidationOnErrorHandler1));
+
+
 #if DEBUG
 			LoadData();
 #endif
@@ -136,6 +142,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 
 		private void BtnDebugUndo_Click(object sender, RoutedEventArgs e)
 		{
+//			((ControlPts)listBox2.Items[itemIndex])
 			ControlPts cps = Sx[itemIndex];
 			cps.Undo(((Button)sender).Tag as string);
 
@@ -201,7 +208,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 			Sx.Insert(0, new ControlPts() { XOrig = " 1021.0", YOrig = " 2021.0", ZOrig = " 3021.0", SlopeOrig = " 1.0", XyOrig = " 4021.0", XyzOrig = " 5021.0", ZDeltaOrig = " 6021.0" });
 			Sx.Insert(0, new ControlPts() { XOrig = " 1031.0", YOrig = " 2031.0", ZOrig = " 3031.0", SlopeOrig = " 1.0", XyOrig = " 4031.0", XyzOrig = " 5031.0", ZDeltaOrig = " 6031.0" });
 			Sx.Insert(0, new ControlPts() { XOrig = " 1041.0", YOrig = " 2041.0", ZOrig = " 3041.0", SlopeOrig = " 1.0", XyOrig = " 4041.0", XyzOrig = " 5041.0", ZDeltaOrig = " 6041.0" });
-//			Sx.Insert(0, new ControlPts() { XOrig = " 1051.0", YOrig = " 2051.0", ZOrig = " 3051.0", SlopeOrig = " 1.0", XyOrig = " 4051.0", XyzOrig = " 5051.0", ZDeltaOrig = " 6051.0" });
+			Sx.Insert(0, new ControlPts() { XOrig = " 1051.0", YOrig = " 2051.0", ZOrig = " 3051.0", SlopeOrig = " 1.0", XyOrig = " 4051.0", XyzOrig = " 5051.0", ZDeltaOrig = " 6051.0" });
 //			Sx.Insert(0, new ControlPts() { XOrig = " 1061.0", YOrig = " 2061.0", ZOrig = " 3061.0", SlopeOrig = " 1.0", XyOrig = " 4061.0", XyzOrig = " 5061.0", ZDeltaOrig = " 6061.0" });
 //			Sx.Insert(0, new ControlPts() { XOrig = " 1071.0", YOrig = " 2071.0", ZOrig = " 3071.0", SlopeOrig = " 1.0", XyOrig = " 4071.0", XyzOrig = " 5071.0", ZDeltaOrig = " 6071.0" });
 //			Sx.Insert(0, new ControlPts() { XOrig = " 1081.0", YOrig = " 2081.0", ZOrig = " 3081.0", SlopeOrig = " 1.0", XyOrig = " 4081.0", XyzOrig = " 5081.0", ZDeltaOrig = " 6081.0" });
@@ -299,6 +306,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 				OnPropertyChange();
 			}
 		}
+
 		public string ErrorMsg
 		{
 			get => _errorMsg;
@@ -378,7 +386,8 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 			//			// uses the selectedindex property to get the correct index
 			//			TellMeLbx(sender as ListBox, "SelectionChanged");
 
-			if (itemIndex < 0 || !Sx[itemIndex].IsRevised)
+//			if (itemIndex < 0 || !Sx[itemIndex].IsRevised)
+			if (itemIndex < 0 || !((ControlPts)listBox2.Items[itemIndex]).IsRevised)
 			{
 				if (itemIndex >= 0)
 				{
@@ -404,6 +413,8 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 
 		private bool clickTest = false;
 
+		public string LabelContent { get; set; } = "UN-CLICKED";
+
 		private void Testx_Click(object sender, RoutedEventArgs e)
 		{
 			clickTest = !clickTest;
@@ -411,25 +422,25 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 
 			if (clickTest)
 			{
-				label.Content = "CLICKED";
+				LabelContent = "CLICKED";
 			}
 			else
 			{
-				label.Content = "UN-CLICKED";
+				LabelContent = "UN-CLICKED";
 			}
 		}
 
-#pragma warning disable CS0108 // 'ControlPoints.LostFocus(object, RoutedEventArgs)' hides inherited member 'UIElement.LostFocus'. Use the new keyword if hiding was intended.
-		private void LostFocus(object sender, RoutedEventArgs e)
-#pragma warning restore CS0108 // 'ControlPoints.LostFocus(object, RoutedEventArgs)' hides inherited member 'UIElement.LostFocus'. Use the new keyword if hiding was intended.
-		{
-			if (itemIndex >=0 && !Sx[itemIndex].IsRevised)
-			{
-				Sx[itemIndex].IsBeingEdited = false;
-
-				listBox2.SelectedIndex = -1;
-			}
-		}
+//#pragma warning disable CS0108 // 'ControlPoints.LostFocus(object, RoutedEventArgs)' hides inherited member 'UIElement.LostFocus'. Use the new keyword if hiding was intended.
+//		private void LostFocus(object sender, RoutedEventArgs e)
+//#pragma warning restore CS0108 // 'ControlPoints.LostFocus(object, RoutedEventArgs)' hides inherited member 'UIElement.LostFocus'. Use the new keyword if hiding was intended.
+//		{
+//			if (itemIndex >=0 && !Sx[itemIndex].IsRevised)
+//			{
+//				Sx[itemIndex].IsBeingEdited = false;
+//
+//				listBox2.SelectedIndex = -1;
+//			}
+//		}
 		//
 		//		private void tbxXYZ_OnGotFocus(object sender, RoutedEventArgs e)
 		//		{

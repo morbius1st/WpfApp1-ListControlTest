@@ -2,17 +2,16 @@
 		x:Class="WpfApp1_ListControlTest.ControlPtsWin.ControlPointsResources"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:parent="clr-namespace:WpfApp1_ListControlTest.ControlPtsWin"
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
 		xmlns:validation="clr-namespace:WpfApp1_ListControlTest.ControlPtsWin"
-		xmlns:parent="clr-namespace:WpfApp1_ListControlTest.ControlPtsWin"
-
 		>
 
-	<validation:ControlPointXYZConverter x:Key="Converter.XYZ" />
-	<validation:ControlPointSlopeConverter x:Key="Converter.Slope" />
-	<validation:PointTemplateSelector x:Key="Point.TemplateSelector" />
+	<parent:ControlPointXYZConverter x:Key="Converter.Xyz" />
+	<parent:ControlPointSlopeConverter x:Key="Converter.Slope" />
+	<parent:PointTemplateSelector x:Key="Point.TemplateSelector" />
 
-	<parent:ControlPoints x:Key="cps"/>
+	<!-- <parent:ControlPoints x:Key="cps"/> -->
 
 	<!--  Values  -->
 
@@ -42,6 +41,10 @@
 		1
 	</sys:Int32>
 
+	<sys:Int32 x:Key="Field.Ed.Button.Width">
+		70
+	</sys:Int32>
+
 	<GridLength x:Key="Row.Header.EndPoint.Height">
 		18
 	</GridLength>
@@ -60,28 +63,28 @@
 	</GridLength>
 
 	<GridLength x:Key="Col.00.Width">
-		*
+		1*
 	</GridLength>
 	<GridLength x:Key="Col.01.Width">
-		*
+		1*
 	</GridLength>
 	<GridLength x:Key="Col.02.Width">
-		*
+		1*
 	</GridLength>
 	<GridLength x:Key="Col.03.Width">
-		*
+		1*
 	</GridLength>
 	<GridLength x:Key="Col.04.Width">
-		*
+		1*
 	</GridLength>
 	<GridLength x:Key="Col.05.Width">
-		*
+		1*
 	</GridLength>
 	<GridLength x:Key="Col.06.Width">
-		*
+		1*
 	</GridLength>
 	<GridLength x:Key="Col.07.Width">
-		*
+		1*
 	</GridLength>
 	<GridLength x:Key="Col.08.Width">
 		17
@@ -396,7 +399,7 @@
 	<!--#region >> Styles: Field: Editing Row-->
 
 	<Style x:Key="Field.Ed.Grid"
-			TargetType="Grid"
+			TargetType="UniformGrid"
 			>
 		<Setter Property="HorizontalAlignment" Value="Center" />
 		<Setter Property="VerticalAlignment" Value="Center" />
@@ -416,8 +419,9 @@
 			TargetType="Button"
 			>
 		<Setter Property="BorderThickness" Value="1" />
-		<Setter Property="Margin" Value="0,6,6,6" />
-		<!-- <Setter Property="Width" Value="60"/> -->
+		<Setter Property="HorizontalAlignment" Value="Center" />
+		<Setter Property="Margin" Value="-1,6,6,6" />
+		<Setter Property="Width" Value="{StaticResource Field.Ed.Button.Width}" />
 
 	</Style>
 
@@ -571,13 +575,16 @@
 
 	<!--#region >> Control Template: Header.Col.Labels-->
 	<ControlTemplate x:Key="Header.ColLabels">
-		<Grid Margin="0,0,0,-1"
+		<Grid Name="GridColLabels"
+				Margin="0,0,0,-1"
 				DockPanel.Dock="Top"
 				Background="{StaticResource Header.Background.C}"
 				>
 			<Grid.ColumnDefinitions>
 				<!--  0  -->
-				<ColumnDefinition Width="{StaticResource Col.00.Width}" />
+				<ColumnDefinition Name="GridColLabels_Col01"
+						Width="{StaticResource Col.00.Width}"
+						/>
 				<!--  1  -->
 				<ColumnDefinition Width="{StaticResource Col.01.Width}" />
 				<!--  2  -->
@@ -866,7 +873,7 @@
 						<!--  Validation.Error="TbxXYZ_OnError">  -->
 						<!--  SourceUpdated="TbxXYZ_OnSourceUpdated"  -->
 						<TextBox.Text>
-							<Binding Converter="{StaticResource Converter.XYZ}"
+							<Binding Converter="{StaticResource Converter.Xyz}"
 									Mode="TwoWay"
 									NotifyOnSourceUpdated="True"
 									NotifyOnTargetUpdated="True"
@@ -874,7 +881,7 @@
 									Path="X"
 									>
 								<Binding.ValidationRules>
-									<validation:ControlPointXYZValidation ValidationStep="RawProposedValue" />
+									<parent:ControlPointXYZValidation ValidationStep="RawProposedValue" />
 								</Binding.ValidationRules>
 							</Binding>
 						</TextBox.Text>
@@ -897,7 +904,7 @@
 
 						<!--  SourceUpdated="TbxXYZ_OnSourceUpdated"  -->
 						<TextBox.Text>
-							<Binding Converter="{StaticResource Converter.XYZ}"
+							<Binding Converter="{StaticResource Converter.Xyz}"
 									Mode="TwoWay"
 									NotifyOnSourceUpdated="True"
 									NotifyOnTargetUpdated="True"
@@ -905,7 +912,7 @@
 									Path="Y"
 									>
 								<Binding.ValidationRules>
-									<validation:ControlPointXYZValidation ValidationStep="RawProposedValue" />
+									<parent:ControlPointXYZValidation ValidationStep="RawProposedValue" />
 								</Binding.ValidationRules>
 							</Binding>
 						</TextBox.Text>
@@ -927,7 +934,7 @@
 						<!--  Validation.Error="TbxXYZ_OnError">  -->
 						<!--  SourceUpdated="TbxXYZ_OnSourceUpdated"  -->
 						<TextBox.Text>
-							<Binding Converter="{StaticResource Converter.XYZ}"
+							<Binding Converter="{StaticResource Converter.Xyz}"
 									Mode="TwoWay"
 									NotifyOnSourceUpdated="True"
 									NotifyOnTargetUpdated="True"
@@ -935,7 +942,7 @@
 									Path="Z"
 									>
 								<Binding.ValidationRules>
-									<validation:ControlPointXYZValidation ValidationStep="RawProposedValue" />
+									<parent:ControlPointXYZValidation ValidationStep="RawProposedValue" />
 								</Binding.ValidationRules>
 							</Binding>
 						</TextBox.Text>
@@ -966,7 +973,7 @@
 									Path="Slope"
 									>
 								<Binding.ValidationRules>
-									<validation:ControlPointSlopeValidation ValidationStep="RawProposedValue" />
+									<parent:ControlPointSlopeValidation ValidationStep="RawProposedValue" />
 								</Binding.ValidationRules>
 							</Binding>
 						</TextBox.Text>
@@ -1018,7 +1025,7 @@
 				<GroupBox Style="{StaticResource Field.Pt.Data.Gbx}">
 					<TextBlock Style="{DynamicResource Field.Pt.Data.Tbx}">
 						<TextBlock.Text>
-							<Binding Converter="{StaticResource Converter.XYZ}"
+							<Binding Converter="{StaticResource Converter.Xyz}"
 									Mode="OneWay"
 									NotifyOnSourceUpdated="True"
 									Path="XyValue"
@@ -1037,7 +1044,7 @@
 				<GroupBox Style="{StaticResource Field.Pt.Data.Gbx}">
 					<TextBlock Style="{DynamicResource Field.Pt.Data.Tbx}">
 						<TextBlock.Text>
-							<Binding Converter="{StaticResource Converter.XYZ}"
+							<Binding Converter="{StaticResource Converter.Xyz}"
 									Mode="OneWay"
 									NotifyOnSourceUpdated="True"
 									Path="XyzValue"
@@ -1056,7 +1063,7 @@
 				<GroupBox Style="{StaticResource Field.Pt.Data.Gbx}">
 					<TextBlock Style="{DynamicResource Field.Pt.Data.Tbx}">
 						<TextBlock.Text>
-							<Binding Converter="{StaticResource Converter.XYZ}"
+							<Binding Converter="{StaticResource Converter.Xyz}"
 									Mode="OneWay"
 									NotifyOnSourceUpdated="True"
 									Path="ZDelta"
@@ -1087,40 +1094,45 @@
 	<!--#region >> Control Template: Field.Ed-->
 
 	<ControlTemplate x:Key="Field.Ed">
-		<Border Margin="2,1,0,0"
+		<Border Margin="0,1,0,0"
 				BorderThickness="0"
 				BorderBrush="Red"
 				>
-			<Grid HorizontalAlignment="Stretch"
+
+			<UniformGrid 
+					HorizontalAlignment="Stretch"
 					VerticalAlignment="Stretch"
+					Columns="8"
+					Rows="2"
 					Background="{StaticResource Row.Edit.Background.C}"
 					Style="{StaticResource Field.Ed.Grid}"
 					>
-				<Grid.ColumnDefinitions>
-					<!--  0  -->
-					<ColumnDefinition Width="{StaticResource Col.00.Width}" />
-					<!--  1  -->
-					<ColumnDefinition Width="{StaticResource Col.01.Width}" />
-					<!--  2  -->
-					<ColumnDefinition Width="{StaticResource Col.02.Width}" />
-					<!--  3  -->
-					<ColumnDefinition Width="{StaticResource Col.03.Width}" />
-					<!--  4  -->
-					<ColumnDefinition Width="{StaticResource Col.04.Width}" />
-					<!--  5  -->
-					<ColumnDefinition Width="{StaticResource Col.05.Width}" />
-					<!--  6  -->
-					<ColumnDefinition Width="{StaticResource Col.06.Width}" />
-					<!--  7  -->
-					<ColumnDefinition Width="{StaticResource Col.07.Width}" />
-
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="{StaticResource Row.Field.Ed.Height.Top}" />
-					<RowDefinition Height="{StaticResource Row.Field.Ed.Height.Bottom}" />
-				</Grid.RowDefinitions>
+				<!-- <UniformGrid.ColumnDefinitions> -->
+				<!--  ~1~  0  @1@  -->
+				<!-- 	<ColumnDefinition Width="Auto" /> -->
+				<!--  ~1~  1  @1@  -->
+				<!-- 	<ColumnDefinition Width="Auto" /> -->
+				<!--  ~1~  2  @1@  -->
+				<!-- 	<ColumnDefinition Width="{StaticResource Col.02.Width}" /> -->
+				<!--  ~1~  3  @1@  -->
+				<!-- 	<ColumnDefinition Width="{StaticResource Col.03.Width}" /> -->
+				<!--  ~1~  4  @1@  -->
+				<!-- 	<ColumnDefinition Width="{StaticResource Col.04.Width}" /> -->
+				<!--  ~1~  5  @1@  -->
+				<!-- 	<ColumnDefinition Width="{StaticResource Col.05.Width}" /> -->
+				<!--  ~1~  6  @1@  -->
+				<!-- 	<ColumnDefinition Width="{StaticResource Col.06.Width}" /> -->
+				<!--  ~1~  7  @1@  -->
+				<!-- 	<ColumnDefinition Width="{StaticResource Col.07.Width}" /> -->
+				<!--    -->
+				<!-- </UniformGrid.ColumnDefinitions> -->
+				<!-- <Grid.RowDefinitions> -->
+				<!-- 	<RowDefinition Height="{StaticResource Row.Field.Ed.Height.Top}" /> -->
+				<!-- 	<RowDefinition Height="{StaticResource Row.Field.Ed.Height.Bottom}" /> -->
+				<!-- </Grid.RowDefinitions> -->
 
 				<!--#region >> Field.Ed.Btns-->
+
 
 				<Button Content="Save X"
 						Grid.Row="{StaticResource Row.Field.Ed.Btn}"
@@ -1128,8 +1140,10 @@
 						IsEnabled="{Binding Path=HasRevisionX, Mode=OneWay}"
 						Style="{StaticResource Field.Ed.Button.Normal}"
 						Template="{StaticResource Button.Normal.ControlTemplate}"
-						Command="{Binding Source={StaticResource cps }, Path=ClickCommand}"
 						/>
+
+				<!--  Command="{Binding Source={StaticResource cps }, Path=ClickCommand}"  -->
+
 
 				<Button Name="btnRestoreX" Content="Restore X"
 						Grid.Row="{StaticResource Row.Field.Ed.Btn}"
@@ -1219,11 +1233,11 @@
 						Grid.ColumnSpan="3"
 						Margin="4,0,0,2"
 						HorizontalAlignment="Left"
-						Text="{Binding Path=ErrorMsg, ElementName=ctrlPts, Mode=OneWay}"
+						Text="{Binding Path=ErrorMsg, Mode=OneWay}"
 						/>
 				<!--#endregion-->
 
-			</Grid>
+			</UniformGrid>
 		</Border>
 	</ControlTemplate>
 
@@ -1389,8 +1403,16 @@
 				<!--#region >> ScrollViewer w/ start point-->
 
 				<!--  present the list box values  -->
-				<ScrollViewer VerticalScrollBarVisibility="Visible">
-					<Grid>
+				<ScrollViewer VerticalScrollBarVisibility="Visible"
+						HorizontalContentAlignment="Stretch"
+						HorizontalAlignment="Stretch"
+						Name="ScrollViewer"
+						Padding="0,0,0,0"
+						>
+					<Grid Margin="2,0,-3,0"
+							MaxWidth="{Binding ElementName=ScrollViewer, Path=ViewportWidth}"
+							>
+
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
 							<RowDefinition Height="*" />
@@ -1464,7 +1486,7 @@
 				BorderThickness="0,0,0,9"
 				BorderBrush="{DynamicResource Brush.Bdr.Shadow}"
 				>
-			<Grid Margin="2,0,0,0">
+			<Grid Margin="0,0,0,0">
 				<Grid.ColumnDefinitions>
 					<!--  0  -->
 					<ColumnDefinition Width="*" />
@@ -1506,12 +1528,12 @@
 				/>
 		<DataTemplate.Triggers>
 			<DataTrigger Binding="{Binding IsBeingEdited, UpdateSourceTrigger=PropertyChanged}"
-					Value="true"
+					Value="false"
 					>
 				<Setter TargetName="contentPresenter" Property="ContentTemplate" Value="{DynamicResource ListBox.Item.Selected.Edit}" />
 			</DataTrigger>
 			<DataTrigger Binding="{Binding IsBeingEdited, UpdateSourceTrigger=PropertyChanged}"
-					Value="false"
+					Value="true"
 					>
 				<Setter TargetName="contentPresenter" Property="ContentTemplate" Value="{DynamicResource ListBox.Item.Selected.Normal}" />
 			</DataTrigger>

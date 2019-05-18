@@ -260,7 +260,6 @@
 			BasedOn="{StaticResource Control.Normal.Style}"
 			TargetType="Button"
 			>
-
 	</Style>
 	<!-- <Setter Property="Background" Value="{StaticResource Normal.Disabled.Background}" /> -->
 	<!--  listbox item container style  -->
@@ -352,6 +351,7 @@
 						Focusable="False" RecognizesAccessKey="True"
 						SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
 						/>
+				<!-- HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" -->
 			</Border>
 		</Border>
 		<ControlTemplate.Triggers>
