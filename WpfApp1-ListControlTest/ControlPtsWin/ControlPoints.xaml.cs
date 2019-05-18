@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
+using Microsoft.Expression.Interactivity.Core;
 using WpfApp1_ListControlTest.ControlPtsData;
 using static WpfApp1_ListControlTest.MainWindow;
 
@@ -39,14 +41,88 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 		public ObservableCollection<ControlPts> Sx { get; set; } 
 			= new ObservableCollection<ControlPts>();
 
+		public ControlPointsResources cpr { get; set; }
+
+		private bool _canExecute;
+
 		public ControlPoints()
 		{
 			InitializeComponent();
 
+			_canExecute = true;
+
+			MainWindow.Cps = this;
+
+			if (MainWindow.Cpr != null)
+			{
+				cpr = MainWindow.Cpr;
+
+				cpr.BtnRestoreXClick += CommandClickHandler2;
+				cpr.XYZ_OnError += ValidationOnErrorHandler2;
+
+			}
+
+			this.AddHandler(Button.ClickEvent, new RoutedEventHandler(CommandClickHandler1));
+
+			System.Windows.Controls.Validation.AddErrorHandler(this, new EventHandler<ValidationErrorEventArgs>(ValidationOnErrorHandler1));
 #if DEBUG
 			LoadData();
 #endif
 		}
+
+		private ICommand _clickCommand;
+
+		public ICommand ClickCommand => _clickCommand ?? (_clickCommand = new CommandHandler(MyAction, _canExecute));
+
+		public void MyAction()
+		{
+			MessageBox.Show("my action");
+		}
+
+		public class CommandHandler : ICommand
+		{
+			private Action _action;
+			private bool _canExecute;
+			public CommandHandler(Action action, bool canExecute)
+			{
+				_action = action;
+				_canExecute = canExecute;
+			}
+
+			public bool CanExecute(object parameter)
+			{
+				return _canExecute;
+			}
+
+			public event EventHandler CanExecuteChanged;
+
+			public void Execute(object parameter)
+			{
+				_action();
+			}
+		}
+
+
+		private void ValidationOnErrorHandler1(object sender, ValidationErrorEventArgs e)
+		{
+			MessageBox.Show("bubble validation message");
+		}
+		
+		private void ValidationOnErrorHandler2(object sender, ValidationErrorEventArgs e)
+		{
+			MessageBox.Show("indirect validation message");
+		}
+
+		private void CommandClickHandler1(object sender, RoutedEventArgs e)
+		{
+			MessageBox.Show("bubble button click event message");
+		}
+
+		private void CommandClickHandler2(object sender, RoutedEventArgs e)
+		{
+			MessageBox.Show("indirect button click event message");
+		}
+
 
 		private void BtnDone_Click(object sender, RoutedEventArgs e)
 		{

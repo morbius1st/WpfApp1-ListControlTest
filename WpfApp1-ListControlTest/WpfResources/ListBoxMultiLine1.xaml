@@ -1,9 +1,9 @@
 ﻿<ResourceDictionary x:Class="WpfApp1_ListControlTest.WpfResources.ListBoxMultiLine1"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:local="clr-namespace:WpfApp1_ListControlTest"
-	xmlns:validation="clr-namespace:WpfApp1_ListControlTest.Validation"
-	>
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:local="clr-namespace:WpfApp1_ListControlTest"
+		xmlns:validation="clr-namespace:WpfApp1_ListControlTest.Validation"
+		>
 
 
 	<!--#region +Colors-->
@@ -11,28 +11,28 @@
 	<Color x:Key="borderColor">#FF777777</Color>
 
 	<SolidColorBrush x:Key="bdrColor"
-		Color="{StaticResource borderColor}"
-		/>
+			Color="{StaticResource borderColor}"
+			/>
 
 	<SolidColorBrush x:Key="hdrUsedBkg"
-		Color="#FF444444"
-		/>
+			Color="#FF444444"
+			/>
 
 	<SolidColorBrush x:Key="hdrUnusedBkg"
-		Color="#FF282828"
-		/>
+			Color="#FF282828"
+			/>
 
 	<SolidColorBrush x:Key="detailUnusedBkg"
-		Color="#FF888888"
-		/>
+			Color="#FF888888"
+			/>
 
 	<SolidColorBrush x:Key="controlBkg"
-		Color="{StaticResource ctrlBkg}"
-		/>
+			Color="{StaticResource ctrlBkg}"
+			/>
 
 	<SolidColorBrush x:Key="dockpnlBkg"
-		Color="LightGray"
-		/>
+			Color="LightGray"
+			/>
 
 	<LinearGradientBrush x:Key="shadow" StartPoint="0.5,0" EndPoint="0.5,1">
 		<GradientStop Offset="0.87" Color="Black" />
@@ -42,8 +42,8 @@
 	<!--#endregion-->
 
 	<Style x:Key="groupBoxColoredSides"
-		TargetType="{x:Type GroupBox}"
-		>
+			TargetType="{x:Type GroupBox}"
+			>
 		<Setter Property="BorderBrush" Value="Transparent" />
 		<Setter Property="BorderThickness" Value="1" />
 		<Setter Property="Template">
@@ -62,35 +62,35 @@
 
 						</Grid.RowDefinitions>
 						<Border Grid.Row="0"
-							Grid.RowSpan="3"
-							Grid.Column="0"
-							BorderThickness="1,0,0,0"
-							BorderBrush="{StaticResource controlBkg}"
-							/>
+								Grid.RowSpan="3"
+								Grid.Column="0"
+								BorderThickness="1,0,0,0"
+								BorderBrush="{StaticResource controlBkg}"
+								/>
 						<Border Grid.Row="0"
-							Grid.Column="0"
-							Grid.ColumnSpan="3"
-							BorderThickness="0,1,0,0"
-							BorderBrush="{StaticResource controlBkg}"
-							/>
+								Grid.Column="0"
+								Grid.ColumnSpan="3"
+								BorderThickness="0,1,0,0"
+								BorderBrush="{StaticResource controlBkg}"
+								/>
 
 						<Border Grid.Row="0"
-							Grid.RowSpan="3"
-							Grid.Column="2"
-							BorderThickness="0,0,1,0"
-							BorderBrush="{StaticResource controlBkg}"
-							/>
+								Grid.RowSpan="3"
+								Grid.Column="2"
+								BorderThickness="0,0,1,0"
+								BorderBrush="{StaticResource controlBkg}"
+								/>
 
 						<Border Grid.Row="2"
-							Grid.Column="0"
-							Grid.ColumnSpan="3"
-							BorderThickness="0,0,0,1"
-							BorderBrush="{StaticResource bdrColor}"
-							/>
+								Grid.Column="0"
+								Grid.ColumnSpan="3"
+								BorderThickness="0,0,0,1"
+								BorderBrush="{StaticResource bdrColor}"
+								/>
 
 						<ContentPresenter Grid.Row="1"
-							Grid.Column="1"
-							/>
+								Grid.Column="1"
+								/>
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
@@ -104,58 +104,58 @@
 
 
 	<Style x:Key="tbkDetail"
-		TargetType="{x:Type TextBlock}"
-		>
-		<Setter Property="VerticalAlignment" Value="Center" />
-		<Setter Property="Padding" Value="4,2,2,5" />
+			TargetType="{x:Type TextBlock}"
+			>
 		<Setter Property="HorizontalAlignment" Value="Center" />
+		<Setter Property="Padding" Value="4,2,2,5" />
+		<Setter Property="VerticalAlignment" Value="Center" />
 	</Style>
 
 	<Style x:Key="tbxDetail"
-		TargetType="{x:Type TextBox}"
-		>
+			TargetType="{x:Type TextBox}"
+			>
 		<Setter Property="BorderThickness" Value="0,0,0,0" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
 		<Setter Property="VerticalAlignment" Value="Stretch" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />
-		<Setter Property="HorizontalContentAlignment" Value="Center" />
 	</Style>
 
 	<Style x:Key="lblHeader"
-		TargetType="{x:Type Label}"
-		>
+			TargetType="{x:Type Label}"
+			>
 		<Setter Property="Foreground" Value="White" />
-		<Setter Property="VerticalAlignment" Value="Center" />
-		<Setter Property="Padding" Value="8,0,0,2" />
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="8,0,0,2" />
+		<Setter Property="VerticalAlignment" Value="Center" />
 	</Style>
 
 	<Style x:Key="bdrHeaderTop"
-		TargetType="Border"
-		>
+			TargetType="Border"
+			>
 		<Setter Property="BorderBrush" Value="{StaticResource bdrColor}" />
 		<Setter Property="BorderThickness" Value="0,0,1,1" />
 		<Setter Property="Margin" Value="0" />
 	</Style>
 
 	<Style x:Key="bdrHeaderBottom"
-		TargetType="Border"
-		>
+			TargetType="Border"
+			>
 		<Setter Property="BorderBrush" Value="{StaticResource bdrColor}" />
 		<Setter Property="BorderThickness" Value="0,0,1,0" />
 		<Setter Property="Margin" Value="0" />
 	</Style>
 
 	<Style x:Key="bdrDetailTop"
-		TargetType="Border"
-		>
+			TargetType="Border"
+			>
 		<Setter Property="BorderBrush" Value="{StaticResource bdrColor}" />
 		<Setter Property="BorderThickness" Value="0,0,1,1" />
 		<Setter Property="Margin" Value="0" />
 	</Style>
 
 	<Style x:Key="bdrDetailBottom"
-		TargetType="Border"
-		>
+			TargetType="Border"
+			>
 		<Setter Property="BorderBrush" Value="{StaticResource bdrColor}" />
 		<Setter Property="BorderThickness" Value="1,0,0,0" />
 		<Setter Property="Margin" Value="0" />
@@ -168,24 +168,24 @@
 
 	<ControlTemplate x:Key="headerControlTemplate">
 		<Border Margin="0,0,0,0"
-			BorderThickness="0"
-			>
-
-			<DockPanel LastChildFill="True"
-				Background="{StaticResource dockpnlBkg}"
+				BorderThickness="0"
 				>
 
-				<Border Height="47"
-					Margin="0,0,0,-2"
-					VerticalAlignment="Top"
-					DockPanel.Dock="Top"
-					BorderThickness="0,0,0,6"
-					BorderBrush="{StaticResource shadow}"
+			<DockPanel LastChildFill="True"
+					Background="{StaticResource dockpnlBkg}"
 					>
-					<Grid Margin="0,0,0,-1"
+
+				<Border Height="47"
+						Margin="0,0,0,-2"
+						VerticalAlignment="Top"
 						DockPanel.Dock="Top"
-						Background="{StaticResource hdrUsedBkg}"
+						BorderThickness="0,0,0,6"
+						BorderBrush="{StaticResource shadow}"
 						>
+					<Grid Margin="0,0,0,-1"
+							DockPanel.Dock="Top"
+							Background="{StaticResource hdrUsedBkg}"
+							>
 						<Grid.ColumnDefinitions>
 							<!--  0  -->
 							<ColumnDefinition Width="100" />
@@ -211,68 +211,68 @@
 							<RowDefinition Height="20" />
 						</Grid.RowDefinitions>
 						<Border Grid.Row="0"
-							Grid.Column="0"
-							Grid.ColumnSpan="2"
-							Style="{StaticResource bdrHeaderTop}"
-							>
+								Grid.Column="0"
+								Grid.ColumnSpan="2"
+								Style="{StaticResource bdrHeaderTop}"
+								>
 							<Label Content="First"
-								Style="{StaticResource lblHeader}"
-								/>
+									Style="{StaticResource lblHeader}"
+									/>
 						</Border>
 						<Border Grid.Row="0"
-							Grid.Column="2"
-							Grid.ColumnSpan="2"
-							Style="{StaticResource bdrHeaderTop}"
-							>
+								Grid.Column="2"
+								Grid.ColumnSpan="2"
+								Style="{StaticResource bdrHeaderTop}"
+								>
 							<Label Content="Second"
-								Style="{StaticResource lblHeader}"
-								/>
+									Style="{StaticResource lblHeader}"
+									/>
 						</Border>
 						<Border Grid.Row="0"
-							Grid.Column="4"
-							Grid.ColumnSpan="5"
-							Style="{StaticResource bdrHeaderTop}"
-							>
+								Grid.Column="4"
+								Grid.ColumnSpan="5"
+								Style="{StaticResource bdrHeaderTop}"
+								>
 							<Label Content="Third"
-								Style="{StaticResource lblHeader}"
-								/>
+									Style="{StaticResource lblHeader}"
+									/>
 						</Border>
 
 						<Border Grid.Row="1"
-							Grid.Column="0"
-							Background="{StaticResource hdrUnusedBkg}"
-							BorderThickness="0,0,0,0"
-							/>
+								Grid.Column="0"
+								Background="{StaticResource hdrUnusedBkg}"
+								BorderThickness="0,0,0,0"
+								/>
 
 						<Border Grid.Row="1"
-							Grid.Column="1"
-							Grid.ColumnSpan="2"
-							BorderThickness="1,0,0,0"
-							Style="{StaticResource bdrHeaderBottom}"
-							>
+								Grid.Column="1"
+								Grid.ColumnSpan="2"
+								BorderThickness="1,0,0,0"
+								Style="{StaticResource bdrHeaderBottom}"
+								>
 							<Label Content="Fourth"
-								Style="{StaticResource lblHeader}"
-								/>
+									Style="{StaticResource lblHeader}"
+									/>
 						</Border>
 
 						<Border Grid.Row="1"
-							Grid.Column="3"
-							Grid.ColumnSpan="2"
-							BorderThickness="1,0,0,0"
-							Style="{StaticResource bdrHeaderBottom}"
-							>
+								Grid.Column="3"
+								Grid.ColumnSpan="2"
+								BorderThickness="1,0,0,0"
+								Style="{StaticResource bdrHeaderBottom}"
+								>
 							<Label Content="Fifth"
-								Style="{StaticResource lblHeader}"
-								/>
+									Style="{StaticResource lblHeader}"
+									/>
 						</Border>
 
 						<Border Grid.Row="1"
-							Grid.Column="5"
-							Grid.ColumnSpan="4"
-							Background="{StaticResource hdrUnusedBkg}"
-							BorderThickness="1,0,0,0"
-							Style="{StaticResource bdrHeaderBottom}"
-							/>
+								Grid.Column="5"
+								Grid.ColumnSpan="4"
+								Background="{StaticResource hdrUnusedBkg}"
+								BorderThickness="1,0,0,0"
+								Style="{StaticResource bdrHeaderBottom}"
+								/>
 
 					</Grid>
 
@@ -290,8 +290,8 @@
 	<!--#region +Detail Data Template-->
 	<DataTemplate x:Key="detailDataTemplate">
 		<Border BorderThickness="0,0,0,5"
-			BorderBrush="{DynamicResource shadow}"
-			>
+				BorderBrush="{DynamicResource shadow}"
+				>
 			<Grid Margin="2,-4,0,0">
 
 				<Grid.ColumnDefinitions>
@@ -322,19 +322,19 @@
 				<!--#region +Top Detail Row-->
 				<!--  Style="{StaticResource bdrDetailTop}"  -->
 				<Grid Grid.Row="0"
-					Grid.Column="0"
-					Grid.ColumnSpan="2"
-					>
+						Grid.Column="0"
+						Grid.ColumnSpan="2"
+						>
 					<GroupBox Style="{StaticResource groupBoxColoredSides}">
 						<TextBox x:Name="tbxFirst"
-							Validation.Error="TbxFirst_OnError"
-							BorderThickness="0"
-							Style="{DynamicResource tbxDetail}"
-							>
+								Validation.Error="TbxFirst_OnError"
+								BorderThickness="0"
+								Style="{DynamicResource tbxDetail}"
+								>
 							<TextBox.Text>
 								<Binding NotifyOnValidationError="True"
-									Path="SheetNumber"
-									>
+										Path="SheetNumber"
+										>
 									<Binding.ValidationRules>
 										<validation:TbxValueValidationRule ValidationStep="RawProposedValue" />
 									</Binding.ValidationRules>
@@ -345,25 +345,25 @@
 
 				</Grid>
 				<Border Grid.Row="0"
-					Grid.Column="2"
-					Grid.ColumnSpan="2"
-					>
+						Grid.Column="2"
+						Grid.ColumnSpan="2"
+						>
 					<GroupBox Style="{StaticResource groupBoxColoredSides}">
 						<TextBox x:Name="TbxSecond"
-							Text="{Binding SheetName}"
-							BorderThickness="0"
-							/>
+								Text="{Binding SheetName}"
+								BorderThickness="0"
+								/>
 					</GroupBox>
 				</Border>
 				<Border Grid.Row="0"
-					Grid.Column="4"
-					Grid.ColumnSpan="5"
-					>
+						Grid.Column="4"
+						Grid.ColumnSpan="5"
+						>
 					<GroupBox Style="{StaticResource groupBoxColoredSides}">
 						<TextBox x:Name="tbxThird"
-							Text="{Binding SheetData}"
-							BorderThickness="0"
-							/>
+								Text="{Binding SheetData}"
+								BorderThickness="0"
+								/>
 					</GroupBox>
 				</Border>
 
@@ -372,34 +372,34 @@
 				<!--#region +Bottom detail Row-->
 
 				<Border Grid.Row="1"
-					Grid.Column="0"
-					Background="{StaticResource detailUnusedBkg}"
-					Style="{StaticResource bdrDetailBottom}"
-					/>
+						Grid.Column="0"
+						Background="{StaticResource detailUnusedBkg}"
+						Style="{StaticResource bdrDetailBottom}"
+						/>
 				<Border Grid.Row="1"
-					Grid.Column="1"
-					Grid.ColumnSpan="2"
-					Style="{StaticResource bdrDetailBottom}"
-					>
+						Grid.Column="1"
+						Grid.ColumnSpan="2"
+						Style="{StaticResource bdrDetailBottom}"
+						>
 					<TextBlock Text="{Binding SheetInfo}"
-						Style="{DynamicResource tbkDetail}"
-						/>
+							Style="{DynamicResource tbkDetail}"
+							/>
 				</Border>
 				<Border Grid.Row="1"
-					Grid.Column="3"
-					Grid.ColumnSpan="2"
-					Style="{StaticResource bdrDetailBottom}"
-					>
+						Grid.Column="3"
+						Grid.ColumnSpan="2"
+						Style="{StaticResource bdrDetailBottom}"
+						>
 					<TextBlock Text="{Binding SheetInfo2}"
-						Style="{DynamicResource tbkDetail}"
-						/>
+							Style="{DynamicResource tbkDetail}"
+							/>
 				</Border>
 				<Border Grid.Row="1"
-					Grid.Column="5"
-					Grid.ColumnSpan="4"
-					Background="{StaticResource detailUnusedBkg}"
-					Style="{StaticResource bdrDetailBottom}"
-					/>
+						Grid.Column="5"
+						Grid.ColumnSpan="4"
+						Background="{StaticResource detailUnusedBkg}"
+						Style="{StaticResource bdrDetailBottom}"
+						/>
 
 				<!--#endregion-->
 

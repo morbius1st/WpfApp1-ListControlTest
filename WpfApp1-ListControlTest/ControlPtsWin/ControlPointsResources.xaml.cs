@@ -19,18 +19,49 @@ using System.Windows.Controls;
 
 namespace WpfApp1_ListControlTest.ControlPtsWin
 {
+	public delegate void Cpw_OnError(object source, ValidationErrorEventArgs e);
+
+	public delegate void Cpw_BtnClick(object source, RoutedEventArgs e);
+
+
 	public partial class ControlPointsResources
 	{
 
-		private void TbxXYZ_OnError(object sender, ValidationErrorEventArgs e)
+		public string test = "this is a test";
+
+		public ControlPointsResources()
 		{
-			MainWindow.Cps.TbxXYZ_OnError(sender, e);
+			MainWindow.Cpr = this;
+
+			if (MainWindow.Cps != null)
+			{
+				MainWindow.Cps.cpr = this;
+			}
 		}
 
-		private void TbxSlope_OnError(object sender, ValidationErrorEventArgs e)
+		public event Cpw_BtnClick BtnRestoreXClick;
+
+		public void BtnRestoreX_Click(object sender, RoutedEventArgs e)
 		{
-			MainWindow.Cps.TbxSlope_OnError(sender, e);
+			BtnRestoreXClick?.Invoke(sender, e);
+
+
+
 		}
+
+		public event Cpw_OnError XYZ_OnError;
+
+		public void TbxXYZ_OnError(object sender, ValidationErrorEventArgs e)
+		{
+			XYZ_OnError?.Invoke(sender, e);
+		}
+
+		//		private void TbxSlope_OnError(object sender, ValidationErrorEventArgs e)
+		//		{
+		////			MainWindow.Cps.TbxSlope_OnError(sender, e);
+		//		}
+
+
 
 	}
 }

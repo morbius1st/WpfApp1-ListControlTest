@@ -17,6 +17,8 @@ namespace WpfApp1_ListControlTest
 		internal static SurfacePoints Sp { get; private set; } = new SurfacePoints();
 		internal static ControlPoints Cps { get; set; } = new ControlPoints();
 
+		internal static ControlPointsResources Cpr { get; set; }
+
 		public static string nl = Environment.NewLine;
 
 		public static bool loaded = false;

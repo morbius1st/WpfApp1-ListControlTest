@@ -259,7 +259,9 @@
 	<Style x:Key="Button.Normal.Style"
 			BasedOn="{StaticResource Control.Normal.Style}"
 			TargetType="Button"
-			/>
+			>
+
+	</Style>
 	<!-- <Setter Property="Background" Value="{StaticResource Normal.Disabled.Background}" /> -->
 	<!--  listbox item container style  -->
 	<Style x:Key="ListBox.Normal.ItemContainer"
@@ -326,21 +328,23 @@
 
 	<ControlTemplate x:Key="Button.Normal.ControlTemplate"
 			TargetType="Button"
+			
 			>
 		<Border x:Name="border"
 				SnapsToDevicePixels="True"
 				Background="{TemplateBinding Background}"
 				BorderThickness="{TemplateBinding BorderThickness}"
 				BorderBrush="{TemplateBinding BorderBrush}"
+				
 				>
 			<Border x:Name="bdr1"
 					Margin="0"
+					
 					BorderThickness="{StaticResource Normal.Default.BorderThickness.Inner}"
 					BorderBrush="Transparent"
 					>
 
 				<ContentPresenter x:Name="contentPresenter" Content="{TemplateBinding Content}"
-						Margin="{TemplateBinding Margin}"
 						HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 						VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
 						ContentStringFormat="{TemplateBinding ContentStringFormat}"
