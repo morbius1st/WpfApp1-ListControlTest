@@ -16,7 +16,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 	/// <summary>
 	/// Interaction logic for ControlPoints.xaml
 	/// </summary>
-	public partial class ControlPoints : Window //, INotifyPropertyChanged
+	public partial class ControlPoints : Window, INotifyPropertyChanged
 	{
 		public string WinTitle { get; set; } = "Control Points";
 
@@ -53,8 +53,8 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 
 			_canExecute = true;
 
-// this is the future event handling configuration - turned off for now
-
+// this is the future event handling configuration
+// create handler via static copy of class in main app class
 			MainWindow.Cps = this;
 
 			if (MainWindow.Cpr != null)
@@ -65,9 +65,9 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 				cpr.XYZ_OnError += ValidationOnErrorHandler2;
 
 			}
-
+// add an event handler
 			this.AddHandler(Button.ClickEvent, new RoutedEventHandler(CommandClickHandler1));
-
+// add a validation handler
 			System.Windows.Controls.Validation.AddErrorHandler(this, new EventHandler<ValidationErrorEventArgs>(ValidationOnErrorHandler1));
 
 
@@ -76,20 +76,21 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 #endif
 		}
 
+// setup command / event handler
 		private ICommand _clickCommand;
 
-		public ICommand ClickCommand => _clickCommand ?? (_clickCommand = new CommandHandler(MyAction, _canExecute));
+		public ICommand ClickCommand => _clickCommand ?? (_clickCommand = new CommandHandler(param => MyAction(param), _canExecute));
 
-		public void MyAction()
+		public void MyAction(object param)
 		{
-			MessageBox.Show("my action");
+			MessageBox.Show("my action| who|" + (string) param);
 		}
 
 		public class CommandHandler : ICommand
 		{
-			private Action _action;
+			private Action<object> _action;
 			private bool _canExecute;
-			public CommandHandler(Action action, bool canExecute)
+			public CommandHandler(Action<object> action, bool canExecute)
 			{
 				_action = action;
 				_canExecute = canExecute;
@@ -100,13 +101,16 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 				return _canExecute;
 			}
 
+#pragma warning disable CS0067 // The event 'ControlPoints.CommandHandler.CanExecuteChanged' is never used
 			public event EventHandler CanExecuteChanged;
+#pragma warning restore CS0067 // The event 'ControlPoints.CommandHandler.CanExecuteChanged' is never used
 
 			public void Execute(object parameter)
 			{
-				_action();
+				_action(parameter);
 			}
 		}
+// end of command handler
 
 
 		private void ValidationOnErrorHandler1(object sender, ValidationErrorEventArgs e)

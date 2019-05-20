@@ -77,14 +77,15 @@
     <Compile Include="ControlPtsData\ControlPts.cs" />
     <Compile Include="ControlPtsWin\ControlPointConverters.cs" />
     <Compile Include="ControlPtsWin\ControlPoints.xaml.cs">
-      <DependentUpon>"ControlPtsWin\ControlPoints.xaml"</DependentUpon>
-    </Compile>
-    <Compile Include="ControlPtsWin\ControlPointsResources.xaml.cs">
-      <DependentUpon>"ControlPtsWin\ControlPointsResources.xaml"</DependentUpon>
+      <DependentUpon>ControlPoints.xaml</DependentUpon>
     </Compile>
     <Compile Include="ControlPtsWin\ControlPointsConsts.cs" />
+    <Compile Include="ControlPtsWin\ControlPointsResources.xaml.cs">
+      <DependentUpon>ControlPointsResources.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ControlPtsWin\ControlPointsVm.cs" />
     <Compile Include="ControlPtsWin\ControlPointValidation.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ListBoxWithXHeaderAndFooter.xaml.cs">
       <DependentUpon>ListBoxWithXHeaderAndFooter.xaml</DependentUpon>
     </Compile>
@@ -105,6 +106,14 @@
     <Compile Include="Validation\ValidationRule.cs" />
     <Compile Include="ValueConverters.cs" />
     <Compile Include="WpfResources\ListBoxMultiLine1.cs" />
+    <Page Include="ControlPtsWin\ControlPoints.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="ControlPtsWin\ControlPointsResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="ListBoxWithXHeaderAndFooter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,14 +151,6 @@
       <SubType>Designer</SubType>
     </DesignData>
     <Page Include="SampleData\SampleCollectionSampleDataB.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ControlPtsWin\ControlPoints.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ControlPtsWin\ControlPointsResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

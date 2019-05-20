@@ -211,7 +211,7 @@
 				Background="{StaticResource Normal.Background}"
 				Foreground="{StaticResource Normal.Foreground}"
 				BorderThickness="{StaticResource Normal.BorderThickness}"
-				BorderBrush="{StaticResource Normal.BorderBrush}"
+				BorderBrush="{StaticResource Normal.Border}"
 				/>
 
 		<Button Content="Mouse over"

@@ -1,7 +1,7 @@
-﻿<ResourceDictionary
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:local="clr-namespace:WpfApp1_ListControlTest.WpfResources">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:local="clr-namespace:WpfApp1_ListControlTest.WpfResources"
+		>
 
 	<!--  Primary Colors color range  -->
 	<Color x:Key="true.white">#FFFFFF</Color>
@@ -210,19 +210,32 @@
 	<Color x:Key="dark.blue.100">#0F2637</Color>
 
 	<!--  blue color range  -->
-	<Color x:Key="blue.950">#F9FCFF</Color>
-	<Color x:Key="blue.900">#EBF6FE</Color>
-	<Color x:Key="blue.800">#CEE8FC</Color>
-	<Color x:Key="blue.700">#A0D2FA</Color>
-	<Color x:Key="blue.600">#6BB9F7</Color>
-	<Color x:Key="blue.500">#3CA3F4</Color>
+	<Color x:Key="blue.970">#F4FAFE</Color>
+	<Color x:Key="blue.950">#EFF7FE</Color>
+	<Color x:Key="blue.900">#E7F4FE</Color>
+	<Color x:Key="blue.850">#DDEFFD</Color>
+	<Color x:Key="blue.820">#D1E9FC</Color>
+	<Color x:Key="blue.800">#C3E2FB</Color>
+	<Color x:Key="blue.760">#B1DAFA</Color>
+	<Color x:Key="blue.730">#9DD0F9</Color>
+	<Color x:Key="blue.700">#86C5F8</Color>
+	<Color x:Key="blue.650">#6DB9F7</Color>
+	<Color x:Key="blue.600">#55AEF6</Color>
+	<Color x:Key="blue.550">#3FA4F5</Color>
+	<Color x:Key="blue.500">#2D9CF4</Color>
 	<Color x:Key="blue.450">#2196F3</Color>
-	<Color x:Key="blue.400">#1E8AE0</Color>
-	<Color x:Key="blue.300">#1A79C5</Color>
-	<Color x:Key="blue.200">#1666A5</Color>
-	<Color x:Key="blue.100">#125284</Color>
-	<Color x:Key="blue.050">#0E3E64</Color>
-	<Color x:Key="blue.010">#0A2D48</Color>
+	<Color x:Key="blue.440">#1F8CE2</Color>
+	<Color x:Key="blue.400">#1D81D0</Color>
+	<Color x:Key="blue.350">#1A75BC</Color>
+	<Color x:Key="blue.300">#1768A7</Color>
+	<Color x:Key="blue.250">#145B92</Color>
+	<Color x:Key="blue.220">#114F7E</Color>
+	<Color x:Key="blue.200">#0F446C</Color>
+	<Color x:Key="blue.150">#0D395B</Color>
+	<Color x:Key="blue.100">#0B2F4C</Color>
+	<Color x:Key="blue.050">#09263E</Color>
+	<Color x:Key="blue.010">#071F32</Color>
+
 
 	<Color x:Key="blue.a600">#82B1FF</Color>
 	<Color x:Key="blue.a450">#448AFF</Color>
@@ -230,19 +243,31 @@
 	<Color x:Key="blue.a300">#3770CF</Color>
 
 	<!--  light.blue color range  -->
-	<Color x:Key="light.blue.950">#F9FDFF</Color>
-	<Color x:Key="light.blue.900">#E9F7FE</Color>
-	<Color x:Key="light.blue.800">#C7ECFC</Color>
-	<Color x:Key="light.blue.700">#93DAFA</Color>
-	<Color x:Key="light.blue.600">#56C5F7</Color>
-	<Color x:Key="light.blue.500">#21B3F5</Color>
-	<Color x:Key="light.blue.450">#03A9F4</Color>
-	<Color x:Key="light.blue.400">#039BE0</Color>
-	<Color x:Key="light.blue.300">#0388C5</Color>
-	<Color x:Key="light.blue.200">#0372A5</Color>
-	<Color x:Key="light.blue.100">#025B84</Color>
-	<Color x:Key="light.blue.050">#024564</Color>
-	<Color x:Key="light.blue.010">#013248</Color>
+	<Color x:Key="light.blue.970">#F2FBFE</Color>
+	<Color x:Key="light.blue.950">#ECF9FE</Color>
+	<Color x:Key="light.blue.900">#E3F6FE</Color>
+	<Color x:Key="light.blue.850">#D8F2FD</Color>
+	<Color x:Key="light.blue.820">#CBEEFC</Color>
+	<Color x:Key="light.blue.800">#BAE8FB</Color>
+	<Color x:Key="light.blue.760">#A6E1FA</Color>
+	<Color x:Key="light.blue.730">#8FD9F9</Color>
+	<Color x:Key="light.blue.700">#75D0F8</Color>
+	<Color x:Key="light.blue.650">#59C6F7</Color>
+	<Color x:Key="light.blue.600">#3EBDF6</Color>
+	<Color x:Key="light.blue.550">#25B5F5</Color>
+	<Color x:Key="light.blue.500">#11AEF4</Color>
+	<Color x:Key="light.blue.450">#03A9F3</Color>
+	<Color x:Key="light.blue.440">#039EE2</Color>
+	<Color x:Key="light.blue.400">#0391D0</Color>
+	<Color x:Key="light.blue.350">#0383BC</Color>
+	<Color x:Key="light.blue.300">#0375A7</Color>
+	<Color x:Key="light.blue.250">#036692</Color>
+	<Color x:Key="light.blue.220">#03587E</Color>
+	<Color x:Key="light.blue.200">#034C6C</Color>
+	<Color x:Key="light.blue.150">#03405B</Color>
+	<Color x:Key="light.blue.100">#02354C</Color>
+	<Color x:Key="light.blue.050">#022B3E</Color>
+	<Color x:Key="light.blue.010">#022332</Color>
 
 	<Color x:Key="light.blue.a500">#57CBFF</Color>
 	<Color x:Key="light.blue.a450">#40C4FF</Color>
