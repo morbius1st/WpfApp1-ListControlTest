@@ -100,6 +100,8 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 		public int Index { get; set; } = -1;
 
+		public bool ControlPoint { get; private set; } = false;
+
 		public double X
 		{
 			get => point.X;

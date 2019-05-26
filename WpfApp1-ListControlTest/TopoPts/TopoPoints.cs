@@ -104,6 +104,8 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 	#region >> Methods - Done
 
+		public int EndPointIdx => Items.Count - 1;
+
 		public TopoPoint StartPoint => _startPoint;
 
 		public TopoPoint EndPoint => _endPoint;

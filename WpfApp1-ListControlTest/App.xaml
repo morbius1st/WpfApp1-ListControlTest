@@ -11,6 +11,9 @@
 				<ResourceDictionary Source="WpfResources\VisualStates.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 			<DependencyProperty x:Key="DependencyProperty1">Button.IsDefault</DependencyProperty>
+			<!-- <ItemsPanelTemplate x:Key="LbxItemsPanel"> -->
+			<!--     <VirtualizingStackPanel IsItemsHost="True"/> -->
+			<!-- </ItemsPanelTemplate> -->
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>
