@@ -3,8 +3,8 @@
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:local="clr-namespace:WpfApp1_ListControlTest.ControlPtsWin"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:parent="clr-namespace:WpfApp1_ListControlTest.ControlPtsWin"
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
 		xmlns:validation="clr-namespace:WpfApp1_ListControlTest.ControlPtsWin"
 		mc:Ignorable="d"
@@ -12,12 +12,10 @@
 
 	<validation:ControlPointXYZConverter x:Key="Converter.Xyz" />
 	<validation:ControlPointSlopeConverter x:Key="Converter.Slope" />
-	<validation:PointTemplateSelector x:Key="Point.TemplateSelector" />
+	<!-- <validation:PointTemplateSelector x:Key="Point.TemplateSelector" /> -->
 
-	<RelativeSource x:Key="cpx"
-			AncestorType="{x:Type parent:ControlPoints}"
-			Mode="FindAncestor"
-			/>
+	<sys:String x:Key="Parent">WinControlPoints</sys:String>
+
 
 	<!--  Values  -->
 
@@ -824,10 +822,12 @@
 					>
 				<GroupBox Style="{StaticResource Field.Pt.Value.Gbx}">
 					<TextBox x:Name="TbxXvalue"
-							Tag="{Binding Path=cpConsts.Xtag, ElementName=WinControlPoints}"
+							Tag="{Binding cpConsts.Xtag, ElementName={StaticResource Parent}}"
 							Validation.Error="TbxXYZ_OnError"
 							Style="{StaticResource Field.Pt.Value.Tbx}"
 							>
+
+
 						<!--  Validation.Error="TbxXYZ_OnError">  -->
 						<!--  SourceUpdated="TbxXYZ_OnSourceUpdated"  -->
 						<TextBox.Text>
@@ -855,11 +855,10 @@
 					>
 				<GroupBox Style="{StaticResource Field.Pt.Value.Gbx}">
 					<TextBox x:Name="TbxYvalue"
-							Tag="{Binding Path=cpConsts.Ytag, ElementName=WinControlPoints}"
+							Tag="{Binding Path=cpConsts.Ytag, ElementName={StaticResource Parent}}"
 							Style="{StaticResource Field.Pt.Value.Tbx}"
 							>
 						<!--  Validation.Error="TbxXYZ_OnError">  -->
-
 						<!--  SourceUpdated="TbxXYZ_OnSourceUpdated"  -->
 						<TextBox.Text>
 							<Binding Converter="{StaticResource Converter.Xyz}"
@@ -886,7 +885,7 @@
 					>
 				<GroupBox Style="{StaticResource Field.Pt.Value.Gbx}">
 					<TextBox x:Name="TbxZvalue"
-							Tag="{Binding Path=cpConsts.Ztag, ElementName=WinControlPoints}"
+							Tag="{Binding Path=cpConsts.Ztag, ElementName={StaticResource Parent}}"
 							Style="{StaticResource Field.Pt.Value.Tbx}"
 							>
 						<!--  Validation.Error="TbxXYZ_OnError">  -->
@@ -917,7 +916,7 @@
 					>
 				<GroupBox Style="{DynamicResource Field.Pt.Value.Gbx}">
 					<TextBox x:Name="TbxSlope"
-							Tag="{Binding Path=cpConsts.Stag, ElementName=WinControlPoints}"
+							Tag="{Binding Path=cpConsts.Stag, ElementName={StaticResource Parent}}"
 							Style="{StaticResource Field.Pt.Value.Tbx}"
 							>
 						<!--  Validation.Error="TbxSlope_OnError">  -->
@@ -1072,7 +1071,7 @@
 						<Button Name="btnSaveX" Content="Save X"
 								Grid.Row="{StaticResource Field.Ed.Btn.Row.Num}"
 								Grid.Column="0"
-								Command="{Binding ClickCommand, Mode=OneWay, RelativeSource={StaticResource cpx}}"
+								Command="{Binding ButtonClickCommand, Mode=OneWay, ElementName={StaticResource Parent}}"
 								CommandParameter="{Binding ElementName=btnSaveX, Path=Name}"
 								IsEnabled="{Binding Path=HasRevisionX, Mode=OneWay}"
 								Style="{StaticResource Field.Ed.Button.Normal}"
@@ -1087,10 +1086,9 @@
 								Grid.Column="1"
 								MaxWidth="70"
 								Margin="6"
-								Command="{Binding ClickCommand, Mode=OneWay, RelativeSource={StaticResource cpx}}"
+								Command="{Binding ButtonClickCommand, Mode=OneWay, ElementName={StaticResource Parent}}"
 								CommandParameter="{Binding ElementName=btnRestoreX, Path=Name}"
 								IsEnabled="{Binding Path=HasRevisionX, Mode=OneWay}"
-								Click="BtnRestoreX_Click"
 								Style="{StaticResource Field.Ed.Button.Normal}"
 								Template="{StaticResource Button.Normal.ControlTemplate}"
 								/>
@@ -1171,7 +1169,7 @@
 								HorizontalAlignment="Stretch"
 								VerticalAlignment="Center"
 								HorizontalContentAlignment="Stretch"
-								Text="{Binding ElementName=WinControlPoints, Path=ErrorMsg, Mode=OneWay}"
+								Text="{Binding Path=ErrorMsg, ElementName={StaticResource Parent}}"
 								/>
 
 

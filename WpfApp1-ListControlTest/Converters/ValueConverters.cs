@@ -1,10 +1,7 @@
 ﻿#region + Using Directives
+
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 #endregion
@@ -16,7 +13,7 @@ using System.Windows.Data;
 // created:  3/24/2019 7:38:20 PM
 
 
-namespace WpfApp1_ListControlTest
+namespace WpfApp1_ListControlTest.Converters
 {
 	[ValueConversion(typeof(string), typeof(string))]
 	public class ValueConverters : IValueConverter

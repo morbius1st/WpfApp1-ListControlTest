@@ -1,4 +1,6 @@
 ﻿#region + Using Directives
+
+using System;
 using System.ComponentModel;
 using System.Diagnostics.Tracing;
 using System.Runtime.CompilerServices;
@@ -18,27 +20,36 @@ using WpfApp1_ListControlTest.ControlPtsWin;
 
 namespace WpfApp1_ListControlTest.ControlPtsData
 {
-
+	// hold the data for a point - x/y/z values - that can be changed / undone
+	// holds the slope from the prior point - that can be changed / undone
+	// and holds the delta between the current point and the prior point
 	public class ControlPts : INotifyPropertyChanged
 	{
 		public static int index = 0;
+
+		public ControlPt _Xcp { get; set; } = new ControlPt();
+		public ControlPt _Ycp { get; set; } = new ControlPt();
+		public ControlPt _Zcp { get; set; } = new ControlPt();
+		public ControlPt _Scp { get; set; } = new ControlPt();
+
+		public double XyValue { get; set; } = 0;
+		public double XyzValue { get; set; } = 0;
+		public double ZDelta { get; set; } = 0;
+
 		public ControlPts()
 		{
 			_Xcp.PropertyChanged += PropertyChangedX;
 			_Ycp.PropertyChanged += PropertyChangedY;
 			_Zcp.PropertyChanged += PropertyChangedZ;
 			_Scp.PropertyChanged += PropertyChangedS;
-
 		}
 
 		private void PropertyChangedX(object sender, PropertyChangedEventArgs e)
 		{
-
 			if (MainWindow.loaded)
 			{
 				MainWindow.Cps.AppendMessage("prop change x");
 				MainWindow.Cps.AppendMessage("index| " + index++);
-
 			}
 			OnPropertyChange("HasRevisionX");
 		}
@@ -232,18 +243,18 @@ namespace WpfApp1_ListControlTest.ControlPtsData
 			Update();
 		}
 
-		public void SetRevisedValue(string which, double value)
-		{
-			MainWindow.Cps.MessageText += "at SetRevisedValue (" + which + ")" + MainWindow.nl;
-			ControlPt cp = SelectCp(which);
-
-			cp.RevisedValue = value;
-			Update(which);
-		}
+//		public void SetRevisedValue(string which, double value)
+//		{
+//			MainWindow.Cps.MessageText += "at SetRevisedValue (" + which + ")" + MainWindow.nl;
+//			ControlPt cp = SelectCp(which);
+//
+//			cp.RevisedValue = value;
+//			Update(which);
+//		}
 
 		public void Undo(string which)
 		{
-			MainWindow.Cps.MessageText += "at undo (" + which + ")" + MainWindow.nl;
+//			MainWindow.Cps.MessageText += "at undo (" + which + ")" + MainWindow.nl;
 
 #pragma warning disable CS0219 // The variable 'cps' is assigned but its value is never used
 			ControlPts cps = null;
@@ -305,14 +316,6 @@ namespace WpfApp1_ListControlTest.ControlPtsData
 //			OnPropertyChange("IsRevisedAndValid");
 		}
 
-		public ControlPt _Xcp { get; set; } = new ControlPt();
-		public ControlPt _Ycp { get; set; } = new ControlPt();
-		public ControlPt _Zcp { get; set; } = new ControlPt();
-		public ControlPt _Scp { get; set; } = new ControlPt();
-
-		public double XyValue { get; set; } = 0;
-		public double XyzValue { get; set; } = 0;
-		public double ZDelta { get; set; } = 0;
 
 		// true when any has revised
 		public bool IsRevised => _Xcp.HasRevision || _Ycp.HasRevision || _Zcp.HasRevision || _Scp.HasRevision;
@@ -325,6 +328,10 @@ namespace WpfApp1_ListControlTest.ControlPtsData
 		}
 	}
 
+	// holds a single point / slope value
+	// maintains an original value and
+	// a proposed, revised value
+	// allows for undo
 	public class ControlPt : INotifyPropertyChanged
 	{
 		private double originalValue;

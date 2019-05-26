@@ -75,6 +75,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ControlPtsData\ControlPts.cs" />
+    <Compile Include="ControlPtsWin\ControlPointCommandHandler.cs" />
     <Compile Include="ControlPtsWin\ControlPointConverters.cs" />
     <Compile Include="ControlPtsWin\ControlPoints.xaml.cs">
       <DependentUpon>ControlPoints.xaml</DependentUpon>
@@ -86,25 +87,21 @@
     <Compile Include="ControlPtsWin\ControlPointsVm.cs" />
     <Compile Include="ControlPtsWin\ControlPointValidation.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="ListBoxWithXHeaderAndFooter.xaml.cs">
+    <Compile Include="ListBoxWithHdrAndFtr\ListBoxWithXHeaderAndFooter.xaml.cs">
       <DependentUpon>ListBoxWithXHeaderAndFooter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MultiLineListBox.xaml.cs">
+    <Compile Include="MultiLineLB\MultiLineListBox.xaml.cs">
       <DependentUpon>MultiLineListBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PointData\PointCollection.cs" />
-    <Compile Include="PointData\PointClass.cs" />
     <Compile Include="PointsData\PointsClass.cs" />
     <Compile Include="PointsData\PointsCollection.cs" />
     <Compile Include="PointsData\PointsValueConverter.cs" />
     <Compile Include="SampleData\SampleCollection.cs" />
     <Compile Include="SampleData\SampleDataClass.cs" />
-    <Compile Include="SurfacePts\SurfacePoints.xaml.cs">
-      <DependentUpon>SurfacePoints.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SurfacePts\SurfacePointValidation.cs" />
+    <Compile Include="TopoPts\TopoPoint.cs" />
+    <Compile Include="TopoPts\TopoPoints.cs" />
     <Compile Include="Validation\ValidationRule.cs" />
-    <Compile Include="ValueConverters.cs" />
+    <Compile Include="Converters\ValueConverters.cs" />
     <Compile Include="WpfResources\ListBoxMultiLine1.cs" />
     <Page Include="ControlPtsWin\ControlPoints.xaml">
       <SubType>Designer</SubType>
@@ -114,7 +111,7 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="ListBoxWithXHeaderAndFooter.xaml">
+    <Page Include="ListBoxWithHdrAndFtr\ListBoxWithXHeaderAndFooter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -138,23 +135,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </DesignData>
-    <Page Include="MultiLineListBox.xaml">
+    <Page Include="MultiLineLB\MultiLineListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <DesignData Include="PointData\PointsSampleData.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </DesignData>
-    <DesignData Include="PointData\PointsClassSampleData.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </DesignData>
     <Page Include="SampleData\SampleCollectionSampleDataB.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SurfacePts\SurfacePoints.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -213,5 +198,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -21,11 +21,11 @@
 				<ResourceDictionary Source="ControlPointsResources.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 
-
 		</ResourceDictionary>
 	</Window.Resources>
-
+	<!--  DataContext="{Binding Source={StaticResource Cps}}"  -->
 	<Grid Margin="0,0,0,7">
+
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="700" />
 			<ColumnDefinition Width="168" />
@@ -38,6 +38,8 @@
 		</Grid.RowDefinitions>
 
 		<ListBox x:Name="listBox2"
+				Grid.Row="0"
+				Grid.Column="0"
 				Grid.ColumnSpan="2"
 				Height="443"
 				Margin="10,14,168.6,0"

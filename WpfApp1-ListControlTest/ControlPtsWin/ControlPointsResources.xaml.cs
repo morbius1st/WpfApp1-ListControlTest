@@ -20,23 +20,17 @@ using System.Windows.Controls;
 namespace WpfApp1_ListControlTest.ControlPtsWin
 {
 	public delegate void Cpw_OnError(object source, ValidationErrorEventArgs e);
-
-	public delegate void Cpw_BtnClick(object source, RoutedEventArgs e);
-
+	//
+		public delegate void Cpw_BtnClick(object source, RoutedEventArgs e);
 
 	public partial class ControlPointsResources
 	{
 
-		public string test = "this is a test";
+		//		public string test = "this is a test";
 
 		public ControlPointsResources()
 		{
 			MainWindow.Cpr = this;
-
-			if (MainWindow.Cps != null)
-			{
-				MainWindow.Cps.cpr = this;
-			}
 		}
 
 		public event Cpw_BtnClick BtnRestoreXClick;
@@ -44,8 +38,6 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 		public void BtnRestoreX_Click(object sender, RoutedEventArgs e)
 		{
 			BtnRestoreXClick?.Invoke(sender, e);
-
-
 
 		}
 
@@ -56,10 +48,10 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 			XYZ_OnError?.Invoke(sender, e);
 		}
 
-		//		private void TbxSlope_OnError(object sender, ValidationErrorEventArgs e)
-		//		{
-		////			MainWindow.Cps.TbxSlope_OnError(sender, e);
-		//		}
+//				private void TbxSlope_OnError(object sender, ValidationErrorEventArgs e)
+//				{
+//		//			MainWindow.Cps.TbxSlope_OnError(sender, e);
+//				}
 
 
 

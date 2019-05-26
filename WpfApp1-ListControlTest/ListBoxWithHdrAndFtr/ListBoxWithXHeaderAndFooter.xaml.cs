@@ -1,42 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WpfApp1_ListControlTest.SampleData;
 
-namespace WpfApp1_ListControlTest
+namespace WpfApp1_ListControlTest.ListBoxWithHdrAndFtr
 {
-    /// <summary>
-    /// Interaction logic for MultiLineListBox.xaml
-    /// </summary>
-    public partial class MultiLineListBox : Window, INotifyPropertyChanged
+	/// <summary>
+	/// Interaction logic for ListBoxWithXHeaderAndFooter.xaml
+	/// </summary>
+	public partial class ListBoxWithXHeaderAndFooter : Window, INotifyPropertyChanged
 	{
-		private string nl = Environment.NewLine;
+private string nl = Environment.NewLine;
 
 		public string MessageText { get; set; } = "Message Window\n";
 
-#pragma warning disable CS0169 // The field 'MultiLineListBox.savedValue' is never used
+#pragma warning disable CS0169 // The field 'ListBoxWithXHeaderAndFooter.savedValue' is never used
 		private string savedValue;
-#pragma warning restore CS0169 // The field 'MultiLineListBox.savedValue' is never used
+#pragma warning restore CS0169 // The field 'ListBoxWithXHeaderAndFooter.savedValue' is never used
 
-        public MultiLineListBox()
+        public ListBoxWithXHeaderAndFooter()
         {
             InitializeComponent();
-			
+
+			AddValues();
 		}
 
-		private void BtnTest_Click(object sender, RoutedEventArgs e)
+		private void AddValues()
 		{
 			SampleCollectionB.sxB.Add(new SampleDataClass() { SheetNumber="A-01b", SheetName="name 01b", SheetData="data 01b", SheetInfo="info 01b", SheetInfo2="info2 01b"});
             SampleCollectionB.sxB.Add(new SampleDataClass() { SheetNumber="A-02b", SheetName="name 02b", SheetData="data 02b", SheetInfo="info 02b", SheetInfo2="info2 02b"});
@@ -80,7 +71,6 @@ namespace WpfApp1_ListControlTest
 				AppendMessage("tbxFirst error| " + ((TextBox) sender).Text + " :: Removed");
 			}
 
-			e.Handled = true;
 		}
 
 		private void BtnDebug_Click(object sender, RoutedEventArgs e)
@@ -89,64 +79,3 @@ namespace WpfApp1_ListControlTest
 		}
 	}
 }
-
-
-		// these also did not work - never fired
-//		private void ListBox2_SourceUpdated(object sender, DataTransferEventArgs e)
-//		{
-//			AppendMessage("ListBox2 SourceUpdated");
-//		}
-//
-//		private void ListBox2_TargetUpdated(object sender, DataTransferEventArgs e)
-//		{
-//			AppendMessage("ListBox2 TargetUpdated");
-//		}
-
-		// using got focus / lost focus methods does not work - this
-		// does not invervene between the list box and the collection
-//		private void TbxFirst_OnGotFocus(object sender, RoutedEventArgs e)
-//		{
-//			savedValue = ((TextBox) sender).Text;
-//		}
-//
-//		private void TbxFirst_LostFocus(object sender, RoutedEventArgs e)
-//		{
-//			AppendMessage("tbxFirst changed| " + ((TextBox) sender).Text);
-//
-//			((TextBox) sender).Text = savedValue;
-//
-//			e.Handled = true;
-//		}
-//
-//
-//		private void TbxSecond_OnGotFocus(object sender, RoutedEventArgs e)
-//		{
-//			savedValue = ((TextBox) sender).Text;
-//		}
-//
-//
-//		private void TbxSecond_LostFocus(object sender, RoutedEventArgs e)
-//		{
-//			AppendMessage("tbxSecond changed| " + ((TextBox) sender).Text);
-//
-//			((TextBox) sender).Text = savedValue;
-//
-//			e.Handled = true;
-//		}
-//
-//
-//
-//		private void TbxThird_OnGotFocus(object sender, RoutedEventArgs e)
-//		{
-//			savedValue = ((TextBox) sender).Text;
-//		}
-//
-//		private void TbxThird_LostFocus(object sender, RoutedEventArgs e)
-//		{
-//			AppendMessage("tbxThird changed| " + ((TextBox) sender).Text);
-//
-//			((TextBox) sender).Text = savedValue;
-//
-//			e.Handled = true;
-//		}
-

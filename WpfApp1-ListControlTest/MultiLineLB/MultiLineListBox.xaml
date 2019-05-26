@@ -6,7 +6,7 @@
 	xmlns:validation="clr-namespace:WpfApp1_ListControlTest.Validation"
 	xmlns:local="clr-namespace:WpfApp1_ListControlTest"
 	xmlns:sampleData="clr-namespace:WpfApp1_ListControlTest.SampleData"
-	x:Class="WpfApp1_ListControlTest.MultiLineListBox"
+	x:Class="WpfApp1_ListControlTest.MultiLineLB.MultiLineListBox"
 	mc:Ignorable="d"
 	Name="multiLineListBox"
 	DataContext="{Binding ElementName=multiLineListBox}"

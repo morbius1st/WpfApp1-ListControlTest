@@ -4,9 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
-using Microsoft.Expression.Interactivity.Core;
 using WpfApp1_ListControlTest.ControlPtsData;
 using static WpfApp1_ListControlTest.MainWindow;
 
@@ -20,7 +18,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 	{
 		public string WinTitle { get; set; } = "Control Points";
 
-		public string MessageText { get; set; } = "Message Window\n";
+		public string MessageText { get; set; } = "Message Window v1\n";
 
 		private int itemIndex = -1;
 		private string _errorMsg = "error message 1";
@@ -35,13 +33,15 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 		private string _startY = "120'-0\"";
 		private string _startX = "110'-0000\"";
 
-		public ControlPointsConsts cpConsts { get; private set; } 
+		public ControlPointsConsts cpConsts { get; private set; }
 			= new ControlPointsConsts();
 
-		public ObservableCollection<ControlPts> Sx { get; set; } 
+		public ObservableCollection<ControlPts> Sx { get; set; }
 			= new ObservableCollection<ControlPts>();
 
 		public ControlPointsResources cpr { get; set; }
+
+		//		private ControlPointsVm _vm;
 
 		private bool _canExecute;
 
@@ -49,12 +49,15 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 		{
 			InitializeComponent();
 
+			//			_vm = (ControlPointsVm) DataContext;
+
+
 			ErrorMsg = "no error";
 
 			_canExecute = true;
 
-// this is the future event handling configuration
-// create handler via static copy of class in main app class
+			// this is the future event handling configuration
+			// create handler via static copy of class in main app class
 			MainWindow.Cps = this;
 
 			if (MainWindow.Cpr != null)
@@ -65,72 +68,15 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 				cpr.XYZ_OnError += ValidationOnErrorHandler2;
 
 			}
-// add an event handler
+			// add an event handler
 			this.AddHandler(Button.ClickEvent, new RoutedEventHandler(CommandClickHandler1));
-// add a validation handler
+			// add a validation handler
 			System.Windows.Controls.Validation.AddErrorHandler(this, new EventHandler<ValidationErrorEventArgs>(ValidationOnErrorHandler1));
 
 
 #if DEBUG
 			LoadData();
 #endif
-		}
-
-// setup command / event handler
-		private ICommand _clickCommand;
-
-		public ICommand ClickCommand => _clickCommand ?? (_clickCommand = new CommandHandler(param => MyAction(param), _canExecute));
-
-		public void MyAction(object param)
-		{
-			MessageBox.Show("my action| who|" + (string) param);
-		}
-
-		public class CommandHandler : ICommand
-		{
-			private Action<object> _action;
-			private bool _canExecute;
-			public CommandHandler(Action<object> action, bool canExecute)
-			{
-				_action = action;
-				_canExecute = canExecute;
-			}
-
-			public bool CanExecute(object parameter)
-			{
-				return _canExecute;
-			}
-
-#pragma warning disable CS0067 // The event 'ControlPoints.CommandHandler.CanExecuteChanged' is never used
-			public event EventHandler CanExecuteChanged;
-#pragma warning restore CS0067 // The event 'ControlPoints.CommandHandler.CanExecuteChanged' is never used
-
-			public void Execute(object parameter)
-			{
-				_action(parameter);
-			}
-		}
-// end of command handler
-
-
-		private void ValidationOnErrorHandler1(object sender, ValidationErrorEventArgs e)
-		{
-			MessageBox.Show("bubble validation message");
-		}
-		
-		private void ValidationOnErrorHandler2(object sender, ValidationErrorEventArgs e)
-		{
-			MessageBox.Show("indirect validation message");
-		}
-
-		private void CommandClickHandler1(object sender, RoutedEventArgs e)
-		{
-			MessageBox.Show("bubble button click event message");
-		}
-
-		private void CommandClickHandler2(object sender, RoutedEventArgs e)
-		{
-			MessageBox.Show("indirect button click event message");
 		}
 
 
@@ -146,7 +92,6 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 
 		private void BtnDebugUndo_Click(object sender, RoutedEventArgs e)
 		{
-//			((ControlPts)listBox2.Items[itemIndex])
 			ControlPts cps = Sx[itemIndex];
 			cps.Undo(((Button)sender).Tag as string);
 
@@ -171,12 +116,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 			list(itemIndex);
 		}
 
-		//		private void BtnDebugReset_Click(object sender, RoutedEventArgs e)
-		//		{
-		//			Sx[1] = new ControlPts()  { XOrig = " 1081.0", YOrig = " 2081.0", ZOrig = " 3081.0", SlopeOrig = " 1.0", XyValue = " 4081.0", XyzValue = " 5081.0", ZDelta = " 6081.0"};
-		//			AppendMessage("@ BtnDebugReset_Click");
-		//			list(1);
-		//		}
+
 
 		private void BtnDebug_Click(object sender, RoutedEventArgs e)
 		{
@@ -206,17 +146,148 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 			AppendMessage(a);
 		}
 
+
+		internal void AppendMessage(string message)
+		{
+			MessageText += message + nl;
+
+			OnPropertyChange("MessageText");
+		}
+
+
+		private void ListBox2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			//			TellMeTbx("at ListBox2_SelectionChanged");
+
+			//			// uses the selectedindex property to get the correct index
+			//			TellMeLbx(sender as ListBox, "SelectionChanged");
+
+			//			if (itemIndex < 0 || !Sx[itemIndex].IsRevised)
+			if (itemIndex < 0 || !((ControlPts)listBox2.Items[itemIndex]).IsRevised)
+			{
+				if (itemIndex >= 0)
+				{
+					((ControlPts)listBox2.Items[itemIndex]).IsBeingEdited = false;
+				}
+
+				// begin editing a new item
+				// save the index of this item
+				itemIndex = listBox2.SelectedIndex;
+
+				((ControlPts)listBox2.SelectedItem).CurrentIndex = itemIndex;
+				((ControlPts)listBox2.SelectedItem).IsBeingEdited = true;
+
+				return;
+			}
+
+			// the current item is has changes - prevent them from switching to another item
+			// use this method to prevent a selection change.
+			listBox2.SelectedIndex = itemIndex;
+
+			//SelectionChangedEx();
+		}
+
+		private bool clickTest = false;
+
+		public string LabelContent { get; set; } = "UN-CLICKED";
+
+		private void Testx_Click(object sender, RoutedEventArgs e)
+		{
+			clickTest = !clickTest;
+
+
+			if (clickTest)
+			{
+				LabelContent = "CLICKED";
+			}
+			else
+			{
+				LabelContent = "UN-CLICKED";
+			}
+		}
+
+		//		 setup command / event handler
+		private ICommand _clickCommand;
+
+		public ICommand ButtonClickCommand => _clickCommand ?? (_clickCommand = new CommandHandler(param => MyAction(param), _canExecute));
+
+		public void MyAction(object param)
+		{
+			MessageBox.Show("my action| who|" + (string)param);
+		}
+
+		public class CommandHandler : ICommand
+		{
+			private Action<object> _action;
+			private bool _canExecute;
+			public CommandHandler(Action<object> action, bool canExecute)
+			{
+				_action = action;
+				_canExecute = canExecute;
+			}
+
+			public bool CanExecute(object parameter)
+			{
+				return _canExecute;
+			}
+
+#pragma warning disable CS0067 // The event 'ControlPoints.CommandHandler.CanExecuteChanged' is never used
+			public event EventHandler CanExecuteChanged;
+#pragma warning restore CS0067 // The event 'ControlPoints.CommandHandler.CanExecuteChanged' is never used
+
+			public void Execute(object parameter)
+			{
+				_action(parameter);
+			}
+		}
+		// end of command handler
+
+
+		private void ValidationOnErrorHandler1(object sender, ValidationErrorEventArgs e)
+		{
+			MessageBox.Show("bubble validation message");
+		}
+
+		private void ValidationOnErrorHandler2(object sender, ValidationErrorEventArgs e)
+		{
+			MessageBox.Show("indirect validation message");
+		}
+
+		private void CommandClickHandler1(object sender, RoutedEventArgs e)
+		{
+			MessageBox.Show("bubble button click event message");
+		}
+
+		private void CommandClickHandler2(object sender, RoutedEventArgs e)
+		{
+			MessageBox.Show("indirect button click event message");
+		}
+		//				private void BtnDebugReset_Click(object sender, RoutedEventArgs e)
+		//				{
+		//					Sx[1] = new ControlPts()  { XOrig = " 1081.0", YOrig = " 2081.0", ZOrig = " 3081.0", SlopeOrig = " 1.0", XyValue = " 4081.0", XyzValue = " 5081.0", ZDelta = " 6081.0"};
+		//					AppendMessage("@ BtnDebugReset_Click");
+		//					list(1);
+		//				}
+
+
+
 		private void LoadData()
 		{
+
+
+
+
+
+
 			Sx.Insert(0, new ControlPts() { XOrig = " 1011.0", YOrig = " 2011.0", ZOrig = " 3011.0", SlopeOrig = " 1.0", XyOrig = " 4011.0", XyzOrig = " 5011.0", ZDeltaOrig = " 6011.0" });
 			Sx.Insert(0, new ControlPts() { XOrig = " 1021.0", YOrig = " 2021.0", ZOrig = " 3021.0", SlopeOrig = " 1.0", XyOrig = " 4021.0", XyzOrig = " 5021.0", ZDeltaOrig = " 6021.0" });
 			Sx.Insert(0, new ControlPts() { XOrig = " 1031.0", YOrig = " 2031.0", ZOrig = " 3031.0", SlopeOrig = " 1.0", XyOrig = " 4031.0", XyzOrig = " 5031.0", ZDeltaOrig = " 6031.0" });
 			Sx.Insert(0, new ControlPts() { XOrig = " 1041.0", YOrig = " 2041.0", ZOrig = " 3041.0", SlopeOrig = " 1.0", XyOrig = " 4041.0", XyzOrig = " 5041.0", ZDeltaOrig = " 6041.0" });
 			Sx.Insert(0, new ControlPts() { XOrig = " 1051.0", YOrig = " 2051.0", ZOrig = " 3051.0", SlopeOrig = " 1.0", XyOrig = " 4051.0", XyzOrig = " 5051.0", ZDeltaOrig = " 6051.0" });
-//			Sx.Insert(0, new ControlPts() { XOrig = " 1061.0", YOrig = " 2061.0", ZOrig = " 3061.0", SlopeOrig = " 1.0", XyOrig = " 4061.0", XyzOrig = " 5061.0", ZDeltaOrig = " 6061.0" });
-//			Sx.Insert(0, new ControlPts() { XOrig = " 1071.0", YOrig = " 2071.0", ZOrig = " 3071.0", SlopeOrig = " 1.0", XyOrig = " 4071.0", XyzOrig = " 5071.0", ZDeltaOrig = " 6071.0" });
-//			Sx.Insert(0, new ControlPts() { XOrig = " 1081.0", YOrig = " 2081.0", ZOrig = " 3081.0", SlopeOrig = " 1.0", XyOrig = " 4081.0", XyzOrig = " 5081.0", ZDeltaOrig = " 6081.0" });
-//			Sx.Insert(0, new ControlPts() { XOrig = " 1091.0", YOrig = " 2091.0", ZOrig = " 3091.0", SlopeOrig = " 1.0", XyOrig = " 4091.0", XyzOrig = " 5091.0", ZDeltaOrig = " 6091.0" });
+			//			Sx.Insert(0, new ControlPts() { XOrig = " 1061.0", YOrig = " 2061.0", ZOrig = " 3061.0", SlopeOrig = " 1.0", XyOrig = " 4061.0", XyzOrig = " 5061.0", ZDeltaOrig = " 6061.0" });
+			//			Sx.Insert(0, new ControlPts() { XOrig = " 1071.0", YOrig = " 2071.0", ZOrig = " 3071.0", SlopeOrig = " 1.0", XyOrig = " 4071.0", XyzOrig = " 5071.0", ZDeltaOrig = " 6071.0" });
+			//			Sx.Insert(0, new ControlPts() { XOrig = " 1081.0", YOrig = " 2081.0", ZOrig = " 3081.0", SlopeOrig = " 1.0", XyOrig = " 4081.0", XyzOrig = " 5081.0", ZDeltaOrig = " 6081.0" });
+			//			Sx.Insert(0, new ControlPts() { XOrig = " 1091.0", YOrig = " 2091.0", ZOrig = " 3091.0", SlopeOrig = " 1.0", XyOrig = " 4091.0", XyzOrig = " 5091.0", ZDeltaOrig = " 6091.0" });
 
 		}
 
@@ -322,12 +393,6 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 			}
 		}
 
-		internal void AppendMessage(string message)
-		{
-			MessageText += message + nl;
-
-			OnPropertyChange("MessageText");
-		}
 
 		public void TellMeTbx(string which, TextBox tbx = null)
 		{
@@ -383,233 +448,29 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 			//			OnErrorEx();
 		}
 
-		private void ListBox2_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-//			TellMeTbx("at ListBox2_SelectionChanged");
 
-			//			// uses the selectedindex property to get the correct index
-			//			TellMeLbx(sender as ListBox, "SelectionChanged");
-
-//			if (itemIndex < 0 || !Sx[itemIndex].IsRevised)
-			if (itemIndex < 0 || !((ControlPts)listBox2.Items[itemIndex]).IsRevised)
-			{
-				if (itemIndex >= 0)
-				{
-					((ControlPts) listBox2.Items[itemIndex]).IsBeingEdited = false;
-				}
-
-				// begin editing a new item
-				// save the index of this item
-				itemIndex = listBox2.SelectedIndex;
-
-				((ControlPts)listBox2.SelectedItem).CurrentIndex = itemIndex;
-				((ControlPts)listBox2.SelectedItem).IsBeingEdited = true;
-
-				return;
-			}
-
-			// the current item is has changes - prevent them from switching to another item
-			// use this method to prevent a selection change.
-			listBox2.SelectedIndex = itemIndex;
-
-			//SelectionChangedEx();
-		}
-
-		private bool clickTest = false;
-
-		public string LabelContent { get; set; } = "UN-CLICKED";
-
-		private void Testx_Click(object sender, RoutedEventArgs e)
-		{
-			clickTest = !clickTest;
-
-
-			if (clickTest)
-			{
-				LabelContent = "CLICKED";
-			}
-			else
-			{
-				LabelContent = "UN-CLICKED";
-			}
-		}
-
-//#pragma warning disable CS0108 // 'ControlPoints.LostFocus(object, RoutedEventArgs)' hides inherited member 'UIElement.LostFocus'. Use the new keyword if hiding was intended.
-//		private void LostFocus(object sender, RoutedEventArgs e)
-//#pragma warning restore CS0108 // 'ControlPoints.LostFocus(object, RoutedEventArgs)' hides inherited member 'UIElement.LostFocus'. Use the new keyword if hiding was intended.
+	}
+}
+//	public class PointTemplateSelectorx : DataTemplateSelector
+//	{
+//		public override DataTemplate SelectTemplate(object item, DependencyObject container)
 //		{
-//			if (itemIndex >=0 && !Sx[itemIndex].IsRevised)
-//			{
-//				Sx[itemIndex].IsBeingEdited = false;
+//			FrameworkElement elemnt = container as FrameworkElement;
+//			ControlPts       pt     = item as ControlPts;
 //
-//				listBox2.SelectedIndex = -1;
+//			if (pt.IsBeingEdited)
+//			{
+//				return elemnt.FindResource("pointDataTemplateEditing") as DataTemplate;
+//			}
+//			else
+//			{
+//				return elemnt.FindResource("pointDataTemplate") as DataTemplate;
 //			}
 //		}
-		//
-		//		private void tbxXYZ_OnGotFocus(object sender, RoutedEventArgs e)
-		//		{
-		//			TextBox tbx = sender as TextBox;
-		//
-		//			AppendMessage("\n*** select " + tbx.Tag + " textbox ***");
-		//
-		//
-		//			TellMeTbx( "at tbxXYZ_OnGotFocus| ", tbx);
-		//
-		////			FocusEx(TextBox tbx);
-		//		}
-		//		
-		//		private void tbxXYZ_OnLostFocus(object sender, RoutedEventArgs e)
-		//		{
-		//			TextBox tbx = sender as TextBox;
-		//
-		//			AppendMessage("\n*** de-select " + tbx.Tag + " textbox ***");
-		//
-		//			TellMeTbx( "at tbxXYZ_OnLostFocus| ", tbx);
-		//		}
-		//
-		//		private void TbxXYZ_OnSourceUpdated(object sender, DataTransferEventArgs e)
-		//		{
-		//			TextBox tbx = sender as TextBox;
-		//
-		//			TellMeTbx( "at TbxValue_OnSourceUpdated| ", tbx);
-		//		}
-		//
-		//		private void TbxSlope_OnSourceUpdated(object sender, DataTransferEventArgs e)
-		//		{
-		//			TextBox tbx = sender as TextBox;
-		//			
-		//			TellMeTbx( "at TbxSlope_OnSourceUpdated| ", tbx);
-		//
-		////			Sx[itemIndex].SetRevisedValue(tbx.Tag as string, tbx.Text);
-		//		}
+//
+//	}
 
-
-		//		private void SelectionChangedEx()
-		//		{
-		//			// sender is listbox
-		//			AppendMessage("SelectionChanged| type|" + sender.GetType());
-		//			// orig source is listbox
-		//			AppendMessage("SelectionChanged| orig source type| " + e.OriginalSource.GetType());
-		//			// source type is listbox
-		//			AppendMessage("SelectionChanged| source type| " +	e.Source.GetType());
-		//			// gets the value of this items x property
-		//			AppendMessage("SelectionChanged| ControlPts|"
-		//				+ " XOrig| " + ((ControlPts) listBox2.SelectedItem).XOrig
-		//				+ " X| " + ((ControlPts) listBox2.SelectedItem).X
-		//				);
-		//			// count is 1 (single selection mode set)
-		//			AppendMessage("SelectionChanged| selected items count| " + e.AddedItems.Count);
-		//			// type is the data class (controlpts)
-		//			AppendMessage("SelectionChanged| selected items type| " + e.AddedItems[0].GetType()); // gets a controlpoints object
-		//			// type is the data class (controlpts)
-		//			AppendMessage("SelectionChanged| selected type| " + listBox2.SelectedItem.GetType()); // gets a controlpoints object
-		//
-		//			ItemContainerGenerator gen = listBox2.ItemContainerGenerator;
-		//
-		//			DependencyObject dObj = gen.ContainerFromItem(e.AddedItems[0]);
-		//			ListBoxItem lbi = dObj as ListBoxItem;
-		//			// container type is listboxitem
-		//			AppendMessage("SelectionChanged| container type| " + dObj?.GetType() ?? "is null"); // listbox item
-		//			// container type is listboxitem
-		//			AppendMessage("SelectionChanged| container type| " + lbi?.GetType() ?? "is null"); // listbox item
-		//			// gets the correct index
-		//			AppendMessage("SelectionChanged| item index| " + gen.IndexFromContainer(dObj)); // gets the index
-
-
-		//			if (savedInfo.Row >= 0 && savedInfo.IsRevised)
-		//			{
-		//				AppendMessage("SelectionChanged| don't change row| row| " 
-		//					+ savedInfo.Row 
-		//					+ " :: hasrevised| " + savedInfo.IsRevised.ToString()
-		//					);
-		//
-		//				if (listBox2.SelectedIndex != savedInfo.Row)
-		//				{
-		//					listBox2.SelectedIndex = savedInfo.Row;
-		//				}
-		//
-		//				return;
-		//			}
-		//
-		//			savedInfo = new SavedInfo();
-		//
-		//			savedInfo.Row = listBox2.SelectedIndex;
-		//
-		//			AppendMessage("SelectionChanged| change row| row| "
-		//				+ savedInfo.Row );
-		//		}
-
-		//		private void OnErrorEx()
-		//		{
-		//			if (e.Action != ValidationErrorEventAction.Added)
-		//			{
-		//				AppendMessage("TbxXvalue error| "
-		//					+ tbx.Text + " :: tag| " + tbx.Tag.ToString() 
-		//					+ " :: Removed");
-		//				return;
-		//			}
-		//
-		//			AppendMessage("TbxXvalue error| "
-		//				+ tbx.Text + " :: tag| " + tbx.Tag.ToString()
-		//				+ " :: Added :: " + e.Error.ErrorContent);
-
-		//			SavedInfo.Saved saved = GetSaved(tbx);
-		//
-		//			saved.RevisedValue = tbx.Text;
-		//			saved.IsRevisedValid = false;
-		//		}
-
-		//		private void FocusEx(TextBox tbx)
-		//		{
-		//			TellMeTbx(tbx, "got focus");
-		//
-		//			AppendMessage("got focus| tbx parent 1| " + tbx.TemplatedParent.GetType()); // content presenter
-		//
-		//			parent = ((FrameworkElement) parent).Parent;
-		//			AppendMessage("got focus| tbx parent 2| " + parent.GetType());
-		//
-		//			parent = ((FrameworkElement) parent).Parent;
-		//			AppendMessage("got focus| tbx parent 3| " + parent.GetType());
-		//
-		//			parent = ((FrameworkElement) parent).Parent;
-		//			AppendMessage("got focus| tbx parent 4| " + parent.GetType());
-		//
-		//			parent = ((FrameworkElement) parent).Parent;
-		//			AppendMessage("got focus| tbx parent 5| " + parent.GetType());
-
-		//			SavedInfo.Saved saved = GetSaved(tbx);
-		//
-		//			if (saved.HasOriginal) return;
-		//
-		//			saved.OriginalValue = tbx.Text;
-		//		}
-
-
-	}
-
-	public class PointTemplateSelector : DataTemplateSelector
-	{
-		public override DataTemplate SelectTemplate(object item, DependencyObject container)
-		{
-			FrameworkElement elemnt = container as FrameworkElement;
-			ControlPts       pt     = item as ControlPts;
-
-			if (pt.IsBeingEdited)
-			{
-				return elemnt.FindResource("pointDataTemplateEditing") as DataTemplate;
-			}
-			else
-			{
-				return elemnt.FindResource("pointDataTemplate") as DataTemplate;
-			}
-		}
-
-	}
-
-}
-
-
-		// these also did not work - never fired
+// these also did not work - never fired
 //		private void ListBox2_SourceUpdated(object sender, DataTransferEventArgs e)
 //		{
 //			AppendMessage("ListBox2 SourceUpdated");
@@ -620,8 +481,8 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 //			AppendMessage("ListBox2 TargetUpdated");
 //		}
 
-		// using got focus / lost focus methods does not work - this
-		// does not invervene between the list box and the collection
+// using got focus / lost focus methods does not work - this
+// does not invervene between the list box and the collection
 //		private void TbxFirst_OnGotFocus(object sender, RoutedEventArgs e)
 //		{
 //			savedValue = ((TextBox) sender).Text;
