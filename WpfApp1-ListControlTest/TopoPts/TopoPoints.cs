@@ -72,40 +72,36 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 		private void TopoPoints_PropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-//			if (Status[complete])
-//			{
-				int idx = ((TopoPoint) sender).Index;
+			int idx = ((TopoPoint) sender).Index;
 
-				if (e.PropertyName.Equals("X") ||
-					e.PropertyName.Equals("Y") ||
-					e.PropertyName.Equals("Z"))
-				{
-					UpdateItem3(idx, idx - 1);
-					UpdateItem3(idx + 1, idx);
-				}
+			if (e.PropertyName.Equals("X") ||
+				e.PropertyName.Equals("Y") ||
+				e.PropertyName.Equals("Z"))
+			{
+				UpdateItem(idx, idx - 1);
+				UpdateItem(idx + 1, idx);
+			}
 
-				if (idx == 0 )
-				{
-					OnPropertyChanged("StartPoint" + e.PropertyName);
-				} 
+			if (idx == 0 )
+			{
+				OnPropertyChanged("StartPoint" + e.PropertyName);
+			}
 
-				if (idx == EndPointIdx)
-				{
-					OnPropertyChanged("EndPointidx");
-					OnPropertyChanged("EndPoint" + e.PropertyName);
-				}
+			if (idx == EndPointIdx)
+			{
+				OnPropertyChanged("EndPointidx");
+				OnPropertyChanged("EndPoint" + e.PropertyName);
+			}
 
-				message += "received| "
-					+ "  idx| " + idx
-					+ "  value| " + ((TopoPoint) sender).ToString()
-					+ "  property name| " + e.PropertyName
-					+ "\n"
-					;
-//			}
+			message += "received| "
+				+ "  idx| " + idx
+				+ "  property name| " + e.PropertyName
+				+ "  value| " + ((TopoPoint) sender).ToString()
+				+ "\n"
+				;
 		}
 
-
-	#region > superseding methods
+		#region > superseding methods
 
 		public new void Add(TopoPoint t) => throw new NotImplementedException();
 		public new bool Contains(TopoPoint item) => throw new NotImplementedException();
@@ -117,10 +113,6 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 		public int EndPointIdx => Items.Count - 1;
 
-//		public TopoPoint StartPoint => _startPoint;
-//
-//		public TopoPoint EndPoint => _endPoint;
-
 		// adds the startpoint
 		// will supersede a previously provided startpoint
 		// distances, etc. are never configured for a startpoint
@@ -128,22 +120,15 @@ namespace WpfApp1_ListControlTest.TopoPts
 		{
 			if (!startPoint.IsValid) { throw new ArgumentException("Invalid Start Point"); }
 
-//			Items[0].PropertyChanged -= TopoPoints_PropertyChanged;
 			Items[0].PropertyChanged += TopoPoints_PropertyChanged;
 
-//			Items[0] = new TopoPoint(startPoint);
-			Items[0].Index = 0;
-			Items[0].X = startPoint.X;
-			Items[0].Y = startPoint.Y;
-			Items[0].Z = startPoint.Z;
+			Items[0].Index        = 0;
+			Items[0].X            = startPoint.X;
+			Items[0].Y            = startPoint.Y;
+			Items[0].Z            = startPoint.Z;
 			Items[0].ControlPoint = true;
 
 			Status[gotStartPoint] = true;
-
-//			if (Items.Count > 0)
-//			{
-//				OnPropertyChanged("StartPoint");
-//			}
 		}
 
 		// adds as the endpoint but does not complete the collection
@@ -155,25 +140,13 @@ namespace WpfApp1_ListControlTest.TopoPts
 		{
 			if (!endPoint.IsValid) { throw new ArgumentException("Invalid End Point"); }
 
-
-//			Items[EndPointIdx].PropertyChanged -= TopoPoints_PropertyChanged;
-//			Items[EndPointIdx].PropertyChanged += TopoPoints_PropertyChanged;
-
-//			Items[EndPointIdx] = new TopoPoint(endPoint);
-			Items[EndPointIdx].Index = EndPointIdx;
-			Items[EndPointIdx].X = endPoint.X;
-			Items[EndPointIdx].Y = endPoint.Y;
-			Items[EndPointIdx].Z = endPoint.Z;
+			Items[EndPointIdx].Index        = EndPointIdx;
+			Items[EndPointIdx].X            = endPoint.X;
+			Items[EndPointIdx].Y            = endPoint.Y;
+			Items[EndPointIdx].Z            = endPoint.Z;
 			Items[EndPointIdx].ControlPoint = true;
 
-//			if (Items.Count > 0) { Status[gotEndPoint] = true; }
 			Status[gotEndPoint] = true;
-
-//			if (Items.Count > 0)
-//			{
-//				ReIndexEnd();
-//				OnPropertyChanged("EndPoint");
-//			}
 		}
 
 		public void AddDefered(XYZ xyz)
@@ -184,7 +157,6 @@ namespace WpfApp1_ListControlTest.TopoPts
 			TopoPoint tp = new TopoPoint(xyz);
 
 			base.Insert(EndPointIdx, tp);
-//			Items[EndPointIdx].PropertyChanged += TopoPoints_PropertyChanged;
 
 			Status[gotPoints] = true;
 		}
@@ -198,20 +170,16 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 			base.Insert(EndPointIdx, tp);
 
-//			Items[EndPointIdx].PropertyChanged += TopoPoints_PropertyChanged;
-
 			ReIndex();
 		}
 
 		public void Insert(int idx, XYZ xyz)
 		{
 			if (!xyz.IsValid) { throw new ArgumentException("Invalid Point"); }
+
 			if (idx == 0 || idx == EndPointIdx) { throw new ArgumentException("Invalid Index"); }
 
-//			Items.Insert(idx, new TopoPoint(xyz));
 			base.Insert(idx, new TopoPoint(xyz));
-
-//			Items[idx].PropertyChanged += TopoPoints_PropertyChanged;
 
 			ReIndex(idx);
 		}
@@ -240,41 +208,15 @@ namespace WpfApp1_ListControlTest.TopoPts
 			return result;
 		}
 
-//		// updates the index number for all items
-//		// updates the distances for all items
-//		private void ReIndex()
-//		{
-//			// internal method - no checks
-//			int j = -1;
-//
-//			_startPoint.Update(j, Items[j++ + 1]);
-//
-//			for (; j < Items.Count - 1; j++)
-//			{
-//				Items[j].Update(j, Items[j + 1]);
-//			}
-//			Items[j].Update(j, _endPoint);
-//
-//			_endPoint.Index = j;
-//
-//			OnCollectionChanged(
-//				new NotifyCollectionChangedEventArgs(
-//					NotifyCollectionChangedAction.Reset));
-//		}
-
 		private void ReIndex(int start = 1)
 		{
-
-//			Items[0].PropertyChanged -= TopoPoints_PropertyChanged;
-//			Items[0].PropertyChanged += TopoPoints_PropertyChanged;
-
 			for (int j = start; j < Items.Count; j++)
 			{
-				UpdateItem3(j, j - 1);
+				UpdateItem(j, j - 1);
 			}
 		}
 
-		private void UpdateItem3(int j, int i)
+		private void UpdateItem(int j, int i)
 		{
 			if (j > EndPointIdx || i < 0)
 			{
@@ -285,72 +227,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 			Items[j].PropertyChanged += TopoPoints_PropertyChanged;
 
 			Items[j].Update(j, Items[i]);
-
 		}
-
-//		private void UpdateItem2(int j, int i)
-//		{
-//			if (j > EndPointIdx || i < 0)
-//			{
-//				return;
-//			}
-//
-//			Items[j].Update(j, Items[i]);
-//
-//		}
-
-
-		
-//		private void UpdateItem(int j, TopoPoint tp)
-//		{
-//			Items[j].PropertyChanged -= TopoPoints_PropertyChanged;
-//
-//			Items[j].Update(j, tp);
-//
-//			Items[j].PropertyChanged += TopoPoints_PropertyChanged;
-//		}
-
-//		// updates the index number for all items
-//		// updates the distances for all items
-//		private void ReIndex2()
-//		{
-//			// internal method - no checks
-//			int j = 0;
-//
-//			ReIndexEnd();
-//
-//			for (; j < Items.Count - 1; j++)
-//			{
-//				UpdateItem(j, Items[j + 1]);
-//			}
-//
-//			ReIndexStart();
-//
-//			OnCollectionChanged(
-//				new NotifyCollectionChangedEventArgs(
-//					NotifyCollectionChangedAction.Reset));
-//		}
-//
-//
-//		private void ReIndexEnd()
-//		{
-//			_endPoint.Update(Items.Count, Items[0]);
-//		}
-//
-//		private void ReIndexStart()
-//		{
-//			UpdateItem(Items.Count -1, _startPoint);
-//
-////			int j = Items.Count - 1;
-////
-////			Items[j].PropertyChanged -= TopoPoints_PropertyChanged;
-////
-////			Items[j].Update(j, _startPoint);
-////
-////			Items[j].PropertyChanged += TopoPoints_PropertyChanged;
-//
-//			_startPoint.Index = -1;
-//		}
 
 		private bool checkStatus()
 		{
@@ -366,6 +243,11 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 		public new void Clear()
 		{
+			foreach (TopoPoint tp in Items)
+			{
+				tp.PropertyChanged -= TopoPoints_PropertyChanged;
+			}
+
 
 			Items.Clear();
 			Items.Insert(0, new TopoPoint(XYZ.Empty));
@@ -415,7 +297,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 		public bool StartPointCp => Items[0].ControlPoint;
 
 		// end point
-		public double EndPointIndex => Items[EndPointIdx].Index;
+		public int EndPointIndex => Items[EndPointIdx].Index;
 
 		public double EndPointX => Items[EndPointIdx].X;
 		public double EndPointY => Items[EndPointIdx].Y;

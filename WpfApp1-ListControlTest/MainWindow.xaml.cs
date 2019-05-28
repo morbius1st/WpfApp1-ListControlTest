@@ -144,6 +144,18 @@ namespace WpfApp1_ListControlTest
 			tps[4].Z = 30431.0;
 		}
 
+		private void BtnTestAll_Click(object sender, RoutedEventArgs e)
+		{
+			BtnAdd1_Click(sender, e);
+			BtnInsert1_Click(sender, e);
+			BtnChangeE_Click(sender, e);
+			BtnChangeS_Click(sender, e);
+			BtnChange4X_Click(sender, e);
+			BtnChange4Y_Click(sender, e);
+			BtnChange4Z_Click(sender, e);
+			
+		}
+
 
 		private void CreateData()
 		{
