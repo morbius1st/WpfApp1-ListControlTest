@@ -1,12 +1,12 @@
-﻿<Window
+﻿<Window x:Name="mainWindow" Title="MainWindow"
+		x:Class="WpfApp1_ListControlTest.MainWindow"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:System="clr-namespace:System;assembly=mscorlib"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:local="clr-namespace:WpfApp1_ListControlTest"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:sampleData="clr-namespace:WpfApp1_ListControlTest.SampleData"
-		xmlns:System="clr-namespace:System;assembly=mscorlib" x:Name="mainWindow" Title="MainWindow"
-		x:Class="WpfApp1_ListControlTest.MainWindow"
 		Width="1100.4"
 		Height="1113.6"
 		Loaded="MainWindow_Loaded"
@@ -59,6 +59,21 @@
 				<Setter Property="HorizontalAlignment" Value="Center" />
 				<Setter Property="Padding" Value="4,2,2,5" />
 				<Setter Property="VerticalAlignment" Value="Center" />
+			</Style>
+
+			<Style x:Key="controlPointLbl"
+					TargetType="Label"
+					>
+				<Setter Property="Background" Value="#444444" />
+				<Setter Property="DataContext" Value="{Binding ElementName=mainWindow}" />
+				<Setter Property="FontSize" Value="16" />
+				<Setter Property="Foreground" Value="White" />
+				<Setter Property="Height" Value="22" />
+				<Setter Property="HorizontalAlignment" Value="Left" />
+				<Setter Property="HorizontalContentAlignment" Value="Center" />
+				<Setter Property="Padding" Value="0" />
+				<Setter Property="VerticalAlignment" Value="Top" />
+				<Setter Property="Width" Value="110" />
 			</Style>
 
 			<Style x:Key="lbHeader"
@@ -282,52 +297,6 @@
 			</Style>
 
 
-			<!--  <local:SampleCollection  -->
-			<!--  x:Key="scx"  -->
-			<!--  d:IsDataSource="True" />  -->
-			<!-- -->
-			<!-- <DataTemplate x:Key="SampleDataClassTemplate"> -->
-			<!-- -->
-			<!-- 	<Grid Margin="0,-2.0,0,-3" -->
-			<!-- 			FocusVisualStyle="{StaticResource FocusVisual}" -->
-			<!-- 			> -->
-			<!-- -->
-			<!-- 		<Grid.ColumnDefinitions> -->
-			<!-- 			<ColumnDefinition Width="200" /> -->
-			<!-- 			<ColumnDefinition Width="200" /> -->
-			<!-- 			<ColumnDefinition /> -->
-			<!-- 		</Grid.ColumnDefinitions> -->
-			<!-- -->
-			<!-- 		<Border Grid.Column="0" -->
-			<!-- 				BorderThickness="0,1,0,1" -->
-			<!-- 				BorderBrush="Black" -->
-			<!-- 				> -->
-			<!-- 			<TextBlock Grid.Column="0" -->
-			<!-- 					Text="{Binding SheetData}" -->
-			<!-- 					Style="{DynamicResource CellTxBlk}" -->
-			<!-- 					/> -->
-			<!-- 		</Border> -->
-			<!-- 		<Border Grid.Column="1" -->
-			<!-- 				BorderThickness="1,1,0,1" -->
-			<!-- 				BorderBrush="Black" -->
-			<!-- 				> -->
-			<!-- 			<TextBlock Grid.Column="1" -->
-			<!-- 					Text="{Binding SheetName}" -->
-			<!-- 					Style="{DynamicResource CellTxBlk}" -->
-			<!-- 					/> -->
-			<!-- 		</Border> -->
-			<!-- 		<Border Grid.Column="2" -->
-			<!-- 				BorderThickness="1,1,0,1" -->
-			<!-- 				BorderBrush="Black" -->
-			<!-- 				> -->
-			<!-- 			<TextBlock Text="{Binding SheetNumber}" -->
-			<!-- 					Style="{DynamicResource CellTxBlk}" -->
-			<!-- 					/> -->
-			<!-- 		</Border> -->
-			<!-- 	</Grid> -->
-			<!-- </DataTemplate> -->
-
-
 			<ItemsPanelTemplate x:Key="ItemPanels1">
 				<VirtualizingStackPanel IsItemsHost="True" />
 			</ItemsPanelTemplate>
@@ -484,13 +453,11 @@
 								Grid.Column="0"
 								Style="{StaticResource lblHeaderBdrTop}"
 								>
-							<TextBox Grid.Column="0"
-									x:Name="TBx"
+							<TextBox x:Name="TBx"
+									Grid.Column="0"
 									Text="{Binding Index}"
 									Style="{DynamicResource CellTxBox}"
-									>
-
-							</TextBox>
+									/>
 						</Border>
 
 						<Border Grid.Row="0"
@@ -591,73 +558,102 @@
 				<Setter Property="Control.Template">
 					<Setter.Value>
 						<ControlTemplate>
-							<Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+							<Rectangle Margin="2"
+									SnapsToDevicePixels="true"
+									Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+									StrokeDashArray="1 2"
+									StrokeThickness="1"
+									/>
 						</ControlTemplate>
 					</Setter.Value>
 				</Setter>
 			</Style>
-			<SolidColorBrush x:Key="Item.MouseOver.Background" Color="#1F26A0DA"/>
-			<SolidColorBrush x:Key="Item.MouseOver.Border" Color="#a826A0Da"/>
-			<SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="#3DDADADA"/>
-			<SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="#FFDADADA"/>
-			<SolidColorBrush x:Key="Item.SelectedActive.Background" Color="#3D26A0DA"/>
-			<SolidColorBrush x:Key="Item.SelectedActive.Border" Color="#FF26A0DA"/>
+			<SolidColorBrush x:Key="Item.MouseOver.Background"
+					Color="#1F26A0DA"
+					/>
+			<SolidColorBrush x:Key="Item.MouseOver.Border"
+					Color="#a826A0Da"
+					/>
+			<SolidColorBrush x:Key="Item.SelectedInactive.Background"
+					Color="#3DDADADA"
+					/>
+			<SolidColorBrush x:Key="Item.SelectedInactive.Border"
+					Color="#FFDADADA"
+					/>
+			<SolidColorBrush x:Key="Item.SelectedActive.Background"
+					Color="#3D26A0DA"
+					/>
+			<SolidColorBrush x:Key="Item.SelectedActive.Border"
+					Color="#FF26A0DA"
+					/>
 
 
-			<Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+			<Style x:Key="ListBoxItemStyle"
+					TargetType="{x:Type ListBoxItem}"
+					>
 				<Style.Triggers>
-					<DataTrigger Binding="{Binding ControlPoint}" Value="True">
-						<Setter Property="Background" Value="Orange"/>
-						<Setter Property="Visibility" Value="Collapsed"/>
+					<DataTrigger Binding="{Binding ControlPoint}"
+							Value="True"
+							>
+						<Setter Property="Visibility" Value="Collapsed" />
 					</DataTrigger>
 				</Style.Triggers>
-				<Setter Property="SnapsToDevicePixels" Value="True"/>
-				<Setter Property="Padding" Value="4,1"/>
-				<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-				<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-				<Setter Property="Background" Value="Transparent"/>
-				<Setter Property="BorderBrush" Value="Transparent"/>
-				<Setter Property="BorderThickness" Value="1"/>
-				<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+				<Setter Property="Background" Value="Transparent" />
+				<Setter Property="BorderBrush" Value="Transparent" />
+				<Setter Property="BorderThickness" Value="1" />
+				<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+				<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+				<Setter Property="Padding" Value="4,1" />
+				<Setter Property="SnapsToDevicePixels" Value="True" />
 
 				<Setter Property="Template">
 					<Setter.Value>
 						<ControlTemplate TargetType="{x:Type ListBoxItem}">
-							<Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
-								<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+							<Border x:Name="Bd"
+									Padding="{TemplateBinding Padding}"
+									SnapsToDevicePixels="true"
+									Background="{TemplateBinding Background}"
+									BorderThickness="{TemplateBinding BorderThickness}"
+									BorderBrush="{TemplateBinding BorderBrush}"
+									>
+								<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+										SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+										/>
 							</Border>
 							<ControlTemplate.Triggers>
 
 								<MultiTrigger>
 									<MultiTrigger.Conditions>
-										<Condition Property="IsMouseOver" Value="True"/>
+										<Condition Property="IsMouseOver" Value="True" />
 									</MultiTrigger.Conditions>
-									<Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.MouseOver.Background}"/>
-									<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.MouseOver.Border}"/>
+									<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.MouseOver.Background}" />
+									<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.MouseOver.Border}" />
 								</MultiTrigger>
 								<MultiTrigger>
 									<MultiTrigger.Conditions>
-										<Condition Property="Selector.IsSelectionActive" Value="False"/>
-										<Condition Property="IsSelected" Value="True"/>
+										<Condition Property="Selector.IsSelectionActive" Value="False" />
+										<Condition Property="IsSelected" Value="True" />
 									</MultiTrigger.Conditions>
-									<Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Background}"/>
-									<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Border}"/>
+									<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.SelectedInactive.Background}" />
+									<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.SelectedInactive.Border}" />
 								</MultiTrigger>
 								<MultiTrigger>
 									<MultiTrigger.Conditions>
-										<Condition Property="Selector.IsSelectionActive" Value="True"/>
-										<Condition Property="IsSelected" Value="True"/>
+										<Condition Property="Selector.IsSelectionActive" Value="True" />
+										<Condition Property="IsSelected" Value="True" />
 									</MultiTrigger.Conditions>
-									<Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Background}"/>
-									<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Border}"/>
+									<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.SelectedActive.Background}" />
+									<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.SelectedActive.Border}" />
 								</MultiTrigger>
 								<Trigger Property="IsEnabled" Value="False">
-									<Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+									<Setter TargetName="Bd" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
 								</Trigger>
 							</ControlTemplate.Triggers>
 						</ControlTemplate>
 					</Setter.Value>
 				</Setter>
+				<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
 			</Style>
 
 
@@ -666,6 +662,10 @@
 		</ResourceDictionary>
 	</Window.Resources>
 	<Grid Margin="0,0,-0.4,7">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="76*" />
+			<ColumnDefinition Width="143*" />
+		</Grid.ColumnDefinitions>
 		<!--  <Button  -->
 		<!--  x:Name="button_Copy2"  -->
 		<!--  Content="Surface Points"  -->
@@ -677,19 +677,21 @@
 		<!--  d:DataContext="{d:DesignData /SampleData/SampleCollectionSampleData.xaml}"  -->
 
 		<ListBox x:Name="listBox"
+				Grid.ColumnSpan="2"
 				Height="227"
 				Margin="91,67,22.8,0"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Top"
 				HorizontalContentAlignment="Stretch"
-				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type local:MainWindow}}"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
 				DataContext="{Binding ElementName=mainWindow}"
 				Background="LightGray"
-				ItemTemplate="{StaticResource topopoints}"
-				ItemsSource="{Binding tps}" 
 				ItemContainerStyle="{DynamicResource ListBoxItemStyle}"
-				
+				ItemTemplate="{StaticResource topopoints}"
+				ItemsSource="{Binding tps}"
 				>
+			<!--    -->
 			<!--  ItemsPanel="{DynamicResource ListBoxItemsPanelTemplate1}"  -->
 			<!--  d:DataContext="{d:DesignData /SampleData/SampleCollectionSampleData.xaml}"  -->
 			<ListBox.Template>
@@ -786,7 +788,7 @@
 									</Border>
 								</Grid>
 
-								<ItemsPresenter Margin="-6,-1,-5,0"/>
+								<ItemsPresenter Margin="-6,-1,-5,0" />
 							</DockPanel>
 						</ScrollViewer>
 					</Border>
@@ -795,6 +797,7 @@
 		</ListBox>
 
 		<ListView x:Name="listView"
+				Grid.ColumnSpan="2"
 				Height="199"
 				Margin="9,490,90.8,0"
 				Padding="-3,-1,0,0"
@@ -893,6 +896,7 @@
 
 
 		<ListBox x:Name="listBox2"
+				Grid.ColumnSpan="2"
 				Height="227"
 				Margin="9,738,10.8,0"
 				HorizontalAlignment="Stretch"
@@ -1036,9 +1040,10 @@
 
 
 		<Button x:Name="btnDone" Content="Done"
+				Grid.Column="1"
 				Width="97"
 				Height="48"
-				Margin="815,1019,0,0"
+				Margin="434.867,1019,0,0"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				IsCancel="True"
@@ -1046,23 +1051,26 @@
 				Click="BtnDone_Click"
 				/>
 		<Button x:Name="button_Copy" Content="MultiLineWindow"
+				Grid.Column="1"
 				Width="111"
 				Height="48"
-				Margin="699,1019,0,0"
+				Margin="318.867,1019,0,0"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				Click="Button_Copy_Click"
 				/>
 		<Button x:Name="button_Copy1" Content="Header andFooter"
+				Grid.Column="1"
 				Width="111"
 				Height="48"
-				Margin="583,1019,0,0"
+				Margin="202.867,1019,0,0"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				Click="Button_Copy1_Click"
 				/>
 		<!--  Click="Button_Copy2_Click" />  -->
 		<Button x:Name="button_Copy3" Content="Control Points"
+				Grid.ColumnSpan="2"
 				Width="111"
 				Height="48"
 				Margin="351,1019,0,0"
@@ -1093,216 +1101,115 @@
 
 		<Label x:Name="label1_Copy2" Content="start point:"
 				Height="22"
-				Margin="4,40,1010.8,0"
+				Margin="4,40,296.133,0"
 				Padding="0"
 				VerticalAlignment="Top"
 				HorizontalContentAlignment="Right"
 				FontSize="16"
 				Foreground="White"
 				/>
-		<Label Content="{Binding tps.StartPoint.X}"
-				Width="108"
-				Height="22"
+		<Label Content="{Binding tps.StartPointX}"
 				Margin="138,40,0,0"
-				Padding="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Center"
-				FontSize="16"
-				d:DataContext="{Binding ElementName=mainWindow}"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
 				DataContext="{Binding ElementName=mainWindow}"
-				RenderTransformOrigin="-0.174,0.514"
-				Background="#444444"
-				Foreground="White"
+				Style="{StaticResource controlPointLbl}"
 				/>
-		<Label Content="{Binding tps.StartPoint.Y}"
-				Width="109"
-				Height="22"
+		<Label Content="{Binding tps.StartPointY}"
 				Margin="251,40,0,0"
-				Padding="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Center"
-				FontSize="16"
-				d:DataContext="{Binding ElementName=mainWindow}"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
 				DataContext="{Binding ElementName=mainWindow}"
-				RenderTransformOrigin="-0.174,0.514"
-				Background="#444444"
-				Foreground="White"
+				Style="{StaticResource controlPointLbl}"
 				/>
-		<Label Content="{Binding tps.StartPoint.Z}"
-				Width="112"
-				Height="22"
+		<Label Content="{Binding tps.StartPointZ}"
+				Grid.ColumnSpan="2"
 				Margin="366,40,0,0"
-				Padding="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Center"
-				FontSize="16"
-				d:DataContext="{Binding ElementName=mainWindow}"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
 				DataContext="{Binding ElementName=mainWindow}"
-				RenderTransformOrigin="-0.174,0.514"
-				Background="#444444"
-				Foreground="White"
+				Style="{StaticResource controlPointLbl}"
 				/>
 		<Label x:Name="label1_Copy" Content="end point:"
 				Height="22"
-				Margin="9,299,1010.8,0"
+				Margin="9,299,296.133,0"
 				Padding="0"
 				VerticalAlignment="Top"
 				HorizontalContentAlignment="Right"
 				FontSize="16"
 				Foreground="White"
 				/>
-		<Label Content="{Binding tps.EndPoint.X}"
-				Width="110"
-				Height="22"
+		<Label Content="{Binding tps.EndPointX}"
 				Margin="138,299,0,0"
-				Padding="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Center"
-				FontSize="16"
-				d:DataContext="{Binding ElementName=mainWindow}"
-				DataContext="{Binding ElementName=mainWindow}"
-				RenderTransformOrigin="-0.174,0.514"
-				Background="#444444"
-				Foreground="White"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				Style="{StaticResource controlPointLbl}"
 				/>
-		<Label Content="{Binding tps.EndPoint.Y}"
-				Width="110"
-				Height="22"
+		<Label Content="{Binding tps.EndPointY}"
 				Margin="253,299,0,0"
-				Padding="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Center"
-				FontSize="16"
-				d:DataContext="{Binding ElementName=mainWindow}"
-				DataContext="{Binding ElementName=mainWindow}"
-				RenderTransformOrigin="-0.174,0.514"
-				Background="#444444"
-				Foreground="White"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				Style="{StaticResource controlPointLbl}"
 				/>
-		<Label Content="{Binding tps.EndPoint.Z}"
-				Width="110"
-				Height="22"
+		<Label Content="{Binding tps.EndPointZ}"
+				Grid.ColumnSpan="2"
 				Margin="368,299,0,0"
-				Padding="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Center"
-				FontSize="16"
-				d:DataContext="{Binding ElementName=mainWindow}"
-				DataContext="{Binding ElementName=mainWindow}"
-				RenderTransformOrigin="-0.174,0.514"
-				Background="#444444"
-				Foreground="White"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				Style="{StaticResource controlPointLbl}"
 				/>
-		<Label Content="{Binding tps.EndPoint.XΔ}"
-				Width="110"
-				Height="22"
-				Margin="483,299,0,0"
-				Padding="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Center"
-				FontSize="16"
-				d:DataContext="{Binding ElementName=mainWindow}"
-				DataContext="{Binding ElementName=mainWindow}"
-				RenderTransformOrigin="-0.174,0.514"
-				Background="#444444"
-				Foreground="White"
+		<Label Content="{Binding tps.EndPointXΔ}"
+				Grid.Column="1"
+				Margin="102.867,299,0,0"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				Style="{StaticResource controlPointLbl}"
 				/>
-		<Label Content="{Binding tps.EndPoint.YΔ}"
-				Width="110"
-				Height="22"
-				Margin="598,299,0,0"
-				Padding="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Center"
-				FontSize="16"
-				d:DataContext="{Binding ElementName=mainWindow}"
-				DataContext="{Binding ElementName=mainWindow}"
-				RenderTransformOrigin="-0.174,0.514"
-				Background="#444444"
-				Foreground="White"
+		<Label Content="{Binding tps.EndPointYΔ}"
+				Grid.Column="1"
+				Margin="217.867,299,0,0"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				Style="{StaticResource controlPointLbl}"
 				/>
-		<Label Content="{Binding tps.EndPoint.ZΔ}"
-				Width="109"
-				Height="22"
-				Margin="713,299,0,0"
-				Padding="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Center"
-				FontSize="16"
-				d:DataContext="{Binding ElementName=mainWindow}"
-				DataContext="{Binding ElementName=mainWindow}"
-				RenderTransformOrigin="-0.174,0.514"
-				Background="#444444"
-				Foreground="White"
+		<Label Content="{Binding tps.EndPointZΔ}"
+				Grid.Column="1"
+				Margin="332.867,299,0,0"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				Style="{StaticResource controlPointLbl}"
 				/>
-		<Label Content="{Binding tps.EndPoint.XYΔ}"
-				Width="110"
-				Height="22"
-				Margin="827,299,0,0"
-				Padding="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Center"
-				FontSize="16"
-				d:DataContext="{Binding ElementName=mainWindow}"
-				DataContext="{Binding ElementName=mainWindow}"
-				RenderTransformOrigin="-0.174,0.514"
-				Background="#444444"
-				Foreground="White"
+		<Label Content="{Binding tps.EndPointXYΔ}"
+				Grid.Column="1"
+				Margin="446.867,299,0,0"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				ContentStringFormat="F4"
+				Style="{StaticResource controlPointLbl}"
 				/>
-		<Label Content="{Binding tps.EndPoint.Slope}"
-				Width="108"
-				Height="22"
-				Margin="944,299,0,0"
-				Padding="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Center"
-				FontSize="16"
-				d:DataContext="{Binding ElementName=mainWindow}"
-				DataContext="{Binding ElementName=mainWindow}"
-				RenderTransformOrigin="-0.174,0.514"
-				Background="#444444"
-				Foreground="White"
+		<Label Content="{Binding tps.EndPointSlope}"
+				Grid.Column="1"
+				Margin="563.867,299,0,0"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				ContentStringFormat="F4"
+				Style="{StaticResource controlPointLbl}"
 				/>
-		<Label Content="{Binding tps.StartPoint.Index}"
+
+		<Label Content="{Binding tps.EndPointIndex}"
 				Width="39"
-				Height="22"
 				Margin="94,299,0,0"
-				Padding="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Center"
-				FontSize="16"
-				d:DataContext="{Binding ElementName=mainWindow}"
-				DataContext="{Binding ElementName=mainWindow}"
-				RenderTransformOrigin="-0.174,0.514"
-				Background="#444444"
-				Foreground="White"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				Style="{StaticResource controlPointLbl}"
 				/>
-		<Label Content="{Binding tps.EndPoint.Index}"
+		<Label Content="{Binding tps.StartPointIndex}"
 				Width="39"
-				Height="22"
 				Margin="94,40,0,0"
-				Padding="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Center"
-				FontSize="16"
-				d:DataContext="{Binding ElementName=mainWindow}"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
 				DataContext="{Binding ElementName=mainWindow}"
-				RenderTransformOrigin="-0.174,0.514"
-				Background="#444444"
-				Foreground="White"
+				Style="{StaticResource controlPointLbl}"
 				/>
 		<Button x:Name="btnLbxAdd" Content="Add 1"
 				Width="79"
@@ -1336,6 +1243,7 @@
 				Click="BtnChangeE_Click"
 				/>
 		<Button x:Name="btnLbxAdd_Copy2" Content="Change Start"
+				Grid.ColumnSpan="2"
 				Width="79"
 				Height="27"
 				Margin="344,5,0,0"
@@ -1345,55 +1253,62 @@
 				IsDefault="True"
 				Click="BtnChangeS_Click"
 				/>
-		<Button x:Name="btnLbxAdd_Copy3" Content="Chg Value 1"
+		<Button x:Name="btnLbxAdd_Copy3" Content="Chg (4) X"
+				Grid.Column="1"
 				Width="79"
 				Height="27"
-				Margin="428,5,0,0"
+				Margin="47.867,5,0,0"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				IsCancel="True"
 				IsDefault="True"
-				Click="BtnChangeV1_Click"
+				Click="BtnChange4X_Click"
 				/>
-		<Label x:Name="lblLbxMsg" Content="{Binding tps.message}"
+		<TextBox x:Name="tbxLbxMsg"
+				Grid.ColumnSpan="2"
 				Width="980"
-				Height="22"
+				Height="117"
 				Margin="92,326,0,0"
 				Padding="0"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				FontSize="16"
 				DataContext="{Binding ElementName=mainWindow}"
+				Text="{Binding tps.message}"
+				VerticalScrollBarVisibility="Visible"
+				Background="#444444"
 				Foreground="White"
 				/>
-		<Button x:Name="btnLbxAdd_Copy4" Content="Chg end"
+		<Button x:Name="btnLbxAdd_Copy4" Content="Chg (4) Y"
+				Grid.Column="1"
 				Width="79"
 				Height="27"
-				Margin="514,5,0,0"
+				Margin="133.867,5,0,0"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				IsCancel="True"
 				IsDefault="True"
-				Click="BtnChangeEnd_Click"
+				Click="BtnChange4Y_Click"
 				/>
-		<Button x:Name="btnLbxAdd_Copy5" Content="Chg start"
+		<Button x:Name="btnLbxAdd_Copy5" Content="Chg (4) Z"
+				Grid.Column="1"
 				Width="79"
 				Height="27"
-				Margin="598,5,0,0"
+				Margin="217.867,5,0,0"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				IsCancel="True"
 				IsDefault="True"
-				Click="BtnChangeStart_Click"
+				Click="BtnChange4Z_Click"
 				/>
 		<Label x:Name="label1_Copy1" Content="message:"
-		Height="22"
-		Margin="6,326,1012.8,0"
-		Padding="0"
-		VerticalAlignment="Top"
-		HorizontalContentAlignment="Right"
-		FontSize="16"
-		Foreground="White"
+				Height="22"
+				Margin="6,326,298.133,0"
+				Padding="0"
+				VerticalAlignment="Top"
+				HorizontalContentAlignment="Right"
+				FontSize="16"
+				Foreground="White"
 				/>
 	</Grid>
 </Window>

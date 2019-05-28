@@ -93,21 +93,45 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 	public class TopoPoint : IEquatable<TopoPoint>, INotifyPropertyChanged
 	{
-		private UInt32 StatusFlag = 0;
+		private UInt32 statusFlag = 0;
+
+		private int index = -1;
+		private bool controlPoint = false;
 		private XYZ point = XYZ.Empty;
+		private double _xΔ = Double.NaN;
+		private double _yΔ = Double.NaN;
+		private double _zΔ = Double.NaN;
+		private double xyΔ = Double.NaN;
+		private double slope = Double.NaN;
+
 
 		public XYZ XYZ => point;
 
-		public int Index { get; set; } = -1;
+		public int Index
+		{
+			get => index;
+			set
+			{
+				index = value;
+				OnPropertyChange();
+			}
+		}
 
-		public bool ControlPoint { get; private set; } = false;
-
+		public bool ControlPoint
+		{
+			get => controlPoint;
+			set
+			{
+				controlPoint = value;
+				OnPropertyChange();
+			}
+		}
 		public double X
 		{
 			get => point.X;
 			set
 			{
-				point.X = value; 
+				point.X = value;
 				OnPropertyChange();
 			}
 		}
@@ -127,19 +151,62 @@ namespace WpfApp1_ListControlTest.TopoPts
 			get => point.Z;
 			set
 			{
-				point.Z = value; 
+				point.Z = value;
 				OnPropertyChange();
 			}
 		}
 
-		public double XΔ { get; private set; } = Double.NaN;
-		public double YΔ { get; private set; } = Double.NaN;
-		public double ZΔ { get; private set; } = Double.NaN;
-		public double XYΔ { get; private set; } = Double.NaN;
-		public double Slope { get; private set; } = Double.NaN;
+		public double XΔ
+		{
+			get => _xΔ;
+			private set
+			{
+				_xΔ = value;
+				OnPropertyChange();
+			}
+		}
 
+		public double YΔ
+		{
+			get => _yΔ;
+			private set
+			{
+				_yΔ = value;
+				OnPropertyChange();
+			}
+		}
 
-	#region > constructors
+		public double ZΔ
+		{
+			get => _zΔ;
+			private set
+			{
+				_zΔ = value;
+				OnPropertyChange();
+			}
+		}
+
+		public double XYΔ
+		{
+			get => xyΔ;
+			private set
+			{
+				xyΔ = value;
+				OnPropertyChange();
+			}
+		}
+
+		public double Slope
+		{
+			get => slope;
+			private set
+			{
+				slope = value;
+				OnPropertyChange();
+			}
+		}
+
+		#region > constructors
 
 		public TopoPoint(XYZ xyz, TopoPoint priorTp)
 		{
@@ -167,10 +234,10 @@ namespace WpfApp1_ListControlTest.TopoPts
 		//			return new TopoPoint(xyz, priorTp);
 		//		}
 
-	#endregion
+		#endregion
 
-		public bool IsValid => StatusFlag == (UInt32) BitFlag.AllSet;
-		public bool IsConfigured => StatusFlag == (UInt32) BitFlag.AllSet && Index > -1;
+		public bool IsValid => statusFlag == (UInt32)BitFlag.AllSet;
+		public bool IsConfigured => statusFlag == (UInt32)BitFlag.AllSet && Index > -1;
 
 		// update x values based on x = new x coordinate
 		// and the prior point
@@ -183,8 +250,9 @@ namespace WpfApp1_ListControlTest.TopoPts
 			}
 
 			point.X = X;
+			//			this.X = X;
 
-			OnPropertyChange("X");
+			//			OnPropertyChange("X");
 
 			StatusFlagSet(BitFlag.Xflag);
 
@@ -202,8 +270,9 @@ namespace WpfApp1_ListControlTest.TopoPts
 			}
 
 			point.Y = Y;
+			//			this.Y = Y;
 
-			OnPropertyChange("Y");
+			//			OnPropertyChange("Y");
 
 			StatusFlagSet(BitFlag.Yflag);
 
@@ -221,8 +290,9 @@ namespace WpfApp1_ListControlTest.TopoPts
 			}
 
 			point.Z = Z;
+			//			this.Z = Z;
 
-			OnPropertyChange("Z");
+			//			OnPropertyChange("Z");
 
 			StatusFlagSet(BitFlag.Zflag);
 
@@ -237,7 +307,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 			XΔ = X - priorX;
 			StatusFlagSet(BitFlag.XΔflag);
 
-			OnPropertyChange("XΔ");
+			//			OnPropertyChange("XΔ");
 		}
 
 		// calc the Y delta
@@ -246,7 +316,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 			YΔ = Y - priorY;
 			StatusFlagSet(BitFlag.YΔflag);
 
-			OnPropertyChange("YΔ");
+			//			OnPropertyChange("YΔ");
 		}
 
 		// calc the Z delta
@@ -255,7 +325,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 			ZΔ = Z - priorZ;
 			StatusFlagSet(BitFlag.ZΔflag);
 
-			OnPropertyChange("ZΔ");
+			//			OnPropertyChange("ZΔ");
 		}
 
 		public void Update(int index, TopoPoint priorTp)
@@ -264,8 +334,6 @@ namespace WpfApp1_ListControlTest.TopoPts
 			// must update all other values
 
 			Index = index;
-
-			OnPropertyChange("Index");
 
 			SetX(point.X, priorTp.X);
 			SetY(point.Y, priorTp.Y);
@@ -299,7 +367,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 			StatusFlagSet(BitFlag.XYΔflag);
 
-			OnPropertyChange("XYΔ");
+			//			OnPropertyChange("XYΔ");
 
 			return true;
 		}
@@ -320,7 +388,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 			Slope = ZΔ / XYΔ;
 
-			OnPropertyChange("Slope");
+			//			OnPropertyChange("Slope");
 
 			StatusFlagSet(BitFlag.Slopeflag);
 
@@ -329,7 +397,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 		private void StatusFlagSet(UInt32 b)
 		{
-			StatusFlag = StatusFlag.Set(b);
+			statusFlag = statusFlag.Set(b);
 		}
 
 		private bool TestForNaN(double c, double p)
@@ -339,19 +407,19 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 		public void Clear()
 		{
-			Index   = -1;
+			Index = -1;
 			point.X = Double.NaN;
 			point.Y = Double.NaN;
 			point.Z = Double.NaN;
-			XΔ      = Double.NaN;
-			YΔ      = Double.NaN;
-			ZΔ      = Double.NaN;
-			Slope   = Double.NaN;
+			XΔ = Double.NaN;
+			YΔ = Double.NaN;
+			ZΔ = Double.NaN;
+			Slope = Double.NaN;
 
-			StatusFlag = 0;
+			statusFlag = 0;
 		}
 
-	#region > overriding members
+		#region > overriding members
 
 		public override string ToString()
 		{
@@ -374,7 +442,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 				Slope.Equals(other.Slope);
 		}
 
-	#endregion
+		#endregion
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
