@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlTypes;
+using System.Diagnostics;
 using System.Windows;
 using WpfApp1_ListControlTest.SampleData;
 //using WpfApp1_ListControlTest.PointData;
 //using WpfApp1_ListControlTest.SurfacePts;
 using WpfApp1_ListControlTest.ControlPtsWin;
 using WpfApp1_ListControlTest.ListBoxWithHdrAndFtr;
+using WpfApp1_ListControlTest.TestRoutines;
 using WpfApp1_ListControlTest.TopoPts;
+using WpfApp1_ListControlTest.TestRoutines;
 
 namespace WpfApp1_ListControlTest
 {
@@ -32,6 +36,8 @@ namespace WpfApp1_ListControlTest
 
 		public TopoPoints tps { get; set; } = new TopoPoints();
 
+
+
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -49,10 +55,21 @@ namespace WpfApp1_ListControlTest
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "11a", SheetName = "name 11a", SheetData = "data 11a", SheetInfo = "info 11a", SheetInfo2 = "info2 11a"});
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "12a", SheetName = "name 12a", SheetData = "data 12a", SheetInfo = "info 12a", SheetInfo2 = "info2 12a"});
 
+
+			// try out a new reindex method
+//			Tests.ReIndexTest();
+
+			
+			tps.message = "initialized\n";
+
 			CreateData();
 
-			tps.message = "initialized";
+			
 		}
+
+
+
+
 
 		private void Button_Copy_Click(object sender, RoutedEventArgs e)
 		{
@@ -97,6 +114,8 @@ namespace WpfApp1_ListControlTest
 		// add 1
 		private void BtnAdd1_Click(object sender, RoutedEventArgs e)
 		{
+			
+			tps.message += "\n*** run test add 1 ***\n";
 			tps.Add(new XYZ(x + j - 50, y + j - 50, z + j - 50));
 
 			j += 10;
@@ -105,6 +124,7 @@ namespace WpfApp1_ListControlTest
 		// insert 1
 		private void BtnInsert1_Click(object sender, RoutedEventArgs e)
 		{
+			tps.message += "\n*** run test insert 1 @ (5) ***\n";
 			tps.Insert(5, new XYZ(10501 + k, 20501 + k, 30501 + k));
 
 			k -= 5;
@@ -118,34 +138,41 @@ namespace WpfApp1_ListControlTest
 		// change end 1
 		private void BtnChangeE_Click(object sender, RoutedEventArgs e)
 		{
+			tps.message += "\n*** run test change end ***\n";
 			tps.SetEndPoint(new XYZ(10901.0, 20901.0, 30901.0));
 		}
 
 		// change start 1
 		private void BtnChangeS_Click(object sender, RoutedEventArgs e)
 		{
+			tps.message += "\n*** run test change start ***\n";
+			Debug.Write("\n*** run test change start ***\n");
 			tps.SetStartPoint(new XYZ(9001.0, 19001.0, 29001.0));
 		}
 
 		// change value 1
 		private void BtnChange4X_Click(object sender, RoutedEventArgs e)
 		{
+			tps.message += "\n*** run test change X @ (4) ***\n";
 			tps[4].X = 10411.0;
 		}
 
 		// change end 2
 		private void BtnChange4Y_Click(object sender, RoutedEventArgs e)
 		{
+			tps.message += "\n*** run test change Y @ (4) ***\n";
 			tps[4].Y = 20421.0;
 		}
 
 		private void BtnChange4Z_Click(object sender, RoutedEventArgs e)
 		{
+			tps.message += "\n*** run test change Z @ (4) ***\n";
 			tps[4].Z = 30431.0;
 		}
 
 		private void BtnTestAll_Click(object sender, RoutedEventArgs e)
 		{
+			tps.message += "\n*** run all tests ***\n";
 			BtnAdd1_Click(sender, e);
 			BtnInsert1_Click(sender, e);
 			BtnChangeE_Click(sender, e);

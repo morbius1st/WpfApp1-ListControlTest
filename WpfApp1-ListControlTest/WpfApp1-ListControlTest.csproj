@@ -98,6 +98,8 @@
     <Compile Include="PointsData\PointsValueConverter.cs" />
     <Compile Include="SampleData\SampleCollection.cs" />
     <Compile Include="SampleData\SampleDataClass.cs" />
+    <Compile Include="TestRoutines\ReIndexTest.cs" />
+    <Compile Include="TestRoutines\Tests.cs" />
     <Compile Include="TopoPts\TopoPoint.cs" />
     <Compile Include="TopoPts\TopoPoints.cs" />
     <Compile Include="Validation\ValidationRule.cs" />

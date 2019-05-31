@@ -31,6 +31,11 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 		public static UInt32 AllSet => (UInt32) _allSet;
 
+		public static UInt32 Reset()
+		{
+			return 0;
+		}
+
 		public static UInt32 Set(this UInt32 value, UInt32 flag)
 		{
 			return value | (UInt32) flag;
@@ -91,18 +96,40 @@ namespace WpfApp1_ListControlTest.TopoPts
 		}
 	}
 
+	public class TopoStartPoint : TopoPoint
+	{
+		public TopoStartPoint(XYZ xyz)
+		{
+			base.index = 0;
+			base.point = xyz;
+			base.controlPoint = true;
+		}
+	}
+
+	public class TopoEndPoint : TopoPoint
+	{
+		public TopoEndPoint(int idx, XYZ xyz)
+		{
+			base.index = idx;
+			base.point = xyz;
+			base.controlPoint = true;
+		}
+	}
+
 	public class TopoPoint : IEquatable<TopoPoint>, INotifyPropertyChanged
 	{
 		private UInt32 statusFlag = 0;
 
-		private int index = -1;
-		private bool controlPoint = false;
-		private XYZ point = XYZ.Empty;
+		protected int index = -1;
+		protected bool controlPoint = false;
+		protected XYZ point = XYZ.Empty;
 		private double _xΔ = Double.NaN;
 		private double _yΔ = Double.NaN;
 		private double _zΔ = Double.NaN;
 		private double xyΔ = Double.NaN;
 		private double slope = Double.NaN;
+
+		protected void test() { }
 
 
 		public XYZ XYZ => point;
@@ -126,6 +153,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 				OnPropertyChange();
 			}
 		}
+
 		public double X
 		{
 			get => point.X;
@@ -208,16 +236,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 		#region > constructors
 
-		public TopoPoint(XYZ xyz, TopoPoint priorTp)
-		{
-			SetX(xyz.X, priorTp.X);
-			SetY(xyz.Y, priorTp.Y);
-
-			if (!SetZ(xyz.Z, priorTp.Z))
-			{
-				Clear();
-			}
-		}
+		public TopoPoint() { }
 
 		public TopoPoint(XYZ xyz)
 		{
@@ -241,7 +260,41 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 		// update x values based on x = new x coordinate
 		// and the prior point
-		public bool SetX(double X, double priorX)
+
+		private bool UpdateX(double prior)
+		{
+			if (point.X.Equals(prior)) return false;
+
+			StatusFlagSet(BitFlag.Xflag);
+			UpdateXΔ(prior);
+
+			return true;
+		}
+		
+		private bool UpdateY(double prior)
+		{
+			if (point.Y.Equals(prior)) return false;
+
+			StatusFlagSet(BitFlag.Yflag);
+			UpdateYΔ(prior);
+
+			return true;
+		}	
+
+		private bool UpdateZ(double prior)
+		{
+			if (point.Z.Equals(prior)) return false;
+
+			StatusFlagSet(BitFlag.Zflag);
+			UpdateZΔ(prior);
+
+			return true;
+		}
+
+
+
+
+		private bool SetX(double X, double priorX)
 		{
 			if (TestForNaN(X, priorX))
 			{
@@ -250,13 +303,9 @@ namespace WpfApp1_ListControlTest.TopoPts
 			}
 
 			point.X = X;
-			//			this.X = X;
-
-			//			OnPropertyChange("X");
-
 			StatusFlagSet(BitFlag.Xflag);
 
-			SetXΔ(priorX);
+			UpdateXΔ(priorX);
 
 			return CalcXYΔ() && CalcSlope();
 		}
@@ -270,13 +319,10 @@ namespace WpfApp1_ListControlTest.TopoPts
 			}
 
 			point.Y = Y;
-			//			this.Y = Y;
-
-			//			OnPropertyChange("Y");
 
 			StatusFlagSet(BitFlag.Yflag);
 
-			SetYΔ(priorY);
+			UpdateYΔ(priorY);
 
 			return CalcXYΔ() && CalcSlope();
 		}
@@ -290,28 +336,23 @@ namespace WpfApp1_ListControlTest.TopoPts
 			}
 
 			point.Z = Z;
-			//			this.Z = Z;
-
-			//			OnPropertyChange("Z");
 
 			StatusFlagSet(BitFlag.Zflag);
 
-			SetZΔ(priorZ);
+			UpdateZΔ(priorZ);
 
 			return CalcSlope();
 		}
 
 		// calc the x delta
-		private void SetXΔ(double priorX)
+		private void UpdateXΔ(double priorX)
 		{
 			XΔ = X - priorX;
 			StatusFlagSet(BitFlag.XΔflag);
-
-			//			OnPropertyChange("XΔ");
 		}
 
 		// calc the Y delta
-		private void SetYΔ(double priorY)
+		private void UpdateYΔ(double priorY)
 		{
 			YΔ = Y - priorY;
 			StatusFlagSet(BitFlag.YΔflag);
@@ -320,7 +361,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 		}
 
 		// calc the Z delta
-		private void SetZΔ(double priorZ)
+		private void UpdateZΔ(double priorZ)
 		{
 			ZΔ = Z - priorZ;
 			StatusFlagSet(BitFlag.ZΔflag);
@@ -328,7 +369,48 @@ namespace WpfApp1_ListControlTest.TopoPts
 			//			OnPropertyChange("ZΔ");
 		}
 
+		// update the computed values for this point
+		// the XYZ values have been updated before this
+		// adjusted to minimize property change events
 		public void Update(int index, TopoPoint priorTp)
+		{
+			statusFlag = BitFlag.Reset();
+
+			// any bad values - clear and return
+			if (TestForNaN(point.X, priorTp.X) ||
+				TestForNaN(point.Y, priorTp.Y) ||
+				TestForNaN(point.Z, priorTp.Z))
+			{
+				Clear();
+				return;
+			}
+
+			// update index
+			if (Index != index) Index = index;
+
+			//update X + XΔ  //update Y + YΔ
+
+			bool result1 = UpdateX(priorTp.X);
+				
+			bool result2 = UpdateY(priorTp.Y);
+
+			//update Z + ZΔ
+			UpdateZ(priorTp.Z);
+
+			// XYZ updated, XΔ, YΔ, ZΔ updated
+			// need to update XΔ?
+			if (result1 || result2)
+			{
+				CalcXYΔ();
+			}
+
+			// assumption is that at least one
+			// X or Y or Z changed
+			CalcSlope();
+		}
+
+
+		public void Update2(int index, TopoPoint priorTp)
 		{
 			// point (XYZ) is all that is valid
 			// must update all other values
