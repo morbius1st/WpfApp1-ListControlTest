@@ -1187,6 +1187,30 @@
 			Content="Test All"
 			IsCancel="True"
 			IsDefault="True" />
+		<Button
+		x:Name="btnLbxAdd_Copy6"
+		Grid.Column="1"
+		Width="79"
+		Height="27"
+		Margin="399,5,0,0"
+		HorizontalAlignment="Left"
+		VerticalAlignment="Top"
+		Click="BtnChangeStartX_Click"
+		Content="Chg Start X"
+		IsCancel="True"
+		IsDefault="True" />
+		<Button
+		x:Name="btnLbxAdd_Copy7"
+		Grid.Column="1"
+		Width="79"
+		Height="27"
+		Margin="483,5,0,0"
+		HorizontalAlignment="Left"
+		VerticalAlignment="Top"
+		Click="BtnChangeEndX_Click"
+		Content="Chg End X"
+		IsCancel="True"
+		IsDefault="True" />
 	</Grid>
 </Window>
 

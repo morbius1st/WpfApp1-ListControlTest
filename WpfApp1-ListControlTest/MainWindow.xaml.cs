@@ -36,6 +36,15 @@ namespace WpfApp1_ListControlTest
 
 		public TopoPoints tps { get; set; } = new TopoPoints();
 
+		private TopoPointsTest TpTest;
+
+
+		private double j = 10;
+		private double k = 50;
+		private double x;
+		private double y;
+		private double z;
+
 
 
 		public MainWindow()
@@ -59,17 +68,10 @@ namespace WpfApp1_ListControlTest
 			// try out a new reindex method
 //			Tests.ReIndexTest();
 
-			
-			tps.message = "initialized\n";
+			TpTest = new TopoPointsTest(tps);
+			TpTest.CreateData();
 
-			CreateData();
-
-			
 		}
-
-
-
-
 
 		private void Button_Copy_Click(object sender, RoutedEventArgs e)
 		{
@@ -82,12 +84,6 @@ namespace WpfApp1_ListControlTest
 			Haf.ShowDialog();
 			Haf = new ListBoxWithXHeaderAndFooter();
 		}
-
-//		private void Button_Copy2_Click(object sender, RoutedEventArgs e)
-//		{
-//			Sp.ShowDialog();
-//			Sp = new SurfacePoints();
-//		}
 
 		private void Button_Copy3_Click(object sender, RoutedEventArgs e)
 		{
@@ -105,136 +101,61 @@ namespace WpfApp1_ListControlTest
 			loaded = true;
 		}
 
-		private double j = 10;
-		private double k = 50;
-		private double x;
-		private double y;
-		private double z;
 
 		// add 1
 		private void BtnAdd1_Click(object sender, RoutedEventArgs e)
 		{
-			
-			tps.message += "\n*** run test add 1 ***\n";
-			tps.Add(new XYZ(x + j - 50, y + j - 50, z + j - 50));
-
-			j += 10;
+			TpTest.BtnAdd1_Click();
 		}
 
 		// insert 1
 		private void BtnInsert1_Click(object sender, RoutedEventArgs e)
 		{
-			tps.message += "\n*** run test insert 1 @ (5) ***\n";
-			tps.Insert(5, new XYZ(10501 + k, 20501 + k, 30501 + k));
-
-			k -= 5;
+			TpTest.BtnInsert1_Click();
 		}
-
-//		private void BtnChange1_Click(object sender, RoutedEventArgs e)
-//		{
-////			tps.Insert(3, new XYZ(1500,1500,1500));
-//		}
 
 		// change end 1
 		private void BtnChangeE_Click(object sender, RoutedEventArgs e)
 		{
-			tps.message += "\n*** run test change end ***\n";
-			tps.SetEndPoint(new XYZ(10901.0, 20901.0, 30901.0));
+			TpTest.BtnChangeE_Click();
 		}
 
 		// change start 1
 		private void BtnChangeS_Click(object sender, RoutedEventArgs e)
 		{
-			tps.message += "\n*** run test change start ***\n";
-			Debug.Write("\n*** run test change start ***\n");
-			tps.SetStartPoint(new XYZ(9001.0, 19001.0, 29001.0));
+			TpTest.BtnChangeS_Click();
 		}
 
 		// change value 1
 		private void BtnChange4X_Click(object sender, RoutedEventArgs e)
 		{
-			tps.message += "\n*** run test change X @ (4) ***\n";
-			tps[4].X = 10411.0;
+			TpTest.BtnChange4X_Click();
 		}
 
 		// change end 2
 		private void BtnChange4Y_Click(object sender, RoutedEventArgs e)
 		{
-			tps.message += "\n*** run test change Y @ (4) ***\n";
-			tps[4].Y = 20421.0;
+			TpTest.BtnChange4Y_Click();
 		}
 
 		private void BtnChange4Z_Click(object sender, RoutedEventArgs e)
 		{
-			tps.message += "\n*** run test change Z @ (4) ***\n";
-			tps[4].Z = 30431.0;
+			TpTest.BtnChange4Z_Click();
+		}
+
+		private void BtnChangeStartX_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest.BtnChangeStartX_Click();
+		}
+		
+		private void BtnChangeEndX_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest.BtnChangeEndX_Click();
 		}
 
 		private void BtnTestAll_Click(object sender, RoutedEventArgs e)
 		{
-			tps.message += "\n*** run all tests ***\n";
-			BtnAdd1_Click(sender, e);
-			BtnInsert1_Click(sender, e);
-			BtnChangeE_Click(sender, e);
-			BtnChangeS_Click(sender, e);
-			BtnChange4X_Click(sender, e);
-			BtnChange4Y_Click(sender, e);
-			BtnChange4Z_Click(sender, e);
-			
-		}
-
-
-		private void CreateData()
-		{
-			x = 10001.0;
-			y = 20001.0;
-			z = 30001.0;
-
-			tps.SetStartPoint(new XYZ(x, y, z));
-
-			NextPoint(100); // 1 (10101.0...)
-			NextPoint(100); // 2 (10201.0...)
-			NextPoint(100); // 3 (10301.0...)
-			NextPoint(100); // 4 (10401.0...)
-			NextPoint(100); // 5 (10501.0...)
-			NextPoint(100); // 6 (10601.0...)
-
-			x += 100;
-			y += 100;
-			z += 100;
-
-
-			tps.SetEndPoint(new XYZ(x, y, z));
-
-			tps.Complete();
-
-//			tps[0].Update(0, tps.StartPoint);
-//
-//			tps.SetStartPoint(new XYZ(1001.0, 2001.0, 3001.0));
-//			tps[0].Update(0, tps.StartPoint);
-//
-//			tps.SetStartPoint(new XYZ(1001.0, 2001.0, 3001.0));
-//			tps[0].Update(0, tps.StartPoint);
-//
-//			tps.SetStartPoint(new XYZ(1001.0, 2001.0, 3001.0));
-//			tps[0].Update(0, tps.StartPoint);
-//
-//			tps.SetStartPoint(new XYZ(1001.0, 2001.0, 3001.0));
-//			tps[0].Update(0, tps.StartPoint);
-//
-//			tps.SetStartPoint(new XYZ(1001.0, 2001.0, 3001.0));
-//			tps[0].Update(0, tps.StartPoint);
-
-//			tps.Complete();
-		}
-
-		private void NextPoint(double increase)
-		{
-			x += increase;
-			y += increase;
-			z += increase;
-
-			tps.AddDefered(new XYZ(x, y, z));
+			TpTest.BtnTestAll_Click();	
 		}
 	}
 }
