@@ -1084,8 +1084,8 @@
 						<Button Name="btnRestoreX" Content="Restore X"
 								Grid.Row="{StaticResource Field.Ed.Btn.Row.Num}"
 								Grid.Column="1"
-								MaxWidth="70"
 								Margin="6"
+								MaxWidth="70"
 								Command="{Binding ButtonClickCommand, Mode=OneWay, ElementName={StaticResource Parent}}"
 								CommandParameter="{Binding ElementName=btnRestoreX, Path=Name}"
 								IsEnabled="{Binding Path=HasRevisionX, Mode=OneWay}"
@@ -1352,8 +1352,8 @@
 						HorizontalContentAlignment="Stretch"
 						VerticalScrollBarVisibility="Visible"
 						>
-					<Grid MaxWidth="{Binding ElementName=ScrollViewer, Path=ViewportWidth}"
-							Margin="0,0,-3,0"
+					<Grid Margin="0,0,-3,0"
+							MaxWidth="{Binding ElementName=ScrollViewer, Path=ViewportWidth}"
 							>
 
 						<Grid.RowDefinitions>

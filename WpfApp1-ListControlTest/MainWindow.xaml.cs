@@ -49,6 +49,7 @@ namespace WpfApp1_ListControlTest
 
 		public MainWindow()
 		{
+
 			InitializeComponent();
 
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "01a", SheetName = "name 01a", SheetData = "data 01a", SheetInfo = "info 01a", SheetInfo2 = "info2 01a"});
@@ -100,7 +101,6 @@ namespace WpfApp1_ListControlTest
 		{
 			loaded = true;
 		}
-
 
 		// add 1
 		private void BtnAdd1_Click(object sender, RoutedEventArgs e)
@@ -156,6 +156,51 @@ namespace WpfApp1_ListControlTest
 		private void BtnTestAll_Click(object sender, RoutedEventArgs e)
 		{
 			TpTest.BtnTestAll_Click();	
+		}
+
+		private void BtnContains_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest.BtnContains_Click();	
+		}
+
+		private void BtnIndexOf_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest.BtnIndexOf_Click();	
+		}
+
+		private void BtnRemoveAt_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest.BtnRemoveAt_Click();	
+		}
+
+		private void BtnRemove_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest.BtnRemove_Click();	
+		}
+
+		private void BtnClear_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest.BtnClear_Click();	
+		}
+
+		private void BtnCopyTo_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest.BtnCopyTo_Click();	
+		}
+
+		private void BtnChange4XYZ_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest.BtnChange4XYZ_Click();	
+		}
+
+		private void BtnBatch_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest.BtnBatch_Click();	
+		}
+
+		private void BtnBatchv2_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest.BtnBatchv2_Click();	
 		}
 	}
 }

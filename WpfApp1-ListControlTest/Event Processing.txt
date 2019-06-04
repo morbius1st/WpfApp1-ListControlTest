@@ -1,0 +1,105 @@
+
+
+property change events
+
+function categories
+
+A.  startup
+B.  regular, single property
+C.  add / insert
+D.  batch
+E   update using XYZ
+
+flags:
+
+complete 			(multi-operation flag)							used by all to note that finalization has occured
+processpropchanges	(multi-operation flag / multi-function flag)	used for startup & add / insert
+batchmode 			(multi-operation flag)							when making several change at one time,  these can occur during batchmode: regular / add-insert / xyz 
+xyzmode 			(single-operation flag)							when making an xyz change to a single item. other operations cannot occur between start and finish
+
+
+(multi-operation process)
+A  startup
+
+0. complete == false, batchmode == false, processpropchanges == false, xyzmode = false (normal flag condition)
+1. processpropchanges == false
+2. Add items to list
+3. since processpropchanges == false, IGNORE X, Y, Z events vs running reindex()
+4. when finalize:
+	reindex()
+	complete = true, processpropchanges == true
+
+
+(multi-operation process)
+D  batch (CANNOT happen during initialization) (CANNOT happen during batch operation)
+note, only way to insure that any subsequent modifications are processed, the whole list gets reindex()
+
+-1. if (complete == false) throw error | if (batchmode == true) throw error
+0. complete == true, batchmode == false (normal flag condition - other flags do not matter)
+1. batchmode == true
+2. add items to list
+3. since batchmode == true, IGNORE X, Y, Z events versus running reindex()
+4. when batchfinalize
+	a. since batchmode == true, IGNORE X, Y, Z events versus running reindex()
+	b. reindex()
+	c. batchmode = false
+
+
+(single-operation process)
+B  regular, single property change (can happen during batch operation) (can happen during initialization)
+
+0. complete == true or false, batchmode == true of false, processpropchanges == true or false, xyzmode = false (normal flag condition)
+1. change property
+2. event fires
+	a. if not X, Y, Z, no special processing
+	b. if processpropchanges == false or batchmode == true, IGNORE X, Y, Z events versus running reindex()
+		else, process X, Y, Z events, run reindex()
+
+		
+?? need to determine how x, y, z events fire - 
+(single-operation process)
+C  add / insert (can happen during batch operation) (can happen during initialization)
+
+0. complete == true or false, batchmode == true or false, processpropchanges == true or false, xyzmode = false (normal flag condition)
+1. add new item to list - no events fire
+2. wire event handler
+3. status[gotpoints] == true
+4. depending of flags
+	a. if (complete == false) do nothing
+	b. if (batchmode == true) do nothing
+	c. if (complete == true && batchmode == false)
+		i. processpropchanges == false
+		ii. reindex()
+		iii. processpropchanges == true
+	
+
+// (single-operation process)
+// E  update using XYZ (can happen during batch operation) (can happen during initialization)
+
+// 0. complete == true or false, xyzmode = false (normal flag condition - other flags do not matter)
+// 1. xyzmode == true
+// 2. topopoints.xyz = xyz, fire event for each change x, y, z
+// 3. since xyzmode == true, IGNORE X, Y, Z events versus running reindex()
+// 4. depending on flags:
+	// a. if complete == false do nothing
+	// b. if batchmode == true do nothing
+	// c. else 
+		// i. maintain xyzmode == true
+		// ii. reindex()
+		// iii. xyzmode = false
+
+?? need to determine how x, y, z events fire
+(single-operation process)
+E  update using XYZ (can happen during batch operation) (can happen during initialization)
+
+0. complete == true or false, batchmode == true or false, processpropchanges == true or false (normal flag condition)
+1. topopoints.xyz = xyz, do not fire fire event for x, y, z changes
+2. since must apply to an existing item, no need to wire event handler
+4. depending of flags
+	a. if (complete == false) do nothing
+	b. if (batchmode == true) do nothing
+	c. if (complete == true && batchmode == false)
+		i. processpropchanges == false
+		ii. reindex()
+		iii. processpropchanges == true
+

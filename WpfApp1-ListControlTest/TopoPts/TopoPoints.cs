@@ -12,6 +12,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 #endregion
 
@@ -48,6 +49,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 	 *
 	 */
 
+
 	public class TopoPoints : ObservableCollection<TopoPoint> //, INotifyPropertyChanged
 	{
 		private const int created                 = 0;
@@ -56,21 +58,13 @@ namespace WpfApp1_ListControlTest.TopoPts
 		private const int gotEndPoint             = 3;
 		private const int complete                = 4;
 		private const int processPropChangeUpdate = 5;
-		private const int length                  = processPropChangeUpdate + 1;
+		private const int batchMode             = 6;
+		private const int xyzMode               = 7;
+		private const int statusLength            = 8;
 
 		private bool[] Status;
 
 		private string _message;
-
-		public string message
-		{
-			get => _message;
-			set
-			{
-				_message = value;
-				OnPropertyChanged("message");
-			}
-		}
 
 	#region > constructor
 
@@ -82,134 +76,72 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 	#endregion
 
-		// standard event handler for all points except start and end points
-		// this will, depending on the defer flag, update the current
-		// point and the point that follows
-		private void TopoPoints_PropertyChanged(object sender, PropertyChangedEventArgs e)
-		{
-			int idx = ((TopoPoint) sender).Index;
-
-			DisplayPropChangeInfo(idx, sender, e, "midpt  ");
-
-			if (e.PropertyName.Equals("X") ||
-				e.PropertyName.Equals("Y") ||
-				e.PropertyName.Equals("Z") ||
-				e.PropertyName.Equals("XYZ") 
-				&& Status[processPropChangeUpdate]
-				)
-			{
-				UpdateItem(idx, idx - 1);
-				UpdateItem(idx + 1, idx);
-			}
-		}
-
-		// only startpoint property change events
-		// this will, depending on the defer flag, 
-		// update the start point and the point that follows
-		private void TopoPoints_PropertyChangedStartPt(object sender, PropertyChangedEventArgs e)
-		{
-			int idx = ((TopoPoint) sender).Index;
-
-			DisplayPropChangeInfo(idx, sender, e, "startpt");
-
-			if (e.PropertyName.Equals("X") ||
-				e.PropertyName.Equals("Y") ||
-				e.PropertyName.Equals("Z") ||
-				e.PropertyName.Equals("XYZ")
-				&& Status[processPropChangeUpdate]
-				)
-			{
-				UpdateItem(idx + 1, idx);
-			}
-
-			if (e.PropertyName.Equals("XYZ"))
-			{
-				OnPropertyChanged("StartPointIndex");
-				OnPropertyChanged("StartPointX");
-				OnPropertyChanged("StartPointY");
-				OnPropertyChanged("StartPointZ");
-			}
-			else
-			{
-				OnPropertyChanged("StartPoint" + e.PropertyName);
-			}
-		}
-
-		// only endpoint events
-		// this will, depending on the defer flag, 
-		// update the end point
-		private void TopoPoints_PropertyChangedEndPt(object sender, PropertyChangedEventArgs e)
-		{
-			int idx = ((TopoPoint) sender).Index;
-
-			DisplayPropChangeInfo(idx, sender, e, "endPt  ");
-
-			if (e.PropertyName.Equals("X") ||
-				e.PropertyName.Equals("Y") ||
-				e.PropertyName.Equals("Z") ||
-				e.PropertyName.Equals("XYZ")
-				&& Status[processPropChangeUpdate]
-				)
-			{
-				UpdateItem(idx, idx - 1);
-			}
-
-			if (e.PropertyName.Equals("XYZ"))
-			{
-				OnPropertyChanged("EndPointIndex");
-				OnPropertyChanged("EndPointX");
-				OnPropertyChanged("EndPointY");
-				OnPropertyChanged("EndPointZ");
-			}
-			else
-			{
-				OnPropertyChanged("EndPoint" + e.PropertyName);
-			}
-		}
-
-
-		private void DisplayPropChangeInfo(int idx, 
-			object sender, PropertyChangedEventArgs e, string who)
-		{
-
-			message += who + " received| "
-				+ "  idx| " + idx
-				+ "  property name| " + e.PropertyName
-				+ "  value| " + ((TopoPoint) sender).ToString()
-				+ "\n"
-				;
-
-			Debug.Write("received| "
-				+ "  idx| " + idx
-				+ "  property name| " + e.PropertyName
-				+ "  value| " + ((TopoPoint) sender).ToString()
-				+ "\n"
-				);
-		}
-
-
-
 	#region > superseding methods
 
 		public new void Add(TopoPoint t) => throw new NotImplementedException();
-		public new bool Contains(TopoPoint item) => throw new NotImplementedException();
 		public new void Insert(int idx, TopoPoint item) => throw new NotImplementedException();
 
 	#endregion
 
-	#region >> Methods - Done
+	#region > Properties
+
+		public string message
+		{
+			get => _message;
+			set
+			{
+				_message = value;
+				OnPropertyChanged("message");
+			}
+		}
+
+		public string append
+		{
+			set
+			{
+				message += value;
+				Debug.WriteLine(value);
+			}
+		}
 
 		public int EndPointIdx => Items.Count - 1;
 
-		public void Initialize(TopoStartPoint start)
+		public TopoStartPoint StartPoint
 		{
-			Items[0] = start;
-			Items[0].PropertyChanged += TopoPoints_PropertyChangedStartPt;
-			
-			Status[processPropChangeUpdate] = false;
-			Status[gotStartPoint] = true;
+			get => Items[0] as TopoStartPoint;
+			set => Items[0].XYZ = value.XYZ;
 		}
 
+		public XYZ StartXYZ
+		{
+			get => Items[0].XYZ;
+			set => Items[0].XYZ = value;
+		}
+
+		public TopoEndPoint EndPoint
+		{
+			get => Items[EndPointIdx] as TopoEndPoint;
+			set => Items[EndPointIdx].XYZ = value.XYZ;
+		}
+
+		public XYZ EndXYZ
+		{
+			get => Items[EndPointIdx].XYZ;
+			set => Items[EndPointIdx].XYZ = value;
+		}
+
+	#endregion
+
+	#region >> Public Methods
+
+		public void Initialize(TopoStartPoint start)
+		{
+			Items[0]                 =  start;
+			Items[0].PropertyChanged += TopoPoints_PropertyChangedStartPt;
+
+			Status[processPropChangeUpdate] = false;
+			Status[gotStartPoint]           = true;
+		}
 
 		public void Finalize(TopoEndPoint end)
 		{
@@ -217,7 +149,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 			end.Index = EndPointIdx;
 
-			Items[EndPointIdx] = end;
+			Items[EndPointIdx]                 =  end;
 			Items[EndPointIdx].PropertyChanged += TopoPoints_PropertyChangedEndPt;
 
 			Status[gotEndPoint] = true;
@@ -231,30 +163,6 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 			Status[complete] = true;
 			Status[processPropChangeUpdate] = true;
-		}
-
-		public TopoStartPoint StartPoint
-		{
-			get => Items[0] as TopoStartPoint;
-			set => Items[0].XYZ = value.XYZ;
-		}
-
-		public XYZ StartXYZ
-		{
-			get => Items[0].XYZ;
-			set => Items[0].XYZ = value;
-		}
-		
-		public TopoEndPoint EndPoint
-		{
-			get => Items[EndPointIdx] as TopoEndPoint;
-			set => Items[EndPointIdx].XYZ = value.XYZ;
-		}
-
-		public XYZ EndXYZ
-		{
-			get => Items[EndPointIdx].XYZ;
-			set => Items[EndPointIdx].XYZ = value;
 		}
 
 		// only allowed after we have a start point
@@ -272,7 +180,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 			if (!xyz.IsValid) { throw new ArgumentException("Invalid Point"); }
 
-			if (idx <= 0 || idx > EndPointIdx) { throw new ArgumentException("Invalid Insert Index"); }
+			if (idx <= 0 || idx > EndPointIdx) { throw new ArgumentException("Invalid Index"); }
 
 			base.Insert(idx, new TopoPoint(xyz));
 
@@ -280,7 +188,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 			Status[gotPoints] = true;
 
-			if (Status[complete])
+			if (Status[complete] && !Status[batchMode])
 			{
 				Status[processPropChangeUpdate] = false;
 				ReIndex(idx, false);
@@ -288,30 +196,248 @@ namespace WpfApp1_ListControlTest.TopoPts
 			}
 		}
 
-		// determine if the point exists in the collection
-		public bool Contains(XYZ xyz)
+		// clear the whole list to start anew
+		public new void Clear()
 		{
-			bool result = false;
-
 			foreach (TopoPoint tp in Items)
 			{
-				result = tp.XYZ.Equals(xyz);
-				if (result) break;
+				tp.PropertyChanged -= TopoPoints_PropertyChanged;
 			}
 
-			return result;
+			ClearItems();
+
+			// clear status
+			Status = new bool[statusLength];
+
+			Items.Insert(0, new TopoPoint(XYZ.Empty));
+			Items.Insert(1, new TopoPoint(XYZ.Empty));
+
+			UpdateStartPointValues();
+			UpdateEndPointValues();
+
+			// default is all = false
+			Status[created] = true;
 		}
 
-		private void ReIndex(int start = 0, bool all = true)
+		// the element matching tp
+		// then reindex - do this be finding the index of the
+		// element and using the remove at routine
+		public new bool Remove(TopoPoint tp)
 		{
-			int i;
-			int j = Items.Count;
+			int result = IndexOf(tp);
 
-			if (!all)
+			if (result < 0) return false;
+
+			RemoveAt(result);
+
+			return true;
+		}
+
+		// remove the item at => index
+		// once removed update the list as needed
+		// index cannot be <= 0 (cannot remove start or before)
+		// index cannot be >= endpointidx (cannot remove end or beyond)
+		public new void RemoveAt(int index)
+		{
+			if (index <= 0 || index >= EndPointIdx)  { throw new ArgumentException("Invalid Index"); }
+
+			// remove using the base method to prevent extra events
+			base.RemoveAt(index);
+
+			ReIndex(index, false);
+		}
+
+		// export the collection members to an array
+		public new void CopyTo(TopoPoint[] array, int arrayIndex)
+		{
+//			Clear();
+
+			Items.CopyTo(array, arrayIndex);
+//
+//			UpdateStartPointValues();
+//			UpdateEndPointValues();
+//
+//			StatusToAllTrue();
+		}
+
+	#endregion
+
+		public void BatchBegin()
+		{
+			Status[batchMode] = true;
+		}
+
+		public void BatchFinalize()
+		{
+//			int end = last + 1;
+//
+//			if (first <= 0 || end > EndPointIdx) return;
+
+//			ReIndex(first, false, end);
+			ReIndex();
+
+			Status[batchMode] = false;
+		}
+
+	#region > Event Handling
+
+		private bool testEventProcessing(string property)
+		{
+			return
+				((property.Equals("X") ||
+				property.Equals("Y") ||
+				property.Equals("Z") 
+				||
+				property.Equals("XYZend")
+				)
+				&&
+				(Status[processPropChangeUpdate] &&
+				!Status[batchMode] &&
+				!Status[xyzMode])
+				);
+		}
+
+		// standard event handler for all points except start and end points
+		// this will, depending on the defer flag, update the current
+		// point and the point that follows
+		private void TopoPoints_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			int idx = ((TopoPoint) sender).Index;
+
+			string name = e.PropertyName;
+
+			if (name.Equals("XYZstart")) { Status[xyzMode] = true;}
+
+			if (name.Equals("XYZend"))
 			{
-				j = start + 2;
+				Status[xyzMode] = false;
+			}
 
-				j = j > Items.Count ? Items.Count : j;
+			bool result = testEventProcessing(name);
+
+#if DEBUG
+			DisplayPropChangeInfo(idx, sender, e, "midpt| ", name);
+#endif
+
+			if (testEventProcessing(name))
+			{
+				ReIndex(idx, false);
+			}
+		}
+
+		// only startpoint property change events
+		// this will, depending on the defer flag, 
+		// update the start point and the point that follows
+		private void TopoPoints_PropertyChangedStartPt(object sender, PropertyChangedEventArgs e)
+		{
+			int idx = ((TopoPoint) sender).Index;
+
+#if DEBUG
+			DisplayPropChangeInfo(idx, sender, e, "startpt", " ");
+#endif
+
+			if (testEventProcessing(e.PropertyName))
+			{
+				UpdateItem(idx + 1, idx);
+			}
+
+//			if (e.PropertyName.Equals("XYZ"))
+//			{
+//				OnPropertyChanged("StartPointIndex");
+//				OnPropertyChanged("StartPointX");
+//				OnPropertyChanged("StartPointY");
+//				OnPropertyChanged("StartPointZ");
+//			}
+//			else
+//			{
+				OnPropertyChanged("StartPoint" + e.PropertyName);
+//			}
+		}
+
+		// only endpoint events
+		// this will, depending on the defer flag, 
+		// update the end point
+		private void TopoPoints_PropertyChangedEndPt(object sender, PropertyChangedEventArgs e)
+		{
+			int idx = ((TopoPoint) sender).Index;
+
+#if DEBUG
+			DisplayPropChangeInfo(idx, sender, e, "endPt ", " ");
+#endif
+
+			if (testEventProcessing(e.PropertyName))
+			{
+				UpdateItem(idx, idx - 1);
+			}
+
+			if (e.PropertyName.Equals("XYZ"))
+			{
+				OnPropertyChanged("EndPointIndex");
+				OnPropertyChanged("EndPointX");
+				OnPropertyChanged("EndPointY");
+				OnPropertyChanged("EndPointZ");
+			}
+			else
+			{
+				OnPropertyChanged("EndPoint" + e.PropertyName);
+			}
+		}
+
+		private void OnPropertyChanged([CallerMemberName] string memberName = "")
+		{
+			base.OnPropertyChanged(new PropertyChangedEventArgs(memberName));
+		}
+
+	#endregion
+
+
+	#region > Utility Functions
+
+		private void StatusToAllTrue()
+		{
+			for (int i = 0; i < statusLength; i++)
+			{
+				Status[i] = true;
+			}
+		}
+
+		private bool CheckStatus(int statusLevel)
+		{
+			Status[complete] = false;
+
+			for (int i = 0; i < statusLevel; i++)
+			{
+				if (!Status[i]) return false;
+			}
+
+			return true;
+		}
+
+		// reindex + update items starting from index, using index - 1
+		// depending on all:
+		// all == false, update index + 1 using index
+		// all = true, update the remainder of the list
+		private void ReIndex(int start = 0, bool all = true, int last = 0)
+		{
+			if (last < 0 || last > EndPointIdx) { throw new ArgumentException("Invalid Last Index"); }
+
+			int i;
+			int j;
+
+			if (last == 0)
+			{
+				j = Items.Count;
+
+				if (!all)
+				{
+					j = start + 2;
+
+					j = j > Items.Count ? Items.Count : j;
+				}
+			}
+			else
+			{
+				j = last + 1;
 			}
 
 
@@ -340,17 +466,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 				OnPropertyChanged("EndPointY");
 				OnPropertyChanged("EndPointZ");
 			}
-
 		}
-
-
-//		private void ReIndex2(int start = 1)
-//		{
-//			for (int j = start; j < Items.Count; j++)
-//			{
-//				UpdateItem(j, j - 1);
-//			}
-//		}
 
 		private void UpdateItem(int j, int i)
 		{
@@ -362,64 +478,59 @@ namespace WpfApp1_ListControlTest.TopoPts
 			Items[j].Update(j, Items[i]);
 		}
 
-		// everything upto statusLevel, exclusive, must be true
-		private bool CheckStatus(int statusLevel)
+#if DEBUG
+		private void DisplayPropChangeInfo(int idx,
+			object sender, PropertyChangedEventArgs e, string who,
+			string which
+			)
 		{
-			Status[complete] = false;
+			append = who + " received| "
+				+ "  idx| " + idx
+				+ "  property name| " + e.PropertyName
+				+ " (" + which + ")"
+				+ "  value| " + ((TopoPoint) sender).ToString()
+				+ "\n"
+				;
 
-			for (int i = 0; i < statusLevel; i++)
-			{
-				if (!Status[i]) return false;
-			}
-
-			return true;
+//			Debug.Write("received| "
+//				+ "  idx| " + idx
+//				+ "  property name| " + e.PropertyName
+//				+ "  value| " + ((TopoPoint) sender).ToString()
+//				+ "\n"
+//				);
 		}
-
-		public new void Clear()
-		{
-			foreach (TopoPoint tp in Items)
-			{
-				tp.PropertyChanged -= TopoPoints_PropertyChanged;
-			}
-
-			// clear status
-			Status = new bool[length];
-
-			Items.Insert(0, new TopoPoint(XYZ.Empty));
-			Items.Insert(1, new TopoPoint(XYZ.Empty));
-
-			Status[created] = true;
-		}
+#endif
 
 	#endregion
 
-		public new bool Remove(TopoPoint tp)
+	#region > overrides
+
+#if DEBUG
+
+		public override string ToString()
 		{
-			return Items.Remove(tp);
+			StringBuilder sb = new StringBuilder("count| " + Items.Count + "\n");
+
+			foreach (TopoPoint tp in Items)
+			{
+				sb.AppendLine(
+					$"idx| {tp.Index     ,4:D}"
+					+ $" x| {tp.X        ,10:F2}"
+					+ $" y| {tp.Y        ,10:F2}"
+					+ $" z| {tp.Z        ,10:F2}"
+					+ $" Δx| {tp.XΔ      ,8:F2}"
+					+ $" Δy| {tp.YΔ      ,8:F2}"
+					+ $" Δz| {tp.ZΔ      ,8:F2}"
+					+ $" Δxy| {tp.XYΔ    ,10:F2}"
+					+ $" slope| {tp.Slope,10:F7}"
+					);
+			}
+
+			return sb.ToString();
 		}
+#endif
 
-		public new void RemoveAt(int index)
-		{
-			Items.RemoveAt(index);
-		}
-
-		public new void CopyTo(TopoPoint[] array, int arrayIndex)
-		{
-			Items.CopyTo(array, arrayIndex);
-		}
-
-
-		public bool IsReadOnly => Items.IsReadOnly;
-
-		public new int IndexOf(TopoPoint item)
-		{
-			return Items.IndexOf(item);
-		}
-
-		private void OnPropertyChanged([CallerMemberName] string memberName = "")
-		{
-			base.OnPropertyChanged(new PropertyChangedEventArgs(memberName));
-		}
+	#endregion
 
 	#region > start and end point properties
 
@@ -431,6 +542,15 @@ namespace WpfApp1_ListControlTest.TopoPts
 		public double StartPointZ => Items[0].Z;
 
 		public bool StartPointCp => Items[0].ControlPoint;
+
+		public void UpdateStartPointValues()
+		{
+			OnPropertyChanged("StartPointIndex");
+			OnPropertyChanged("StartPointX");
+			OnPropertyChanged("StartPointY");
+			OnPropertyChanged("StartPointZ");
+		}
+
 
 		// end point
 		public int EndPointIndex => Items[EndPointIdx].Index;
@@ -448,171 +568,75 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 		public bool EndPointCp => Items[EndPointIdx].ControlPoint;
 
+		public void UpdateEndPointValues()
+		{
+			OnPropertyChanged("EndPointIndex");
+			OnPropertyChanged("EndPointX");
+			OnPropertyChanged("EndPointY");
+			OnPropertyChanged("EndPointZ");
+			OnPropertyChanged("EndPointXΔ");
+			OnPropertyChanged("EndPointYΔ");
+			OnPropertyChanged("EndPointZΔ");
+			OnPropertyChanged("EndPointXYΔ");
+			OnPropertyChanged("EndPointSlope");
+		}
+
 	#endregion
 	}
 }
 
-
-// SAVED - this update the index in reverse order
+//		private class Status2
+//		{
+//			public enum Stage
+//			{
+//				CREATED,
+//				GOTSTARTPOINT,
+//				GOTENDPOINT,
+//				COMPLETE,
+//				PROCESS_PROP_CHANGE_UPDATES,
+//				LENGTH
+//			}
 //
-//// updates the index number for all items
-//// updates the distances for all items
-//private void ReIndex()
-//{
-//	// internal method - no checks
-//	int i = Items.Count;
-//	int j = -1;
+//			public bool[] status;
 //
-//	_startPoint.Update(i--, Items[j++ + 1]);
+//			public Status2()
+//			{
+//				status = new bool[(int) Stage.LENGTH];
+//			}
 //
-//	for (; j < Items.Count - 1; j++)
-//	{
-//		Items[j].Index = i;
-//		Items[j].Update(i--, Items[j + 1]);
-//	}
+//			private int CreatedAsInt => (int) Stage.CREATED;
+//			public bool Created
+//			{
+//				get => status [CreatedAsInt]; 
+//				set => status [CreatedAsInt] = value;
+//			}
 //
-//	Items[j].Update(i--, _endPoint);
+//			private int GotStartPointAsInt => (int) Stage.GOTSTARTPOINT;
+//			public bool GotStartPoint
+//			{
+//				get => status[GotStartPointAsInt];
+//				set => status[GotStartPointAsInt] = value;
+//			}
 //
-//	_endPoint.Index = i;
+//			private int GotEndPointAsInt => (int) Stage.GOTENDPOINT;
+//			public bool GotEndPoint
+//			{
+//				get => status[GotEndPointAsInt];
+//				set => status[GotEndPointAsInt] = value;
+//			}
 //
-//	OnCollectionChanged(
-//		new NotifyCollectionChangedEventArgs(
-//			NotifyCollectionChangedAction.Reset));
-//}
-
-/*
- * CANCEL THE BELOW - change in system:
- * just add the info as needed and then always ReIndex
- *
- *
- * check 0: note: all xyz points must be unique
- * additional checks to the below:
- *  at other than start, xyz != start
- *  at other than end, xyz != end
- *  otherwise, xyz cannot exist in the collection
- *
- ** add start (xyz) -> add the start point with no prior point
- *  checks: xyz.IsValid, collection is new / empty / undefined,
- * initialized = false, check 0 == true
- *  
- *  set startpoint as topopoint / no prior point
- *  set initialized = got start point (remainder false)
- *  set endpoint as NaN
- *
- ** add endpoint (xyz) -> add the end point but does not complete / close the collection
- *
- *  no prior point & maybe, no points
- *     checks: xyz.IsValid, IsInitialized == got startpoint
- *       check 0 == true;
- *     1. make endpoint with no end point
- *     2. initialized == got endpoint
- *
- ** Complete(xyz)
- *
- *  adds the point as the endpoint and *** completes the collection,
- *       cannot 'add(xyz)' after this
- *     checks:xyz.IsValid, IsInitialized == got points
- *      check 0 == true;
- *     
- *    1. make endpoint with [[].count -1] as prior point
- *    2. initialized == complete
- *
- *
- ** add(xyz) -> add a new point to the begging of the current list
- *  checks: start point provided, xyz.IsValid, check 0 == true
- *  uses: [].count -1 as prior point
- *  sets IsInitialized = got points
- *
- *
- ** insert(xyz, idx) -> add a new point at the indexed location
- *  checks: start point provided, index < [].count && > = 0,
- *		xyz.IsValid, check 0 == true;
- *
- *  A. index = x = 0
- *   1. insert @ [0] using start as prior point
- *   2. update [x+1] using [x] as the prior point
- *
- *  B. index = x == [].count - 1 (last item)
- *   1. insert @ [x] using [x-1] as prior point
- *   2. update end point using [x] as the prior point
- *
- *  C. index = x
- *   process as: insert(xyz, x)
- *   1. insert @ [x] using x-1 as prior point - [x] becomes the new point
- *   2. update [x+1] using [x] as the prior point
- *
- *
- ** remove(xyz) -> remove an existing point
- *  checks: xyz.IsValid, initialized >= got points,
- *   xyz exists == true or xyz == start or xyz == end
- *
- *  A. xyz == start
- *   1. this would mean reset to the whole collection so this is not
- *     allowed.
- *   2.  throw error
- *
- *  B. xyz == end
- *   1. this is only OK if initialized == got endpoint
- *   2. end point is reset
- *   3. initialized = got startpoint
- *
- *  C. find index = x, x == [].count - 1 (last item)
- *   1. update endpoint using [x-1]
- *   2. remove [x]
- *
- *  D. find index = x
- *    process as: private remove(x)
- *
- *
- ** removeat(x) -> remove an existing point
- *   checks: x exists == true
- *
- *   A. x == [].count - 1 (last item) && [].count > 1
- *    1. update endpoint using [x-1]
- *    2. remove[x]
- *
- *   B. x == !last item && [].count > 1
- *    1. process as remove(x)
- *
- *   C. x != last item && [].count = 1
- *    1. update endpoint using startpoint
- *    2. remove [x]
- *
- *
- *
- ** move(new idx, xyz) -> moves xyz to idx position
- *  checks: xyz.IsValid, initialized >= got points, xyz exists == true
- *    idx < [].count, xyz != start, xyz != end
- *
- *  ** find index = x
- *  process as: private move(x, new idx)
- *
- * move(x, new idx)
- *  checks: initialized >= got points, x != idx, x >= 0, x < [].count,
- *    idx >= 0, idx < [].count
- *
- *  process as: private move (x, new idx)
- *
- *
- * clear() == reset
-
- *
- *
- * private insert(x, xyz)
- *   1. insert @ [x] using x-1 as prior point - [x] becomes the new point
- *   2. update [x+1] using [x] as the prior point
- *
- * private remove(x) 
- *   1. update [x+1] using prior point [x-1]
- *   2. remove[x]
- *
- * private move(new idx, x)
- *  1. insert([x].xyz, new idx)
- *  2. private remove([x])
- *
- *
- *
- *
- *
- *
- */
+//			private int CompleteAsInt => (int) Stage.COMPLETE;
+//			public bool Complete
+//			{
+//				get => status[CompleteAsInt];
+//				set => status[CompleteAsInt] = value;
+//			}
+//
+//			private int ProcessPropChangeUpdatesAsInt => (int) Stage.PROCESS_PROP_CHANGE_UPDATES;
+//			public bool ProcessPropChangeUpdates
+//			{
+//				get => status[ProcessPropChangeUpdatesAsInt];
+//				set => status[ProcessPropChangeUpdatesAsInt] = value;
+//			}
+//
+//		}

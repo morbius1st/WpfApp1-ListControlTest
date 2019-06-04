@@ -120,7 +120,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 		}
 	}
 
-	public class TopoPoint : IEquatable<TopoPoint>, INotifyPropertyChanged
+	public class TopoPoint : IEquatable<TopoPoint>, ICloneable, INotifyPropertyChanged
 	{
 		private UInt32 statusFlag = 0;
 
@@ -130,8 +130,8 @@ namespace WpfApp1_ListControlTest.TopoPts
 		private double _xΔ = Double.NaN;
 		private double _yΔ = Double.NaN;
 		private double _zΔ = Double.NaN;
-		private double xyΔ = Double.NaN;
-		private double slope = Double.NaN;
+		private double _xyΔ = Double.NaN;
+		private double _slope = Double.NaN;
 
 		private XYZ priorPoint = XYZ.Empty;
 
@@ -147,22 +147,30 @@ namespace WpfApp1_ListControlTest.TopoPts
 				{
 					priorPoint = point;
 
+					OnPropertyChange("XYZstart");
+
 					if (!Double.IsNaN(value.X))
 					{
 						point.X = value.X;
+						OnPropertyChange("X");
+//						X = value.X;
 					}
 					
 					if (!Double.IsNaN(value.Y))
 					{
 						point.Y = value.Y;
+						OnPropertyChange("Y");
+//						Y = value.Y;
 					}
 					
 					if (!Double.IsNaN(value.Z))
 					{
 						point.Z = value.Z;
+						OnPropertyChange("Z");
+//						Z = value.Z;
 					}
 
-					OnPropertyChange();
+					OnPropertyChange("XYZend");
 				}
 			}
 		}
@@ -179,7 +187,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 			{
 				if (!value.Equals(point.X))
 				{
-					priorPoint.X = point.X;
+					priorPoint = point;
 
 					point.X = value;
 
@@ -197,7 +205,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 			{
 				if (!value.Equals(point.Y))
 				{
-					priorPoint.Y = point.Y;
+					priorPoint = point;
 
 					point.Y = value;
 
@@ -215,7 +223,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 			{
 				if (!value.Equals(point.Z))
 				{
-					priorPoint.Z = point.Z;
+					priorPoint = point;
 
 					point.Z = value;
 
@@ -245,10 +253,8 @@ namespace WpfApp1_ListControlTest.TopoPts
 			private set
 			{
 				controlPoint = value;
-//				OnPropertyChange();
 			}
 		}
-
 
 		// values below are calculated and 
 		// cannot be set from outside
@@ -286,20 +292,20 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 		public double XYΔ
 		{
-			get => xyΔ;
+			get => _xyΔ;
 			private set
 			{
-				xyΔ = value;
+				_xyΔ = value;
 				OnPropertyChange();
 			}
 		}
 
 		public double Slope
 		{
-			get => slope;
+			get => _slope;
 			private set
 			{
-				slope = value;
+				_slope = value;
 				OnPropertyChange();
 			}
 		}
@@ -526,7 +532,40 @@ namespace WpfApp1_ListControlTest.TopoPts
 				Z.ToString("F4"));
 		}
 
+		public object Clone()
+		{
+			TopoPoint tp = new TopoPoint();
+
+			tp.X = point.X;
+			tp.Y = point.Y;
+			tp.Z = point.Z;
+
+			tp.Index = index;
+
+			tp.ControlPoint = controlPoint;
+
+			tp.XΔ = _xΔ;
+			tp.YΔ = _yΔ;
+			tp.ZΔ = _zΔ;
+
+			tp.XYΔ = _xyΔ;
+
+			tp.Slope = _slope;
+
+			tp.statusFlag = statusFlag;
+
+			return tp;
+		}
+
 		public bool Equals(TopoPoint other)
+		{
+			return
+				point.X.Equals(other.point.X) &&
+				point.Y.Equals(other.point.Y) &&
+				point.Z.Equals(other.point.Z);
+		}
+
+		public bool FullyEquals(TopoPoint other)
 		{
 			return
 				point.X.Equals(other.point.X) &&
@@ -549,73 +588,3 @@ namespace WpfApp1_ListControlTest.TopoPts
 		}
 	}
 }
-
-
-//
-//		public void Update2(int index, TopoPoint priorTp)
-//		{
-//			// point (XYZ) is all that is valid
-//			// must update all other values
-//
-//			Index = index;
-//
-//			SetX(point.X, priorTp.X);
-//			SetY(point.Y, priorTp.Y);
-//
-//			if (!SetZ(point.Z, priorTp.Z))
-//			{
-//				Clear();
-//			}
-//		}
-
-
-//
-//private bool SetX(double X, double priorX)
-//{
-//if (TestForNaN(X, priorX))
-//{
-//Clear();
-//	return false;
-//}
-//
-//point.X = X;
-//StatusFlagSet(BitFlag.Xflag);
-//
-//UpdateXΔ(priorX);
-//
-//return CalcXYΔ() && CalcSlope();
-//}
-//
-//public bool SetY(double Y, double priorY)
-//{
-//if (TestForNaN(Y, priorY))
-//{
-//Clear();
-//return false;
-//}
-//
-//point.Y = Y;
-//
-//StatusFlagSet(BitFlag.Yflag);
-//
-//UpdateYΔ(priorY);
-//
-//return CalcXYΔ() && CalcSlope();
-//}
-//
-//public bool SetZ(double Z, double priorZ)
-//{
-//if (TestForNaN(Z, priorZ))
-//{
-//Clear();
-//return false;
-//}
-//
-//point.Z = Z;
-//
-//StatusFlagSet(BitFlag.Zflag);
-//
-//UpdateZΔ(priorZ);
-//
-//return CalcSlope();
-//}
