@@ -22,22 +22,6 @@ using System.Windows.Documents;
 // username: jeffs
 // created:  5/21/2019 7:40:37 PM
 
-
-// adjustments
-// 1. start using "Initialize(TopoStartPoint)"
-//		until this is done, nothing works (at least what I can do);
-//		this just placed the XYZ into point
-// 2. just have "add()" - this will be deferred automatically until "complete(TopoEndPoint)"
-//		this places the XYZ into point
-//		this updates all calculated values
-//		this assigns property handlers 0 to end
-//		changes flag to complete - which allows properties to work
-//	3. adjust topopoint to allow revising XYZ at one time to reduce property change events
-//		need to adjust XYZ to allow providing one or more values and setting other values to NaN
-//	4. eliminate collection property change from propagating property change events 
-//		delegate end point to a different event handler??
-
-
 namespace WpfApp1_ListControlTest.TopoPts
 {
 	/*
@@ -46,21 +30,23 @@ namespace WpfApp1_ListControlTest.TopoPts
 	 * this means that TopoPoint(s) must be kept in the correct order
 	 *
 	 * point arrangement
-	 *
+	 * 0 = startpoint
+	 * # = intermediate topo points
+	 * endpointidx = endpoint
 	 */
 
 
 	public class TopoPoints : ObservableCollection<TopoPoint> //, INotifyPropertyChanged
 	{
-		private const int created                 = 0;
-		private const int gotStartPoint           = 1;
-		private const int gotPoints               = 2;
-		private const int gotEndPoint             = 3;
-		private const int complete                = 4;
+		private const int created = 0;
+		private const int gotStartPoint = 1;
+		private const int gotPoints = 2;
+		private const int gotEndPoint = 3;
+		private const int complete = 4;
 		private const int processPropChangeUpdate = 5;
-		private const int batchMode             = 6;
-		private const int xyzMode               = 7;
-		private const int statusLength            = 8;
+		private const int batchMode = 6;
+		private const int xyzMode = 7;
+		private const int statusLength = 8;
 
 		private bool[] Status;
 
@@ -85,6 +71,8 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 	#region > Properties
 
+	#if DEBUG
+
 		public string message
 		{
 			get => _message;
@@ -100,66 +88,40 @@ namespace WpfApp1_ListControlTest.TopoPts
 			set
 			{
 				message += value;
-				Debug.WriteLine(value);
+				Debug.Write(value);
 			}
 		}
+	#endif
 
 		public int EndPointIdx => Items.Count - 1;
-
-		public TopoStartPoint StartPoint
-		{
-			get => Items[0] as TopoStartPoint;
-			set => Items[0].XYZ = value.XYZ;
-		}
-
-		public XYZ StartXYZ
-		{
-			get => Items[0].XYZ;
-			set => Items[0].XYZ = value;
-		}
-
-		public TopoEndPoint EndPoint
-		{
-			get => Items[EndPointIdx] as TopoEndPoint;
-			set => Items[EndPointIdx].XYZ = value.XYZ;
-		}
-
-		public XYZ EndXYZ
-		{
-			get => Items[EndPointIdx].XYZ;
-			set => Items[EndPointIdx].XYZ = value;
-		}
 
 	#endregion
 
 	#region >> Public Methods
 
+		// start the process of creating a topopoints collection
 		public void Initialize(TopoStartPoint start)
 		{
-			Items[0]                 =  start;
+			Items[0] = start;
 			Items[0].PropertyChanged += TopoPoints_PropertyChangedStartPt;
 
 			Status[processPropChangeUpdate] = false;
-			Status[gotStartPoint]           = true;
+			Status[gotStartPoint] = true;
 		}
 
+		// end the initial process of creating a topopoints collection
 		public void Finalize(TopoEndPoint end)
 		{
 			if (!CheckStatus(gotEndPoint)) { throw new InvalidOperationException("TopoPoints Not Ready to Finalize"); }
 
 			end.Index = EndPointIdx;
 
-			Items[EndPointIdx]                 =  end;
+			Items[EndPointIdx] = end;
 			Items[EndPointIdx].PropertyChanged += TopoPoints_PropertyChangedEndPt;
 
 			Status[gotEndPoint] = true;
 
 			ReIndex();
-
-			OnPropertyChanged("StartPointIndex");
-			OnPropertyChanged("StartPointX");
-			OnPropertyChanged("StartPointY");
-			OnPropertyChanged("StartPointZ");
 
 			Status[complete] = true;
 			Status[processPropChangeUpdate] = true;
@@ -239,7 +201,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 		// index cannot be >= endpointidx (cannot remove end or beyond)
 		public new void RemoveAt(int index)
 		{
-			if (index <= 0 || index >= EndPointIdx)  { throw new ArgumentException("Invalid Index"); }
+			if (index <= 0 || index >= EndPointIdx) { throw new ArgumentException("Invalid Index"); }
 
 			// remove using the base method to prevent extra events
 			base.RemoveAt(index);
@@ -250,17 +212,8 @@ namespace WpfApp1_ListControlTest.TopoPts
 		// export the collection members to an array
 		public new void CopyTo(TopoPoint[] array, int arrayIndex)
 		{
-//			Clear();
-
 			Items.CopyTo(array, arrayIndex);
-//
-//			UpdateStartPointValues();
-//			UpdateEndPointValues();
-//
-//			StatusToAllTrue();
 		}
-
-	#endregion
 
 		public void BatchBegin()
 		{
@@ -269,24 +222,21 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 		public void BatchFinalize()
 		{
-//			int end = last + 1;
-//
-//			if (first <= 0 || end > EndPointIdx) return;
-
-//			ReIndex(first, false, end);
 			ReIndex();
 
 			Status[batchMode] = false;
 		}
 
+	#endregion
+
 	#region > Event Handling
 
-		private bool testEventProcessing(string property)
+		private bool eventProcessingTest(string property)
 		{
 			return
 				((property.Equals("X") ||
 				property.Equals("Y") ||
-				property.Equals("Z") 
+				property.Equals("Z")
 				||
 				property.Equals("XYZend")
 				)
@@ -306,20 +256,22 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 			string name = e.PropertyName;
 
-			if (name.Equals("XYZstart")) { Status[xyzMode] = true;}
+			if (name.Equals("XYZstart")) { Status[xyzMode] = true; }
 
 			if (name.Equals("XYZend"))
 			{
 				Status[xyzMode] = false;
 			}
 
-			bool result = testEventProcessing(name);
+		#if DEBUG
 
-#if DEBUG
+			bool result = eventProcessingTest(name);
+
 			DisplayPropChangeInfo(idx, sender, e, "midpt| ", name);
-#endif
 
-			if (testEventProcessing(name))
+		#endif
+
+			if (eventProcessingTest(name))
 			{
 				ReIndex(idx, false);
 			}
@@ -332,26 +284,16 @@ namespace WpfApp1_ListControlTest.TopoPts
 		{
 			int idx = ((TopoPoint) sender).Index;
 
-#if DEBUG
+		#if DEBUG
 			DisplayPropChangeInfo(idx, sender, e, "startpt", " ");
-#endif
+		#endif
 
-			if (testEventProcessing(e.PropertyName))
+			if (eventProcessingTest(e.PropertyName))
 			{
 				UpdateItem(idx + 1, idx);
 			}
 
-//			if (e.PropertyName.Equals("XYZ"))
-//			{
-//				OnPropertyChanged("StartPointIndex");
-//				OnPropertyChanged("StartPointX");
-//				OnPropertyChanged("StartPointY");
-//				OnPropertyChanged("StartPointZ");
-//			}
-//			else
-//			{
-				OnPropertyChanged("StartPoint" + e.PropertyName);
-//			}
+			OnPropertyChanged("StartPoint" + e.PropertyName);
 		}
 
 		// only endpoint events
@@ -361,21 +303,18 @@ namespace WpfApp1_ListControlTest.TopoPts
 		{
 			int idx = ((TopoPoint) sender).Index;
 
-#if DEBUG
+		#if DEBUG
 			DisplayPropChangeInfo(idx, sender, e, "endPt ", " ");
-#endif
+		#endif
 
-			if (testEventProcessing(e.PropertyName))
+			if (eventProcessingTest(e.PropertyName))
 			{
 				UpdateItem(idx, idx - 1);
 			}
 
 			if (e.PropertyName.Equals("XYZ"))
 			{
-				OnPropertyChanged("EndPointIndex");
-				OnPropertyChanged("EndPointX");
-				OnPropertyChanged("EndPointY");
-				OnPropertyChanged("EndPointZ");
+				UpdateEndPointBaseValues();
 			}
 			else
 			{
@@ -390,16 +329,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 	#endregion
 
-
 	#region > Utility Functions
-
-		private void StatusToAllTrue()
-		{
-			for (int i = 0; i < statusLength; i++)
-			{
-				Status[i] = true;
-			}
-		}
 
 		private bool CheckStatus(int statusLevel)
 		{
@@ -451,20 +381,14 @@ namespace WpfApp1_ListControlTest.TopoPts
 				Items[i].Index = i;
 			}
 
-//			if (start == 0)
-//			{
-//				OnPropertyChanged("StartPointIndex");
-//				OnPropertyChanged("StartPointX");
-//				OnPropertyChanged("StartPointY");
-//				OnPropertyChanged("StartPointZ");
-//			}
+			if (start == 0)
+			{
+				UpdateStartPointValues();
+			}
 
 			if (j == Items.Count)
 			{
-				OnPropertyChanged("EndPointIndex");
-				OnPropertyChanged("EndPointX");
-				OnPropertyChanged("EndPointY");
-				OnPropertyChanged("EndPointZ");
+				UpdateEndPointBaseValues();
 			}
 		}
 
@@ -478,7 +402,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 			Items[j].Update(j, Items[i]);
 		}
 
-#if DEBUG
+	#if DEBUG
 		private void DisplayPropChangeInfo(int idx,
 			object sender, PropertyChangedEventArgs e, string who,
 			string which
@@ -491,21 +415,14 @@ namespace WpfApp1_ListControlTest.TopoPts
 				+ "  value| " + ((TopoPoint) sender).ToString()
 				+ "\n"
 				;
-
-//			Debug.Write("received| "
-//				+ "  idx| " + idx
-//				+ "  property name| " + e.PropertyName
-//				+ "  value| " + ((TopoPoint) sender).ToString()
-//				+ "\n"
-//				);
 		}
-#endif
+	#endif
 
 	#endregion
 
-	#region > overrides
+	#region > Overrides
 
-#if DEBUG
+	#if DEBUG
 
 		public override string ToString()
 		{
@@ -514,21 +431,21 @@ namespace WpfApp1_ListControlTest.TopoPts
 			foreach (TopoPoint tp in Items)
 			{
 				sb.AppendLine(
-					$"idx| {tp.Index     ,4:D}"
-					+ $" x| {tp.X        ,10:F2}"
-					+ $" y| {tp.Y        ,10:F2}"
-					+ $" z| {tp.Z        ,10:F2}"
-					+ $" Δx| {tp.XΔ      ,8:F2}"
-					+ $" Δy| {tp.YΔ      ,8:F2}"
-					+ $" Δz| {tp.ZΔ      ,8:F2}"
-					+ $" Δxy| {tp.XYΔ    ,10:F2}"
+					$"idx| {tp.Index,4:D}"
+					+ $" x| {tp.X,10:F2}"
+					+ $" y| {tp.Y,10:F2}"
+					+ $" z| {tp.Z,10:F2}"
+					+ $" Δx| {tp.XΔ,8:F2}"
+					+ $" Δy| {tp.YΔ,8:F2}"
+					+ $" Δz| {tp.ZΔ,8:F2}"
+					+ $" Δxy| {tp.XYΔ,10:F2}"
 					+ $" slope| {tp.Slope,10:F7}"
 					);
 			}
 
 			return sb.ToString();
 		}
-#endif
+	#endif
 
 	#endregion
 
@@ -568,12 +485,17 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 		public bool EndPointCp => Items[EndPointIdx].ControlPoint;
 
-		public void UpdateEndPointValues()
+		public void UpdateEndPointBaseValues()
 		{
 			OnPropertyChanged("EndPointIndex");
 			OnPropertyChanged("EndPointX");
 			OnPropertyChanged("EndPointY");
 			OnPropertyChanged("EndPointZ");
+		}
+
+		public void UpdateEndPointValues()
+		{
+			UpdateEndPointBaseValues();
 			OnPropertyChanged("EndPointXΔ");
 			OnPropertyChanged("EndPointYΔ");
 			OnPropertyChanged("EndPointZΔ");
@@ -584,59 +506,3 @@ namespace WpfApp1_ListControlTest.TopoPts
 	#endregion
 	}
 }
-
-//		private class Status2
-//		{
-//			public enum Stage
-//			{
-//				CREATED,
-//				GOTSTARTPOINT,
-//				GOTENDPOINT,
-//				COMPLETE,
-//				PROCESS_PROP_CHANGE_UPDATES,
-//				LENGTH
-//			}
-//
-//			public bool[] status;
-//
-//			public Status2()
-//			{
-//				status = new bool[(int) Stage.LENGTH];
-//			}
-//
-//			private int CreatedAsInt => (int) Stage.CREATED;
-//			public bool Created
-//			{
-//				get => status [CreatedAsInt]; 
-//				set => status [CreatedAsInt] = value;
-//			}
-//
-//			private int GotStartPointAsInt => (int) Stage.GOTSTARTPOINT;
-//			public bool GotStartPoint
-//			{
-//				get => status[GotStartPointAsInt];
-//				set => status[GotStartPointAsInt] = value;
-//			}
-//
-//			private int GotEndPointAsInt => (int) Stage.GOTENDPOINT;
-//			public bool GotEndPoint
-//			{
-//				get => status[GotEndPointAsInt];
-//				set => status[GotEndPointAsInt] = value;
-//			}
-//
-//			private int CompleteAsInt => (int) Stage.COMPLETE;
-//			public bool Complete
-//			{
-//				get => status[CompleteAsInt];
-//				set => status[CompleteAsInt] = value;
-//			}
-//
-//			private int ProcessPropChangeUpdatesAsInt => (int) Stage.PROCESS_PROP_CHANGE_UPDATES;
-//			public bool ProcessPropChangeUpdates
-//			{
-//				get => status[ProcessPropChangeUpdatesAsInt];
-//				set => status[ProcessPropChangeUpdatesAsInt] = value;
-//			}
-//
-//		}
