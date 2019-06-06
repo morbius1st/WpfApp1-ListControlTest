@@ -78,13 +78,25 @@ namespace WpfApp1_ListControlTest.TopoPts
 			BtnChange4Y_Click();
 			BtnChange4Z_Click();
 		}
+
+		private double dx;
+		private double dy;
+		private double dz;
+
+		private string formatXYZ()
+		{
+			return $"{dx:F4}, {dy:F4}, {dz:F4}";
+		}
 		
 		// add 1
 		public void BtnAdd1_Click()
 		{
-			
-			tps.append = "\n*** run test add 1 ***\n";
-			tps.Add(new XYZ(x + j - 50, y + j - 50, z + j - 50));
+			dx = x + j - 50;
+			dy = y + j - 50;
+			dz = z + j - 50;
+
+			tps.append = "\n*** run test add 1 (" + formatXYZ() + ") ***\n";
+			tps.Add(new XYZ(dx,dy, dz));
 
 			j += 10;
 		}
@@ -92,8 +104,12 @@ namespace WpfApp1_ListControlTest.TopoPts
 		// insert 1
 		public void BtnInsert1_Click()
 		{
-			tps.append = "\n*** run test insert 1 @ (5) ***\n";
-			tps.Insert(5, new XYZ(10501 + k, 20501 + k, 30501 + k));
+			dx = 10501 + k;
+			dy = 20501 + k;
+			dz = 30501 + k;
+
+			tps.append = "\n*** run test insert 1 @ (5) (" + formatXYZ() + ")***\n";
+			tps.Insert(5, new XYZ(dx, dy, dz));
 
 			k -= 5;
 		}
@@ -102,7 +118,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 		public void BtnChangeE_Click()
 		{
 			tps.append = "\n*** run test change end ***\n";
-			tps.EndXYZ  =  new XYZ(10901.0, 20901.0, 30901.0);
+			tps[tps.EndPointIndex].XYZ  =  new XYZ(10901.0, 20901.0, 30901.0);
 
 		}
 
@@ -110,8 +126,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 		public void BtnChangeS_Click()
 		{
 			tps.append = "\n*** run test change start ***\n";
-			Debug.Write("\n*** run test change start ***\n");
-			tps.StartXYZ = new XYZ(9001.0, 19001.0, 29001.0);
+			tps[0].XYZ = new XYZ(9001.0, 19001.0, 29001.0);
 		}
 
 		// change value 1

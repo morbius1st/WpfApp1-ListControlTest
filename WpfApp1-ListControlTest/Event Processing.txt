@@ -19,6 +19,7 @@ xyzmode 			(single-operation flag)							when making an xyz change to a single i
 
 
 (multi-operation process)
+WORKING
 A  startup
 
 0. complete == false, batchmode == false, processpropchanges == false, xyzmode = false (normal flag condition)
@@ -31,6 +32,7 @@ A  startup
 
 
 (multi-operation process)
+WORKING
 D  batch (CANNOT happen during initialization) (CANNOT happen during batch operation)
 note, only way to insure that any subsequent modifications are processed, the whole list gets reindex()
 
@@ -46,6 +48,7 @@ note, only way to insure that any subsequent modifications are processed, the wh
 
 
 (single-operation process)
+WORKING
 B  regular, single property change (can happen during batch operation) (can happen during initialization)
 
 0. complete == true or false, batchmode == true of false, processpropchanges == true or false, xyzmode = false (normal flag condition)
@@ -56,8 +59,8 @@ B  regular, single property change (can happen during batch operation) (can happ
 		else, process X, Y, Z events, run reindex()
 
 		
-?? need to determine how x, y, z events fire - 
-(single-operation process)
+?? need to determine how x, y, z events fire - apparently automatically(single-operation process)
+WORKING
 C  add / insert (can happen during batch operation) (can happen during initialization)
 
 0. complete == true or false, batchmode == true or false, processpropchanges == true or false, xyzmode = false (normal flag condition)
@@ -90,6 +93,7 @@ C  add / insert (can happen during batch operation) (can happen during initializ
 
 ?? need to determine how x, y, z events fire
 (single-operation process)
+WORKING
 E  update using XYZ (can happen during batch operation) (can happen during initialization)
 
 0. complete == true or false, batchmode == true or false, processpropchanges == true or false (normal flag condition)
