@@ -100,9 +100,9 @@
     <Compile Include="SampleData\SampleDataClass.cs" />
     <Compile Include="TestRoutines\ReIndexTest.cs" />
     <Compile Include="TestRoutines\Tests.cs" />
-    <Compile Include="TopoPts\TopoPoint.cs" />
-    <Compile Include="TopoPts\TopoPoints.cs" />
-    <Compile Include="TopoPts\TopoPointsTest.cs" />
+    <Compile Include="TopoPtsData\TopoPoint.cs" />
+    <Compile Include="TopoPtsData\TopoPoints.cs" />
+    <Compile Include="TopoPtsData\TopoPointsTest.cs" />
     <Compile Include="Validation\ValidationRule.cs" />
     <Compile Include="Converters\ValueConverters.cs" />
     <Compile Include="WpfResources\ListBoxMultiLine1.cs" />

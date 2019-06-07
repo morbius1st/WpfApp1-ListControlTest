@@ -2,7 +2,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Data;
 using System.Runtime.CompilerServices;
 
 #endregion
@@ -14,7 +13,7 @@ using System.Runtime.CompilerServices;
 // created:  5/21/2019 7:41:18 PM
 
 
-namespace WpfApp1_ListControlTest.TopoPts
+namespace WpfApp1_ListControlTest.TopoPtsData
 {
 #region > preamble
 

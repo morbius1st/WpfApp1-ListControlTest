@@ -1,18 +1,11 @@
 ﻿#region + Using Directives
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents;
 
 #endregion
 
@@ -22,7 +15,7 @@ using System.Windows.Documents;
 // username: jeffs
 // created:  5/21/2019 7:40:37 PM
 
-namespace WpfApp1_ListControlTest.TopoPts
+namespace WpfApp1_ListControlTest.TopoPtsData
 {
 	/*
 	 * a list of topographic points

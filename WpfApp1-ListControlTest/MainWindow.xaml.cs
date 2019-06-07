@@ -3,7 +3,7 @@ using System.Windows;
 using WpfApp1_ListControlTest.SampleData;
 using WpfApp1_ListControlTest.ControlPtsWin;
 using WpfApp1_ListControlTest.ListBoxWithHdrAndFtr;
-using WpfApp1_ListControlTest.TopoPts;
+using WpfApp1_ListControlTest.TopoPtsData;
 
 namespace WpfApp1_ListControlTest
 {

@@ -1,11 +1,6 @@
 ﻿#region + Using Directives
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 #endregion
 
@@ -16,7 +11,7 @@ using System.Windows;
 // created:  6/1/2019 7:19:31 AM
 
 
-namespace WpfApp1_ListControlTest.TopoPts
+namespace WpfApp1_ListControlTest.TopoPtsData
 {
 	public class TopoPointsTest
 	{
