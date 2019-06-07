@@ -26,38 +26,25 @@ namespace WpfApp1_ListControlTest
 
 		public static bool loaded = false;
 
-		public TopoPoints tps { get; set; } = new TopoPoints();
+		public TopoPoints tps { get; set; }  = new TopoPoints();
 
-		private TopoPointsTest TpTest;
+		public TopoPointsTest TpTest { get; set; }
 
 		public MainWindow()
 		{
 
 			InitializeComponent();
 
-			tps.Initialize(new TopoStartPoint(new XYZ(10001.0, 20001.0, 30001.0)));
-			tps.Add(new XYZ(10101.0, 20101.0, 30101.0));
-			tps.Finalize(new TopoEndPoint(new XYZ(10801.0, 20801.0, 30801.0)));
-
-//			CreateTPdata();
-
-			// try out a new reindex method
+// try out a new reindex method
 //			Tests.ReIndexTest();
 
-//			TpTest = new TopoPointsTest(tps);
-//			TpTest.CreateData();
 
 			CreateSampleData();
 
-		}
+			TpTest = new TopoPointsTest(tps);
+			TpTest.CreateData();
 
-		private void CreateTPdata()
-		{
-			tps.Initialize(new TopoStartPoint(new XYZ(10001.0, 20001.0, 30001.0)));
-			tps.Add(new XYZ(10101.0, 20101.0, 30101.0));
-			tps.Finalize(new TopoEndPoint(new XYZ(10801.0, 20801.0, 30801.0)));
 		}
-
 
 		private void CreateSampleData()
 		{

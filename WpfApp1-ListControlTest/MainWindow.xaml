@@ -1004,7 +1004,8 @@
 					ItemTemplate="{StaticResource topopoints}"
 					ItemsSource="{Binding tps}"
 					>
-				<!--    -->
+
+
 				<!--  ItemsPanel="{DynamicResource ListBoxItemsPanelTemplate1}"  -->
 				<!--  d:DataContext="{d:DesignData /SampleData/SampleCollectionSampleData.xaml}"  -->
 				<ListBox.Template>
@@ -1224,7 +1225,6 @@
 					Width="39"
 					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
 																					 Type={x:Type local:MainWindow}}"
-					DataContext="{Binding ElementName=mainWindow}"
 					Style="{StaticResource controlPointLbl}"
 					/>
 			<Label x:Name="label1_Copy1" Content="message:"

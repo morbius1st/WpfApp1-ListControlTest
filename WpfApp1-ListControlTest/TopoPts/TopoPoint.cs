@@ -93,7 +93,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 
 #endregion
 
-#region	> Specials
+#region	> special Topopoints
 
 	public class TopoStartPoint : TopoPoint
 	{
@@ -118,7 +118,6 @@ namespace WpfApp1_ListControlTest.TopoPts
 			base.controlPoint = true;
 		}
 	}
-
 #endregion
 
 	public class TopoPoint : IEquatable<TopoPoint>, ICloneable, INotifyPropertyChanged
