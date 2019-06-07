@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.SqlTypes;
-using System.Diagnostics;
 using System.Windows;
 using WpfApp1_ListControlTest.SampleData;
-//using WpfApp1_ListControlTest.PointData;
-//using WpfApp1_ListControlTest.SurfacePts;
 using WpfApp1_ListControlTest.ControlPtsWin;
 using WpfApp1_ListControlTest.ListBoxWithHdrAndFtr;
-using WpfApp1_ListControlTest.TestRoutines;
 using WpfApp1_ListControlTest.TopoPts;
-using WpfApp1_ListControlTest.TestRoutines;
 
 namespace WpfApp1_ListControlTest
 {
@@ -38,19 +30,37 @@ namespace WpfApp1_ListControlTest
 
 		private TopoPointsTest TpTest;
 
-
-		private double j = 10;
-		private double k = 50;
-		private double x;
-		private double y;
-		private double z;
-
-
-
 		public MainWindow()
 		{
 
 			InitializeComponent();
+
+			tps.Initialize(new TopoStartPoint(new XYZ(10001.0, 20001.0, 30001.0)));
+			tps.Add(new XYZ(10101.0, 20101.0, 30101.0));
+			tps.Finalize(new TopoEndPoint(new XYZ(10801.0, 20801.0, 30801.0)));
+
+//			CreateTPdata();
+
+			// try out a new reindex method
+//			Tests.ReIndexTest();
+
+//			TpTest = new TopoPointsTest(tps);
+//			TpTest.CreateData();
+
+			CreateSampleData();
+
+		}
+
+		private void CreateTPdata()
+		{
+			tps.Initialize(new TopoStartPoint(new XYZ(10001.0, 20001.0, 30001.0)));
+			tps.Add(new XYZ(10101.0, 20101.0, 30101.0));
+			tps.Finalize(new TopoEndPoint(new XYZ(10801.0, 20801.0, 30801.0)));
+		}
+
+
+		private void CreateSampleData()
+		{
 
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "01a", SheetName = "name 01a", SheetData = "data 01a", SheetInfo = "info 01a", SheetInfo2 = "info2 01a"});
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "02a", SheetName = "name 02a", SheetData = "data 02a", SheetInfo = "info 02a", SheetInfo2 = "info2 02a"});
@@ -64,15 +74,9 @@ namespace WpfApp1_ListControlTest
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "10a", SheetName = "name 10a", SheetData = "data 10a", SheetInfo = "info 10a", SheetInfo2 = "info2 10a"});
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "11a", SheetName = "name 11a", SheetData = "data 11a", SheetInfo = "info 11a", SheetInfo2 = "info2 11a"});
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "12a", SheetName = "name 12a", SheetData = "data 12a", SheetInfo = "info 12a", SheetInfo2 = "info2 12a"});
-
-
-			// try out a new reindex method
-//			Tests.ReIndexTest();
-
-			TpTest = new TopoPointsTest(tps);
-			TpTest.CreateData();
-
 		}
+
+
 
 		private void Button_Copy_Click(object sender, RoutedEventArgs e)
 		{

@@ -6,12 +6,13 @@
 using System;
 using System.Windows.Input;
 
-namespace WpfApp1_ListControlTest.ControlPtsWin {
-
+namespace WpfApp1_ListControlTest.ControlPtsWin
+{
 	public class ButtonClickCommandHandler : ICommand
 	{
 		private Action<object> _action;
 		private bool _canExecute;
+
 		public ButtonClickCommandHandler(Action<object> action, bool canExecute)
 		{
 			_action     = action;
@@ -23,9 +24,9 @@ namespace WpfApp1_ListControlTest.ControlPtsWin {
 			return _canExecute;
 		}
 
-#pragma warning disable CS0067 // The event 'ControlPoints.ButtonClickCommandHandler.CanExecuteChanged' is never used
+	#pragma warning disable CS0067 // The event 'ControlPoints.ButtonClickCommandHandler.CanExecuteChanged' is never used
 		public event EventHandler CanExecuteChanged;
-#pragma warning restore CS0067 // The event 'ControlPoints.ButtonClickCommandHandler.CanExecuteChanged' is never used
+	#pragma warning restore CS0067 // The event 'ControlPoints.ButtonClickCommandHandler.CanExecuteChanged' is never used
 
 		public void Execute(object parameter)
 		{
@@ -48,18 +49,13 @@ namespace WpfApp1_ListControlTest.ControlPtsWin {
 		{
 			return _canExecute;
 		}
-
+	#pragma warning disable CS0067 // The event 'ControlPoints.ButtonClickCommandHandler.CanExecuteChanged' is never used
 		public event EventHandler CanExecuteChanged;
+	#pragma warning restore CS0067 // The event 'ControlPoints.ButtonClickCommandHandler.CanExecuteChanged' is never used
 
 		public void Execute(object parameter)
 		{
 			_action(parameter);
 		}
-
 	}
-
-
-
-
-
 }

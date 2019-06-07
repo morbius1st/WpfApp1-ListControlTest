@@ -28,7 +28,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 		private double y;
 		private double z;
 
-		private TopoPoints tps;
+		public TopoPoints tps { get; set; }
 
 		public TopoPointsTest(TopoPoints tps)
 		{

@@ -166,7 +166,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 				tp.PropertyChanged -= TopoPoints_PropertyChanged;
 			}
 
-			ClearItems();
+			base.ClearItems();
 
 			// clear status
 			Status = new bool[statusLength];
