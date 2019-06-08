@@ -2,9 +2,9 @@
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:local="clr-namespace:WpfApp1_ListControlTest"
-		ShutdownMode="OnMainWindowClose"
 		StartupUri="MainWindow.xaml"
 		>
+	<!--  ShutdownMode="OnMainWindowClose"  -->
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -12,9 +12,7 @@
 				<ResourceDictionary Source="WpfResources\VisualStates.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 			<DependencyProperty x:Key="DependencyProperty1">Button.IsDefault</DependencyProperty>
-			<!-- <ItemsPanelTemplate x:Key="LbxItemsPanel"> -->
-			<!--     <VirtualizingStackPanel IsItemsHost="True"/> -->
-			<!-- </ItemsPanelTemplate> -->
+
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

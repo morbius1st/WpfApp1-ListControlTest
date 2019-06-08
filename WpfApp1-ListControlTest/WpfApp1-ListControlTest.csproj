@@ -103,6 +103,15 @@
     <Compile Include="TopoPtsData\TopoPoint.cs" />
     <Compile Include="TopoPtsData\TopoPoints.cs" />
     <Compile Include="TopoPtsData\TopoPointsTest.cs" />
+    <Compile Include="TopoPts\Support\TopoPtsConsts.cs" />
+    <Compile Include="TopoPts\Support\TopoPtsConverters.cs" />
+    <Compile Include="TopoPts\Support\TopoPtsValidation.cs" />
+    <Compile Include="TopoPts\Support\TopoPtsResources.xaml.cs">
+      <DependentUpon>TopoPtsResources.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TopoPts\TopoPtsWin.xaml.cs">
+      <DependentUpon>TopoPtsWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Validation\ValidationRule.cs" />
     <Compile Include="Converters\ValueConverters.cs" />
     <Compile Include="WpfResources\ListBoxMultiLine1.cs" />
@@ -145,6 +154,14 @@
     <Page Include="SampleData\SampleCollectionSampleDataB.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TopoPts\Support\TopoPtsResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TopoPts\TopoPtsWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WpfResources\ListBoxMultiLine1.xaml">
       <SubType>Designer</SubType>

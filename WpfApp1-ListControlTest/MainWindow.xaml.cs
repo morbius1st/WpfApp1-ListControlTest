@@ -3,7 +3,9 @@ using System.Windows;
 using WpfApp1_ListControlTest.SampleData;
 using WpfApp1_ListControlTest.ControlPtsWin;
 using WpfApp1_ListControlTest.ListBoxWithHdrAndFtr;
+using WpfApp1_ListControlTest.TopoPts;
 using WpfApp1_ListControlTest.TopoPtsData;
+using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResources;
 
 namespace WpfApp1_ListControlTest
 {
@@ -16,17 +18,20 @@ namespace WpfApp1_ListControlTest
 
 		internal static ListBoxWithXHeaderAndFooter Haf { get; private set; } = new ListBoxWithXHeaderAndFooter();
 
-//		internal static SurfacePoints Sp { get; private set; } = new SurfacePoints();
-		internal static ControlPoints Cps { get; set; } = new ControlPoints();
-//		internal static ControlPointsVm Cps { get; set; } = new ControlPointsVm();
 
+		internal static ControlPoints Cps { get; set; } = new ControlPoints();
 		internal static ControlPointsResources Cpr { get; set; }
+
+		internal static TopoPtsWin Tpw { get; set; } = new TopoPtsWin();
+		internal static TopoPtsResources Tpr { get; set; }
+
+		public TopoPoints tps { get; set; }  = new TopoPoints();
+
 
 		public static string nl = Environment.NewLine;
 
 		public static bool loaded = false;
 
-		public TopoPoints tps { get; set; }  = new TopoPoints();
 
 		public TopoPointsTest TpTest { get; set; }
 
@@ -63,7 +68,13 @@ namespace WpfApp1_ListControlTest
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "12a", SheetName = "name 12a", SheetData = "data 12a", SheetInfo = "info 12a", SheetInfo2 = "info2 12a"});
 		}
 
-
+//		private void LoadData()
+//		{
+//			tps.Add(new TopoPoint(new XYZ(100,100,100)));
+//			tps.Add(new TopoPoint(new XYZ(100,100,100)));
+//			tps.Add(new TopoPoint(new XYZ(100,100,100)));
+//			tps.Add(new TopoPoint(new XYZ(100,100,100)));
+//		}
 
 		private void Button_Copy_Click(object sender, RoutedEventArgs e)
 		{
@@ -81,6 +92,12 @@ namespace WpfApp1_ListControlTest
 		{
 			Cps.ShowDialog();
 			Cps = new ControlPoints();
+		}
+		
+		private void Button_Copy4_Click(object sender, RoutedEventArgs e)
+		{
+			Tpw.ShowDialog();
+			Tpw = new TopoPtsWin();
 		}
 
 		private void BtnDone_Click(object sender, RoutedEventArgs e)

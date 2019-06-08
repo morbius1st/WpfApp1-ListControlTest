@@ -26,11 +26,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData
 		public const UInt32 YΔflag = 0x10;
 		public const UInt32 ZΔflag = 0x20;
 		public const UInt32 XYΔflag = 0x40;
-		public const UInt32 Slopeflag = 0x80;
+		public const UInt32 XYΔZflag = 0x80;
+		public const UInt32 Slopeflag = 0x100;
 
-		private const UInt32 _allSet = Xflag | Yflag | Zflag | XΔflag | YΔflag | ZΔflag | XYΔflag | Slopeflag;
-
-		public static UInt32 AllSet => (UInt32) _allSet;
+		public static UInt32 AllSet => (UInt32) Xflag | Yflag | Zflag | XΔflag | YΔflag | ZΔflag | XYΔflag | XYΔZflag | Slopeflag;
 
 		public static UInt32 Reset()
 		{
@@ -132,6 +131,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData
 		private double _yΔ = Double.NaN;
 		private double _zΔ = Double.NaN;
 		private double _xyΔ = Double.NaN;
+		private double _xyzΔ = Double.NaN;
 		private double _slope = Double.NaN;
 
 		private XYZ priorPoint = XYZ.Empty;
@@ -319,6 +319,16 @@ namespace WpfApp1_ListControlTest.TopoPtsData
 				OnPropertyChange();
 			}
 		}
+		
+		public double XYZΔ
+		{
+			get => _xyzΔ;
+			private set
+			{
+				_xyzΔ = value;
+				OnPropertyChange();
+			}
+		}
 
 		public double Slope
 		{
@@ -468,11 +478,9 @@ namespace WpfApp1_ListControlTest.TopoPtsData
 
 		private bool CalcSlope()
 		{
-			if (ZΔ.Equals(0))
-			{
-				Slope = 0;
-				return true;
-			}
+			XYZΔ = XYΔ;
+
+			StatusFlagSet(BitFlag.XYΔZflag);
 
 			if (Double.IsNaN(ZΔ) || Double.IsNaN(XYΔ) || XYΔ.Equals(0))
 			{
@@ -480,11 +488,18 @@ namespace WpfApp1_ListControlTest.TopoPtsData
 				return false;
 			}
 
-			Slope = ZΔ / XYΔ;
-
-			//			OnPropertyChange("Slope");
-
 			StatusFlagSet(BitFlag.Slopeflag);
+
+			if (ZΔ.Equals(0))
+			{
+				
+				Slope = 0;
+				return true;
+			}
+
+			XYZΔ = Math.Sqrt(XYΔ * XYΔ + ZΔ * ZΔ);
+
+			Slope = ZΔ / XYΔ;
 
 			return true;
 		}
@@ -564,6 +579,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData
 			tp.ZΔ = _zΔ;
 
 			tp.XYΔ = _xyΔ;
+			tp.XYZΔ = _xyzΔ;
 
 			tp.Slope = _slope;
 

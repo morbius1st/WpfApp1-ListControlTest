@@ -29,7 +29,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData
 	 */
 
 
-	public class TopoPoints : ObservableCollection<TopoPoint> //, INotifyPropertyChanged
+	public class TopoPoints : ObservableCollection<TopoPoint>
 	{
 		private const int created = 0;
 		private const int gotStartPoint = 1;
@@ -473,6 +473,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData
 		public double EndPointYΔ => Items[EndPointIdx].YΔ;
 		public double EndPointZΔ => Items[EndPointIdx].ZΔ;
 		public double EndPointXYΔ => Items[EndPointIdx].XYΔ;
+		public double EndPointXYZΔ => Items[EndPointIdx].XYZΔ;
 
 		public double EndPointSlope => Items[EndPointIdx].Slope;
 
