@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using WpfApp1_ListControlTest.SampleData;
 using WpfApp1_ListControlTest.ControlPtsWin;
 using WpfApp1_ListControlTest.ListBoxWithHdrAndFtr;
+using WpfApp1_ListControlTest.MultiLineLB;
 using WpfApp1_ListControlTest.TopoPts;
 using WpfApp1_ListControlTest.TopoPtsData;
+using WpfApp1_ListControlTest.TopoPtsData2;
 using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResources;
 
 namespace WpfApp1_ListControlTest
@@ -14,41 +19,48 @@ namespace WpfApp1_ListControlTest
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		public TopoPoints tps { get; set; }  = new TopoPoints();
+		public TopoPointsTest TpTest { get; set; }
+
+		public TopoPts2Mgr TopoMgr { get; set; } 
+
+//		public TopoPoints2 tps2 { get; set; }  = new TopoPoints2();
+		public TopoPointsTest2 TpTest2 { get; set; }
+
 		internal static MultiLineLB.MultiLineListBox Mlb { get; private set; } = new MultiLineLB.MultiLineListBox();
-
+	
 		internal static ListBoxWithXHeaderAndFooter Haf { get; private set; } = new ListBoxWithXHeaderAndFooter();
-
-
+	
 		internal static ControlPoints Cps { get; set; } = new ControlPoints();
 		internal static ControlPointsResources Cpr { get; set; }
-
+	
 		internal static TopoPtsWin Tpw { get; set; } = new TopoPtsWin();
 		internal static TopoPtsResources Tpr { get; set; }
-
-		public TopoPoints tps { get; set; }  = new TopoPoints();
-
-
+	
 		public static string nl = Environment.NewLine;
-
+	
 		public static bool loaded = false;
 
+		public static ListBox Lb3 { get; set; }
 
-		public TopoPointsTest TpTest { get; set; }
 
 		public MainWindow()
 		{
+
+
+			TpTest = new TopoPointsTest(tps);
+			TpTest.CreateData();
+
+			TopoMgr = new TopoPts2Mgr(); 
+			TpTest2 = new TopoPointsTest2(TopoMgr.Tpts2);
+
 
 			InitializeComponent();
 
 // try out a new reindex method
 //			Tests.ReIndexTest();
 
-
 			CreateSampleData();
-
-			TpTest = new TopoPointsTest(tps);
-			TpTest.CreateData();
-
 		}
 
 		private void CreateSampleData()
@@ -68,18 +80,36 @@ namespace WpfApp1_ListControlTest
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "12a", SheetName = "name 12a", SheetData = "data 12a", SheetInfo = "info 12a", SheetInfo2 = "info2 12a"});
 		}
 
-//		private void LoadData()
-//		{
-//			tps.Add(new TopoPoint(new XYZ(100,100,100)));
-//			tps.Add(new TopoPoint(new XYZ(100,100,100)));
-//			tps.Add(new TopoPoint(new XYZ(100,100,100)));
-//			tps.Add(new TopoPoint(new XYZ(100,100,100)));
-//		}
+		void test()
+		{
+			bool a = TopoMgr.Tpts2[0].ControlPoint;
+			bool b = TopoMgr.Tpts2[0].IsBeingEdited;
+			XYZ2 c = TopoMgr.Tpts2[0].XYZ;
+
+			bool d = TopoMgr.Tpts2[0].XYZ.IsRevised;
+
+			bool e = TopoMgr.Tpts2[0].XYZ.HasUndoX;
+			bool f = TopoMgr.Tpts2[0].XYZ.HasValueX;
+			double x = TopoMgr.Tpts2[0].XYZ.UndoValueX;
+			double y = TopoMgr.Tpts2[0].XYZ.UndoValueY;
+			double z = TopoMgr.Tpts2[0].XYZ.UndoValueZ;
+		}
+
+
+		private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+		{
+			loaded = true;
+
+
+		}
+
+
+	#region > control buttons
 
 		private void Button_Copy_Click(object sender, RoutedEventArgs e)
 		{
 			Mlb.ShowDialog();
-			Mlb = new MultiLineLB.MultiLineListBox();
+			Mlb = new MultiLineListBox();
 		}
 
 		private void Button_Copy1_Click(object sender, RoutedEventArgs e)
@@ -105,10 +135,9 @@ namespace WpfApp1_ListControlTest
 			Close();
 		}
 
-		private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-		{
-			loaded = true;
-		}
+	#endregion
+
+	#region > listbox 2 buttons
 
 		// add 1
 		private void BtnAdd1_Click(object sender, RoutedEventArgs e)
@@ -210,5 +239,29 @@ namespace WpfApp1_ListControlTest
 		{
 			TpTest.BtnBatchv2_Click();	
 		}
+
+
+	#endregion
+
+	#region > listbox3 buttons
+
+		private void BtnBatchAdjustZByAmount_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest2.BtnBatchAdjustZByAmount_Click();
+		}
+
+		private void BtnBatchAdjustZBySlope_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest2.BtnBatchAdjustZBySlope_Click();
+		}
+
+		private void BtnChangeXof1_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest2.BtnChangeXof1_Click();
+		}
+		
+
+	#endregion
+
 	}
 }

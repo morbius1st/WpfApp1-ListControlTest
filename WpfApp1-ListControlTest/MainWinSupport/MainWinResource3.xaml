@@ -1,0 +1,1368 @@
+﻿<ResourceDictionary
+		x:Class="WpfApp1_ListControlTest.MainWinSupport.MainWinResource3"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:local="clr-namespace:WpfApp1_ListControlTest"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		mc:Ignorable="d"
+		>
+
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary
+				Source="MainWinResourceSupport.xaml"
+				/>
+	</ResourceDictionary.MergedDictionaries>
+
+	<sys:String
+			x:Key="Parent"
+			>
+		mainWindow
+	</sys:String>
+
+	<GridLength
+			x:Key="XyzColWidth"
+			>
+		300
+	</GridLength>
+
+	<Grid
+			x:Key="StartPoint3"
+			Margin="0,0,28,0"
+			HorizontalAlignment="Stretch"
+			VerticalAlignment="Bottom"
+			>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition
+					Width="84"
+					/>
+			<ColumnDefinition
+					Width="84"
+					/>
+			<ColumnDefinition
+					Width="{StaticResource XyzColWidth}"
+					/>
+			<ColumnDefinition
+					Width="{StaticResource XyzColWidth}"
+					/>
+			<ColumnDefinition
+					Width="{StaticResource XyzColWidth}"
+					/>
+			<ColumnDefinition
+					Width="*"
+					/>
+			<ColumnDefinition
+					Width="*"
+					/>
+			<ColumnDefinition
+					Width="*"
+					/>
+			<ColumnDefinition
+					Width="*"
+					/>
+			<ColumnDefinition
+					Width="*"
+					/>
+			<ColumnDefinition
+					Width="*"
+					/>
+
+		</Grid.ColumnDefinitions>
+
+		<DockPanel
+				Grid.Column="1"
+				HorizontalAlignment="Stretch"
+				>
+			<Label
+					Content="{Binding TopoMgr.Tpts2.StartPointIndex}"
+					Width="30"
+					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																					 Type=local:MainWindow}"
+					Style="{StaticResource controlPointLbl}"
+					/>
+			<Label
+					Content="{Binding TopoMgr.Tpts2[0].ControlPoint}"
+					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																					 Type=local:MainWindow}"
+					Style="{StaticResource controlPointLbl}"
+					/>
+		</DockPanel>
+
+
+		<Label
+				Content="{Binding TopoMgr.Tpts2.StartPointX}"
+				Grid.Column="2"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type=local:MainWindow}"
+				ContentStringFormat="F2"
+				Style="{StaticResource controlPointLbl}"
+				/>
+		<Label
+				Content="{Binding TopoMgr.Tpts2.StartPointY}"
+				Grid.Column="3"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type=local:MainWindow}"
+				ContentStringFormat="F2"
+				Style="{StaticResource controlPointLbl}"
+				/>
+
+		<Label
+				Content="{Binding TopoMgr.Tpts2.StartPointZ}"
+				Grid.Column="4"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type=local:MainWindow}"
+				ContentStringFormat="F2"
+				Style="{StaticResource controlPointLbl}"
+				/>
+	</Grid>
+
+	<Grid
+			x:Key="EndPoint3"
+			Margin="0,0,28,0"
+			HorizontalAlignment="Stretch"
+			VerticalAlignment="Top"
+			>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition
+					Width="84"
+					/>
+			<ColumnDefinition
+					Width="84"
+					/>
+			<ColumnDefinition Width="{StaticResource XyzColWidth}"
+					/>
+			<ColumnDefinition Width="{StaticResource XyzColWidth}"
+					/>
+			<ColumnDefinition Width="{StaticResource XyzColWidth}"
+					/>
+			<ColumnDefinition
+					Width="*"
+					/>
+			<ColumnDefinition
+					Width="*"
+					/>
+			<ColumnDefinition
+					Width="*"
+					/>
+			<ColumnDefinition
+					Width="*"
+					/>
+			<ColumnDefinition
+					Width="*"
+					/>
+			<ColumnDefinition
+					Width="*"
+					/>
+
+		</Grid.ColumnDefinitions>
+
+		<DockPanel
+				Grid.Column="1"
+				>
+			<Label
+					Content="{Binding TopoMgr.Tpts2.EndPointIndex}"
+					Width="30"
+					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																					 Type={x:Type local:MainWindow}}"
+					Style="{StaticResource controlPointLbl}"
+					/>
+			<Label
+					Content="{Binding TopoMgr.Tpts2.EndPointCp}"
+					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																					 Type={x:Type local:MainWindow}}"
+					Style="{StaticResource controlPointLbl}"
+					/>
+
+		</DockPanel>
+
+		<Label
+				Content="{Binding TopoMgr.Tpts2.EndPointX}"
+				Grid.Column="2"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				ContentStringFormat="F2"
+				Style="{StaticResource controlPointLbl}"
+				/>
+		<Label
+				Content="{Binding TopoMgr.Tpts2.EndPointY}"
+				Grid.Column="3"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				ContentStringFormat="F2"
+				Style="{StaticResource controlPointLbl}"
+				/>
+		<Label
+				Content="{Binding TopoMgr.Tpts2.EndPointZ}"
+				Grid.Column="4"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				ContentStringFormat="F2"
+				Style="{StaticResource controlPointLbl}"
+				/>
+		<Label
+				Content="{Binding TopoMgr.Tpts2.EndPointXΔ}"
+				Grid.Column="5"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				ContentStringFormat="F2"
+				Style="{StaticResource controlPointLbl}"
+				/>
+		<Label
+				Content="{Binding TopoMgr.Tpts2.EndPointYΔ}"
+				Grid.Column="6"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				ContentStringFormat="F2"
+				Style="{StaticResource controlPointLbl}"
+				/>
+		<Label
+				Content="{Binding TopoMgr.Tpts2.EndPointZΔ}"
+				Grid.Column="7"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				ContentStringFormat="F2"
+				Style="{StaticResource controlPointLbl}"
+				/>
+		<Label
+				Content="{Binding TopoMgr.Tpts2.EndPointXYΔ}"
+				Grid.Column="8"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				ContentStringFormat="F4"
+				Style="{StaticResource controlPointLbl}"
+				/>
+		<Label
+				Content="{Binding TopoMgr.Tpts2.EndPointXYΔ}"
+				Grid.Column="9"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				ContentStringFormat="F4"
+				Style="{StaticResource controlPointLbl}"
+				/>
+
+		<Label
+				Content="{Binding TopoMgr.Tpts2.EndPointSlope}"
+				Grid.Column="10"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				ContentStringFormat="F6"
+				Style="{StaticResource controlPointLbl}"
+				/>
+
+	</Grid>
+
+	<ListBox
+			x:Key="listBox3"
+			Name="ListBox3"
+			Margin="0,0,10,0"
+			HorizontalAlignment="Stretch"
+			VerticalAlignment="Stretch"
+			HorizontalContentAlignment="Stretch"
+			d:DataContext="{d:DesignInstance Type=local:MainWindow,
+																			 IsDesignTimeCreatable=True}"
+			DataContext="{Binding ElementName=mainWindow}"
+			ScrollViewer.VerticalScrollBarVisibility="Visible"
+			SelectionChanged="ListBox3_SelectionChanged"
+			Background="LightGray"
+			ItemContainerStyle="{DynamicResource ListBoxItemStyle}"
+			ItemTemplate="{DynamicResource topopoints}"
+			ItemsSource="{Binding TopoMgr.Tpts2}"
+			IsSynchronizedWithCurrentItem="True" Loaded="ListBox3_Loaded"
+			>
+		<ListBox.Resources>
+
+			<Style
+					x:Key="CellTxBox"
+					TargetType="{x:Type TextBox}"
+					>
+				<Setter Property="BorderThickness" Value="0,0,0,0" />
+				<Setter Property="HorizontalContentAlignment" Value="Center" />
+				<Setter Property="Margin" Value="0,0,0,0" />
+				<Setter Property="Padding" Value="0" />
+				<Setter Property="VerticalAlignment" Value="Stretch" />
+				<Setter Property="VerticalContentAlignment" Value="Center" />
+			</Style>
+
+			<Style
+					x:Key="CellTxBlk"
+					TargetType="{x:Type TextBlock}"
+					>
+				<Setter Property="Background" Value="#bbbbbb" />
+				<Setter Property="HorizontalAlignment" Value="Stretch" />
+				<Setter Property="Margin" Value="0,0,0,0" />
+				<Setter Property="Padding" Value="3" />
+				<Setter Property="TextAlignment" Value="Center" />
+				<Setter Property="VerticalAlignment" Value="Top" />
+			</Style>
+
+			<Style
+					x:Key="lblHeaderBdrTop"
+					TargetType="{x:Type Border}"
+					>
+				<Setter Property="BorderBrush" Value="{DynamicResource GridBorderGrey}" />
+				<Setter Property="BorderThickness" Value="0,0,1,0" />
+				<Setter Property="Margin" Value="0" />
+			</Style>
+
+			<Style
+					x:Key="lblHeaderBdrBottom"
+					TargetType="{x:Type Border}"
+					>
+				<Setter Property="BorderBrush" Value="{DynamicResource GridBorderGrey}" />
+				<Setter Property="BorderThickness" Value="0,0,1,0" />
+				<Setter Property="Margin" Value="0" />
+			</Style>
+
+			<Style
+					x:Key="lblSubValueHdr"
+					TargetType="{x:Type Label}"
+					>
+				<Setter Property="Background" Value="{StaticResource Normal.SelectedInActive.Background}" />
+				<Setter Property="FontSize" Value="8" />
+				<Setter Property="HorizontalAlignment" Value="Stretch" />
+				<Setter Property="HorizontalContentAlignment" Value="Center" />
+				<Setter Property="Padding" Value="0" />
+				<Setter Property="VerticalContentAlignment" Value="Center" />
+
+			</Style>
+
+			<Style
+					x:Key="FocusVisual"
+					>
+				<Setter Property="Control.Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<Rectangle
+									Margin="5"
+									SnapsToDevicePixels="true"
+									Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+									StrokeDashArray="1 2"
+									StrokeThickness="1"
+									/>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+
+			<Style
+					x:Key="PointsTestHeader"
+					TargetType="{x:Type Border}"
+					>
+				<Setter Property="BorderBrush" Value="Black" />
+				<Setter Property="BorderThickness" Value="0,0,1,1" />
+				<Setter Property="Margin" Value="0" />
+				<Setter Property="Padding" Value="4,0,0,0" />
+			</Style>
+
+			<Style
+					x:Key="PointsTestHeaderLabel"
+					TargetType="{x:Type Label}"
+					>
+				<Setter Property="HorizontalContentAlignment" Value="Center" />
+				<Setter Property="VerticalContentAlignment" Value="Center" />
+			</Style>
+
+			<Style
+					x:Key="ListBoxItemStyle"
+					TargetType="{x:Type ListBoxItem}"
+					>
+				<Style.Triggers>
+					<DataTrigger
+							Binding="{Binding ControlPoint}"
+							Value="True"
+							>
+						<Setter Property="Visibility" Value="Collapsed" />
+					</DataTrigger>
+				</Style.Triggers>
+				<Setter Property="Background" Value="Transparent" />
+				<Setter Property="BorderBrush" Value="Transparent" />
+				<Setter Property="BorderThickness" Value="1" />
+				<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+				<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+				<Setter Property="Padding" Value="4,1" />
+				<Setter Property="SnapsToDevicePixels" Value="True" />
+
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+								TargetType="{x:Type ListBoxItem}"
+								>
+							<Border
+									x:Name="Bd"
+									Margin="0,0,0,-4"
+									Padding="{TemplateBinding Padding}"
+									SnapsToDevicePixels="true"
+									Background="{TemplateBinding Background}"
+									BorderThickness="{TemplateBinding BorderThickness}"
+									BorderBrush="{TemplateBinding BorderBrush}"
+									>
+								<ContentPresenter
+										HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+										SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+										/>
+							</Border>
+							<ControlTemplate.Triggers>
+
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition Property="IsMouseOver" Value="True" />
+									</MultiTrigger.Conditions>
+									<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.MouseOver.Background}" />
+									<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.MouseOver.Border}" />
+								</MultiTrigger>
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition Property="Selector.IsSelectionActive" Value="False" />
+										<Condition Property="IsSelected" Value="True" />
+									</MultiTrigger.Conditions>
+									<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.SelectedInactive.Background}" />
+									<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.SelectedInactive.Border}" />
+								</MultiTrigger>
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition Property="Selector.IsSelectionActive" Value="True" />
+										<Condition Property="IsSelected" Value="True" />
+									</MultiTrigger.Conditions>
+									<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.SelectedActive.Background}" />
+									<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.SelectedActive.Border}" />
+								</MultiTrigger>
+								<Trigger Property="IsEnabled" Value="False">
+									<Setter TargetName="Bd" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+
+				<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+			</Style>
+
+			<ControlTemplate
+					x:Key="FieldPoints"
+					
+					>
+				<Border
+						x:Name="BDx"
+						BorderThickness="0,0,0,7"
+						BorderBrush="{DynamicResource ShadowDetail}"
+						>
+					<Grid
+							Margin="0,0,0,0"
+							>
+
+						<Grid.ColumnDefinitions>
+							<!--  0  -->
+							<ColumnDefinition
+									Width="85.5"
+									/>
+							<!--  0  -->
+							<ColumnDefinition
+									Width="84"
+									/>
+							<!--  1  -->
+							<ColumnDefinition Width="{StaticResource XyzColWidth}"
+									/>
+							<!--  2  -->
+							<ColumnDefinition Width="{StaticResource XyzColWidth}"
+									/>
+							<!--  3  -->
+							<ColumnDefinition Width="{StaticResource XyzColWidth}"
+									/>
+							<!--  4  -->
+							<ColumnDefinition
+									Width="1*"
+									/>
+							<!--  5  -->
+							<ColumnDefinition
+									Width="1*"
+									/>
+							<!--  6  -->
+							<ColumnDefinition
+									Width="1*"
+									/>
+							<!--  7  -->
+							<ColumnDefinition
+									Width="1*"
+									/>
+							<!--  8  -->
+							<ColumnDefinition
+									Width="1*"
+									/>
+							<!--  9  -->
+							<ColumnDefinition
+									Width="1*"
+									/>
+
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition
+									Height="20"
+									/>
+							<RowDefinition
+									Height="32"
+									/>
+
+						</Grid.RowDefinitions>
+
+						<Grid Grid.Row="0"
+								Grid.Column="0"
+								RowSpan="2"
+								VerticalAlignment="Stretch"
+								HorizontalAlignment="Stretch"
+								>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+							<Button x:Name="lb3BtnApply"
+									Grid.Row="0"
+									Grid.Column="0"
+									Content="Apply/Update"
+									Background="LightBlue"
+									Margin="1"
+									Padding="0"
+									FontSize="10"
+									IsEnabled="{Binding HasRevision}"
+									Click="Lb3BtnApply_Click" />
+
+							<Button x:Name="lb3BtnUndo"
+									Grid.Row="1"
+									Grid.Column="0"
+									Content="Undo/Cancel"
+									Background="LightBlue"
+									Margin="1"
+									Padding="0"
+									FontSize="10"
+									IsEnabled="{Binding HasRevision}"
+									Click="Lb3BtnUndo_Click" />
+						</Grid>
+
+
+						<!--#region > point values-->
+
+						<Border
+								Grid.Row="0"
+								Grid.Column="1"
+								Style="{StaticResource lblHeaderBdrTop}"
+								>
+							<TextBox
+									Text="{Binding Index}"
+									Style="{StaticResource CellTxBox}"
+									/>
+						</Border>
+						<Border
+								Grid.Row="0"
+								Grid.Column="2"
+								Style="{StaticResource lblHeaderBdrTop}"
+								>
+							<TextBox
+									Tag="{Binding TopoMgr.TpConsts.Xtag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
+									Text="{Binding X, StringFormat=F2}"
+									Style="{StaticResource CellTxBox}"
+									/>
+						</Border>
+						<Border
+								Grid.Row="0"
+								Grid.Column="3"
+								Style="{StaticResource lblHeaderBdrTop}"
+								>
+							<TextBox
+									Tag="{Binding TopoMgr.TpConsts.Ytag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
+									Text="{Binding Y, StringFormat=F2}"
+									Style="{StaticResource CellTxBox}"
+									/>
+						</Border>
+						<Border
+								Grid.Row="0"
+								Grid.Column="4"
+								Style="{StaticResource lblHeaderBdrTop}"
+								>
+							<TextBox
+									Tag="{Binding TopoMgr.TpConsts.Ztag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
+									Text="{Binding Z, StringFormat=F2}"
+									Style="{StaticResource CellTxBox}"
+									/>
+						</Border>
+						<Border
+								Grid.Row="0"
+								Grid.Column="5"
+								Style="{StaticResource lblHeaderBdrTop}"
+								>
+							<TextBlock
+									Text="{Binding XΔ, StringFormat=F2}"
+									Style="{StaticResource CellTxBlk}"
+									/>
+						</Border>
+						<Border
+								Grid.Row="0"
+								Grid.Column="6"
+								Style="{StaticResource lblHeaderBdrTop}"
+								>
+							<TextBlock
+									Text="{Binding YΔ, StringFormat=F2}"
+									Style="{StaticResource CellTxBlk}"
+									/>
+						</Border>
+						<Border
+								Grid.Row="0"
+								Grid.Column="7"
+								Style="{StaticResource lblHeaderBdrTop}"
+								>
+							<TextBlock
+									Text="{Binding ZΔ, StringFormat=F2}"
+									Style="{StaticResource CellTxBlk}"
+									/>
+						</Border>
+						<Border
+								Grid.Row="0"
+								Grid.Column="8"
+								Style="{StaticResource lblHeaderBdrBottom}"
+								>
+							<TextBlock
+									Text="{Binding XYΔ, StringFormat=F4}"
+									Style="{StaticResource CellTxBlk}"
+									/>
+						</Border>
+						<Border
+								Grid.Row="0"
+								Grid.Column="9"
+								Style="{StaticResource lblHeaderBdrBottom}"
+								>
+							<TextBlock
+									Text="{Binding XYZΔ, StringFormat=F4}"
+									Style="{StaticResource CellTxBlk}"
+									/>
+						</Border>
+						<Border
+								Grid.Row="0"
+								Grid.Column="10"
+								Style="{StaticResource lblHeaderBdrTop}"
+								>
+							<TextBlock
+									Text="{Binding Slope, StringFormat=P2}"
+									Style="{StaticResource CellTxBlk}"
+									/>
+						</Border>
+						<!--#endregion-->
+
+						<!--  index  -->
+						<Grid
+								Grid.Row="1"
+								Grid.Column="1"
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch"
+								>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition
+										Width="*"
+										/>
+								<ColumnDefinition
+										Width="*"
+										/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition
+										Height="*"
+										/>
+								<RowDefinition
+										Height="*"
+										/>
+							</Grid.RowDefinitions>
+
+							<Border
+									Grid.Row="0"
+									Grid.Column="0"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="being edited"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+
+							<Border
+									Grid.Row="0"
+									Grid.Column="1"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="has revision"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+
+
+							<Border
+									Grid.Row="1"
+									Grid.Column="0"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										HorizontalAlignment="Stretch"
+										VerticalAlignment="Stretch"
+										FontSize="10"
+										Text="{Binding IsBeingEdited}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+
+							<Border
+									Grid.Row="1"
+									Grid.Column="1"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										HorizontalAlignment="Stretch"
+										VerticalAlignment="Stretch"
+										FontSize="10"
+										Text="{Binding HasRevision}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+
+						</Grid>
+
+						<!--  x  -->
+						<Grid
+								Grid.Row="1"
+								Grid.Column="2"
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch"
+								>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition
+										Width="40"
+										/>
+								<ColumnDefinition
+										Width="40"
+										/>
+								<ColumnDefinition
+										Width="19"
+										/>
+								<ColumnDefinition
+										Width="*"
+										/>
+								<ColumnDefinition
+										Width="*"
+										/>
+								<ColumnDefinition
+										Width="*"
+										/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition
+										Height="*"
+										/>
+								<RowDefinition
+										Height="*"
+										/>
+							</Grid.RowDefinitions>
+
+							<Button x:Name="lb3BtnApplyX" Grid.Row="0"
+									Grid.Column="0"
+									Content="Apply"
+									FontSize="8"
+									Margin="1"
+									IsEnabled="{Binding XYZ.HasUndoX}" Click="Lb3BtnApplyX_Click"
+									/>
+
+							<Button x:Name="lb3BtnUndoX" Grid.Row="0"
+									Grid.Column="1"
+									Content="Undo"
+									FontSize="8"
+									Margin="1"
+									IsEnabled="{Binding XYZ.HasUndoX}" Click="Lb3BtnUndoX_Click"
+									/>
+
+							<Border
+									Grid.Row="0"
+									Grid.Column="2"
+									BorderThickness="1,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="tag"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="0"
+									Grid.Column="3"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="HasValueX"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="0"
+									Grid.Column="4"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="HadUndoX"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="0"
+									Grid.Column="5"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="Undo Value X"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+
+							<Border
+									Grid.Row="1"
+									Grid.Column="2"
+									BorderThickness="1,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										HorizontalAlignment="Stretch"
+										VerticalAlignment="Stretch"
+										Text="{Binding TopoMgr.TpConsts.Xtag, ElementName={StaticResource Parent}}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="1"
+									Grid.Column="3"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										Text="{Binding XYZ.HasValueX}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="1"
+									Grid.Column="4"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										Text="{Binding XYZ.HasUndoX}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="1"
+									Grid.Column="5"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										Text="{Binding XYZ.UndoValueX, StringFormat=F2}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+
+						</Grid>
+
+						<!--  y  -->
+						<Grid
+								Grid.Row="1"
+								Grid.Column="3"
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch"
+								>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition
+										Width="40"
+										/>
+								<ColumnDefinition
+										Width="40"
+										/>
+								<ColumnDefinition
+										Width="19"
+										/>
+								<ColumnDefinition
+										Width="*"
+										/>
+								<ColumnDefinition
+										Width="*"
+										/>
+								<ColumnDefinition
+										Width="*"
+										/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition
+										Height="*"
+										/>
+								<RowDefinition
+										Height="*"
+										/>
+							</Grid.RowDefinitions>
+
+
+							<Button x:Name="lb3BtnApplyY"
+									Grid.Row="0"
+									Grid.Column="0"
+									Content="Apply"
+									FontSize="8"
+									Margin="1"
+									IsEnabled="{Binding XYZ.HasUndoY}"
+									Click="Lb3BtnApplyY_Click" />
+
+							<Button x:Name="lb3BtnUndoY"
+									Grid.Row="0"
+									Grid.Column="1"
+									Content="Undo"
+									FontSize="8"
+									Margin="1"
+									IsEnabled="{Binding XYZ.HasUndoY}"
+									Click="Lb3BtnUndoY_Click" />
+
+
+							<Border
+									Grid.Row="0"
+									Grid.Column="2"
+									BorderThickness="1,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="tag"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="0"
+									Grid.Column="3"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="HasValueY"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="0"
+									Grid.Column="4"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="HadUndoY"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="0"
+									Grid.Column="5"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="Undo Value Y"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+
+							<Border
+									Grid.Row="1"
+									Grid.Column="2"
+									BorderThickness="1,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										Text="{Binding TopoMgr.TpConsts.Ytag, ElementName={StaticResource Parent}}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="1"
+									Grid.Column="3"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										Text="{Binding XYZ.HasValueY}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="1"
+									Grid.Column="4"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										Text="{Binding XYZ.HasUndoY}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="1"
+									Grid.Column="5"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										Text="{Binding XYZ.UndoValueY, StringFormat=F2}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+
+						</Grid>
+
+						<!--  z  -->
+						<Grid
+								Grid.Row="1"
+								Grid.Column="4"
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch"
+								>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="40" />
+								<ColumnDefinition Width="40" />
+								<ColumnDefinition
+										Width="19"
+										/>
+								<ColumnDefinition
+										Width="*"
+										/>
+								<ColumnDefinition
+										Width="*"
+										/>
+								<ColumnDefinition
+										Width="*"
+										/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition
+										Height="*"
+										/>
+								<RowDefinition
+										Height="*"
+										/>
+							</Grid.RowDefinitions>
+
+
+							<Button x:Name="lb3BtnApplyZ"
+									Grid.Row="0"
+									Grid.Column="0"
+									Content="Apply"
+									FontSize="8"
+									Margin="1"
+									IsEnabled="{Binding XYZ.HasUndoZ}"
+									Click="Lb3BtnApplyZ_Click" />
+
+							<Button x:Name="lb3BtnUndoZ"
+									Grid.Row="0"
+									Grid.Column="1"
+									Content="Undo"
+									FontSize="8"
+									Margin="1"
+									IsEnabled="{Binding XYZ.HasUndoZ}"
+									Click="Lb3BtnUndoZ_Click" />
+
+							<Border
+									Grid.Row="0"
+									Grid.Column="2"
+									BorderThickness="1,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="tag"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="0"
+									Grid.Column="3"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="HasValueZ"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="0"
+									Grid.Column="4"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="HadUndoZ"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="0"
+									Grid.Column="5"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<Label
+										Content="Undo Value Z"
+										Style="{StaticResource lblSubValueHdr}"
+										/>
+							</Border>
+
+							<!--  HorizontalAlignment="Stretch"  -->
+							<!--  Text="{Binding TopoMgr.TpConsts.Xtag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"  -->
+
+							<Border
+									Grid.Row="1"
+									Grid.Column="2"
+									BorderThickness="1,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										Text="{Binding TopoMgr.TpConsts.Ztag, ElementName={StaticResource Parent}}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="1"
+									Grid.Column="3"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										Text="{Binding XYZ.HasValueZ}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="1"
+									Grid.Column="4"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										Text="{Binding XYZ.HasUndoZ}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+							<Border
+									Grid.Row="1"
+									Grid.Column="5"
+									BorderThickness="0,0,1,0"
+									BorderBrush="DimGray"
+									>
+								<TextBlock
+										Text="{Binding XYZ.UndoValueZ, StringFormat=F2}"
+										TextAlignment="Center"
+										Background="{StaticResource Normal.Inactive.Background}"
+										/>
+							</Border>
+
+						</Grid>
+
+					</Grid>
+				</Border>
+			</ControlTemplate>
+
+			<DataTemplate
+					x:Key="topopoints"
+					>
+				<ContentControl
+						Template="{StaticResource FieldPoints}"
+						/>
+			</DataTemplate>
+
+		</ListBox.Resources>
+
+		<ListBox.Template>
+			<ControlTemplate>
+				<Border
+						Margin="0,0,0,0"
+						BorderThickness="1"
+						BorderBrush="Black"
+						>
+					<ScrollViewer
+							VerticalScrollBarVisibility="Auto"
+							>
+						<DockPanel
+								LastChildFill="True"
+								Background="LightGray"
+								>
+
+							<Grid
+									DockPanel.Dock="Top"
+									Background="Aqua"
+									>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition
+											Width="84"
+											/>
+									<ColumnDefinition
+											Width="84"
+											/>
+									<ColumnDefinition Width="{StaticResource XyzColWidth}"
+											/>
+									<ColumnDefinition Width="{StaticResource XyzColWidth}"
+											/>
+									<ColumnDefinition Width="{StaticResource XyzColWidth}"
+											/>
+									<ColumnDefinition
+											Width="1*"
+											/>
+									<ColumnDefinition
+											Width="1*"
+											/>
+									<ColumnDefinition
+											Width="1*"
+											/>
+									<ColumnDefinition
+											Width="1*"
+											/>
+									<ColumnDefinition
+											Width="1*"
+											/>
+									<ColumnDefinition
+											Width="1*"
+											/>
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition
+											Height="Auto"
+											/>
+								</Grid.RowDefinitions>
+								<Border
+										Grid.Column="0"
+										Style="{StaticResource PointsTestHeader}"
+										>
+									<Label
+											Content="Edit Control"
+											Style="{StaticResource PointsTestHeaderLabel}"
+											/>
+								</Border>
+								<Border
+										Grid.Column="1"
+										Style="{StaticResource PointsTestHeader}"
+										>
+									<Label
+											Content="Index"
+											Style="{StaticResource PointsTestHeaderLabel}"
+											/>
+								</Border>
+								<Border
+										Grid.Column="2"
+										Style="{StaticResource PointsTestHeader}"
+										>
+									<Label
+											Content="X"
+											Style="{StaticResource PointsTestHeaderLabel}"
+											/>
+								</Border>
+								<Border
+										Grid.Column="3"
+										Style="{StaticResource PointsTestHeader}"
+										>
+									<Label
+											Content="Y"
+											Style="{StaticResource PointsTestHeaderLabel}"
+											/>
+								</Border>
+								<Border
+										Grid.Column="4"
+										Style="{StaticResource PointsTestHeader}"
+										>
+									<Label
+											Content="Z"
+											Style="{StaticResource PointsTestHeaderLabel}"
+											/>
+								</Border>
+								<Border
+										Grid.Column="5"
+										Style="{StaticResource PointsTestHeader}"
+										>
+									<Label
+											Content="ΔX"
+											Style="{StaticResource PointsTestHeaderLabel}"
+											/>
+								</Border>
+								<Border
+										Grid.Column="6"
+										Style="{StaticResource PointsTestHeader}"
+										>
+									<Label
+											Content="ΔY"
+											Style="{StaticResource PointsTestHeaderLabel}"
+											/>
+								</Border>
+								<Border
+										Grid.Column="7"
+										Style="{StaticResource PointsTestHeader}"
+										>
+									<Label
+											Content="ΔZ"
+											Style="{StaticResource PointsTestHeaderLabel}"
+											/>
+								</Border>
+								<Border
+										Grid.Column="8"
+										Style="{StaticResource PointsTestHeader}"
+										>
+									<Label
+											Content="ΔXY"
+											Style="{StaticResource PointsTestHeaderLabel}"
+											/>
+								</Border>
+								<Border
+										Grid.Column="9"
+										Style="{StaticResource PointsTestHeader}"
+										>
+									<Label
+											Content="ΔXYZ"
+											Style="{StaticResource PointsTestHeaderLabel}"
+											/>
+								</Border>
+								<Border
+										Grid.Column="10"
+										Style="{StaticResource PointsTestHeader}"
+										>
+									<Label
+											Content="Slope"
+											Style="{StaticResource PointsTestHeaderLabel}"
+											/>
+								</Border>
+							</Grid>
+
+							<ItemsPresenter
+									Margin="-6,-1,-5,0"
+									/>
+						</DockPanel>
+					</ScrollViewer>
+				</Border>
+			</ControlTemplate>
+		</ListBox.Template>
+
+	</ListBox>
+
+</ResourceDictionary>

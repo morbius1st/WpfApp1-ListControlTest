@@ -49,6 +49,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 		{
 			InitializeComponent();
 
+
 			//			_vm = (ControlPointsVm) DataContext;
 
 

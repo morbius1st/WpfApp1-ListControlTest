@@ -1,4 +1,4 @@
-﻿<Window x:Name="mainWindow" Title="MainWindow"
+﻿<Window
 		x:Class="WpfApp1_ListControlTest.MainWindow"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,8 +8,10 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:sampleData="clr-namespace:WpfApp1_ListControlTest.SampleData"
 		xmlns:topoPtsData="clr-namespace:WpfApp1_ListControlTest.TopoPtsData"
-		Width="1491.6"
-		Height="949.6"
+		x:Name="mainWindow"
+		Title="MainWindow"
+		Width="1680"
+		Height="1400"
 		Loaded="MainWindow_Loaded"
 		mc:Ignorable="d"
 		Background="#FF2C2C2C"
@@ -19,930 +21,728 @@
 
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="WpfResources/VisualStates.xaml" />
+				<ResourceDictionary
+						Source="WpfResources/VisualStates.xaml"
+						/>
+				<ResourceDictionary
+						Source="MainWinSupport/MainWinResourceSupport.xaml"
+						/>
 			</ResourceDictionary.MergedDictionaries>
 
-			<System:String x:Key="three">3</System:String>
-			<System:Int32 x:Key="Three">3</System:Int32>
-
-
-
-			<SolidColorBrush x:Key="GridBorderGrey"
-					Color="#FF909090"
-					/>
-
-			<SolidColorBrush x:Key="BkGrndUnUsedHdr"
-					Color="#FF282828"
-					/>
-
-			<SolidColorBrush x:Key="BkGrndUnUsedDetail"
-					Color="#FF888888"
-					/>
-
-			<LinearGradientBrush x:Key="ShadowDetail" x:Name="ShadowDetail" StartPoint="0.5,0" EndPoint="0.5,1">
-				<GradientStop Offset="0.87" Color="Black" />
-				<GradientStop Offset="1" Color="#FFFDFDFF" />
-			</LinearGradientBrush>
-
-			<Style x:Key="CellTxBox"
-					TargetType="{x:Type TextBox}"
+			<System:String
+					x:Key="three"
 					>
-				<Setter Property="BorderThickness" Value="0,0,0,0" />
-				<Setter Property="HorizontalContentAlignment" Value="Center" />
-				<Setter Property="Margin" Value="0,0,0,0" />
-				<Setter Property="Padding" Value="3" />
-				<Setter Property="VerticalAlignment" Value="bottom" />
-				<Setter Property="VerticalContentAlignment" Value="Center" />
-			</Style>
-
-			<Style x:Key="CellTxBlk"
-					TargetType="{x:Type TextBlock}"
+				3
+			</System:String>
+			<System:Int32
+					x:Key="Three"
 					>
-				<Setter Property="Background" Value="#bbbbbb" />
-				<Setter Property="HorizontalAlignment" Value="Stretch" />
-				<Setter Property="Margin" Value="0,0,0,0" />
-				<Setter Property="Padding" Value="3" />
-				<Setter Property="TextAlignment" Value="Center" />
-				<Setter Property="VerticalAlignment" Value="Top" />
-			</Style>
+				3
+			</System:Int32>
 
-			<Style x:Key="controlPointLbl"
-					TargetType="Label"
-					>
-				<Setter Property="Background" Value="#444444" />
-				<Setter Property="DataContext" Value="{Binding ElementName=mainWindow}" />
-				<Setter Property="FontSize" Value="16" />
-				<Setter Property="Foreground" Value="White" />
-				<Setter Property="Height" Value="22" />
-				<Setter Property="HorizontalAlignment" Value="Left" />
-				<Setter Property="HorizontalContentAlignment" Value="Center" />
-				<Setter Property="Padding" Value="0" />
-				<Setter Property="VerticalAlignment" Value="Top" />
-				<Setter Property="Width" Value="73" />
-			</Style>
-
-			<Style x:Key="lbHeader"
-					TargetType="{x:Type Label}"
-					>
-				<Setter Property="Foreground" Value="White" />
-				<Setter Property="HorizontalContentAlignment" Value="Center" />
-				<Setter Property="Padding" Value="8,0,0,2" />
-				<Setter Property="VerticalAlignment" Value="Center" />
-			</Style>
-
-
-			<Style x:Key="lblHeaderBdrTop"
-					TargetType="{x:Type Border}"
-					>
-				<Setter Property="BorderBrush" Value="{StaticResource GridBorderGrey}" />
-				<Setter Property="BorderThickness" Value="0,0,1,0" />
-				<Setter Property="Margin" Value="0" />
-			</Style>
-
-			<Style x:Key="lblHeaderBdrBottom"
-					TargetType="{x:Type Border}"
-					>
-				<Setter Property="BorderBrush" Value="{StaticResource GridBorderGrey}" />
-				<Setter Property="BorderThickness" Value="0,0,1,0" />
-				<Setter Property="Margin" Value="0" />
-			</Style>
-
-			<Style x:Key="FocusVisual">
-				<Setter Property="Control.Template">
-					<Setter.Value>
-						<ControlTemplate>
-							<Rectangle Margin="5"
-									SnapsToDevicePixels="true"
-									Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-									StrokeDashArray="1 2"
-									StrokeThickness="1"
-									/>
-						</ControlTemplate>
-					</Setter.Value>
-				</Setter>
-			</Style>
-
-
-			<Style x:Key="ButtonStyle1"
-					TargetType="{x:Type Button}"
-					>
-				<Style.Resources>
-					<SolidColorBrush x:Key="Button.Static.Background"
-							Color="#FFDDDDDD"
-							/>
-					<SolidColorBrush x:Key="Button.Static.Border"
-							Color="#FF707070"
-							/>
-					<SolidColorBrush x:Key="Button.MouseOver.Background"
-							Color="#FFBEE6FD"
-							/>
-					<SolidColorBrush x:Key="Button.MouseOver.Border"
-							Color="Red"
-							/>
-					<SolidColorBrush x:Key="Button.Pressed.Background"
-							Color="#FFC4E5F6"
-							/>
-					<SolidColorBrush x:Key="Button.Pressed.Border"
-							Color="#FF2C628B"
-							/>
-					<SolidColorBrush x:Key="Button.Disabled.Background"
-							Color="#FFF4F4F4"
-							/>
-					<SolidColorBrush x:Key="Button.Disabled.Border"
-							Color="#FFADB2B5"
-							/>
-					<SolidColorBrush x:Key="Button.Disabled.Foreground"
-							Color="#FF838383"
-							/>
-				</Style.Resources>
-				<Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
-				<Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
-				<Setter Property="BorderThickness" Value="1" />
-				<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-				<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-				<Setter Property="HorizontalContentAlignment" Value="Center" />
-				<Setter Property="Padding" Value="1" />
-				<Setter Property="Template">
-					<Setter.Value>
-						<ControlTemplate TargetType="{x:Type Button}">
-							<Border x:Name="border"
-									SnapsToDevicePixels="true"
-									Background="{TemplateBinding Background}"
-									BorderThickness="{TemplateBinding BorderThickness}"
-									BorderBrush="{TemplateBinding BorderBrush}"
-									>
-								<ContentPresenter x:Name="contentPresenter"
-										Margin="{TemplateBinding Padding}"
-										HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-										VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-										Focusable="False"
-										RecognizesAccessKey="True"
-										SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-										/>
-							</Border>
-							<ControlTemplate.Triggers>
-								<Trigger Property="IsDefaulted" Value="true">
-									<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-								</Trigger>
-								<Trigger Property="IsMouseOver" Value="true">
-									<Setter TargetName="border" Property="Background" Value="{StaticResource Button.MouseOver.Background}" />
-									<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.MouseOver.Border}" />
-								</Trigger>
-								<Trigger Property="IsPressed" Value="true">
-									<Setter TargetName="border" Property="Background" Value="{StaticResource Button.Pressed.Background}" />
-									<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Pressed.Border}" />
-								</Trigger>
-								<Trigger Property="IsEnabled" Value="false">
-									<Setter TargetName="border" Property="Background" Value="{StaticResource Button.Disabled.Background}" />
-									<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Disabled.Border}" />
-									<Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Disabled.Foreground}" />
-								</Trigger>
-							</ControlTemplate.Triggers>
-						</ControlTemplate>
-					</Setter.Value>
-				</Setter>
-				<Setter Property="VerticalContentAlignment" Value="Center" />
-			</Style>
-
-			<Style x:Key="PointsTestHeader"
-					TargetType="{x:Type Border}"
-					>
-				<Setter Property="BorderBrush" Value="Black" />
-				<Setter Property="BorderThickness" Value="0,0,1,1" />
-				<Setter Property="Margin" Value="0" />
-				<Setter Property="Padding" Value="4,0,0,0" />
-			</Style>
-
-			<Style x:Key="PointsTestHeaderLabel"
-					TargetType="{x:Type Label}"
-					>
-				<Setter Property="HorizontalContentAlignment" Value="Center" />
-				<Setter Property="VerticalContentAlignment" Value="Center" />
-			</Style>
-
-
-			<Style x:Key="ListBoxItemContainerStyle2"
-					TargetType="{x:Type ListBoxItem}"
-					>
-
-				<Style.Resources>
-					<SolidColorBrush x:Key="Item.MouseOver.Background"
-							Color="#77FF4B"
-							/>
-					<SolidColorBrush x:Key="Item.MouseOver.Border"
-							Color="#86E980"
-							/>
-					<SolidColorBrush x:Key="Item.SelectedInactive.Background"
-							Color="#676767"
-							/>
-					<SolidColorBrush x:Key="Item.SelectedInactive.Border"
-							Color="#555555"
-							/>
-					<SolidColorBrush x:Key="Item.SelectedActive.Background"
-							Color="#E2D7F8"
-							/>
-					<SolidColorBrush x:Key="Item.SelectedActive.Border"
-							Color="#C8E7F5"
-							/>
-				</Style.Resources>
-				<Setter Property="Background" Value="Transparent" />
-				<Setter Property="BorderBrush" Value="Transparent" />
-				<Setter Property="BorderThickness" Value="1" />
-				<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-				<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
-				<Setter Property="Padding" Value="4,1" />
-				<Setter Property="SnapsToDevicePixels" Value="True" />
-				<Setter Property="Template">
-					<Setter.Value>
-						<ControlTemplate TargetType="{x:Type ListBoxItem}">
-							<Border x:Name="Bd"
-									Padding="{TemplateBinding Padding}"
-									SnapsToDevicePixels="true"
-									Background="{TemplateBinding Background}"
-									BorderThickness="{TemplateBinding BorderThickness}"
-									BorderBrush="{TemplateBinding BorderBrush}"
-									>
-								<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-										VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-										SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-										/>
-							</Border>
-							<ControlTemplate.Triggers>
-								<MultiTrigger>
-									<MultiTrigger.Conditions>
-										<Condition Property="IsMouseOver" Value="True" />
-									</MultiTrigger.Conditions>
-									<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.MouseOver.Background}" />
-									<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.MouseOver.Border}" />
-								</MultiTrigger>
-								<MultiTrigger>
-									<MultiTrigger.Conditions>
-										<Condition Property="Selector.IsSelectionActive" Value="False" />
-										<Condition Property="IsSelected" Value="True" />
-									</MultiTrigger.Conditions>
-									<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.SelectedInactive.Background}" />
-									<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.SelectedInactive.Border}" />
-								</MultiTrigger>
-								<MultiTrigger>
-									<MultiTrigger.Conditions>
-										<Condition Property="Selector.IsSelectionActive" Value="True" />
-										<Condition Property="IsSelected" Value="True" />
-									</MultiTrigger.Conditions>
-									<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.SelectedActive.Background}" />
-									<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.SelectedActive.Border}" />
-								</MultiTrigger>
-								<Trigger Property="IsEnabled" Value="False">
-									<Setter TargetName="Bd" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-								</Trigger>
-							</ControlTemplate.Triggers>
-						</ControlTemplate>
-					</Setter.Value>
-				</Setter>
-				<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
-			</Style>
-
-
-			<ItemsPanelTemplate x:Key="ItemPanels1">
-				<VirtualizingStackPanel IsItemsHost="True" />
-			</ItemsPanelTemplate>
-
-			<ItemsPanelTemplate x:Key="ListBoxItemsPanelTemplate1">
-				<VirtualizingStackPanel IsItemsHost="True" />
-			</ItemsPanelTemplate>
-
-			<ControlTemplate x:Key="ct1">
-				<Border BorderThickness="0,0,0,5"
-						BorderBrush="{DynamicResource ShadowDetail}"
-						>
-					<Grid Margin="0,-4,0,0">
-
-						<Grid.ColumnDefinitions>
-							<!--  0  -->
-							<ColumnDefinition Width="100" />
-							<!--  1  -->
-							<ColumnDefinition Width="100" />
-							<!--  2  -->
-							<ColumnDefinition Width="100" />
-							<!--  3  -->
-							<ColumnDefinition Width="100" />
-							<!--  4  -->
-							<ColumnDefinition Width="100" />
-							<!--  5  -->
-							<ColumnDefinition Width="100" />
-							<!--  6  -->
-							<ColumnDefinition Width="100" />
-							<!--  7  -->
-							<ColumnDefinition Width="100" />
-							<!--  8  -->
-							<ColumnDefinition Width="1*" />
-						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="25" />
-							<RowDefinition Height="24" />
-						</Grid.RowDefinitions>
-
-						<Border Grid.Row="0"
-								Grid.Column="0"
-								Grid.ColumnSpan="2"
-								Style="{StaticResource lblHeaderBdrTop}"
-								>
-							<TextBox Grid.Column="0"
-									Text="{Binding SheetData}"
-									Style="{DynamicResource CellTxBox}"
-									/>
-						</Border>
-						<Border Grid.Row="0"
-								Grid.Column="2"
-								Grid.ColumnSpan="2"
-								Style="{StaticResource lblHeaderBdrTop}"
-								>
-							<TextBox Grid.Column="1"
-									Text="{Binding SheetName}"
-									Style="{DynamicResource CellTxBox}"
-									/>
-						</Border>
-						<Border Grid.Row="0"
-								Grid.Column="4"
-								Grid.ColumnSpan="5"
-								Style="{StaticResource lblHeaderBdrTop}"
-								>
-							<TextBox Text="{Binding SheetNumber}"
-									Style="{DynamicResource CellTxBox}"
-									/>
-						</Border>
-
-						<Rectangle Grid.Row="1"
-								Grid.Column="0"
-								Grid.ColumnSpan="1"
-								Fill="{StaticResource BkGrndUnUsedDetail}"
-								/>
-
-						<Border Grid.Row="1"
-								Grid.Column="0"
-								BorderThickness="0,0,0,0"
-								Style="{StaticResource lblHeaderBdrBottom}"
-								/>
-						<Border Grid.Row="1"
-								Grid.Column="1"
-								Grid.ColumnSpan="2"
-								BorderThickness="1,0,0,0"
-								Style="{StaticResource lblHeaderBdrBottom}"
-								>
-							<TextBlock Text="{Binding SheetInfo}"
-									Style="{DynamicResource CellTxBlk}"
-									/>
-						</Border>
-						<Border Grid.Row="1"
-								Grid.Column="3"
-								Grid.ColumnSpan="2"
-								BorderThickness="1,0,1,0"
-								Style="{StaticResource lblHeaderBdrBottom}"
-								>
-							<TextBlock Text="{Binding SheetInfo2}"
-									Style="{DynamicResource CellTxBlk}"
-									/>
-						</Border>
-
-						<Rectangle Grid.Row="1"
-								Grid.Column="5"
-								Grid.ColumnSpan="4"
-								Fill="{StaticResource BkGrndUnUsedDetail}"
-								/>
-
-					</Grid>
-				</Border>
-			</ControlTemplate>
-
-			<DataTemplate x:Key="SampleDataClassTemplate2">
-				<ContentControl Template="{StaticResource ct1}" />
-			</DataTemplate>
-
-
-
-
-			<ControlTemplate x:Key="tp1">
-				<Border x:Name="BDx"
-						BorderThickness="0,0,0,7"
-						BorderBrush="{DynamicResource ShadowDetail}"
-						>
-					<Grid Margin="0,0,0,0">
-
-						<Grid.ColumnDefinitions>
-							<!--  0  -->
-							<ColumnDefinition Width="46" />
-							<!--  1  -->
-							<ColumnDefinition Width="1*" />
-							<!--  2  -->
-							<ColumnDefinition Width="1*" />
-							<!--  3  -->
-							<ColumnDefinition Width="1*" />
-							<!--  4  -->
-							<ColumnDefinition Width="1*" />
-							<!--  5  -->
-							<ColumnDefinition Width="1*" />
-							<!--  6  -->
-							<ColumnDefinition Width="1*" />
-							<!--  7  -->
-							<ColumnDefinition Width="1*" />
-							<!--  8  -->
-							<ColumnDefinition Width="1*" />
-							<!--  9  -->
-							<ColumnDefinition Width="1*" />
-
-						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="40" />
-						</Grid.RowDefinitions>
-
-						<Border Grid.Row="0"
-								Grid.Column="0"
-								Style="{StaticResource lblHeaderBdrTop}"
-								>
-							<TextBox x:Name="TBx"
-									Grid.Column="0"
-									Margin="0,0,0,0"
-									Text="{Binding Index}"
-									Style="{DynamicResource CellTxBox}"
-									/>
-						</Border>
-
-						<Border Grid.Row="0"
-								Grid.Column="1"
-								Style="{StaticResource lblHeaderBdrTop}"
-								>
-							<TextBox Grid.Column="0"
-									Text="{Binding X, StringFormat=F2}"
-									Style="{DynamicResource CellTxBox}"
-									/>
-						</Border>
-						<Border Grid.Row="0"
-								Grid.Column="2"
-								Grid.ColumnSpan="1"
-								Style="{StaticResource lblHeaderBdrTop}"
-								>
-							<TextBox Grid.Column="1"
-									Text="{Binding Y, StringFormat=F2}"
-									Style="{DynamicResource CellTxBox}"
-									/>
-						</Border>
-						<Border Grid.Row="0"
-								Grid.Column="3"
-								Grid.ColumnSpan="1"
-								Style="{StaticResource lblHeaderBdrTop}"
-								>
-							<TextBox Text="{Binding Z, StringFormat=F2}"
-									Style="{DynamicResource CellTxBox}"
-									/>
-						</Border>
-
-						<Border Grid.Row="0"
-								Grid.Column="4"
-								Grid.ColumnSpan="1"
-								Style="{StaticResource lblHeaderBdrTop}"
-								>
-							<TextBlock Text="{Binding XΔ, StringFormat=F2}"
-									Style="{DynamicResource CellTxBlk}"
-									/>
-						</Border>
-
-						<Border Grid.Row="0"
-								Grid.Column="5"
-								Grid.ColumnSpan="1"
-								Style="{StaticResource lblHeaderBdrTop}"
-								>
-							<TextBlock Text="{Binding YΔ, StringFormat=F2}"
-									Style="{DynamicResource CellTxBlk}"
-									/>
-						</Border>
-
-						<Border Grid.Row="0"
-								Grid.Column="6"
-								Grid.ColumnSpan="1"
-								Style="{StaticResource lblHeaderBdrTop}"
-								>
-							<TextBlock Text="{Binding ZΔ, StringFormat=F2}"
-									Style="{DynamicResource CellTxBlk}"
-									/>
-						</Border>
-
-						<Border Grid.Row="0"
-								Grid.Column="7"
-								Grid.ColumnSpan="1"
-								Style="{StaticResource lblHeaderBdrBottom}"
-								>
-							<TextBlock Text="{Binding XYΔ, StringFormat=F4}"
-									Style="{DynamicResource CellTxBlk}"
-									/>
-						</Border>
-
-						<Border Grid.Row="0"
-								Grid.Column="8"
-								Grid.ColumnSpan="1"
-								Style="{StaticResource lblHeaderBdrBottom}"
-								>
-							<TextBlock Text="{Binding XYZΔ, StringFormat=F4}"
-									Style="{DynamicResource CellTxBlk}"
-									/>
-						</Border>
-
-						<Border Grid.Row="0"
-								Grid.Column="9"
-								Grid.ColumnSpan="1"
-								Style="{StaticResource lblHeaderBdrTop}"
-								>
-							<TextBlock Text="{Binding Slope, StringFormat=F6}"
-									Style="{DynamicResource CellTxBlk}"
-									/>
-						</Border>
-
-					</Grid>
-				</Border>
-			</ControlTemplate>
-
-
-			<DataTemplate x:Key="topopoints">
-				<ContentControl Template="{StaticResource tp1}" />
-			</DataTemplate>
-
-
-			<Style x:Key="FocusVisual2">
-				<Setter Property="Control.Template">
-					<Setter.Value>
-						<ControlTemplate>
-							<Rectangle Margin="2"
-									SnapsToDevicePixels="true"
-									Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-									StrokeDashArray="1 2"
-									StrokeThickness="1"
-									/>
-						</ControlTemplate>
-					</Setter.Value>
-				</Setter>
-			</Style>
-			<SolidColorBrush x:Key="Item.MouseOver.Background"
-					Color="#1F26A0DA"
-					/>
-			<SolidColorBrush x:Key="Item.MouseOver.Border"
-					Color="#a826A0Da"
-					/>
-			<SolidColorBrush x:Key="Item.SelectedInactive.Background"
-					Color="#3DDADADA"
-					/>
-			<SolidColorBrush x:Key="Item.SelectedInactive.Border"
-					Color="#FFDADADA"
-					/>
-			<SolidColorBrush x:Key="Item.SelectedActive.Background"
-					Color="#3D26A0DA"
-					/>
-			<SolidColorBrush x:Key="Item.SelectedActive.Border"
-					Color="#FF26A0DA"
-					/>
-
-
-			<Style x:Key="ListBoxItemStyle"
-					TargetType="{x:Type ListBoxItem}"
-					>
-				<Style.Triggers>
-					<DataTrigger Binding="{Binding ControlPoint}"
-							Value="True"
-							>
-						<Setter Property="Visibility" Value="Collapsed" />
-					</DataTrigger>
-				</Style.Triggers>
-				<Setter Property="Background" Value="Transparent" />
-				<Setter Property="BorderBrush" Value="Transparent" />
-				<Setter Property="BorderThickness" Value="1" />
-				<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-				<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
-				<Setter Property="Padding" Value="4,1" />
-				<Setter Property="SnapsToDevicePixels" Value="True" />
-
-				<Setter Property="Template">
-					<Setter.Value>
-						<ControlTemplate TargetType="{x:Type ListBoxItem}">
-							<Border x:Name="Bd"
-									Margin="0,0,0,-4"
-									Padding="{TemplateBinding Padding}"
-									SnapsToDevicePixels="true"
-									Background="{TemplateBinding Background}"
-									BorderThickness="{TemplateBinding BorderThickness}"
-									BorderBrush="{TemplateBinding BorderBrush}"
-									>
-								<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-										VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-										SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-										/>
-							</Border>
-							<ControlTemplate.Triggers>
-
-								<MultiTrigger>
-									<MultiTrigger.Conditions>
-										<Condition Property="IsMouseOver" Value="True" />
-									</MultiTrigger.Conditions>
-									<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.MouseOver.Background}" />
-									<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.MouseOver.Border}" />
-								</MultiTrigger>
-								<MultiTrigger>
-									<MultiTrigger.Conditions>
-										<Condition Property="Selector.IsSelectionActive" Value="False" />
-										<Condition Property="IsSelected" Value="True" />
-									</MultiTrigger.Conditions>
-									<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.SelectedInactive.Background}" />
-									<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.SelectedInactive.Border}" />
-								</MultiTrigger>
-								<MultiTrigger>
-									<MultiTrigger.Conditions>
-										<Condition Property="Selector.IsSelectionActive" Value="True" />
-										<Condition Property="IsSelected" Value="True" />
-									</MultiTrigger.Conditions>
-									<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.SelectedActive.Background}" />
-									<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.SelectedActive.Border}" />
-								</MultiTrigger>
-								<Trigger Property="IsEnabled" Value="False">
-									<Setter TargetName="Bd" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-								</Trigger>
-							</ControlTemplate.Triggers>
-						</ControlTemplate>
-					</Setter.Value>
-				</Setter>
-				<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
-			</Style>
-			<Style x:Key="TestButtonStyle"
-					TargetType="{x:Type Button}"
+			<Style
+					x:Key="TestButtonStyle"
+					TargetType="Button"
 					>
 				<Setter Property="Height" Value="27" />
-				<Setter Property="HorizontalAlignment" Value="Left" />
-				<Setter Property="HorizontalContentAlignment" Value="Center" />
-				<Setter Property="VerticalAlignment" Value="Top" />
+				<Setter Property="Margin" Value="1,0,1,0" />
 				<Setter Property="Width" Value="80" />
 			</Style>
 
-
-
-
 		</ResourceDictionary>
 	</Window.Resources>
-	<Grid Margin="0,0,-0.4,7">
+
+	<Grid
+			Margin="0,0,-0.4,7"
+			>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="839.2" />
-			<ColumnDefinition />
+			<ColumnDefinition
+					Width="840"
+					/>
+			<ColumnDefinition
+					Width="*"
+					/>
 		</Grid.ColumnDefinitions>
-		<!--  <Button  -->
-		<!--  x:Name="button_Copy2"  -->
-		<!--  Content="Surface Points"  -->
-		<!--  HorizontalAlignment="Left"  -->
-		<!--  Height="48"  -->
-		<!--  Margin="467,1019,0,0"  -->
-		<!--  VerticalAlignment="Top"  -->
-		<!--  Width="111"  -->
-		<!--  d:DataContext="{d:DesignData /SampleData/SampleCollectionSampleData.xaml}"  -->
+		<Grid.RowDefinitions>
+			<RowDefinition
+					Height="500"
+					/>
+			<RowDefinition
+					Height="*"
+					/>
+			<RowDefinition
+					Height="150"
+					/>
+			<RowDefinition
+					Height="60"
+					/>
+		</Grid.RowDefinitions>
 
-		<ListView x:Name="listView"
-				Margin="9,483,0,0"
-				Width="820"
-				Height="144"
-				Padding="-3,-1,0,0"
-				HorizontalAlignment="left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Stretch"
-				d:DataContext="{d:DesignData /SampleData/SampleCollectionSampleData.xaml}"
-				DataContext="{Binding Source={x:Static sampleData:SampleCollection.sx}}"
-				Background="LightGray"
-				BorderThickness="1"
-				BorderBrush="black"
-				ItemsPanel="{DynamicResource ItemPanels1}"
-				ItemsSource="{Binding}"
+		<Grid.Resources>
+			<ResourceDictionary>
+				<ResourceDictionary.MergedDictionaries>
+					<ResourceDictionary
+							Source="MainWinSupport/MainWinResource1.xaml"
+							/>
+					<ResourceDictionary
+							Source="MainWinSupport/MainWinResource2.xaml"
+							/>
+					<ResourceDictionary
+							Source="MainWinSupport/MainWinResource3.xaml"
+							/>
+				</ResourceDictionary.MergedDictionaries>
+			</ResourceDictionary>
+		</Grid.Resources>
+
+
+		<!--#region > > listbox2-->
+		<Grid
+				Grid.Row="0"
+				Grid.Column="0"
+				Grid.ColumnSpan="2"
+				Margin="0,0,0,0"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
 				>
-			<ListView.Resources>
-				<Style TargetType="{x:Type Label}">
-					<Setter Property="BorderBrush" Value="Black" />
+			<Grid.RowDefinitions>
+				<RowDefinition
+						Height="110"
+						/>
+				<RowDefinition
+						Height="80"
+						/>
+				<RowDefinition
+						Height="*"
+						/>
+				<RowDefinition
+						Height="80"
+						/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition
+						Width="24.8"
+						/>
+				<ColumnDefinition
+						Width="852*"
+						/>
+				<ColumnDefinition
+						Width="797*"
+						/>
+			</Grid.ColumnDefinitions>
 
-					<Setter Property="BorderThickness" Value="1,0,0,1" />
-				</Style>
+			<Label
+					x:Name="label1"
+					Content="* ListBox *"
+					Grid.Row="0"
+					Grid.Column="1"
+					Margin="0.2,53,0,0"
+					Width="72"
+					Height="22"
+					Padding="0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+					FontSize="16"
+					RenderTransformOrigin="0,1"
+					Foreground="White"
+					>
+				<Label.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform />
+						<SkewTransform />
+						<RotateTransform Angle="-90" />
+						<TranslateTransform />
+					</TransformGroup>
+				</Label.RenderTransform>
+			</Label>
 
-				<Style x:Key="header0"
-						TargetType="{x:Type GridViewColumnHeader}"
+			<StackPanel
+					Grid.Row="0"
+					Grid.Column="1"
+					Grid.ColumnSpan="2"
+					Margin="0.2,5,796.6,5.4"
+					HorizontalAlignment="Stretch"
+					Orientation="Vertical"
+					>
+				<Border
+						Padding="1"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Top"
+						BorderThickness="2"
+						BorderBrush="White"
 						>
-					<Setter Property="Template">
-						<Setter.Value>
-							<ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
-								<Label Content="this 0" />
-							</ControlTemplate>
-						</Setter.Value>
-					</Setter>
-				</Style>
 
-				<Style x:Key="header1"
-						TargetType="{x:Type GridViewColumnHeader}"
-						>
-					<Setter Property="HorizontalAlignment" Value="Stretch" />
-					<Setter Property="Template">
-						<Setter.Value>
-							<ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
-								<Label Content="this 1" />
-							</ControlTemplate>
-						</Setter.Value>
-					</Setter>
-				</Style>
-
-				<Style x:Key="header2"
-						TargetType="{x:Type GridViewColumnHeader}"
-						>
-					<Setter Property="HorizontalAlignment" Value="Stretch" />
-					<Setter Property="Template">
-						<Setter.Value>
-							<ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
-								<Label Content="this 2" />
-							</ControlTemplate>
-						</Setter.Value>
-					</Setter>
-				</Style>
-
-			</ListView.Resources>
-
-			<ListView.View>
-				<GridView AllowsColumnReorder="False">
-					<GridViewColumn Width="250">
-						<GridViewColumn.CellTemplate>
-							<DataTemplate>
-								<TextBlock Text="{Binding SheetNumber}" />
-							</DataTemplate>
-						</GridViewColumn.CellTemplate>
-						<GridViewColumnHeader Style="{DynamicResource ResourceKey=header0}" />
-					</GridViewColumn>
-
-					<GridViewColumn Width="100">
-						<GridViewColumn.CellTemplate>
-							<DataTemplate>
-								<TextBlock Text="{Binding SheetName}" />
-							</DataTemplate>
-						</GridViewColumn.CellTemplate>
-						<GridViewColumnHeader Style="{DynamicResource header1}" />
-					</GridViewColumn>
-
-					<GridViewColumn Width="300">
-
-						<GridViewColumn.CellTemplate>
-							<DataTemplate>
-								<TextBlock Text="{Binding SheetData}" />
-							</DataTemplate>
-						</GridViewColumn.CellTemplate>
-
-						<GridViewColumnHeader Style="{DynamicResource header2}" />
-					</GridViewColumn>
-				</GridView>
-			</ListView.View>
-
-		</ListView>
-
-
-		<ListBox x:Name="listBox2"
-				Margin="9,676,0,0"
-				Width="820"
-				Height="227"
-				HorizontalAlignment="left"
-				VerticalAlignment="Top"
-				HorizontalContentAlignment="Stretch"
-				d:DataContext="{d:DesignData /SampleData/SampleCollectionSampleData.xaml}"
-				DataContext="{Binding Source={x:Static sampleData:SampleCollection.sx}}"
-				Background="LightGray"
-				ItemContainerStyle="{DynamicResource ListBoxItemContainerStyle2}"
-				ItemTemplate="{StaticResource SampleDataClassTemplate2}"
-				ItemsSource="{Binding}"
-				>
-
-			<ListBox.Template>
-				<ControlTemplate>
-					<Border Margin="0,0,0,0"
-							BorderThickness="0"
-							BorderBrush="Black"
+					<StackPanel
+							Margin="0"
+							HorizontalAlignment="Left"
+							Orientation="Horizontal"
 							>
+						<Button
+								x:Name="test_all"
+								Content="Test All"
+								Click="BtnTestAll_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_add1"
+								Content="Add 1"
+								Click="BtnAdd1_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_insert1"
+								Content="Insert 1"
+								Click="BtnInsert1_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_changeend"
+								Content="Change End"
+								Click="BtnChangeE_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_changestart"
+								Content="Change Start"
+								Click="BtnChangeS_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_change4x"
+								Content="Chg [4] X"
+								Click="BtnChange4X_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_change4y"
+								Content="Chg [4] Y"
+								Click="BtnChange4Y_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_change4z"
+								Content="Chg [4] Z"
+								Click="BtnChange4Z_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+					</StackPanel>
+				</Border>
 
-						<DockPanel LastChildFill="True"
-								Background="LightGray"
+				<StackPanel
+						Margin="3"
+						HorizontalAlignment="Stretch"
+						Orientation="Vertical"
+						>
+					<StackPanel
+							Margin="0,0,0,1"
+							Orientation="Horizontal"
+							>
+						<Button
+								x:Name="test_changestartx"
+								Content="Chg Start X"
+								Click="BtnChangeStartX_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_changeendx"
+								Content="Chg End X"
+								Click="BtnChangeEndX_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_contains"
+								Content="Contains?"
+								Click="BtnContains_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_indexof"
+								Content="Index Of?"
+								Click="BtnIndexOf_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+					</StackPanel>
+					<StackPanel
+							Orientation="Horizontal"
+							>
+						<Button
+								x:Name="test_removeat"
+								Content="Remove At (2)"
+								Click="BtnRemoveAt_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_remove"
+								Content="Remove (2)"
+								Click="BtnRemove_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+
+						<Button
+								x:Name="test_copyto"
+								Content="CopyTo"
+								Click="BtnCopyTo_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_clear"
+								Content="Clear"
+								Click="BtnClear_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_batch_v1"
+								Click="BtnBatch_Click"
+								Style="{StaticResource TestButtonStyle}"
 								>
+							<Button.ContentTemplate>
+								<DataTemplate>
+									<TextBlock
+											FontSize="9"
+											Text="Batch X + 12&#x0D; to items 3 to 5"
+											TextAlignment="Center"
+											TextWrapping="Wrap"
+											Background="Transparent"
+											IsHitTestVisible="False"
+											/>
+								</DataTemplate>
+							</Button.ContentTemplate>
+
+						</Button>
+						<Button
+								x:Name="test_change4XYZ"
+								Content="Chg [4] XYZ"
+								Click="BtnChange4XYZ_Click"
+								Style="{StaticResource TestButtonStyle}"
+								/>
+						<Button
+								x:Name="test_batch_v2"
+								Click="BtnBatchv2_Click"
+								Style="{StaticResource TestButtonStyle}"
+								>
+							<Button.ContentTemplate>
+								<DataTemplate>
+									<TextBlock
+											Text="Batch v2"
+											TextWrapping="Wrap"
+											Background="Transparent"
+											IsHitTestVisible="False"
+											/>
+								</DataTemplate>
+							</Button.ContentTemplate>
+
+						</Button>
+					</StackPanel>
+				</StackPanel>
+			</StackPanel>
+
+			<ContentControl
+					Content="{StaticResource listBox2}"
+					Grid.Row="2"
+					Grid.Column="1"
+					Grid.ColumnSpan="2"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Stretch"
+					/>
+
+			<Label
+					Content="start point:"
+					Grid.Row="1"
+					Grid.Column="0"
+					Grid.ColumnSpan="2"
+					Margin="24,54.6,0,0"
+					Width="76"
+					Height="22"
+					Padding="0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+					HorizontalContentAlignment="Right"
+					FontSize="16"
+					RenderTransformOrigin="0,1"
+					Foreground="White"
+					>
+				<Label.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform />
+						<SkewTransform />
+						<RotateTransform Angle="-90" />
+						<TranslateTransform />
+					</TransformGroup>
+				</Label.RenderTransform>
 
 
-							<Border Height="49"
-									VerticalAlignment="Top"
-									DockPanel.Dock="Top"
-									BorderThickness="0,0,0,8"
-									>
-								<Border.BorderBrush>
-									<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-										<GradientStop Offset="0.847" Color="Black" />
-										<GradientStop Offset="1" Color="White" />
-									</LinearGradientBrush>
-								</Border.BorderBrush>
-								<Grid DockPanel.Dock="Top"
-										Background="#444444"
-										>
-									<Grid.ColumnDefinitions>
-										<!--  0  -->
-										<ColumnDefinition Width="100" />
-										<!--  1  -->
-										<ColumnDefinition Width="100" />
-										<!--  2  -->
-										<ColumnDefinition Width="100" />
-										<!--  3  -->
-										<ColumnDefinition Width="100" />
-										<!--  4  -->
-										<ColumnDefinition Width="100" />
-										<!--  5  -->
-										<ColumnDefinition Width="100" />
-										<!--  6  -->
-										<ColumnDefinition Width="100" />
-										<!--  7  -->
-										<ColumnDefinition Width="100" />
-										<!--  8  -->
-										<ColumnDefinition Width="1*" />
-									</Grid.ColumnDefinitions>
-									<Grid.RowDefinitions>
-										<RowDefinition Height="21" />
-										<RowDefinition Height="20" />
-									</Grid.RowDefinitions>
-									<Border Grid.Row="0"
-											Grid.Column="0"
-											Grid.ColumnSpan="2"
-											Style="{StaticResource lblHeaderBdrTop}"
-											>
-										<Label Content="First"
-												Style="{StaticResource lbHeader}"
-												/>
-									</Border>
-									<Border Grid.Row="0"
-											Grid.Column="2"
-											Grid.ColumnSpan="2"
-											Style="{StaticResource lblHeaderBdrTop}"
-											>
-										<Label Content="Second"
-												Style="{StaticResource lbHeader}"
-												/>
-									</Border>
-									<Border Grid.Row="0"
-											Grid.Column="4"
-											Grid.ColumnSpan="5"
-											Style="{StaticResource lblHeaderBdrTop}"
-											>
-										<Label Content="Third"
-												Style="{StaticResource lbHeader}"
-												/>
-									</Border>
+			</Label>
+
+			<ContentControl
+					Content="{StaticResource StartPoint2}"
+					Grid.Row="1"
+					Grid.Column="1"
+					Grid.ColumnSpan="2"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Bottom"
+					/>
+
+			<Label
+					Content="end point:"
+					Grid.Row="3"
+					Grid.Column="0"
+					Grid.ColumnSpan="2"
+					Margin="24,52.6,0,0"
+					Width="72"
+					Height="22"
+					Padding="0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+					HorizontalContentAlignment="Right"
+					FontSize="16"
+					RenderTransformOrigin="0,1"
+					Foreground="White"
+					>
+				<Label.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform />
+						<SkewTransform />
+						<RotateTransform Angle="-90.236" />
+						<TranslateTransform />
+					</TransformGroup>
+				</Label.RenderTransform>
+			</Label>
+
+			<ContentControl
+					Content="{StaticResource EndPoint2}"
+					Grid.Row="3"
+					Grid.Column="1"
+					Grid.ColumnSpan="2"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Top"
+					/>
+
+			<Label
+					x:Name="label1_Copy1"
+					Content="messages:"
+					Grid.Row="0"
+					Grid.Column="2"
+					Margin="0.2,75,0,0"
+					Width="72"
+					Height="22"
+					Padding="0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+					HorizontalContentAlignment="Left"
+					FontSize="16"
+					Foreground="White"
+					>
+				<Label.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform />
+						<SkewTransform />
+						<RotateTransform Angle="-90" />
+						<TranslateTransform />
+					</TransformGroup>
+				</Label.RenderTransform>
+			</Label>
+
+			<TextBox
+					x:Name="tbxLbxMsg"
+					Grid.Row="0"
+					Grid.Column="2"
+					Margin="30.2,0,10,0"
+					Padding="0"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Stretch"
+					FontSize="16"
+					DataContext="{Binding ElementName=mainWindow}"
+					Text="{Binding tps.message}"
+					VerticalScrollBarVisibility="Visible"
+					Background="#444444"
+					Foreground="White"
+					/>
+
+		</Grid>
+		<!--#endregion-->
+
+		<!--#region > > listbox3-->
+		<Grid
+				Grid.Row="1"
+				Grid.Column="0"
+				Grid.ColumnSpan="2"
+				Margin="0,0,0,0"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
+				>
+			<Grid.RowDefinitions>
+				<RowDefinition
+						Height="110"
+						/>
+				<RowDefinition
+						Height="80"
+						/>
+				<RowDefinition
+						Height="*"
+						/>
+				<RowDefinition
+						Height="80"
+						/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition
+						Width="24.8"
+						/>
+				<ColumnDefinition
+						Width="852*"
+						/>
+				<ColumnDefinition
+						Width="797*"
+						/>
+			</Grid.ColumnDefinitions>
+
+			<Label
+					Content="** ListBox3 **"
+					Grid.Row="0"
+					Grid.Column="1"
+					Margin="0.2,72,0,0"
+					Height="22"
+					Padding="0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="top"
+					FontSize="16"
+					RenderTransformOrigin="0,1"
+					Foreground="White"
+					>
+				<Label.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform />
+						<SkewTransform />
+						<RotateTransform Angle="-90" />
+						<TranslateTransform />
+					</TransformGroup>
+				</Label.RenderTransform>
+			</Label>
+
+			<StackPanel
+					Grid.Row="0"
+					Grid.Column="1"
+					Margin="3"
+					HorizontalAlignment="Stretch"
+					Orientation="Vertical"
+					>
+				<StackPanel
+						Margin="0,0,0,0"
+						Orientation="Horizontal"
+						>
+					<Button
+							x:Name="BtnChangeXof1"
+							Content="Chg X of [1]"
+							Click="BtnChangeXof1_Click"
+							Style="{StaticResource TestButtonStyle}"
+							/>
+				</StackPanel>
+				<StackPanel
+						Margin="0,0,0,0"
+						Orientation="Horizontal"
+						>
+					<Button
+							x:Name="BtnBatchAdjustZByAmount"
+							Content="Adj Z by Amt"
+							Click="BtnBatchAdjustZByAmount_Click"
+							Style="{StaticResource TestButtonStyle}"
+							/>
+					<Button
+							x:Name="BtnBatchAdjustZBySlope"
+							Content="Adj Z by Slope"
+							Click="BtnBatchAdjustZBySlope_Click"
+							Style="{StaticResource TestButtonStyle}"
+							/>
+				</StackPanel>
+			</StackPanel>
 
 
-									<Border Grid.Row="1"
-											Grid.Column="0"
-											BorderThickness="0,0,0,0"
-											>
-										<Rectangle Fill="#282828" />
-									</Border>
-									<Border Grid.Row="1"
-											Grid.Column="1"
-											Grid.ColumnSpan="2"
-											BorderThickness="1,0,0,0"
-											Style="{StaticResource lblHeaderBdrBottom}"
-											>
-										<Label Content="Fourth"
-												Style="{StaticResource lbHeader}"
-												/>
-									</Border>
-									<Border Grid.Row="1"
-											Grid.Column="3"
-											Grid.ColumnSpan="2"
-											BorderThickness="1,0,0,0"
-											Style="{StaticResource lblHeaderBdrBottom}"
-											>
-										<Label Content="Fifth"
-												Style="{StaticResource lbHeader}"
-												/>
-									</Border>
-									<Border Grid.Row="1"
-											Grid.Column="5"
-											Grid.ColumnSpan="4"
-											BorderThickness="1,0,0,0"
-											Style="{StaticResource lblHeaderBdrBottom}"
-											>
-										<Rectangle Fill="#282828" />
+			<Label
+					Content="start point:"
+					Grid.Row="1"
+					Grid.Column="0"
+					Grid.ColumnSpan="2"
+					Margin="24,54.6,0,0"
+					Width="76"
+					Height="22"
+					Padding="0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Right"
+					FontSize="16"
+					RenderTransformOrigin="0,1"
+					Foreground="White"
+					>
+				<Label.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform />
+						<SkewTransform />
+						<RotateTransform Angle="-90" />
+						<TranslateTransform />
+					</TransformGroup>
+				</Label.RenderTransform>
+			</Label>
 
-									</Border>
-								</Grid>
+			<Grid Grid.Row="1"
+					Grid.Column="1"
+					Grid.ColumnSpan="2"
+					>
 
-							</Border>
-							<ScrollViewer VerticalScrollBarVisibility="Auto">
-
-								<ItemsPresenter Margin="-6,-1,-5,0" />
-							</ScrollViewer>
-						</DockPanel>
-
-					</Border>
-				</ControlTemplate>
-			</ListBox.Template>
-		</ListBox>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="90"/>
+					<ColumnDefinition Width="90"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
 
 
-		<Button x:Name="btnDone" Content="Done"
+				<Border
+						BorderThickness="0,0,1,0"
+						BorderBrush="{StaticResource GridBorderGrey}"
+
+						>
+					<Label x:Name="label"
+							Grid.Row="0"
+							Grid.Column="0"
+							Background="{StaticResource Normal.Background}"
+							Content="Selected index "
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							HorizontalContentAlignment="Right" /></Border>
+
+				<Label
+						Grid.Row="0"
+						Grid.Column="1"
+						Background="{StaticResource Normal.Background}"
+						Content="{Binding SelectedIndex, Source={StaticResource listBox3}, Mode=OneWay}"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"
+						HorizontalContentAlignment="Left"
+						/>
+
+
+				<ContentControl
+					Content="{StaticResource StartPoint3}"
+					Grid.Row="2"
+					Grid.Column="0"
+					Grid.ColumnSpan="9"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Bottom"
+					/>
+			</Grid>
+
+			<ContentControl
+					Content="{StaticResource listBox3}"
+					Grid.Row="2"
+					Grid.Column="1"
+					Grid.ColumnSpan="2"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Stretch"
+					/>
+
+			<Label
+					Content="end point:"
+					Grid.Row="3"
+					Grid.Column="0"
+					Grid.ColumnSpan="2"
+					Margin="24,52.6,0,0"
+					Width="72"
+					Height="22"
+					Padding="0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+					HorizontalContentAlignment="Right"
+					FontSize="16"
+					RenderTransformOrigin="0,1"
+					Foreground="White"
+					>
+				<Label.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform />
+						<SkewTransform />
+						<RotateTransform Angle="-90" />
+						<TranslateTransform />
+					</TransformGroup>
+				</Label.RenderTransform>
+			</Label>
+
+			<ContentControl
+					Content="{StaticResource EndPoint3}"
+					Grid.Row="3"
+					Grid.Column="1"
+					Grid.ColumnSpan="2"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Top"
+					/>
+
+			<Label
+					Content="messages:"
+					Grid.Row="0"
+					Grid.Column="2"
+					Margin="0.2,75,0,0"
+					Width="72"
+					Height="22"
+					Padding="0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+					HorizontalContentAlignment="Left"
+					FontSize="16"
+					Foreground="White"
+					>
+				<Label.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform />
+						<SkewTransform />
+						<RotateTransform Angle="-90" />
+						<TranslateTransform />
+					</TransformGroup>
+				</Label.RenderTransform>
+			</Label>
+
+			<TextBox
+					Name="TopoPoints2Message"
+					Grid.Row="0"
+					Grid.Column="2"
+					Margin="30.2,0,10,0"
+					Padding="0"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Stretch"
+					FontSize="16"
+					DataContext="{Binding ElementName=mainWindow}"
+					Text="{Binding TopoMgr.Tpts2.Message}"
+					VerticalScrollBarVisibility="Visible"
+					Background="#444444"
+					Foreground="White"
+					/>
+
+		</Grid>
+
+		<!--#endregion-->
+
+		<ContentControl
+				Content="{StaticResource ListBox1}"
+				Grid.Row="2"
+				Grid.Column="0"
+				Grid.ColumnSpan="2"
+				/>
+
+		<ContentControl
+				Content="{StaticResource ListView1}"
+				Grid.Row="2"
 				Grid.Column="1"
-				Margin="0,0,9.8,10"
+				/>
+
+		<!--#region > > control buttons-->
+
+		<Button
+				x:Name="btnDone"
+				Content="Done"
+				Grid.Row="3"
+				Grid.Column="1"
+				Margin="0,0,10,5"
 				Width="97"
 				Height="48"
 				HorizontalAlignment="Right"
@@ -951,483 +751,996 @@
 				IsDefault="True"
 				Click="BtnDone_Click"
 				/>
-		<Button x:Name="button_Copy" Content="MultiLineWindow"
+		<Button
+				x:Name="button_Copy"
+				Content="MultiLineWindow"
+				Grid.Row="3"
 				Grid.Column="1"
-				Margin="0,0,119.8,10"
+				Margin="0,0,119.8,5"
 				Width="111"
 				Height="48"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Bottom"
 				Click="Button_Copy_Click"
 				/>
-		<Button x:Name="button_Copy1" Content="Header andFooter"
+		<Button
+				x:Name="button_Copy1"
+				Content="Header andFooter"
+				Grid.Row="3"
 				Grid.Column="1"
-				Margin="0,0,249.8,10"
+				Margin="0,0,249.8,5"
 				Width="111"
 				Height="48"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Bottom"
 				Click="Button_Copy1_Click"
 				/>
-		<!--  Click="Button_Copy2_Click" />  -->
-		<Button x:Name="button_Copy3" Content="Control Points"
+		<Button
+				x:Name="button_Copy3"
+				Content="Control Points"
+				Grid.Row="3"
 				Grid.Column="1"
-				Margin="0,0,379.8,10"
+				Margin="0,0,379.8,5"
 				Width="111"
 				Height="48"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Bottom"
 				Click="Button_Copy3_Click"
 				/>
-		<Label x:Name="label2" Content="ListView"
-				Margin="10,444,0,0"
-				Width="336"
-				Height="34"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				FontSize="16"
-				Foreground="White"
+		<Button
+				x:Name="button_Copy2"
+				Content="Topo Points"
+				Grid.Row="3"
+				Grid.Column="1"
+				Margin="0,0,507.6,5"
+				Width="111"
+				Height="48"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Bottom"
+				Click="Button_Copy4_Click"
 				/>
 
-
-		<Grid Grid.ColumnSpan="2" Margin="0,0,-0.2,0">
-
-			<Grid.Resources>
-				<Style x:Key="TestButtonStyle"
-						TargetType="Button"
-						>
-					<Setter Property="Height" Value="27" />
-					<Setter Property="HorizontalAlignment" Value="Left" />
-					<Setter Property="HorizontalContentAlignment" Value="Center" />
-					<Setter Property="VerticalAlignment" Value="Top" />
-					<Setter Property="Width" Value="80" />
-				</Style>
-			</Grid.Resources>
-
-			<ListBox x:Name="listBox"
-					Margin="87,128,0,0"
-					Width="748"
-					Height="227"
-					HorizontalAlignment="left"
-					VerticalAlignment="Top"
-					HorizontalContentAlignment="Stretch"
-					d:DataContext="{d:DesignInstance local:MainWindow,
-																					 IsDesignTimeCreatable=True}"
-					DataContext="{Binding ElementName=mainWindow}"
-					Background="LightGray"
-					ItemContainerStyle="{DynamicResource ListBoxItemStyle}"
-					ItemTemplate="{StaticResource topopoints}"
-					ItemsSource="{Binding Mode=TwoWay, Path=tps}"
-					>
-
-				<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
-				<!--  Type={x:Type local:MainWindow}}"  -->
-
-				<!--  ItemsPanel="{DynamicResource ListBoxItemsPanelTemplate1}"  -->
-				<!--  d:DataContext="{d:DesignData /SampleData/SampleCollectionSampleData.xaml}"  -->
-				<ListBox.Template>
-					<ControlTemplate>
-						<Border Margin="0,0,0,0"
-								BorderThickness="1"
-								BorderBrush="Black"
-								>
-							<ScrollViewer VerticalScrollBarVisibility="Auto">
-								<DockPanel LastChildFill="True"
-										Background="LightGray"
-										>
-
-									<Grid DockPanel.Dock="Top"
-											Background="Aqua"
-											>
-										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="44" />
-											<ColumnDefinition Width="1*" />
-											<ColumnDefinition Width="1*" />
-											<ColumnDefinition Width="1*" />
-											<ColumnDefinition Width="1*" />
-											<ColumnDefinition Width="1*" />
-											<ColumnDefinition Width="1*" />
-											<ColumnDefinition Width="1*" />
-											<ColumnDefinition Width="1*" />
-											<ColumnDefinition Width="1*" />
-										</Grid.ColumnDefinitions>
-										<Grid.RowDefinitions>
-											<RowDefinition Height="Auto" />
-										</Grid.RowDefinitions>
-										<Border Grid.Column="0"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label Content="Index"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
-										</Border>
-										<Border Grid.Column="1"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label Content="X"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
-										</Border>
-										<Border Grid.Column="2"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label Content="Y"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
-										</Border>
-										<Border Grid.Column="3"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label Content="Z"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
-										</Border>
-										<Border Grid.Column="4"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label Content="ΔX"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
-										</Border>
-										<Border Grid.Column="5"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label Content="ΔY"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
-										</Border>
-										<Border Grid.Column="6"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label Content="ΔZ"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
-										</Border>
-										<Border Grid.Column="7"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label Content="ΔXY"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
-										</Border>
-										<Border Grid.Column="8"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label Content="ΔXYZ"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
-										</Border>
-										<Border Grid.Column="9"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label Content="Slope"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
-
-										</Border>
-									</Grid>
-
-									<ItemsPresenter Margin="-6,-1,-5,0" />
-								</DockPanel>
-							</ScrollViewer>
-						</Border>
-					</ControlTemplate>
-				</ListBox.Template>
-			</ListBox>
-
-			<Label x:Name="label1" Content="* ListBox *"
-					Margin="5,7,0,0"
-					Width="77"
-					Height="22"
-					Padding="0"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Top"
-					FontSize="16"
-					Foreground="White"
-					/>
-
-			<Label x:Name="label1_Copy2" Content="start point:"
-					Margin="0,101,0,0"
-					Height="22"
-					Padding="0"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Top"
-					HorizontalContentAlignment="Right"
-					FontSize="16"
-					Foreground="White"
-					/>
-			<Label Content="{Binding tps.StartPointX}"
-					Margin="134,101,0,0"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					ContentStringFormat="F2"
-					Style="{StaticResource controlPointLbl}"
-					/>
-			<Label Content="{Binding tps.StartPointY}"
-					Margin="212,101,0,0"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					ContentStringFormat="F2"
-					Style="{StaticResource controlPointLbl}"
-					/>
-			<Label Content="{Binding tps.StartPointZ}"
-					Margin="290,101,0,0"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					ContentStringFormat="F2"
-					Style="{StaticResource controlPointLbl}"
-					/>
-			<Label x:Name="label1_Copy" Content="end point:"
-					Margin="5,360,0,0"
-					Height="22"
-					Padding="0"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Top"
-					HorizontalContentAlignment="Right"
-					FontSize="16"
-					Foreground="White"
-					/>
-			<Label Content="{Binding tps.EndPointX}"
-					Margin="134,360,0,0"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					ContentStringFormat="F2"
-					Style="{StaticResource controlPointLbl}"
-					/>
-			<Label Content="{Binding tps.EndPointY}"
-					Margin="212,360,0,0"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					ContentStringFormat="F2"
-					Style="{StaticResource controlPointLbl}"
-					/>
-			<Label Content="{Binding tps.EndPointZ}"
-					Margin="290,360,0,0"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					ContentStringFormat="F2"
-					Style="{StaticResource controlPointLbl}"
-					/>
-			<Label Content="{Binding tps.EndPointXΔ}"
-					Margin="368,360,0,0"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					ContentStringFormat="F2"
-					Style="{StaticResource controlPointLbl}"
-					/>
-			<Label Content="{Binding tps.EndPointYΔ}"
-					Margin="446,360,0,0"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					ContentStringFormat="F2"
-					Style="{StaticResource controlPointLbl}"
-					/>
-			<Label Content="{Binding tps.EndPointZΔ}"
-					Margin="524,360,0,0"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					ContentStringFormat="F2"
-					Style="{StaticResource controlPointLbl}"
-					/>
-			<Label Content="{Binding tps.EndPointXYΔ}"
-					Margin="602,360,0,0"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					ContentStringFormat="F4"
-					Style="{StaticResource controlPointLbl}"
-					/>
-			<Label Content="{Binding tps.EndPointXYΔ}"
-					Margin="680,360,0,0"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					ContentStringFormat="F4"
-					Style="{StaticResource controlPointLbl}"
-					/>
-
-			<Label Content="{Binding tps.EndPointSlope}"
-					Margin="758,360,0,0"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					ContentStringFormat="F6"
-					Style="{StaticResource controlPointLbl}"
-					/>
-
-			<Label Content="{Binding tps.EndPointIndex}"
-					Margin="90,360,0,0"
-					Width="39"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					Style="{StaticResource controlPointLbl}"
-					/>
-			<Label Content="{Binding tps.StartPointIndex}"
-					Margin="90,101,0,0"
-					Width="39"
-					d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-																					 Type={x:Type local:MainWindow}}"
-					Style="{StaticResource controlPointLbl}"
-					/>
-			<Label x:Name="label1_Copy1" Content="message:"
-					Margin="841,101,0,0"
-					Width="66"
-					Height="22"
-					Padding="0"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Top"
-					HorizontalContentAlignment="Left"
-					FontSize="16"
-					Foreground="White"
-					/>
-			<TextBox x:Name="tbxLbxMsg"
-					Margin="840,128,-0.2,0"
-					Height="687"
-					Padding="0"
-					HorizontalAlignment="Stretch"
-					VerticalAlignment="Top"
-					FontSize="16"
-					DataContext="{Binding ElementName=mainWindow}"
-					Text="{Binding tps.message}"
-					VerticalScrollBarVisibility="Visible"
-					Background="#444444"
-					Foreground="White"
-					/>
-			<!--#region > >ListBox TopoPoints Tests-->
-			<Button x:Name="test_all" Content="Test All"
-					Margin="87,4,0,0"
-					Click="BtnTestAll_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_add1" Content="Add 1"
-					Margin="172,4,0,0"
-					Click="BtnAdd1_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_insert1" Content="Insert 1"
-					Margin="257,4,0,0"
-					Click="BtnInsert1_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_changeend" Content="Change End"
-					Margin="342,4,0,0"
-					Click="BtnChangeE_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_changestart" Content="Change Start"
-					Margin="427,4,0,0"
-					Click="BtnChangeS_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_change4x" Content="Chg [4] X"
-					Margin="512,4,0,0"
-					Click="BtnChange4X_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_change4y" Content="Chg [4] Y"
-					Margin="597,4,0,0"
-					Click="BtnChange4Y_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_change4z" Content="Chg [4] Z"
-					Margin="682,4,0,0"
-					Click="BtnChange4Z_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_changestartx" Content="Chg Start X"
-					Margin="87,37,0,0"
-					Height="26"
-					Click="BtnChangeStartX_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_changeendx" Content="Chg End X"
-					Margin="172,36,0,0"
-					Click="BtnChangeEndX_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_contains" Content="Contains?"
-					Margin="87,68,0,0"
-					Click="BtnContains_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_indexof" Content="Index Of?"
-					Margin="172,68,0,0"
-					Click="BtnIndexOf_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_removeat" Content="Remove At (2)"
-					Margin="257,68,0,0"
-					Click="BtnRemoveAt_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_remove" Content="Remove (2)"
-					Margin="342,68,0,0"
-					Click="BtnRemove_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-
-			<Button x:Name="test_copyto" Content="CopyTo"
-					Margin="427,68,0,0"
-					Click="BtnCopyTo_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_clear" Content="Clear"
-					Margin="512,68,0,0"
-					Click="BtnClear_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_batch_v1"
-					Margin="597,68,0,0"
-					Click="BtnBatch_Click"
-					Style="{StaticResource TestButtonStyle}"
-					>
-				<Button.ContentTemplate>
-					<DataTemplate>
-						<TextBlock FontSize="9"
-								Text="Batch X + 12&#x0D; to items 3 to 5"
-								TextAlignment="Center"
-								TextWrapping="Wrap"
-								Background="Transparent"
-								IsHitTestVisible="False"
-								/>
-					</DataTemplate>
-				</Button.ContentTemplate>
-
-			</Button>
-			<Button x:Name="test_change4XYZ" Content="Chg [4] XYZ"
-					Margin="257,37,0,0"
-					Click="BtnChange4XYZ_Click"
-					Style="{StaticResource TestButtonStyle}"
-					/>
-			<Button x:Name="test_batch_v2"
-					Margin="682,68,0,0"
-					Click="BtnBatchv2_Click"
-					Style="{StaticResource TestButtonStyle}"
-					>
-				<Button.ContentTemplate>
-					<DataTemplate>
-						<TextBlock Text="Batch v2"
-								TextWrapping="Wrap"
-								Background="Transparent"
-								IsHitTestVisible="False"
-								/>
-					</DataTemplate>
-				</Button.ContentTemplate>
-
-			</Button>
-
-
-
-			<Button x:Name="button_Copy2" Content="Topo Points"
-					Grid.Column="1"
-					Margin="0,0,507.6,10"
-					Width="111"
-					Height="48"
-					HorizontalAlignment="Right"
-					VerticalAlignment="Bottom"
-					Click="Button_Copy4_Click"
-					/>
-
-		</Grid>
-
 		<!--#endregion-->
+
 	</Grid>
 </Window>
+
+
+<!--    -->
+<!--  <Style x:Key="ListBoxItemContainerStyle2"  -->
+<!--  TargetType="{x:Type ListBoxItem}"  -->
+<!--  >  -->
+<!--    -->
+<!-- 	<Style.Resources> -->
+<!--  <SolidColorBrush x:Key="Item.MouseOver.Background"  -->
+<!--  Color="#77FF4B"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Item.MouseOver.Border"  -->
+<!--  Color="#86E980"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Item.SelectedInactive.Background"  -->
+<!--  Color="#676767"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Item.SelectedInactive.Border"  -->
+<!--  Color="#555555"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Item.SelectedActive.Background"  -->
+<!--  Color="#E2D7F8"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Item.SelectedActive.Border"  -->
+<!--  Color="#C8E7F5"  -->
+<!--  />  -->
+<!-- 	</Style.Resources> -->
+<!-- 	<Setter Property="Background" Value="Transparent" /> -->
+<!-- 	<Setter Property="BorderBrush" Value="Transparent" /> -->
+<!-- 	<Setter Property="BorderThickness" Value="1" /> -->
+<!-- 	<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" /> -->
+<!-- 	<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" /> -->
+<!-- 	<Setter Property="Padding" Value="4,1" /> -->
+<!-- 	<Setter Property="SnapsToDevicePixels" Value="True" /> -->
+<!-- 	<Setter Property="Template"> -->
+<!-- 		<Setter.Value> -->
+<!-- 			<ControlTemplate TargetType="{x:Type ListBoxItem}"> -->
+<!--  <Border x:Name="Bd"  -->
+<!--  Padding="{TemplateBinding Padding}"  -->
+<!--  SnapsToDevicePixels="true"  -->
+<!--  Background="{TemplateBinding Background}"  -->
+<!--  BorderThickness="{TemplateBinding BorderThickness}"  -->
+<!--  BorderBrush="{TemplateBinding BorderBrush}"  -->
+<!--  >  -->
+<!--  <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  -->
+<!--  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"  -->
+<!--  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  -->
+<!--  />  -->
+<!-- 				</Border> -->
+<!-- 				<ControlTemplate.Triggers> -->
+<!-- 					<MultiTrigger> -->
+<!-- 						<MultiTrigger.Conditions> -->
+<!-- 							<Condition Property="IsMouseOver" Value="True" /> -->
+<!-- 						</MultiTrigger.Conditions> -->
+<!-- 						<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.MouseOver.Background}" /> -->
+<!-- 						<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.MouseOver.Border}" /> -->
+<!-- 					</MultiTrigger> -->
+<!-- 					<MultiTrigger> -->
+<!-- 						<MultiTrigger.Conditions> -->
+<!-- 							<Condition Property="Selector.IsSelectionActive" Value="False" /> -->
+<!-- 							<Condition Property="IsSelected" Value="True" /> -->
+<!-- 						</MultiTrigger.Conditions> -->
+<!-- 						<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.SelectedInactive.Background}" /> -->
+<!-- 						<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.SelectedInactive.Border}" /> -->
+<!-- 					</MultiTrigger> -->
+<!-- 					<MultiTrigger> -->
+<!-- 						<MultiTrigger.Conditions> -->
+<!-- 							<Condition Property="Selector.IsSelectionActive" Value="True" /> -->
+<!-- 							<Condition Property="IsSelected" Value="True" /> -->
+<!-- 						</MultiTrigger.Conditions> -->
+<!-- 						<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.SelectedActive.Background}" /> -->
+<!-- 						<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.SelectedActive.Border}" /> -->
+<!-- 					</MultiTrigger> -->
+<!-- 					<Trigger Property="IsEnabled" Value="False"> -->
+<!-- 						<Setter TargetName="Bd" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" /> -->
+<!-- 					</Trigger> -->
+<!-- 				</ControlTemplate.Triggers> -->
+<!-- 			</ControlTemplate> -->
+<!-- 		</Setter.Value> -->
+<!-- 	</Setter> -->
+<!-- 	<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" /> -->
+<!-- </Style> -->
+
+
+<!-- <ItemsPanelTemplate x:Key="ItemPanels1"> -->
+<!-- 	<VirtualizingStackPanel IsItemsHost="True" /> -->
+<!-- </ItemsPanelTemplate> -->
+<!--    -->
+<!-- <ItemsPanelTemplate x:Key="ListBoxItemsPanelTemplate1"> -->
+<!-- 	<VirtualizingStackPanel IsItemsHost="True" /> -->
+<!-- </ItemsPanelTemplate> -->
+
+<!--    -->
+<!-- <ControlTemplate x:Key="ct1"> -->
+<!--  <Border BorderThickness="0,0,0,5"  -->
+<!--  BorderBrush="{DynamicResource ShadowDetail}"  -->
+<!--  >  -->
+<!-- 		<Grid Margin="0,-4,0,0"> -->
+<!--    -->
+<!-- 			<Grid.ColumnDefinitions> -->
+<!--  ~1~  0  @1@  -->
+<!-- 				<ColumnDefinition Width="100" /> -->
+<!--  ~1~  1  @1@  -->
+<!-- 				<ColumnDefinition Width="100" /> -->
+<!--  ~1~  2  @1@  -->
+<!-- 				<ColumnDefinition Width="100" /> -->
+<!--  ~1~  3  @1@  -->
+<!-- 				<ColumnDefinition Width="100" /> -->
+<!--  ~1~  4  @1@  -->
+<!-- 				<ColumnDefinition Width="100" /> -->
+<!--  ~1~  5  @1@  -->
+<!-- 				<ColumnDefinition Width="100" /> -->
+<!--  ~1~  6  @1@  -->
+<!-- 				<ColumnDefinition Width="100" /> -->
+<!--  ~1~  7  @1@  -->
+<!-- 				<ColumnDefinition Width="100" /> -->
+<!--  ~1~  8  @1@  -->
+<!-- 				<ColumnDefinition Width="1*" /> -->
+<!-- 			</Grid.ColumnDefinitions> -->
+<!-- 			<Grid.RowDefinitions> -->
+<!-- 				<RowDefinition Height="25" /> -->
+<!-- 				<RowDefinition Height="24" /> -->
+<!-- 			</Grid.RowDefinitions> -->
+<!--    -->
+<!--  <Border Grid.Row="0"  -->
+<!--  Grid.Column="0"  -->
+<!--  Grid.ColumnSpan="2"  -->
+<!--  Style="{StaticResource lblHeaderBdrTop}"  -->
+<!--  >  -->
+<!--  <TextBox Grid.Column="0"  -->
+<!--  Text="{Binding SheetData}"  -->
+<!--  Style="{DynamicResource CellTxBox}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--  <Border Grid.Row="0"  -->
+<!--  Grid.Column="2"  -->
+<!--  Grid.ColumnSpan="2"  -->
+<!--  Style="{StaticResource lblHeaderBdrTop}"  -->
+<!--  >  -->
+<!--  <TextBox Grid.Column="1"  -->
+<!--  Text="{Binding SheetName}"  -->
+<!--  Style="{DynamicResource CellTxBox}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--  <Border Grid.Row="0"  -->
+<!--  Grid.Column="4"  -->
+<!--  Grid.ColumnSpan="5"  -->
+<!--  Style="{StaticResource lblHeaderBdrTop}"  -->
+<!--  >  -->
+<!--  <TextBox Text="{Binding SheetNumber}"  -->
+<!--  Style="{DynamicResource CellTxBox}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--    -->
+<!--  <Rectangle Grid.Row="1"  -->
+<!--  Grid.Column="0"  -->
+<!--  Grid.ColumnSpan="1"  -->
+<!--  Fill="{StaticResource BkGrndUnUsedDetail}"  -->
+<!--  />  -->
+<!--    -->
+<!--  <Border Grid.Row="1"  -->
+<!--  Grid.Column="0"  -->
+<!--  BorderThickness="0,0,0,0"  -->
+<!--  Style="{StaticResource lblHeaderBdrBottom}"  -->
+<!--  />  -->
+<!--  <Border Grid.Row="1"  -->
+<!--  Grid.Column="1"  -->
+<!--  Grid.ColumnSpan="2"  -->
+<!--  BorderThickness="1,0,0,0"  -->
+<!--  Style="{StaticResource lblHeaderBdrBottom}"  -->
+<!--  >  -->
+<!--  <TextBlock Text="{Binding SheetInfo}"  -->
+<!--  Style="{DynamicResource CellTxBlk}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--  <Border Grid.Row="1"  -->
+<!--  Grid.Column="3"  -->
+<!--  Grid.ColumnSpan="2"  -->
+<!--  BorderThickness="1,0,1,0"  -->
+<!--  Style="{StaticResource lblHeaderBdrBottom}"  -->
+<!--  >  -->
+<!--  <TextBlock Text="{Binding SheetInfo2}"  -->
+<!--  Style="{DynamicResource CellTxBlk}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--    -->
+<!--  <Rectangle Grid.Row="1"  -->
+<!--  Grid.Column="5"  -->
+<!--  Grid.ColumnSpan="4"  -->
+<!--  Fill="{StaticResource BkGrndUnUsedDetail}"  -->
+<!--  />  -->
+<!--    -->
+<!-- 		</Grid> -->
+<!-- 	</Border> -->
+<!-- </ControlTemplate> -->
+<!--    -->
+<!-- <DataTemplate x:Key="SampleDataClassTemplate2"> -->
+<!-- 	<ContentControl Template="{StaticResource ct1}" /> -->
+<!-- </DataTemplate> -->
+
+<!--  <Style x:Key="CellTxBox"  -->
+<!--  TargetType="{x:Type TextBox}"  -->
+<!--  >  -->
+<!-- 	<Setter Property="BorderThickness" Value="0,0,0,0" /> -->
+<!-- 	<Setter Property="HorizontalContentAlignment" Value="Center" /> -->
+<!-- 	<Setter Property="Margin" Value="0,0,0,0" /> -->
+<!-- 	<Setter Property="Padding" Value="3" /> -->
+<!-- 	<Setter Property="VerticalAlignment" Value="bottom" /> -->
+<!-- 	<Setter Property="VerticalContentAlignment" Value="Center" /> -->
+<!-- </Style> -->
+<!--    -->
+<!--  <Style x:Key="CellTxBlk"  -->
+<!--  TargetType="{x:Type TextBlock}"  -->
+<!--  >  -->
+<!-- 	<Setter Property="Background" Value="#bbbbbb" /> -->
+<!-- 	<Setter Property="HorizontalAlignment" Value="Stretch" /> -->
+<!-- 	<Setter Property="Margin" Value="0,0,0,0" /> -->
+<!-- 	<Setter Property="Padding" Value="3" /> -->
+<!-- 	<Setter Property="TextAlignment" Value="Center" /> -->
+<!-- 	<Setter Property="VerticalAlignment" Value="Top" /> -->
+<!-- </Style> -->
+
+
+<!--  <Style x:Key="lblHeaderBdrTop"  -->
+<!--  TargetType="{x:Type Border}"  -->
+<!--  >  -->
+<!-- 	<Setter Property="BorderBrush" Value="{StaticResource GridBorderGrey}" /> -->
+<!-- 	<Setter Property="BorderThickness" Value="0,0,1,0" /> -->
+<!-- 	<Setter Property="Margin" Value="0" /> -->
+<!-- </Style> -->
+<!--    -->
+<!--  <Style x:Key="lblHeaderBdrBottom"  -->
+<!--  TargetType="{x:Type Border}"  -->
+<!--  >  -->
+<!-- 	<Setter Property="BorderBrush" Value="{StaticResource GridBorderGrey}" /> -->
+<!-- 	<Setter Property="BorderThickness" Value="0,0,1,0" /> -->
+<!-- 	<Setter Property="Margin" Value="0" /> -->
+<!-- </Style> -->
+
+<!-- <Style x:Key="FocusVisual"> -->
+<!-- 	<Setter Property="Control.Template"> -->
+<!-- 		<Setter.Value> -->
+<!-- 			<ControlTemplate> -->
+<!--  <Rectangle Margin="5"  -->
+<!--  SnapsToDevicePixels="true"  -->
+<!--  Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"  -->
+<!--  StrokeDashArray="1 2"  -->
+<!--  StrokeThickness="1"  -->
+<!--  />  -->
+<!-- 			</ControlTemplate> -->
+<!-- 		</Setter.Value> -->
+<!-- 	</Setter> -->
+<!-- </Style> -->
+<!-- <Style x:Key="FocusVisual2"> -->
+<!-- 	<Setter Property="Control.Template"> -->
+<!-- 		<Setter.Value> -->
+<!-- 			<ControlTemplate> -->
+<!--  <Rectangle Margin="2"  -->
+<!--  SnapsToDevicePixels="true"  -->
+<!--  Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"  -->
+<!--  StrokeDashArray="1 2"  -->
+<!--  StrokeThickness="1"  -->
+<!--  />  -->
+<!-- 			</ControlTemplate> -->
+<!-- 		</Setter.Value> -->
+<!-- 	</Setter> -->
+<!-- </Style> -->
+
+<!--  <Style x:Key="lbHeader"  -->
+<!--  TargetType="{x:Type Label}"  -->
+<!--  >  -->
+<!-- 	<Setter Property="Foreground" Value="White" /> -->
+<!-- 	<Setter Property="HorizontalContentAlignment" Value="Center" /> -->
+<!-- 	<Setter Property="Padding" Value="8,0,0,2" /> -->
+<!-- 	<Setter Property="VerticalAlignment" Value="Center" /> -->
+<!-- </Style> -->
+
+
+
+<!--  <Style x:Key="ButtonStyle1"  -->
+<!--  TargetType="{x:Type Button}"  -->
+<!--  >  -->
+<!-- 	<Style.Resources> -->
+<!--  <SolidColorBrush x:Key="Button.Static.Background"  -->
+<!--  Color="#FFDDDDDD"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Button.Static.Border"  -->
+<!--  Color="#FF707070"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Button.MouseOver.Background"  -->
+<!--  Color="#FFBEE6FD"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Button.MouseOver.Border"  -->
+<!--  Color="Red"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Button.Pressed.Background"  -->
+<!--  Color="#FFC4E5F6"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Button.Pressed.Border"  -->
+<!--  Color="#FF2C628B"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Button.Disabled.Background"  -->
+<!--  Color="#FFF4F4F4"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Button.Disabled.Border"  -->
+<!--  Color="#FFADB2B5"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Button.Disabled.Foreground"  -->
+<!--  Color="#FF838383"  -->
+<!--  />  -->
+<!-- 	</Style.Resources> -->
+<!-- 	<Setter Property="Background" Value="{StaticResource Button.Static.Background}" /> -->
+<!-- 	<Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" /> -->
+<!-- 	<Setter Property="BorderThickness" Value="1" /> -->
+<!-- 	<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" /> -->
+<!-- 	<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" /> -->
+<!-- 	<Setter Property="HorizontalContentAlignment" Value="Center" /> -->
+<!-- 	<Setter Property="Padding" Value="1" /> -->
+<!-- 	<Setter Property="Template"> -->
+<!-- 		<Setter.Value> -->
+<!-- 			<ControlTemplate TargetType="{x:Type Button}"> -->
+<!--  <Border x:Name="border"  -->
+<!--  SnapsToDevicePixels="true"  -->
+<!--  Background="{TemplateBinding Background}"  -->
+<!--  BorderThickness="{TemplateBinding BorderThickness}"  -->
+<!--  BorderBrush="{TemplateBinding BorderBrush}"  -->
+<!--  >  -->
+<!--  <ContentPresenter x:Name="contentPresenter"  -->
+<!--  Margin="{TemplateBinding Padding}"  -->
+<!--  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  -->
+<!--  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"  -->
+<!--  Focusable="False"  -->
+<!--  RecognizesAccessKey="True"  -->
+<!--  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  -->
+<!--  />  -->
+<!-- 				</Border> -->
+<!-- 				<ControlTemplate.Triggers> -->
+<!-- 					<Trigger Property="IsDefaulted" Value="true"> -->
+<!-- 						<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" /> -->
+<!-- 					</Trigger> -->
+<!-- 					<Trigger Property="IsMouseOver" Value="true"> -->
+<!-- 						<Setter TargetName="border" Property="Background" Value="{StaticResource Button.MouseOver.Background}" /> -->
+<!-- 						<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.MouseOver.Border}" /> -->
+<!-- 					</Trigger> -->
+<!-- 					<Trigger Property="IsPressed" Value="true"> -->
+<!-- 						<Setter TargetName="border" Property="Background" Value="{StaticResource Button.Pressed.Background}" /> -->
+<!-- 						<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Pressed.Border}" /> -->
+<!-- 					</Trigger> -->
+<!-- 					<Trigger Property="IsEnabled" Value="false"> -->
+<!-- 						<Setter TargetName="border" Property="Background" Value="{StaticResource Button.Disabled.Background}" /> -->
+<!-- 						<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Disabled.Border}" /> -->
+<!-- 						<Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Disabled.Foreground}" /> -->
+<!-- 					</Trigger> -->
+<!-- 				</ControlTemplate.Triggers> -->
+<!-- 			</ControlTemplate> -->
+<!-- 		</Setter.Value> -->
+<!-- 	</Setter> -->
+<!-- 	<Setter Property="VerticalContentAlignment" Value="Center" /> -->
+<!-- </Style> -->
+
+<!--  <Style x:Key="PointsTestHeader"  -->
+<!--  TargetType="{x:Type Border}"  -->
+<!--  >  -->
+<!-- 	<Setter Property="BorderBrush" Value="Black" /> -->
+<!-- 	<Setter Property="BorderThickness" Value="0,0,1,1" /> -->
+<!-- 	<Setter Property="Margin" Value="0" /> -->
+<!-- 	<Setter Property="Padding" Value="4,0,0,0" /> -->
+<!-- </Style> -->
+<!--    -->
+<!--  <Style x:Key="PointsTestHeaderLabel"  -->
+<!--  TargetType="{x:Type Label}"  -->
+<!--  >  -->
+<!-- 	<Setter Property="HorizontalContentAlignment" Value="Center" /> -->
+<!-- 	<Setter Property="VerticalContentAlignment" Value="Center" /> -->
+<!-- </Style> -->
+
+
+
+<!-- <ControlTemplate x:Key="tp1"> -->
+<!--  <Border x:Name="BDx"  -->
+<!--  BorderThickness="0,0,0,7"  -->
+<!--  BorderBrush="{DynamicResource ShadowDetail}"  -->
+<!--  >  -->
+<!-- 		<Grid Margin="0,0,0,0"> -->
+<!--    -->
+<!-- 			<Grid.ColumnDefinitions> -->
+<!--  ~1~  0  @1@  -->
+<!-- 				<ColumnDefinition Width="46" /> -->
+<!--  ~1~  1  @1@  -->
+<!-- 				<ColumnDefinition Width="1*" /> -->
+<!--  ~1~  2  @1@  -->
+<!-- 				<ColumnDefinition Width="1*" /> -->
+<!--  ~1~  3  @1@  -->
+<!-- 				<ColumnDefinition Width="1*" /> -->
+<!--  ~1~  4  @1@  -->
+<!-- 				<ColumnDefinition Width="1*" /> -->
+<!--  ~1~  5  @1@  -->
+<!-- 				<ColumnDefinition Width="1*" /> -->
+<!--  ~1~  6  @1@  -->
+<!-- 				<ColumnDefinition Width="1*" /> -->
+<!--  ~1~  7  @1@  -->
+<!-- 				<ColumnDefinition Width="1*" /> -->
+<!--  ~1~  8  @1@  -->
+<!-- 				<ColumnDefinition Width="1*" /> -->
+<!--  ~1~  9  @1@  -->
+<!-- 				<ColumnDefinition Width="1*" /> -->
+<!--    -->
+<!-- 			</Grid.ColumnDefinitions> -->
+<!-- 			<Grid.RowDefinitions> -->
+<!-- 				<RowDefinition Height="40" /> -->
+<!-- 			</Grid.RowDefinitions> -->
+<!--    -->
+<!--  <Border Grid.Row="0"  -->
+<!--  Grid.Column="0"  -->
+<!--  Style="{StaticResource lblHeaderBdrTop}"  -->
+<!--  >  -->
+<!--  <TextBox x:Name="TBx"  -->
+<!--  Grid.Column="0"  -->
+<!--  Margin="0,0,0,0"  -->
+<!--  Text="{Binding Index}"  -->
+<!--  Style="{DynamicResource CellTxBox}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--    -->
+<!--  <Border Grid.Row="0"  -->
+<!--  Grid.Column="1"  -->
+<!--  Style="{StaticResource lblHeaderBdrTop}"  -->
+<!--  >  -->
+<!--  <TextBox Grid.Column="0"  -->
+<!--  Text="{Binding X, StringFormat=F2}"  -->
+<!--  Style="{DynamicResource CellTxBox}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--  <Border Grid.Row="0"  -->
+<!--  Grid.Column="2"  -->
+<!--  Grid.ColumnSpan="1"  -->
+<!--  Style="{StaticResource lblHeaderBdrTop}"  -->
+<!--  >  -->
+<!--  <TextBox Grid.Column="1"  -->
+<!--  Text="{Binding Y, StringFormat=F2}"  -->
+<!--  Style="{DynamicResource CellTxBox}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--  <Border Grid.Row="0"  -->
+<!--  Grid.Column="3"  -->
+<!--  Grid.ColumnSpan="1"  -->
+<!--  Style="{StaticResource lblHeaderBdrTop}"  -->
+<!--  >  -->
+<!--  <TextBox Text="{Binding Z, StringFormat=F2}"  -->
+<!--  Style="{DynamicResource CellTxBox}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--    -->
+<!--  <Border Grid.Row="0"  -->
+<!--  Grid.Column="4"  -->
+<!--  Grid.ColumnSpan="1"  -->
+<!--  Style="{StaticResource lblHeaderBdrTop}"  -->
+<!--  >  -->
+<!--  <TextBlock Text="{Binding XΔ, StringFormat=F2}"  -->
+<!--  Style="{DynamicResource CellTxBlk}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--    -->
+<!--  <Border Grid.Row="0"  -->
+<!--  Grid.Column="5"  -->
+<!--  Grid.ColumnSpan="1"  -->
+<!--  Style="{StaticResource lblHeaderBdrTop}"  -->
+<!--  >  -->
+<!--  <TextBlock Text="{Binding YΔ, StringFormat=F2}"  -->
+<!--  Style="{DynamicResource CellTxBlk}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--    -->
+<!--  <Border Grid.Row="0"  -->
+<!--  Grid.Column="6"  -->
+<!--  Grid.ColumnSpan="1"  -->
+<!--  Style="{StaticResource lblHeaderBdrTop}"  -->
+<!--  >  -->
+<!--  <TextBlock Text="{Binding ZΔ, StringFormat=F2}"  -->
+<!--  Style="{DynamicResource CellTxBlk}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--    -->
+<!--  <Border Grid.Row="0"  -->
+<!--  Grid.Column="7"  -->
+<!--  Grid.ColumnSpan="1"  -->
+<!--  Style="{StaticResource lblHeaderBdrBottom}"  -->
+<!--  >  -->
+<!--  <TextBlock Text="{Binding XYΔ, StringFormat=F4}"  -->
+<!--  Style="{DynamicResource CellTxBlk}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--    -->
+<!--  <Border Grid.Row="0"  -->
+<!--  Grid.Column="8"  -->
+<!--  Grid.ColumnSpan="1"  -->
+<!--  Style="{StaticResource lblHeaderBdrBottom}"  -->
+<!--  >  -->
+<!--  <TextBlock Text="{Binding XYZΔ, StringFormat=F4}"  -->
+<!--  Style="{DynamicResource CellTxBlk}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--    -->
+<!--  <Border Grid.Row="0"  -->
+<!--  Grid.Column="9"  -->
+<!--  Grid.ColumnSpan="1"  -->
+<!--  Style="{StaticResource lblHeaderBdrTop}"  -->
+<!--  >  -->
+<!--  <TextBlock Text="{Binding Slope, StringFormat=F6}"  -->
+<!--  Style="{DynamicResource CellTxBlk}"  -->
+<!--  />  -->
+<!-- 			</Border> -->
+<!--    -->
+<!-- 		</Grid> -->
+<!-- 	</Border> -->
+<!-- </ControlTemplate> -->
+<!--    -->
+<!-- <DataTemplate x:Key="topopoints"> -->
+<!-- 	<ContentControl Template="{StaticResource tp1}" /> -->
+<!-- </DataTemplate> -->
+
+<!--  <SolidColorBrush x:Key="Item.MouseOver.Background"  -->
+<!--  Color="#1F26A0DA"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Item.MouseOver.Border"  -->
+<!--  Color="#a826A0Da"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Item.SelectedInactive.Background"  -->
+<!--  Color="#3DDADADA"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Item.SelectedInactive.Border"  -->
+<!--  Color="#FFDADADA"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Item.SelectedActive.Background"  -->
+<!--  Color="#3D26A0DA"  -->
+<!--  />  -->
+<!--  <SolidColorBrush x:Key="Item.SelectedActive.Border"  -->
+<!--  Color="#FF26A0DA"  -->
+<!--  />  -->
+
+
+<!--  <Style x:Key="ListBoxItemStyle"  -->
+<!--  TargetType="{x:Type ListBoxItem}"  -->
+<!--  >  -->
+<!-- 	<Style.Triggers> -->
+<!--  <DataTrigger Binding="{Binding ControlPoint}"  -->
+<!--  Value="True"  -->
+<!--  >  -->
+<!-- 			<Setter Property="Visibility" Value="Collapsed" /> -->
+<!-- 		</DataTrigger> -->
+<!-- 	</Style.Triggers> -->
+<!-- 	<Setter Property="Background" Value="Transparent" /> -->
+<!-- 	<Setter Property="BorderBrush" Value="Transparent" /> -->
+<!-- 	<Setter Property="BorderThickness" Value="1" /> -->
+<!-- 	<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" /> -->
+<!-- 	<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" /> -->
+<!-- 	<Setter Property="Padding" Value="4,1" /> -->
+<!-- 	<Setter Property="SnapsToDevicePixels" Value="True" /> -->
+<!--    -->
+<!-- 	<Setter Property="Template"> -->
+<!-- 		<Setter.Value> -->
+<!-- 			<ControlTemplate TargetType="{x:Type ListBoxItem}"> -->
+<!--  <Border x:Name="Bd"  -->
+<!--  Margin="0,0,0,-4"  -->
+<!--  Padding="{TemplateBinding Padding}"  -->
+<!--  SnapsToDevicePixels="true"  -->
+<!--  Background="{TemplateBinding Background}"  -->
+<!--  BorderThickness="{TemplateBinding BorderThickness}"  -->
+<!--  BorderBrush="{TemplateBinding BorderBrush}"  -->
+<!--  >  -->
+<!--  <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  -->
+<!--  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"  -->
+<!--  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  -->
+<!--  />  -->
+<!-- 				</Border> -->
+<!-- 				<ControlTemplate.Triggers> -->
+<!--    -->
+<!-- 					<MultiTrigger> -->
+<!-- 						<MultiTrigger.Conditions> -->
+<!-- 							<Condition Property="IsMouseOver" Value="True" /> -->
+<!-- 						</MultiTrigger.Conditions> -->
+<!-- 						<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.MouseOver.Background}" /> -->
+<!-- 						<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.MouseOver.Border}" /> -->
+<!-- 					</MultiTrigger> -->
+<!-- 					<MultiTrigger> -->
+<!-- 						<MultiTrigger.Conditions> -->
+<!-- 							<Condition Property="Selector.IsSelectionActive" Value="False" /> -->
+<!-- 							<Condition Property="IsSelected" Value="True" /> -->
+<!-- 						</MultiTrigger.Conditions> -->
+<!-- 						<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.SelectedInactive.Background}" /> -->
+<!-- 						<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.SelectedInactive.Border}" /> -->
+<!-- 					</MultiTrigger> -->
+<!-- 					<MultiTrigger> -->
+<!-- 						<MultiTrigger.Conditions> -->
+<!-- 							<Condition Property="Selector.IsSelectionActive" Value="True" /> -->
+<!-- 							<Condition Property="IsSelected" Value="True" /> -->
+<!-- 						</MultiTrigger.Conditions> -->
+<!-- 						<Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.SelectedActive.Background}" /> -->
+<!-- 						<Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Item.SelectedActive.Border}" /> -->
+<!-- 					</MultiTrigger> -->
+<!-- 					<Trigger Property="IsEnabled" Value="False"> -->
+<!-- 						<Setter TargetName="Bd" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" /> -->
+<!-- 					</Trigger> -->
+<!-- 				</ControlTemplate.Triggers> -->
+<!-- 			</ControlTemplate> -->
+<!-- 		</Setter.Value> -->
+<!-- 	</Setter> -->
+<!-- 	<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" /> -->
+<!-- </Style> -->
+<!--  <Style x:Key="TestButtonStyle"  -->
+<!--  TargetType="{x:Type Button}"  -->
+<!--  >  -->
+<!-- 	<Setter Property="Height" Value="27" /> -->
+<!-- 	<Setter Property="HorizontalAlignment" Value="Left" /> -->
+<!-- 	<Setter Property="HorizontalContentAlignment" Value="Center" /> -->
+<!-- 	<Setter Property="VerticalAlignment" Value="Top" /> -->
+<!-- 	<Setter Property="Width" Value="80" /> -->
+<!-- </Style> -->
+<!--    -->
+<!--  <ListBox x:Name="listBox"  -->
+<!--  Grid.Row="1"  -->
+<!--  Grid.RowSpan="2"  -->
+<!--  Grid.Column="1"  -->
+<!--  Grid.ColumnSpan="2"  -->
+<!--  Margin="0.2,79.6,-0.4,9.4"  -->
+<!--  HorizontalAlignment="Stretch"  -->
+<!--  VerticalAlignment="Stretch"  -->
+<!--  HorizontalContentAlignment="Stretch"  -->
+<!--  d:DataContext="{d:DesignInstance local:MainWindow,  -->
+<!--  IsDesignTimeCreatable=True}"  -->
+<!--  DataContext="{Binding ElementName=mainWindow}"  -->
+<!--  Background="LightGray"  -->
+<!--  ItemContainerStyle="{DynamicResource ListBoxItemStyle}"  -->
+<!--  ItemTemplate="{StaticResource topopoints}"  -->
+<!--  ItemsSource="{Binding Mode=TwoWay, Path=tps}"  -->
+<!--  >  -->
+<!--    -->
+<!-- 	<ListBox.Template> -->
+<!-- 		<ControlTemplate> -->
+<!--  <Border Margin="0,0,0,0"  -->
+<!--  BorderThickness="1"  -->
+<!--  BorderBrush="Black"  -->
+<!--  >  -->
+<!-- 				<ScrollViewer VerticalScrollBarVisibility="Auto"> -->
+<!--  <DockPanel LastChildFill="True"  -->
+<!--  Background="LightGray"  -->
+<!--  >  -->
+<!--    -->
+<!--  <Grid DockPanel.Dock="Top"  -->
+<!--  Background="Aqua"  -->
+<!--  >  -->
+<!-- 							<Grid.ColumnDefinitions> -->
+<!-- 								<ColumnDefinition Width="44" /> -->
+<!-- 								<ColumnDefinition Width="1*" /> -->
+<!-- 								<ColumnDefinition Width="1*" /> -->
+<!-- 								<ColumnDefinition Width="1*" /> -->
+<!-- 								<ColumnDefinition Width="1*" /> -->
+<!-- 								<ColumnDefinition Width="1*" /> -->
+<!-- 								<ColumnDefinition Width="1*" /> -->
+<!-- 								<ColumnDefinition Width="1*" /> -->
+<!-- 								<ColumnDefinition Width="1*" /> -->
+<!-- 								<ColumnDefinition Width="1*" /> -->
+<!-- 							</Grid.ColumnDefinitions> -->
+<!-- 							<Grid.RowDefinitions> -->
+<!-- 								<RowDefinition Height="Auto" /> -->
+<!-- 							</Grid.RowDefinitions> -->
+<!--  <Border Grid.Column="0"  -->
+<!--  Style="{StaticResource PointsTestHeader}"  -->
+<!--  >  -->
+<!--  <Label Content="Index"  -->
+<!--  Style="{StaticResource PointsTestHeaderLabel}"  -->
+<!--  />  -->
+<!-- 							</Border> -->
+<!--  <Border Grid.Column="1"  -->
+<!--  Style="{StaticResource PointsTestHeader}"  -->
+<!--  >  -->
+<!--  <Label Content="X"  -->
+<!--  Style="{StaticResource PointsTestHeaderLabel}"  -->
+<!--  />  -->
+<!-- 							</Border> -->
+<!--  <Border Grid.Column="2"  -->
+<!--  Style="{StaticResource PointsTestHeader}"  -->
+<!--  >  -->
+<!--  <Label Content="Y"  -->
+<!--  Style="{StaticResource PointsTestHeaderLabel}"  -->
+<!--  />  -->
+<!-- 							</Border> -->
+<!--  <Border Grid.Column="3"  -->
+<!--  Style="{StaticResource PointsTestHeader}"  -->
+<!--  >  -->
+<!--  <Label Content="Z"  -->
+<!--  Style="{StaticResource PointsTestHeaderLabel}"  -->
+<!--  />  -->
+<!-- 							</Border> -->
+<!--  <Border Grid.Column="4"  -->
+<!--  Style="{StaticResource PointsTestHeader}"  -->
+<!--  >  -->
+<!--  <Label Content="ΔX"  -->
+<!--  Style="{StaticResource PointsTestHeaderLabel}"  -->
+<!--  />  -->
+<!-- 							</Border> -->
+<!--  <Border Grid.Column="5"  -->
+<!--  Style="{StaticResource PointsTestHeader}"  -->
+<!--  >  -->
+<!--  <Label Content="ΔY"  -->
+<!--  Style="{StaticResource PointsTestHeaderLabel}"  -->
+<!--  />  -->
+<!-- 							</Border> -->
+<!--  <Border Grid.Column="6"  -->
+<!--  Style="{StaticResource PointsTestHeader}"  -->
+<!--  >  -->
+<!--  <Label Content="ΔZ"  -->
+<!--  Style="{StaticResource PointsTestHeaderLabel}"  -->
+<!--  />  -->
+<!-- 							</Border> -->
+<!--  <Border Grid.Column="7"  -->
+<!--  Style="{StaticResource PointsTestHeader}"  -->
+<!--  >  -->
+<!--  <Label Content="ΔXY"  -->
+<!--  Style="{StaticResource PointsTestHeaderLabel}"  -->
+<!--  />  -->
+<!-- 							</Border> -->
+<!--  <Border Grid.Column="8"  -->
+<!--  Style="{StaticResource PointsTestHeader}"  -->
+<!--  >  -->
+<!--  <Label Content="ΔXYZ"  -->
+<!--  Style="{StaticResource PointsTestHeaderLabel}"  -->
+<!--  />  -->
+<!-- 							</Border> -->
+<!--  <Border Grid.Column="9"  -->
+<!--  Style="{StaticResource PointsTestHeader}"  -->
+<!--  >  -->
+<!--  <Label Content="Slope"  -->
+<!--  Style="{StaticResource PointsTestHeaderLabel}"  -->
+<!--  />  -->
+<!--    -->
+<!-- 							</Border> -->
+<!-- 						</Grid> -->
+<!--    -->
+<!-- 						<ItemsPresenter Margin="-6,-1,-5,0" /> -->
+<!-- 					</DockPanel> -->
+<!-- 				</ScrollViewer> -->
+<!-- 			</Border> -->
+<!-- 		</ControlTemplate> -->
+<!-- 	</ListBox.Template> -->
+<!-- </ListBox> -->
+
+
+
+<!--  <Button  -->
+<!--  x:Name="button_Copy2"  -->
+<!--  Content="Surface Points"  -->
+<!--  HorizontalAlignment="Left"  -->
+<!--  Height="48"  -->
+<!--  Margin="467,1019,0,0"  -->
+<!--  VerticalAlignment="Top"  -->
+<!--  Width="111"  -->
+<!--  d:DataContext="{d:DesignData /SampleData/SampleCollectionSampleData.xaml}"  -->
+
+<!--  <SolidColorBrush x:Key="GridBorderGrey"  -->
+<!--  Color="#FF909090"  -->
+<!--  />  -->
+<!--    -->
+<!--  <SolidColorBrush x:Key="BkGrndUnUsedHdr"  -->
+<!--  Color="#FF282828"  -->
+<!--  />  -->
+<!--    -->
+<!--  <SolidColorBrush x:Key="BkGrndUnUsedDetail"  -->
+<!--  Color="#FF888888"  -->
+<!--  />  -->
+<!--    -->
+<!-- <LinearGradientBrush x:Key="ShadowDetail" x:Name="ShadowDetail" StartPoint="0.5,0" EndPoint="0.5,1"> -->
+<!-- 	<GradientStop Offset="0.87" Color="Black" /> -->
+<!-- 	<GradientStop Offset="1" Color="#FFFDFDFF" /> -->
+<!-- </LinearGradientBrush> -->
+
+<!--  <Style x:Key="controlPointLbl"  -->
+<!--  TargetType="Label"  -->
+<!--  >  -->
+<!-- 	<Setter Property="Background" Value="#444444" /> -->
+<!-- 	<Setter Property="DataContext" Value="{Binding ElementName=mainWindow}" /> -->
+<!-- 	<Setter Property="FontSize" Value="16" /> -->
+<!-- 	<Setter Property="Foreground" Value="White" /> -->
+<!-- 	<Setter Property="Height" Value="22" /> -->
+<!--    -->
+<!-- 	<Setter Property="HorizontalContentAlignment" Value="Center" /> -->
+<!-- 	<Setter Property="Margin" Value="2" /> -->
+<!-- 	<Setter Property="Padding" Value="0" /> -->
+<!--    -->
+<!-- 	<Setter Property="HorizontalAlignment" Value="Stretch"/> -->
+<!-- </Style> -->
+
+
+<!--  <Grid Grid.Row="1"  -->
+<!--  Grid.Column="1"  -->
+<!--  Grid.ColumnSpan="2"  -->
+<!--  VerticalAlignment="Bottom"  -->
+<!--  HorizontalAlignment="Stretch"  -->
+<!--    -->
+<!--  >  -->
+<!-- 	<Grid.ColumnDefinitions> -->
+<!-- 		<ColumnDefinition Width="44"/> -->
+<!-- 		<ColumnDefinition Width="*"/> -->
+<!-- 		<ColumnDefinition Width="*"/> -->
+<!-- 		<ColumnDefinition Width="*"/> -->
+<!-- 		<ColumnDefinition Width="*"/> -->
+<!-- 		<ColumnDefinition Width="*"/> -->
+<!-- 		<ColumnDefinition Width="*"/> -->
+<!-- 		<ColumnDefinition Width="*"/> -->
+<!-- 		<ColumnDefinition Width="*"/> -->
+<!-- 		<ColumnDefinition Width="*"/> -->
+<!--    -->
+<!-- 	</Grid.ColumnDefinitions> -->
+<!--    -->
+<!--  <Label Content="{Binding tps.StartPointIndex}"  -->
+<!--  Grid.Column="0"  -->
+<!--  Width="39"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type=local:MainWindow}"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!--  <Label Content="{Binding tps.StartPointX}"  -->
+<!--  Grid.Column="1"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type=local:MainWindow}"  -->
+<!--  ContentStringFormat="F2"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!--  <Label Content="{Binding tps.StartPointY}"  -->
+<!--  Grid.Column="2"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type=local:MainWindow}"  -->
+<!--  ContentStringFormat="F2"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!--    -->
+<!--  <Label Content="{Binding tps.StartPointZ}"  -->
+<!--  Grid.Column="3"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type=local:MainWindow}"  -->
+<!--  ContentStringFormat="F2"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!-- </Grid> -->
+<!--    -->
+<!--  <Grid Grid.Row="3"  -->
+<!--  Grid.Column="1"  -->
+<!--  Grid.ColumnSpan="2"  -->
+<!--  VerticalAlignment="Top"  -->
+<!--  HorizontalAlignment="Stretch"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type={x:Type local:MainWindow}}"  -->
+<!--  >  -->
+<!-- 	<Grid.ColumnDefinitions> -->
+<!-- 		<ColumnDefinition Width="44" /> -->
+<!-- 		<ColumnDefinition Width="*" /> -->
+<!-- 		<ColumnDefinition Width="*" /> -->
+<!-- 		<ColumnDefinition Width="*" /> -->
+<!-- 		<ColumnDefinition Width="*" /> -->
+<!-- 		<ColumnDefinition Width="*" /> -->
+<!-- 		<ColumnDefinition Width="*" /> -->
+<!-- 		<ColumnDefinition Width="*" /> -->
+<!-- 		<ColumnDefinition Width="*" /> -->
+<!-- 		<ColumnDefinition Width="*" /> -->
+<!--    -->
+<!-- 	</Grid.ColumnDefinitions> -->
+<!--  <Label Content="{Binding tps.EndPointIndex}"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type={x:Type local:MainWindow}}"  -->
+<!--  Grid.Column="0"  -->
+<!--  Width="39"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!--  <Label Content="{Binding tps.EndPointX}"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type={x:Type local:MainWindow}}"  -->
+<!--  Grid.Column="1"  -->
+<!--  ContentStringFormat="F2"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!--  <Label Content="{Binding tps.EndPointY}"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type={x:Type local:MainWindow}}"  -->
+<!--  Grid.Column="2"  -->
+<!--  ContentStringFormat="F2"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!--  <Label Content="{Binding tps.EndPointZ}"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type={x:Type local:MainWindow}}"  -->
+<!--  Grid.Column="3"  -->
+<!--  ContentStringFormat="F2"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!--  <Label Content="{Binding tps.EndPointXΔ}"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type={x:Type local:MainWindow}}"  -->
+<!--  Grid.Column="4"  -->
+<!--  ContentStringFormat="F2"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!--  <Label Content="{Binding tps.EndPointYΔ}"  -->
+<!--  Grid.Column="5"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type={x:Type local:MainWindow}}"  -->
+<!--  ContentStringFormat="F2"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!--  <Label Content="{Binding tps.EndPointZΔ}"  -->
+<!--  Grid.Column="6"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type={x:Type local:MainWindow}}"  -->
+<!--  ContentStringFormat="F2"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!--  <Label Content="{Binding tps.EndPointXYΔ}"  -->
+<!--  Grid.Column="7"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type={x:Type local:MainWindow}}"  -->
+<!--  ContentStringFormat="F4"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!--  <Label Content="{Binding tps.EndPointXYΔ}"  -->
+<!--  Grid.Column="8"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type={x:Type local:MainWindow}}"  -->
+<!--  ContentStringFormat="F4"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!--    -->
+<!--  <Label Content="{Binding tps.EndPointSlope}"  -->
+<!--  Grid.Column="9"  -->
+<!--  d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,  -->
+<!--  Type={x:Type local:MainWindow}}"  -->
+<!--  ContentStringFormat="F6"  -->
+<!--  Style="{StaticResource controlPointLbl}"  -->
+<!--  />  -->
+<!--    -->
+<!-- </Grid> -->
 

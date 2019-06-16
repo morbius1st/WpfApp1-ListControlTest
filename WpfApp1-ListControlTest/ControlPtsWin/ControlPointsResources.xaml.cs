@@ -19,9 +19,9 @@ using System.Windows.Controls;
 
 namespace WpfApp1_ListControlTest.ControlPtsWin
 {
-	public delegate void Cpw_OnError(object source, ValidationErrorEventArgs e);
+	public delegate void Cpw_OnError(object sender, ValidationErrorEventArgs e);
 	//
-		public delegate void Cpw_BtnClick(object source, RoutedEventArgs e);
+		public delegate void Cpw_BtnClick(object sender, RoutedEventArgs e);
 
 	public partial class ControlPointsResources
 	{
