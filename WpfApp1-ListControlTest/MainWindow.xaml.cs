@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using WpfApp1_ListControlTest.SampleData;
 using WpfApp1_ListControlTest.ControlPtsWin;
 using WpfApp1_ListControlTest.ListBoxWithHdrAndFtr;
@@ -174,11 +175,14 @@ namespace WpfApp1_ListControlTest
 
 		private void ClickInfo(object sender, RoutedEventArgs e, string fromWho)
 		{
+
+			((TextBox) sender).GetBindingExpression(TextBox.TextProperty).UpdateSource();
+
 			ListBox lb = MainWindow.Lb3;
 
 			TopoPoint2 tp2 = (TopoPoint2) MainWindow.Lb3.Items[lb.SelectedIndex];
 
-			Debug.WriteLine("@ MainResource3| @ClickInfo|"
+			Debug.WriteLine("@ MainResource3| @button pressed|"
 				+ " from| " + fromWho
 				+ " selected idx| " + lb.SelectedIndex
 				+ " xyz| " + tp2.ToString()

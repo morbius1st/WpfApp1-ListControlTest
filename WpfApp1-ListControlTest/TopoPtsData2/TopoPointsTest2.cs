@@ -21,9 +21,9 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 //		private double j = 10;
 //		private double k = 50;
-		private double x;
-		private double y;
-		private double z;
+//		private double x;
+//		private double y;
+//		private double z;
 
 		public TopoPoints2 tps2 { get; set; }
 

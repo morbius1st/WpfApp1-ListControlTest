@@ -392,7 +392,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		// and the prior point
 		private bool UpdateX(double preceding)
 		{
-			if (point.X.Equals(originalPointValue.X)) return false;
+			if (point.X.Equals(preceding)) return false;
+//			if (point.X.Equals(originalPointValue.X)) return false;
 
 			StatusFlagSet(BitFlag.Xflag);
 			UpdateXΔ(preceding);
@@ -402,7 +403,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 		private bool UpdateY(double preceding)
 		{
-			if (point.Y.Equals(originalPointValue.Y)) return false;
+			if (point.Y.Equals(preceding)) return false;
+//			if (point.Y.Equals(originalPointValue.Y)) return false;
 
 			StatusFlagSet(BitFlag.Yflag);
 			UpdateYΔ(preceding);
@@ -412,7 +414,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 		private bool UpdateZ(double preceding)
 		{
-			if (point.Z.Equals(originalPointValue.Z)) return false;
+			if (point.Z.Equals(preceding)) return false;
+//			if (point.Z.Equals(originalPointValue.Z)) return false;
 
 			StatusFlagSet(BitFlag.Zflag);
 			UpdateZΔ(preceding);

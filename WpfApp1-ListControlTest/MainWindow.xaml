@@ -7,6 +7,7 @@
 		xmlns:local="clr-namespace:WpfApp1_ListControlTest"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		xmlns:topoPtsData="clr-namespace:WpfApp1_ListControlTest.TopoPtsData"
 		x:Name="mainWindow"
 		Title="MainWindow"
 		Width="1680"
@@ -807,95 +808,114 @@
 							/>
 
 
-					<ControlTemplate
-							x:Key="BtnApplyUndo"
-							TargetType="{x:Type ButtonBase}"
-							>
-						<Border
-								x:Name="border"
-								SnapsToDevicePixels="True"
-								Background="{TemplateBinding Background}"
-								BorderThickness="{TemplateBinding BorderThickness}"
-								BorderBrush="{TemplateBinding BorderBrush}"
-								>
-							<ContentPresenter
-									x:Name="contentPresenter"
-									Content="{TemplateBinding Content}"
-									Margin="{TemplateBinding Padding}"
-									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-									VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-									ContentStringFormat="{TemplateBinding ContentStringFormat}"
-									ContentTemplate="{TemplateBinding ContentTemplate}"
-									Focusable="False"
-									RecognizesAccessKey="True"
-									SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-									/>
-						</Border>
-						<ControlTemplate.Triggers>
-							<Trigger Property="Button.IsDefaulted" Value="True">
-								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-							</Trigger>
-							<Trigger Property="IsMouseOver" Value="True">
-								<Setter TargetName="border" Property="Background" Value="#FFBEE6FD" />
-								<Setter TargetName="border" Property="BorderBrush" Value="#FF3C7FB1" />
-							</Trigger>
-							<Trigger Property="IsPressed" Value="True">
-								<Setter TargetName="border" Property="Background" Value="#FFC4E5F6" />
-								<Setter TargetName="border" Property="BorderBrush" Value="#FF2C628B" />
-							</Trigger>
-							<Trigger Property="ToggleButton.IsChecked" Value="True">
-								<Setter TargetName="border" Property="Background" Value="#FFBCDDEE" />
-								<Setter TargetName="border" Property="BorderBrush" Value="#FF245A83" />
-							</Trigger>
-							<Trigger Property="IsEnabled" Value="False">
-								<Setter Property="Foreground" Value="#FF838383" />
-								<Setter TargetName="border" Property="Background" Value="#FFdddddd" />
-								<Setter TargetName="border" Property="BorderBrush" Value="#FFADB2B5" />
-							</Trigger>
-							<Trigger Property="IsEnabled" Value="True">
-								<Setter Property="Foreground" Value="#FF000000" />
-								<Setter TargetName="border" Property="Background" Value="#CCFFFF" />
-								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource bb}" />
-								<Setter TargetName="border" Property="BorderThickness" Value="2" />
-							</Trigger>
-						</ControlTemplate.Triggers>
-					</ControlTemplate>
+					<!-- <ControlTemplate -->
+					<!-- 		x:Key="BtnApplyUndo" -->
+					<!-- 		TargetType="{x:Type ButtonBase}" -->
+					<!-- 		> -->
+					<!-- 	<Border -->
+					<!-- 			x:Name="border" -->
+					<!-- 			SnapsToDevicePixels="True" -->
+					<!-- 			Background="{TemplateBinding Background}" -->
+					<!-- 			BorderThickness="{TemplateBinding BorderThickness}" -->
+					<!-- 			BorderBrush="{TemplateBinding BorderBrush}" -->
+					<!-- 			> -->
+					<!-- 		<ContentPresenter -->
+					<!-- 				x:Name="contentPresenter" -->
+					<!-- 				Content="{TemplateBinding Content}" -->
+					<!-- 				Margin="{TemplateBinding Padding}" -->
+					<!-- 				HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" -->
+					<!-- 				VerticalAlignment="{TemplateBinding VerticalContentAlignment}" -->
+					<!-- 				ContentStringFormat="{TemplateBinding ContentStringFormat}" -->
+					<!-- 				ContentTemplate="{TemplateBinding ContentTemplate}" -->
+					<!-- 				Focusable="False" -->
+					<!-- 				RecognizesAccessKey="True" -->
+					<!-- 				SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" -->
+					<!-- 				/> -->
+					<!-- 	</Border> -->
+					<!-- -->
+					<!-- 	<ControlTemplate.Triggers> -->
+					<!-- 		<Trigger Property="Button.IsDefaulted" Value="True"> -->
+					<!-- 			<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" /> -->
+					<!-- 		</Trigger> -->
+					<!-- 		<Trigger Property="IsMouseOver" Value="True"> -->
+					<!-- 			<Setter TargetName="border" Property="Background" Value="#FFBEE6FD" /> -->
+					<!-- 			<Setter TargetName="border" Property="BorderBrush" Value="#FF3C7FB1" /> -->
+					<!-- 		</Trigger> -->
+					<!-- 		<Trigger Property="IsPressed" Value="True"> -->
+					<!-- 			<Setter TargetName="border" Property="Background" Value="#FFC4E5F6" /> -->
+					<!-- 			<Setter TargetName="border" Property="BorderBrush" Value="#FF2C628B" /> -->
+					<!-- 		</Trigger> -->
+					<!-- 		<Trigger Property="ToggleButton.IsChecked" Value="True"> -->
+					<!-- 			<Setter TargetName="border" Property="Background" Value="#FFBCDDEE" /> -->
+					<!-- 			<Setter TargetName="border" Property="BorderBrush" Value="#FF245A83" /> -->
+					<!-- 		</Trigger> -->
+					<!-- 		<Trigger Property="IsEnabled" Value="False"> -->
+					<!-- 			<Setter Property="Foreground" Value="#FF838383" /> -->
+					<!-- 			<Setter TargetName="border" Property="Background" Value="#FFdddddd" /> -->
+					<!-- 			<Setter TargetName="border" Property="BorderBrush" Value="#FFADB2B5" /> -->
+					<!-- 		</Trigger> -->
+					<!-- 		<Trigger Property="IsEnabled" Value="True"> -->
+					<!-- 			<Setter Property="Foreground" Value="#FF000000" /> -->
+					<!-- 			<Setter TargetName="border" Property="Background" Value="#CCFFFF" /> -->
+					<!-- 			<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource bb}" /> -->
+					<!-- 			<Setter TargetName="border" Property="BorderThickness" Value="2" /> -->
+					<!-- 		</Trigger> -->
+					<!-- 	</ControlTemplate.Triggers> -->
+					<!-- </ControlTemplate> -->
+					<!-- -->
+					<!-- -->
+					<!-- -->
+					<!-- <Style x:Key="lb3ApplyUndoBtn" TargetType="Button"> -->
+					<!-- 	<Setter Property="Padding" Value="0"/> -->
+					<!-- 	<Setter Property="Margin" Value="1"/> -->
+					<!-- 	<Setter Property="FontSize" Value="8"/> -->
+					<!-- 	<Setter Property="Template" Value="{DynamicResource BtnApplyUndo}"/> -->
+					<!-- </Style> -->
+					<!-- -->
+					<!-- <Style x:Key="lb3ApplyBtn" TargetType="Button" BasedOn="{StaticResource lb3ApplyUndoBtn}"> -->
+					<!-- 	<Style.Resources> -->
+					<!-- 		<SolidColorBrush x:Key="bb" -->
+					<!-- 				Color="#00ff00" /> -->
+					<!-- 	</Style.Resources> -->
+					<!-- </Style> -->
+					<!-- -->
+					<!-- <Style x:Key="lb3UndoBtn" TargetType="Button" BasedOn="{StaticResource lb3ApplyUndoBtn}"> -->
+					<!-- 	<Style.Resources> -->
+					<!-- 		<SolidColorBrush x:Key="bb" -->
+					<!-- 				Color="#0000ff" /> -->
+					<!-- 	</Style.Resources> -->
+					<!-- </Style> -->
 
-
-
-					<Style x:Key="lb3ApplyUndoBtn" TargetType="Button">
-						<Setter Property="Padding" Value="0"/>
-						<Setter Property="Margin" Value="1"/>
-						<Setter Property="FontSize" Value="8"/>
-						<Setter Property="Template" Value="{DynamicResource BtnApplyUndo}"/>
-					</Style>
-
-					<Style x:Key="lb3ApplyBtn" TargetType="Button" BasedOn="{StaticResource lb3ApplyUndoBtn}">
-						<Style.Resources>
-							<SolidColorBrush x:Key="bb"
-									Color="#00ff00" />
-						</Style.Resources>
-					</Style>
-					
-					<Style x:Key="lb3ApplyBtn2" TargetType="Button">
+					<Style x:Key="Lb3ApplyUndoBtn"
+							TargetType="Button">
 						<Setter Property="Padding"
 								Value="0" />
 						<Setter Property="Margin"
 								Value="1" />
-						<Setter Property="FontSize"
-								Value="8" />
-						<Setter Property="Background" Value="White"/>
+						<Setter Property="Background"
+								Value="White" />
 						<Setter Property="Template"
 								Value="{StaticResource Button.Normal.ControlTemplate}" />
-					</Style>
-
-					<Style x:Key="lb3UndoBtn" TargetType="Button" BasedOn="{StaticResource lb3ApplyUndoBtn}">
 						<Style.Resources>
-							<SolidColorBrush x:Key="bb"
-									Color="#0000ff" />
+							<Thickness x:Key="Normal.Default.BorderThickness.Inner">
+								6,0,0,0
+							</Thickness>
 						</Style.Resources>
 					</Style>
 
+					<Style x:Key="Lb3ApplyUndoForRowBtn"
+							BasedOn="{StaticResource Lb3ApplyUndoBtn}"
+							TargetType="Button">
+						<Setter Property="FontSize"
+								Value="10" />
+					</Style>
+
+					<Style x:Key="Lb3ApplyUndoForCellBtn"
+							BasedOn="{StaticResource Lb3ApplyUndoBtn}"
+							TargetType="Button">
+						<Setter Property="FontSize"
+								Value="8" />
+					</Style>
 
 					<Style
 							x:Key="CellTxBox"
@@ -912,7 +932,7 @@
 									Binding="{Binding IsBeingEdited}"
 									Value="False"
 									>
-								<Setter Property="Foreground" Value="#bbbbbb" />
+								<Setter Property="Foreground" Value="#999999" />
 								<Setter Property="IsReadOnly" Value="True" />
 							</DataTrigger>
 							<DataTrigger
@@ -925,6 +945,21 @@
 						</Style.Triggers>
 					</Style>
 					<!-- <Setter Property="IsReadOnly" Value="{Binding IsBeingEdited, Converter={StaticResource boolInvert}}" /> -->
+
+
+					<Style x:Key="CellTxBoxX" BasedOn="{StaticResource CellTxBox}"
+							TargetType="TextBox">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding XYZ.HasUndoX}"
+									Value="True">
+								<Setter Property="Foreground"
+										Value="{StaticResource Normal.Modified.Foreground}" />
+								<Setter Property="FontWeight" Value="Bold"/>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+
+
 
 					<Style
 							x:Key="CellTxBlk"
@@ -1173,10 +1208,10 @@
 											Content="Apply/Update"
 											Grid.Row="0"
 											Grid.Column="0"
-											Margin="1"
-											Padding="0"
-											FontSize="10"
-											Background="LightBlue"
+											d:DataContext="{d:DesignInstance Type=local:MainWindow,
+																											 IsDesignTimeCreatable=True}"
+											Style="{StaticResource Lb3ApplyUndoForRowBtn}"
+											IsDefault="True"
 											IsEnabled="{Binding HasRevision}"
 											Click="Lb3BtnApply_Click"
 											/>
@@ -1186,10 +1221,9 @@
 											Content="Undo/Cancel"
 											Grid.Row="1"
 											Grid.Column="0"
-											Margin="1"
-											Padding="0"
-											FontSize="10"
-											Background="LightBlue"
+											d:DataContext="{d:DesignInstance Type=local:MainWindow,
+																											 IsDesignTimeCreatable=True}"
+											Style="{StaticResource Lb3ApplyUndoForRowBtn}"
 											IsEnabled="{Binding HasRevision}"
 											Click="Lb3BtnUndo_Click"
 											/>
@@ -1218,8 +1252,9 @@
 									<TextBox
 											Tag="{Binding TopoMgr.TpConsts.Xtag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
 											Text="{Binding X, Converter={StaticResource Converter.Xyz}}"
-											Style="{StaticResource CellTxBox}"
-											/>
+											Style="{StaticResource CellTxBoxX}"
+											>
+									</TextBox>
 								</Border>
 								<Border
 										Grid.Row="0"
@@ -1430,7 +1465,7 @@
 											Content="Apply"
 											Grid.Row="0"
 											Grid.Column="0"
-											Style="{StaticResource lb3ApplyBtn}"
+											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
 											IsEnabled="{Binding XYZ.HasUndoX}"
@@ -1442,7 +1477,7 @@
 											Content="Undo"
 											Grid.Row="0"
 											Grid.Column="1"
-											Style="{StaticResource lb3UndoBtn}"
+											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
 											IsEnabled="{Binding XYZ.HasUndoX}"
@@ -1594,10 +1629,9 @@
 											Grid.Column="0"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
-											IsEnabled="false"
-
+											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
+											IsEnabled="{Binding XYZ.HasUndoY}"
 											Click="Lb3BtnApplyY_Click"
-											Style="{DynamicResource lb3ApplyBtn2}" 
 											/>
 
 									<Button
@@ -1605,8 +1639,9 @@
 											Content="Undo"
 											Grid.Row="0"
 											Grid.Column="1"
-											Margin="1"
-											FontSize="8"
+											d:DataContext="{d:DesignInstance Type=local:MainWindow,
+																											 IsDesignTimeCreatable=True}"
+											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											IsEnabled="{Binding XYZ.HasUndoY}"
 											Click="Lb3BtnUndoY_Click"
 											/>
@@ -1753,8 +1788,9 @@
 											Content="Apply"
 											Grid.Row="0"
 											Grid.Column="0"
-											Margin="1"
-											FontSize="8"
+											d:DataContext="{d:DesignInstance Type=local:MainWindow,
+																											 IsDesignTimeCreatable=True}"
+											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											IsEnabled="{Binding XYZ.HasUndoZ}"
 											Click="Lb3BtnApplyZ_Click"
 											/>
@@ -1764,8 +1800,9 @@
 											Content="Undo"
 											Grid.Row="0"
 											Grid.Column="1"
-											Margin="1"
-											FontSize="8"
+											d:DataContext="{d:DesignInstance Type=local:MainWindow,
+																											 IsDesignTimeCreatable=True}"
+											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											IsEnabled="{Binding XYZ.HasUndoZ}"
 											Click="Lb3BtnUndoZ_Click"
 											/>

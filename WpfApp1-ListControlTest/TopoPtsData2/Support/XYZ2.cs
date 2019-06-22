@@ -262,6 +262,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		public class Coordinate : INotifyPropertyChanged
 		{
 			private double value;
+			private double displayValue;
 			private double undoValue;
 			private bool hasValue;
 			private bool hasUndo;

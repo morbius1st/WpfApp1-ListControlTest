@@ -1,4 +1,5 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,9 +7,13 @@
 		>
 	<!--  xmlns:sys="clr-namespace:System;assembly=mscorlib"  -->
 	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="MasterColorList.xaml" />
+		<ResourceDictionary
+				Source="MasterColorList.xaml"
+				/>
 	</ResourceDictionary.MergedDictionaries>
-	<Color x:Key="Blue.Medium">
+	<Color
+			x:Key="Blue.Medium"
+			>
 		#FF26A0DA
 	</Color>
 
@@ -44,76 +49,99 @@
 	<!--#region > Normal-->
 	<!--  normal / typical colors / thicknesses  -->
 
-	<Thickness x:Key="Normal.BorderThickness">
+	<Thickness
+			x:Key="Normal.BorderThickness"
+			>
 		2
 	</Thickness>
-	<Thickness x:Key="Normal.Default.BorderThickness.Inner">
+	<Thickness
+			x:Key="Normal.Default.BorderThickness.Inner"
+			>
 		0, 0, 0, 4
 	</Thickness>
 
-	<SolidColorBrush x:Key="Normal.Background.C"
+	<SolidColorBrush
+			x:Key="Normal.Background.C"
 			Color="{StaticResource gray.970}"
 			/>
-	<SolidColorBrush x:Key="Normal.Foreground.C"
+	<SolidColorBrush
+			x:Key="Normal.Foreground.C"
 			Color="{StaticResource gray.100}"
 			/>
-	<SolidColorBrush x:Key="Normal.Border.C"
+	<SolidColorBrush
+			x:Key="Normal.Border.C"
 			Color="{StaticResource true.black}"
 			/>
 
-	<SolidColorBrush x:Key="Normal.Inactive.Background.C"
+	<SolidColorBrush
+			x:Key="Normal.Inactive.Background.C"
 			Color="{StaticResource gray.700}"
 			/>
-	<SolidColorBrush x:Key="Normal.Inactive.Foreground.C"
+	<SolidColorBrush
+			x:Key="Normal.Inactive.Foreground.C"
 			Color="{StaticResource gray.300}"
 			/>
 
 
-	<SolidColorBrush x:Key="Normal.MouseOver.Background.C"
+	<SolidColorBrush
+			x:Key="Normal.MouseOver.Background.C"
 			Color="{StaticResource light.blue.850}"
 			/>
-	<SolidColorBrush x:Key="Normal.MouseOver.Border.C"
+	<SolidColorBrush
+			x:Key="Normal.MouseOver.Border.C"
 			Color="{StaticResource light.blue.700}"
 			/>
 
-	<SolidColorBrush x:Key="Normal.Pressed.Background.C"
+	<SolidColorBrush
+			x:Key="Normal.Pressed.Background.C"
 			Color="{StaticResource light.blue.900}"
 			/>
-	<SolidColorBrush x:Key="Normal.Pressed.Border.C"
+	<SolidColorBrush
+			x:Key="Normal.Pressed.Border.C"
 			Color="{StaticResource light.blue.400}"
 			/>
-	<SolidColorBrush x:Key="Normal.Pressed.Default.Inner.Border.C"
+	<SolidColorBrush
+			x:Key="Normal.Pressed.Default.Inner.Border.C"
 			Color="{StaticResource light.blue.300}"
 			/>
 
-	<SolidColorBrush x:Key="Normal.SelectedActive.Background.C"
+	<SolidColorBrush
+			x:Key="Normal.SelectedActive.Background.C"
 			Color="{StaticResource light.blue.900}"
 			/>
-	<SolidColorBrush x:Key="Normal.SelectedActive.Border.C"
+	<SolidColorBrush
+			x:Key="Normal.SelectedActive.Border.C"
 			Color="{StaticResource light.blue.400}"
 			/>
 
-	<SolidColorBrush x:Key="Normal.SelectedInActive.Background.C"
+	<SolidColorBrush
+			x:Key="Normal.SelectedInActive.Background.C"
 			Color="{StaticResource gray.820}"
 			/>
-	<SolidColorBrush x:Key="Normal.SelectedInActive.Border.C"
+	<SolidColorBrush
+			x:Key="Normal.SelectedInActive.Border.C"
 			Color="{StaticResource gray.900}"
 			/>
 
-	<SolidColorBrush x:Key="Normal.Disabled.Background.C"
+	<SolidColorBrush
+			x:Key="Normal.Disabled.Background.C"
 			Color="{StaticResource gray.800}"
 			/>
-	<SolidColorBrush x:Key="Normal.Disabled.Foreground.C"
+	<SolidColorBrush
+			x:Key="Normal.Disabled.Foreground.C"
 			Color="{StaticResource gray.500}"
 			/>
-	<SolidColorBrush x:Key="Normal.Disabled.Border.C"
+	<SolidColorBrush
+			x:Key="Normal.Disabled.Border.C"
 			Color="{StaticResource gray.700}"
 			/>
-	<SolidColorBrush x:Key="Normal.Disabled.Border.Inner.C"
+	<SolidColorBrush
+			x:Key="Normal.Disabled.Border.Inner.C"
 			Color="{StaticResource gray.700}"
 			/>
 
-	<SolidColorBrush x:Key="Normal.Default.Border.Inner.C"
+	<SolidColorBrush
+			x:Key="Normal.Default.Border.Inner.C"
 			Color="{StaticResource blue.300}"
 			/>
 	<!--#endregion-->
@@ -123,15 +151,18 @@
 	<!--  listbox  -->
 
 	<!--  selected active  -->
-	<SolidColorBrush x:Key="Gray.SelectedActive.Background.C"
+	<SolidColorBrush
+			x:Key="Gray.SelectedActive.Background.C"
 			Color="{StaticResource gray.900}"
 			/>
 
 	<!--  un-selected active  -->
-	<SolidColorBrush x:Key="Gray.UnSelected.Background.C"
+	<SolidColorBrush
+			x:Key="Gray.UnSelected.Background.C"
 			Color="{StaticResource gray.900}"
 			/>
-	<SolidColorBrush x:Key="Gray.UnSelected.Foreground.C"
+	<SolidColorBrush
+			x:Key="Gray.UnSelected.Foreground.C"
 			Color="{StaticResource gray.200}"
 			/>
 	<!--#endregion-->
@@ -144,88 +175,120 @@
 
 	<!--  normal  -->
 	<!--  normal = true  -->
-	<SolidColorBrush x:Key="Normal.Background"
+	<SolidColorBrush
+			x:Key="Normal.Background"
 			Color="{Binding Color, Source={StaticResource Normal.Background.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.Foreground"
+	<SolidColorBrush
+			x:Key="Normal.Foreground"
 			Color="{Binding Color, Source={StaticResource Normal.Foreground.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.Border"
+	<SolidColorBrush
+			x:Key="Normal.Border"
 			Color="{Binding Color, Source={StaticResource Normal.Border.C}}"
 			/>
 
-	<SolidColorBrush x:Key="Normal.Inactive.Background"
+	<SolidColorBrush
+			x:Key="Normal.Inactive.Background"
 			Color="{Binding Color, Source={StaticResource Normal.Inactive.Background.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.Inactive.Foreground"
+	<SolidColorBrush
+			x:Key="Normal.Inactive.Foreground"
 			Color="{Binding Color, Source={StaticResource Normal.Inactive.Foreground.C}}"
 			/>
 
 	<!--  mouseover = true  -->
-	<SolidColorBrush x:Key="Normal.MouseOver.Background"
+	<SolidColorBrush
+			x:Key="Normal.MouseOver.Background"
 			Color="{Binding Color, Source={StaticResource Normal.MouseOver.Background.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.MouseOver.Foreground"
+	<SolidColorBrush
+			x:Key="Normal.MouseOver.Foreground"
 			Color="{Binding Color, Source={StaticResource Normal.Foreground.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.MouseOver.Border"
+	<SolidColorBrush
+			x:Key="Normal.MouseOver.Border"
 			Color="{Binding Color, Source={StaticResource Normal.MouseOver.Border.C}}"
 			/>
 
-	<!--  mouseover = true  -->
-	<SolidColorBrush x:Key="Normal.Pressed.Background"
+	<!--  pressed = true  -->
+	<SolidColorBrush
+			x:Key="Normal.Pressed.Background"
 			Color="{Binding Color, Source={StaticResource Normal.Pressed.Background.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.Pressed.Foreground"
+	<SolidColorBrush
+			x:Key="Normal.Pressed.Foreground"
 			Color="{Binding Color, Source={StaticResource Normal.Foreground.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.Pressed.Border"
+	<SolidColorBrush
+			x:Key="Normal.Pressed.Border"
 			Color="{Binding Color, Source={StaticResource Normal.Pressed.Border.C}}"
+			/>
+	<SolidColorBrush
+			x:Key="Normal.Pressed.Default.Inner.Border"
+			Color="{Binding Color, Source={StaticResource Normal.Pressed.Default.Inner.Border.C}}"
 			/>
 
 	<!--  selected active  -->
-	<SolidColorBrush x:Key="Normal.SelectedActive.Background"
+	<SolidColorBrush
+			x:Key="Normal.SelectedActive.Background"
 			Color="{Binding Color, Source={StaticResource Normal.SelectedActive.Background.C}}"
 			/>
 
-	<SolidColorBrush x:Key="Normal.SelectedActive.Foreground"
+	<SolidColorBrush
+			x:Key="Normal.SelectedActive.Foreground"
 			Color="{Binding Color, Source={StaticResource Normal.Foreground.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.SelectedActive.Border"
+	<SolidColorBrush
+			x:Key="Normal.SelectedActive.Border"
 			Color="{Binding Color, Source={StaticResource Normal.SelectedActive.Border.C}}"
 			/>
 
 	<!--  selected inactive  -->
-	<SolidColorBrush x:Key="Normal.SelectedInActive.Background"
+	<SolidColorBrush
+			x:Key="Normal.SelectedInActive.Background"
 			Color="{Binding Color, Source={StaticResource Normal.SelectedInActive.Background.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.SelectedInActive.Foreground"
+	<SolidColorBrush
+			x:Key="Normal.SelectedInActive.Foreground"
 			Color="{Binding Color, Source={StaticResource Normal.Foreground.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.SelectedInActive.Border"
+	<SolidColorBrush
+			x:Key="Normal.SelectedInActive.Border"
 			Color="{Binding Color, Source={StaticResource Normal.SelectedInActive.Border.C}}"
 			/>
 
-	<!--  disabled = IsEnabled == false  -->
-	<SolidColorBrush x:Key="Normal.Disabled.Background"
+	<!--  disabled = (IsEnabled == false)  -->
+	<SolidColorBrush
+			x:Key="Normal.Disabled.Background"
 			Color="{Binding Color, Source={StaticResource Normal.Disabled.Background.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.Disabled.Foreground"
+	<SolidColorBrush
+			x:Key="Normal.Disabled.Foreground"
 			Color="{Binding Color, Source={StaticResource Normal.Disabled.Foreground.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.Disabled.Border"
+	<SolidColorBrush
+			x:Key="Normal.Disabled.Border"
 			Color="{Binding Color, Source={StaticResource Normal.Disabled.Border.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.Disabled.Border.Inner"
+	<SolidColorBrush
+			x:Key="Normal.Disabled.Border.Inner"
 			Color="{Binding Color, Source={StaticResource Normal.Disabled.Border.Inner.C}}"
 			/>
 
-	<!--  isdefaulted = true  (e.g. button)  -->
-	<SolidColorBrush x:Key="Normal.Default.Border"
+	<!--  isDefaulted = true  (e.g. button)  -->
+	<SolidColorBrush
+			x:Key="Normal.Default.Border"
 			Color="{Binding Color, Source={StaticResource Normal.Border.C}}"
 			/>
-	<SolidColorBrush x:Key="Normal.Default.Border.Inner"
+	<SolidColorBrush
+			x:Key="Normal.Default.Border.Inner"
 			Color="{Binding Color, Source={StaticResource Normal.Default.Border.Inner.C}}"
+			/>
+
+	<SolidColorBrush
+			x:Key="Normal.Modified.Foreground"
+			Color="#007FFE"
 			/>
 
 	<!--#endregion-->
@@ -235,15 +298,18 @@
 	<!--  listbox  -->
 
 	<!--  selected active  -->
-	<SolidColorBrush x:Key="Gray.SelectedActive.Background"
+	<SolidColorBrush
+			x:Key="Gray.SelectedActive.Background"
 			Color="{Binding Color, Source={StaticResource Gray.SelectedActive.Background.C}}"
 			/>
 
 	<!--  un-selected  -->
-	<SolidColorBrush x:Key="Gray.UnSelected.Background"
+	<SolidColorBrush
+			x:Key="Gray.UnSelected.Background"
 			Color="{Binding Color, Source={StaticResource Gray.UnSelected.Background.C}}"
 			/>
-	<SolidColorBrush x:Key="Gray.UnSelected.Foreground"
+	<SolidColorBrush
+			x:Key="Gray.UnSelected.Foreground"
 			Color="{Binding Color, Source={StaticResource Gray.UnSelected.Foreground.C}}"
 			/>
 
@@ -253,7 +319,8 @@
 
 	<!--#region > Styles-->
 
-	<Style x:Key="Control.Normal.Style"
+	<Style
+			x:Key="Control.Normal.Style"
 			TargetType="Control"
 			>
 		<Setter Property="Background" Value="{StaticResource Normal.Background}" />
@@ -262,18 +329,21 @@
 		<Setter Property="Foreground" Value="{StaticResource Normal.Foreground}" />
 	</Style>
 
-	<Style x:Key="ListBox.Normal.Style"
-			BasedOn="{StaticResource Control.Normal.Style}"
+	<Style
+			x:Key="ListBox.Normal.Style"
 			TargetType="ListBox"
+			BasedOn="{StaticResource Control.Normal.Style}"
 			/>
 
-	<Style x:Key="Button.Normal.Style"
-			BasedOn="{StaticResource Control.Normal.Style}"
+	<Style
+			x:Key="Button.Normal.Style"
 			TargetType="Button"
+			BasedOn="{StaticResource Control.Normal.Style}"
 			/>
 	<!-- <Setter Property="Background" Value="{StaticResource Normal.Disabled.Background}" /> -->
 	<!--  listbox item container style  -->
-	<Style x:Key="ListBox.Normal.ItemContainer"
+	<Style
+			x:Key="ListBox.Normal.ItemContainer"
 			TargetType="{x:Type ListBoxItem}"
 			>
 		<Setter Property="BorderBrush" Value="Transparent" />
@@ -289,16 +359,20 @@
 
 		<Setter Property="Template">
 			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type ListBoxItem}">
+				<ControlTemplate
+						TargetType="{x:Type ListBoxItem}"
+						>
 
-					<Border x:Name="Bd"
+					<Border
+							x:Name="Bd"
 							Padding="{TemplateBinding Padding}"
 							SnapsToDevicePixels="true"
 							Background="{StaticResource Gray.UnSelected.Background}"
 							BorderThickness="{TemplateBinding BorderThickness}"
 							BorderBrush="{TemplateBinding BorderBrush}"
 							>
-						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+						<ContentPresenter
+								HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 								VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
 								SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
 								/>
@@ -348,22 +422,27 @@
 
 	<!--#region > Control Templates-->
 
-	<ControlTemplate x:Key="Button.Normal.ControlTemplate"
+	<ControlTemplate
+			x:Key="Button.Normal.ControlTemplate"
 			TargetType="Button"
 			>
-		<Border x:Name="border"
+		<Border
+				x:Name="border"
 				SnapsToDevicePixels="True"
 				Background="{TemplateBinding Background}"
 				BorderThickness="{TemplateBinding BorderThickness}"
 				BorderBrush="{TemplateBinding BorderBrush}"
 				>
-			<Border x:Name="bdr1"
+			<Border
+					x:Name="bdr1"
 					Margin="0,0,-1,-1"
 					BorderThickness="{StaticResource Normal.Default.BorderThickness.Inner}"
 					BorderBrush="Transparent"
 					>
 
-				<ContentPresenter x:Name="contentPresenter" Content="{TemplateBinding Content}"
+				<ContentPresenter
+						x:Name="contentPresenter"
+						Content="{TemplateBinding Content}"
 						HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 						VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
 						ContentStringFormat="{TemplateBinding ContentStringFormat}"
@@ -376,9 +455,11 @@
 			</Border>
 		</Border>
 		<ControlTemplate.Triggers>
+
+
 			<Trigger Property="IsDefault" Value="True">
 				<Setter TargetName="bdr1" Property="BorderBrush" Value="{StaticResource Normal.Default.Border.Inner}" />
-				<Setter TargetName="bdr1" Property="BorderThickness" Value="{StaticResource Normal.Default.BorderThickness.Inner}" />
+				<Setter TargetName="bdr1" Property="BorderThickness" Value="{DynamicResource Normal.Default.BorderThickness.Inner}" />
 
 			</Trigger>
 			<Trigger Property="IsDefault" Value="False">
@@ -395,11 +476,10 @@
 
 			<Trigger Property="IsPressed" Value="True">
 				<Setter Property="Foreground" Value="{StaticResource Normal.Pressed.Foreground}" />
-				<Setter TargetName="bdr1" Property="BorderBrush" Value="{StaticResource Normal.Pressed.Default.Inner.Border.C}" />
+				<Setter TargetName="bdr1" Property="BorderBrush" Value="{StaticResource Normal.Pressed.Default.Inner.Border}" />
 				<Setter TargetName="border" Property="Background" Value="{StaticResource Normal.Pressed.Background}" />
 				<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Normal.Pressed.Border}" />
 			</Trigger>
-
 
 			<Trigger Property="IsEnabled" Value="False">
 				<Setter Property="Foreground" Value="{StaticResource Normal.Disabled.Foreground}" />
@@ -407,6 +487,7 @@
 				<Setter TargetName="border" Property="Background" Value="{StaticResource Normal.Disabled.Background}" />
 				<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Normal.Disabled.Border}" />
 			</Trigger>
+
 
 		</ControlTemplate.Triggers>
 	</ControlTemplate>
