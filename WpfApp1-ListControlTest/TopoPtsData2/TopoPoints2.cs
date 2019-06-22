@@ -76,7 +76,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			}
 		}
 
-		public string append
+		public string Append
 		{
 			set
 			{
@@ -273,12 +273,12 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 			if (eventProcessingTest(name))
 			{
-				append = "     | @ TopoPoints2| @propChange| pre-reindex\n\n";
+				Append = "     | @ TopoPoints2| @propChange| pre-reindex\n\n";
 
 				ReIndex(idx, false);
 			}
 
-			append = "     | @ TopoPoints2| @propChange| post-reindex\n\n";
+			Append = "     | @ TopoPoints2| @propChange| post-reindex\n\n";
 		}
 
 		// only startpoint property change events
@@ -376,7 +376,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			}
 
 
-			append = "reidx| @ TopoPoints2| pre-reindex| "
+			Append = "reidx| @ TopoPoints2| pre-reindex| "
 				+ " start| " + start
 				+ " end| " + j
 				+ "\n\n"
@@ -404,7 +404,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 				UpdateEndPointBaseValues();
 			}
 
-			append = "reidx| @ TopoPoints2| post-reindex| "
+			Append = "reidx| @ TopoPoints2| post-reindex| "
 				+ "\n"
 				;
 		}
@@ -425,7 +425,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			string which
 			)
 		{
-			append = "(get)| " + who
+			Append = "(get)| " + who
 				+ "  idx| " + idx
 				+ "  property name| " + e.PropertyName
 				+ " (" + which + ")"

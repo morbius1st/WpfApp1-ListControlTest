@@ -66,7 +66,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 //		public void BtnTestAll_Click()
 //		{
-//			tps2.append = "\n*** run all tests ***\n";
+//			tps2.Append = "\n*** run all tests ***\n";
 //			BtnAdd1_Click();
 //			BtnInsert1_Click();
 //			BtnChangeE_Click();
@@ -88,37 +88,37 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 		public void BtnBatchAdjustZByAmount_Click()
 		{
-			tps2.append = "\n*** run test: batch Adjust Z [3] by Amount ***\n";
+			tps2.Append = "\n*** run test: batch Adjust Z [3] by Amount ***\n";
 
 			// change the Z delta for item3 to item 4
 			int idx = 3;
 
 			double adjDeltaZ = tps2[idx].ZΔ + 3;
 
-			tps2.append = "\n*** run test: batch Adjust Z =  "
+			tps2.Append = "\n*** run test: batch Adjust Z =  "
 				+ adjDeltaZ.ToString();
 
 			bool result = AdjustZ(idx, adjDeltaZ);
 
-			tps2.append = "*** run test: batch Adjust Z  = "
+			tps2.Append = "*** run test: batch Adjust Z  = "
 				+ result.ToString();
 		}
 
 		public void BtnBatchAdjustZBySlope_Click()
 		{
-			tps2.append = "\n*** run test: batch Adjust Z [4] by Slope ***\n";
+			tps2.Append = "\n*** run test: batch Adjust Z [4] by Slope ***\n";
 
 			// change the Z delta for item3 to item 4
 			int idx = 4;
 
 			double adjDeltaZ = tps2[idx].XYΔ * 0.05;
 
-			tps2.append = "\n*** run test: batch Adjust Z (5%) =  "
+			tps2.Append = "\n*** run test: batch Adjust Z (5%) =  "
 				+ adjDeltaZ.ToString();
 
 			bool result = AdjustZ(idx, adjDeltaZ);
 
-			tps2.append = "*** run test: batch Adjust Z = "
+			tps2.Append = "*** run test: batch Adjust Z = "
 				+ result.ToString();
 		}
 
@@ -155,12 +155,18 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 		public void BtnChangeXof1_Click()
 		{
-			tps2.append = "\n*** run test: change X of [1] ***\n\n";
+			tps2.Append = "\n*** run test: change X of [1] ***\n\n";
 
 			tps2[1].X = 11101.0 + a;
 
 			a += 10;
 		}
+
+		public void BtnDebugMarker_Click()
+		{
+			tps2.Append = "\n\n*** Debug Marker ***\n\n";
+		}
+
 
 
 
@@ -172,7 +178,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //			dy = y + j - 50;
 //			dz = z + j - 50;
 //
-//			tps2.append = "\n*** run test add 1 (" + formatXYZ() + ") ***\n";
+//			tps2.Append = "\n*** run test add 1 (" + formatXYZ() + ") ***\n";
 //			tps2.Add(new XYZ2(dx, dy, dz));
 //
 //			j += 10;
@@ -185,7 +191,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //			dy = 20501 + k;
 //			dz = 30501 + k;
 //
-//			tps2.append = "\n*** run test insert 1 @ (5) (" + formatXYZ() + ")***\n";
+//			tps2.Append = "\n*** run test insert 1 @ (5) (" + formatXYZ() + ")***\n";
 //			tps2.Insert(5, new XYZ2(dx, dy, dz));
 //
 //			k -= 5;
@@ -194,34 +200,34 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //		// change end 1
 //		public void BtnChangeE_Click()
 //		{
-//			tps2.append = "\n*** run test change end ***\n";
+//			tps2.Append = "\n*** run test change end ***\n";
 //			tps2[tps2.EndPointIndex].XYZ = new XYZ2(10901.0, 20901.0, 30901.0);
 //		}
 //
 //		// change start 1
 //		public void BtnChangeS_Click()
 //		{
-//			tps2.append = "\n*** run test change start ***\n";
+//			tps2.Append = "\n*** run test change start ***\n";
 //			tps2[0].XYZ = new XYZ2(9001.0, 19001.0, 29001.0);
 //		}
 //
 //		// change value 1
 //		public void BtnChange4X_Click()
 //		{
-//			tps2.append = "\n*** run test change X @ (4) ***\n";
+//			tps2.Append = "\n*** run test change X @ (4) ***\n";
 //			tps2[4].X = 10411.0;
 //		}
 //
 //		// change end 2
 //		public void BtnChange4Y_Click()
 //		{
-//			tps2.append = "\n*** run test change Y @ (4) ***\n";
+//			tps2.Append = "\n*** run test change Y @ (4) ***\n";
 //			tps2[4].Y = 20421.0;
 //		}
 //
 //		public void BtnChange4Z_Click()
 //		{
-//			tps2.append = "\n*** run test change Z @ (4) ***\n";
+//			tps2.Append = "\n*** run test change Z @ (4) ***\n";
 //			tps2[4].Z = 30431.0;
 //		}
 //
@@ -229,46 +235,46 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //
 //		public void BtnChangeStartX_Click()
 //		{
-//			tps2.append = "\n*** run test change X @ (start) ***\n";
+//			tps2.Append = "\n*** run test change X @ (start) ***\n";
 //			tps2[0].X = 8001.0;
 //		}
 //
 //		public void BtnChangeEndX_Click()
 //		{
-//			tps2.append = "\n*** run test change X @ (end) ***\n";
+//			tps2.Append = "\n*** run test change X @ (end) ***\n";
 //			tps2[tps2.Count - 1].X = 13901.0;
 //		}
 //
 //
 //		public void BtnContains_Click()
 //		{
-//			tps2.append = "\n*** run test contains ***\n";
+//			tps2.Append = "\n*** run test contains ***\n";
 //
 //			bool result = tps2.Contains(testPoint);
 //
 //			if (result)
 //			{
-//				tps2.append = "contains| found\n";
+//				tps2.Append = "contains| found\n";
 //			}
 //			else
 //			{
-//				tps2.append = "contains| NOT found\n";
+//				tps2.Append = "contains| NOT found\n";
 //			}
 //		}
 //
 //		public void BtnIndexOf_Click()
 //		{
-//			tps2.append = "\n*** run test indexof ***\n";
+//			tps2.Append = "\n*** run test indexof ***\n";
 //
 //			int result = tps2.IndexOf(testPoint);
 //
 //			if (result >= 0)
 //			{
-//				tps2.append = "contains| found| " + result.ToString() + "\n";
+//				tps2.Append = "contains| found| " + result.ToString() + "\n";
 //			}
 //			else
 //			{
-//				tps2.append = "contains| NOT found\n";
+//				tps2.Append = "contains| NOT found\n";
 //			}
 //		}
 //
@@ -276,7 +282,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //		{
 //			int idx = 2;
 //
-//			tps2.append = "\n*** run test: removeat (2) ***\n";
+//			tps2.Append = "\n*** run test: removeat (2) ***\n";
 //
 //			TopoPoint2 tx = tps2[idx];
 //
@@ -284,27 +290,27 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //
 //			if (tps2.Contains(tx))
 //			{
-//				tps2.append = "remove at| NOT removed (fail)\n";
+//				tps2.Append = "remove at| NOT removed (fail)\n";
 //			}
 //			else
 //			{
-//				tps2.append = "remove at| removed (pass)\n";
+//				tps2.Append = "remove at| removed (pass)\n";
 //			}
 //		}
 //
 //		public void BtnRemove_Click()
 //		{
-//			tps2.append = "\n*** run test: remove (2) ***\n";
+//			tps2.Append = "\n*** run test: remove (2) ***\n";
 //
 //			bool result = tps2.Remove(testPoint);
 //
 //			if (!result)
 //			{
-//				tps2.append = "remove at| NOT removed (fail)\n";
+//				tps2.Append = "remove at| NOT removed (fail)\n";
 //			}
 //			else
 //			{
-//				tps2.append = "remove at| removed (pass)\n";
+//				tps2.Append = "remove at| removed (pass)\n";
 //			}
 //		}
 //
@@ -312,7 +318,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //
 //		public void BtnCopyTo_Click()
 //		{
-//			tps2.append = "\n*** run test: copyto ***\n";
+//			tps2.Append = "\n*** run test: copyto ***\n";
 //
 //			array = new TopoPoint2[tps2.Count];
 //
@@ -335,19 +341,19 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //					);
 //			}
 //
-//			tps2.append = sb.ToString();
+//			tps2.Append = sb.ToString();
 //		}
 //
 //		public void BtnClear_Click()
 //		{
-//			tps2.append = "\n*** run test: clear ***\n";
+//			tps2.Append = "\n*** run test: clear ***\n";
 //
 //			tps2.Clear();
 //		}
 //
 //		public void BtnChange4XYZ_Click()
 //		{
-//			tps2.append = "\n*** run test: change XYZ of [4] ***\n";
+//			tps2.Append = "\n*** run test: change XYZ of [4] ***\n";
 //
 //			int idx = 4;
 //
@@ -362,7 +368,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //
 //		public void BtnBatch_Click()
 //		{
-//			tps2.append = "\n*** run test: batch v1 (add 12 to each X starting at item 3 to item 5) ***\n";
+//			tps2.Append = "\n*** run test: batch v1 (add 12 to each X starting at item 3 to item 5) ***\n";
 //
 //			int start = 3;
 //			int end = 5;
@@ -385,7 +391,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //
 //		public void BtnBatchv2_Click()
 //		{
-//			tps2.append = "\n*** run test: batch v2 ***\n";
+//			tps2.Append = "\n*** run test: batch v2 ***\n";
 //
 //			int start = 3;
 //			int end = 4;

@@ -580,6 +580,18 @@
 							Style="{StaticResource TestButtonStyle}"
 							/>
 				</StackPanel>
+				<StackPanel
+						Margin="0,0,0,0"
+						Orientation="Horizontal"
+						>
+					<Button
+							x:Name="DebugMarker"
+							Content="Debug Marker"
+							Click="BtnDebugMarker_Click"
+							Style="{StaticResource TestButtonStyle}"
+							/>
+
+				</StackPanel>
 			</StackPanel>
 
 			<Label
@@ -808,31 +820,31 @@
 							/>
 
 
-					<!-- <ControlTemplate -->
-					<!-- 		x:Key="BtnApplyUndo" -->
-					<!-- 		TargetType="{x:Type ButtonBase}" -->
-					<!-- 		> -->
-					<!-- 	<Border -->
-					<!-- 			x:Name="border" -->
-					<!-- 			SnapsToDevicePixels="True" -->
-					<!-- 			Background="{TemplateBinding Background}" -->
-					<!-- 			BorderThickness="{TemplateBinding BorderThickness}" -->
-					<!-- 			BorderBrush="{TemplateBinding BorderBrush}" -->
-					<!-- 			> -->
-					<!-- 		<ContentPresenter -->
-					<!-- 				x:Name="contentPresenter" -->
-					<!-- 				Content="{TemplateBinding Content}" -->
-					<!-- 				Margin="{TemplateBinding Padding}" -->
-					<!-- 				HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" -->
-					<!-- 				VerticalAlignment="{TemplateBinding VerticalContentAlignment}" -->
-					<!-- 				ContentStringFormat="{TemplateBinding ContentStringFormat}" -->
-					<!-- 				ContentTemplate="{TemplateBinding ContentTemplate}" -->
-					<!-- 				Focusable="False" -->
-					<!-- 				RecognizesAccessKey="True" -->
-					<!-- 				SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" -->
-					<!-- 				/> -->
+					<!--  <ControlTemplate  -->
+					<!--  x:Key="BtnApplyUndo"  -->
+					<!--  TargetType="{x:Type ButtonBase}"  -->
+					<!--  >  -->
+					<!--  <Border  -->
+					<!--  x:Name="border"  -->
+					<!--  SnapsToDevicePixels="True"  -->
+					<!--  Background="{TemplateBinding Background}"  -->
+					<!--  BorderThickness="{TemplateBinding BorderThickness}"  -->
+					<!--  BorderBrush="{TemplateBinding BorderBrush}"  -->
+					<!--  >  -->
+					<!--  <ContentPresenter  -->
+					<!--  x:Name="contentPresenter"  -->
+					<!--  Content="{TemplateBinding Content}"  -->
+					<!--  Margin="{TemplateBinding Padding}"  -->
+					<!--  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  -->
+					<!--  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"  -->
+					<!--  ContentStringFormat="{TemplateBinding ContentStringFormat}"  -->
+					<!--  ContentTemplate="{TemplateBinding ContentTemplate}"  -->
+					<!--  Focusable="False"  -->
+					<!--  RecognizesAccessKey="True"  -->
+					<!--  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  -->
+					<!--  />  -->
 					<!-- 	</Border> -->
-					<!-- -->
+					<!--    -->
 					<!-- 	<ControlTemplate.Triggers> -->
 					<!-- 		<Trigger Property="Button.IsDefaulted" Value="True"> -->
 					<!-- 			<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" /> -->
@@ -862,59 +874,61 @@
 					<!-- 		</Trigger> -->
 					<!-- 	</ControlTemplate.Triggers> -->
 					<!-- </ControlTemplate> -->
-					<!-- -->
-					<!-- -->
-					<!-- -->
+					<!--    -->
+					<!--    -->
+					<!--    -->
 					<!-- <Style x:Key="lb3ApplyUndoBtn" TargetType="Button"> -->
 					<!-- 	<Setter Property="Padding" Value="0"/> -->
 					<!-- 	<Setter Property="Margin" Value="1"/> -->
 					<!-- 	<Setter Property="FontSize" Value="8"/> -->
 					<!-- 	<Setter Property="Template" Value="{DynamicResource BtnApplyUndo}"/> -->
 					<!-- </Style> -->
-					<!-- -->
+					<!--    -->
 					<!-- <Style x:Key="lb3ApplyBtn" TargetType="Button" BasedOn="{StaticResource lb3ApplyUndoBtn}"> -->
 					<!-- 	<Style.Resources> -->
-					<!-- 		<SolidColorBrush x:Key="bb" -->
-					<!-- 				Color="#00ff00" /> -->
+					<!--  <SolidColorBrush x:Key="bb"  -->
+					<!--  Color="#00ff00" />  -->
 					<!-- 	</Style.Resources> -->
 					<!-- </Style> -->
-					<!-- -->
+					<!--    -->
 					<!-- <Style x:Key="lb3UndoBtn" TargetType="Button" BasedOn="{StaticResource lb3ApplyUndoBtn}"> -->
 					<!-- 	<Style.Resources> -->
-					<!-- 		<SolidColorBrush x:Key="bb" -->
-					<!-- 				Color="#0000ff" /> -->
+					<!--  <SolidColorBrush x:Key="bb"  -->
+					<!--  Color="#0000ff" />  -->
 					<!-- 	</Style.Resources> -->
 					<!-- </Style> -->
 
-					<Style x:Key="Lb3ApplyUndoBtn"
-							TargetType="Button">
-						<Setter Property="Padding"
-								Value="0" />
-						<Setter Property="Margin"
-								Value="1" />
-						<Setter Property="Background"
-								Value="White" />
-						<Setter Property="Template"
-								Value="{StaticResource Button.Normal.ControlTemplate}" />
+					<Style
+							x:Key="Lb3ApplyUndoBtn"
+							TargetType="Button"
+							>
+						<Setter Property="Background" Value="White" />
+						<Setter Property="Margin" Value="1" />
+						<Setter Property="Padding" Value="0" />
+						<Setter Property="Template" Value="{StaticResource Button.Normal.ControlTemplate}" />
 						<Style.Resources>
-							<Thickness x:Key="Normal.Default.BorderThickness.Inner">
+							<Thickness
+									x:Key="Normal.Default.BorderThickness.Inner"
+									>
 								6,0,0,0
 							</Thickness>
 						</Style.Resources>
 					</Style>
 
-					<Style x:Key="Lb3ApplyUndoForRowBtn"
+					<Style
+							x:Key="Lb3ApplyUndoForRowBtn"
+							TargetType="Button"
 							BasedOn="{StaticResource Lb3ApplyUndoBtn}"
-							TargetType="Button">
-						<Setter Property="FontSize"
-								Value="10" />
+							>
+						<Setter Property="FontSize" Value="10" />
 					</Style>
 
-					<Style x:Key="Lb3ApplyUndoForCellBtn"
+					<Style
+							x:Key="Lb3ApplyUndoForCellBtn"
+							TargetType="Button"
 							BasedOn="{StaticResource Lb3ApplyUndoBtn}"
-							TargetType="Button">
-						<Setter Property="FontSize"
-								Value="8" />
+							>
+						<Setter Property="FontSize" Value="8" />
 					</Style>
 
 					<Style
@@ -947,14 +961,18 @@
 					<!-- <Setter Property="IsReadOnly" Value="{Binding IsBeingEdited, Converter={StaticResource boolInvert}}" /> -->
 
 
-					<Style x:Key="CellTxBoxX" BasedOn="{StaticResource CellTxBox}"
-							TargetType="TextBox">
+					<Style
+							x:Key="CellTxBoxX"
+							TargetType="TextBox"
+							BasedOn="{StaticResource CellTxBox}"
+							>
 						<Style.Triggers>
-							<DataTrigger Binding="{Binding XYZ.HasUndoX}"
-									Value="True">
-								<Setter Property="Foreground"
-										Value="{StaticResource Normal.Modified.Foreground}" />
-								<Setter Property="FontWeight" Value="Bold"/>
+							<DataTrigger
+									Binding="{Binding XYZ.HasUndoX}"
+									Value="True"
+									>
+								<Setter Property="FontWeight" Value="Bold" />
+								<Setter Property="Foreground" Value="{StaticResource Normal.Modified.Foreground}" />
 							</DataTrigger>
 						</Style.Triggers>
 					</Style>
@@ -1210,10 +1228,10 @@
 											Grid.Column="0"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
-											Style="{StaticResource Lb3ApplyUndoForRowBtn}"
 											IsDefault="True"
 											IsEnabled="{Binding HasRevision}"
 											Click="Lb3BtnApply_Click"
+											Style="{StaticResource Lb3ApplyUndoForRowBtn}"
 											/>
 
 									<Button
@@ -1223,9 +1241,9 @@
 											Grid.Column="0"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
-											Style="{StaticResource Lb3ApplyUndoForRowBtn}"
 											IsEnabled="{Binding HasRevision}"
 											Click="Lb3BtnUndo_Click"
+											Style="{StaticResource Lb3ApplyUndoForRowBtn}"
 											/>
 								</Grid>
 
@@ -1253,8 +1271,7 @@
 											Tag="{Binding TopoMgr.TpConsts.Xtag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
 											Text="{Binding X, Converter={StaticResource Converter.Xyz}}"
 											Style="{StaticResource CellTxBoxX}"
-											>
-									</TextBox>
+											/>
 								</Border>
 								<Border
 										Grid.Row="0"
@@ -1465,11 +1482,11 @@
 											Content="Apply"
 											Grid.Row="0"
 											Grid.Column="0"
-											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
 											IsEnabled="{Binding XYZ.HasUndoX}"
 											Click="Lb3BtnApplyX_Click"
+											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											/>
 
 									<Button
@@ -1477,11 +1494,11 @@
 											Content="Undo"
 											Grid.Row="0"
 											Grid.Column="1"
-											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
 											IsEnabled="{Binding XYZ.HasUndoX}"
 											Click="Lb3BtnUndoX_Click"
+											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											/>
 
 									<Border
@@ -1629,9 +1646,9 @@
 											Grid.Column="0"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
-											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											IsEnabled="{Binding XYZ.HasUndoY}"
 											Click="Lb3BtnApplyY_Click"
+											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											/>
 
 									<Button
@@ -1641,9 +1658,9 @@
 											Grid.Column="1"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
-											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											IsEnabled="{Binding XYZ.HasUndoY}"
 											Click="Lb3BtnUndoY_Click"
+											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											/>
 
 
@@ -1790,9 +1807,9 @@
 											Grid.Column="0"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
-											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											IsEnabled="{Binding XYZ.HasUndoZ}"
 											Click="Lb3BtnApplyZ_Click"
+											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											/>
 
 									<Button
@@ -1802,9 +1819,9 @@
 											Grid.Column="1"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
-											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											IsEnabled="{Binding XYZ.HasUndoZ}"
 											Click="Lb3BtnUndoZ_Click"
+											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
 											/>
 
 									<Border

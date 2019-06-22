@@ -91,7 +91,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		// used to determining if the X or Y or Z
 		// values have changed and used to prevent
 		// extra events
-		private XYZ2 originalPointValue = XYZ2.Empty;
+//		private XYZ2 originalPointValue = XYZ2.Empty;
 
 		private string message;
 
@@ -125,7 +125,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			{
 				if (!value.Equals(point))
 				{
-					originalPointValue = point;
+//					originalPointValue = point;
 
 					OnPropertyChange("XYZstart");
 
@@ -164,11 +164,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			{
 				if (!value.Equals(point.X))
 				{
-					Debug.WriteLine("     | @ TopoPoint2| @ pre-assign orig point value" + "\n");
-					originalPointValue = point;
-					Debug.WriteLine("     | @ TopoPoint2| @ post-assign orig point value" + "\n");
+//					Debug.WriteLine("     | @ TopoPoint2| @ pre-assign orig point value" + "\n");
+//					originalPointValue = point;
+//					Debug.WriteLine("     | @ TopoPoint2| @ post-assign orig point value" + "\n");
 
+					Debug.WriteLine("     | @ TopoPoint2| @ pre-change X" + "\n");
 					point.X = value;
+					Debug.WriteLine("     | @ TopoPoint2| @ post-change X" + "\n");
 
 					checkForNaN(value, (UInt32) BitFlag.Xflag);
 
@@ -184,7 +186,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			{
 				if (!value.Equals(point.Y))
 				{
-					originalPointValue = point;
+//					originalPointValue = point;
 
 					point.Y = value;
 
@@ -202,7 +204,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			{
 				if (!value.Equals(point.Z))
 				{
-					originalPointValue = point;
+//					originalPointValue = point;
 
 					point.Z = value;
 
@@ -380,7 +382,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			CalcSlope();
 
 			// clear the prior point
-			originalPointValue = XYZ2.Empty;
+//			originalPointValue = XYZ2.Empty;
 		}
 
 	#endregion

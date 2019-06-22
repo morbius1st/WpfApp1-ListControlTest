@@ -355,6 +355,11 @@ namespace WpfApp1_ListControlTest
 		{
 			TpTest2.BtnChangeXof1_Click();
 		}
+
+		private void BtnDebugMarker_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest2.BtnDebugMarker_Click();
+		}
 		
 
 	#endregion
