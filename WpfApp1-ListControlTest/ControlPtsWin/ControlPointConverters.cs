@@ -1,9 +1,8 @@
 ﻿#region + Using Directives
+
 using System;
 using System.Globalization;
 using System.Windows.Data;
-using WpfApp1_ListControlTest.ControlPtsData;
-using static WpfApp1_ListControlTest.MainWindow;
 
 #endregion
 
@@ -24,7 +23,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 		{
 			string output = ((double)value).ToString("F3");
 
-			Cps.TellMeTbx("at Convert| (" + output + ")");
+			MainWindow.Cps.TellMeTbx("at Convert| (" + output + ")");
 
 			return output;
 		}
@@ -34,7 +33,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 		{
 			double output = double.Parse((string) value);
 
-			Cps.TellMeTbx("at Convert back| (" + value + ")");
+			MainWindow.Cps.TellMeTbx("at Convert back| (" + value + ")");
 
 			return output;
 		}
@@ -48,7 +47,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 		{
 			string output = ((double)value).ToString("P3");
 
-			Cps.TellMeTbx("at Convert| (" + output + ")");
+			MainWindow.Cps.TellMeTbx("at Convert| (" + output + ")");
 
 			return output;
 		}
@@ -57,7 +56,7 @@ namespace WpfApp1_ListControlTest.ControlPtsWin
 		{
 			double output = double.Parse((string) value);
 
-			Cps.TellMeTbx("at Convert back| (" + value + ")");
+			MainWindow.Cps.TellMeTbx("at Convert back| (" + value + ")");
 
 			return output;
 		}

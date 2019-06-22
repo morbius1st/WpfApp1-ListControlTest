@@ -90,6 +90,7 @@
     <Compile Include="ListBoxWithHdrAndFtr\ListBoxWithXHeaderAndFooter.xaml.cs">
       <DependentUpon>ListBoxWithXHeaderAndFooter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainWinSupport\MainWinConverters.cs" />
     <Compile Include="MainWinSupport\MainWinResource3.xaml.cs">
       <DependentUpon>MainWinResource3.xaml</DependentUpon>
     </Compile>
@@ -224,6 +225,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

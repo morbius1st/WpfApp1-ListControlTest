@@ -1,0 +1,376 @@
+﻿<Window
+		x:Class="WpfContextTest.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:local="clr-namespace:WpfContextTest"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		Name="mainWindow"
+		Title="Main Window"
+		Width="800"
+		Height="450"
+		mc:Ignorable="d"
+		Background="#333333"
+		>
+	<Window.Resources>
+
+		<sys:String
+				x:Key="me"
+				>
+			mainWindow
+		</sys:String>
+
+	</Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition
+					Height="*"
+					/>
+			<RowDefinition
+					Height="*"
+					/>
+			<RowDefinition
+					Height="*"
+					/>
+			<RowDefinition
+					Height="30"
+					/>
+		</Grid.RowDefinitions>
+
+
+		<ListBox
+				Name="listBox1"
+				Grid.Row="0"
+				Margin="41,36,0,0"
+				Width="679"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				d:DataContext="{d:DesignInstance d:Type=local:MainWindow,
+																				 IsDesignTimeCreatable=True}"
+				DataContext="{Binding ElementName=mainWindow}"
+				ItemsSource="{Binding Sd}"
+				>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid
+							HorizontalAlignment="Stretch"
+							Background="DarkGray"
+							>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition
+									Width="130"
+									/>
+							<ColumnDefinition
+									Width="130"
+									/>
+							<ColumnDefinition
+									Width="130"
+									/>
+							<ColumnDefinition
+									Width="130"
+									/>
+							<ColumnDefinition
+									Width="130"
+									/>
+
+						</Grid.ColumnDefinitions>
+
+						<Label
+								Content="{Binding PropertyS}"
+								Grid.Column="0"
+								Padding="0"
+								HorizontalAlignment="Stretch"
+								/>
+						<Label
+								Content="{Binding PropertyD1}"
+								Grid.Column="1"
+								Padding="0"
+								HorizontalAlignment="Stretch"
+								/>
+
+						<Label
+								Content="{Binding PropertyD2}"
+								Grid.Column="2"
+								Padding="0"
+								HorizontalAlignment="Stretch"
+								/>
+
+						<Label
+								Content="{Binding PropertyI1}"
+								Grid.Column="3"
+								Padding="0"
+								HorizontalAlignment="Stretch"
+								/>
+
+						<Label
+								Content="{Binding PropertyI2}"
+								Grid.Column="4"
+								Padding="0"
+								HorizontalAlignment="Stretch"
+								/>
+
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+
+		</ListBox>
+
+		<ListBox
+				Name="ListBox2"
+				Grid.Row="1"
+				Margin="41,28.4,73.6,34.2"
+				d:DataContext="{d:DesignInstance d:Type=local:MainWindow,
+																				 IsDesignTimeCreatable=True}"
+				DataContext="{Binding ElementName=mainWindow}"
+				ItemTemplate="{DynamicResource Dt2}"
+				ItemsSource="{Binding Mgr.Sx, Mode=TwoWay}"
+				>
+			<ListBox.Resources>
+				<DataTemplate
+						x:Key="Dt2"
+						>
+					<Grid
+							HorizontalAlignment="Stretch"
+							Background="DarkGray"
+							>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition
+									Width="130"
+									/>
+							<ColumnDefinition
+									Width="130"
+									/>
+							<ColumnDefinition
+									Width="130"
+									/>
+							<ColumnDefinition
+									Width="130"
+									/>
+							<ColumnDefinition
+									Width="130"
+									/>
+
+						</Grid.ColumnDefinitions>
+
+						<Label
+								Content="{Binding PropertyS}"
+								Grid.Column="0"
+								Padding="0"
+								HorizontalAlignment="Stretch"
+								/>
+						<Label
+								Content="{Binding PropertyD1}"
+								Grid.Column="1"
+								Padding="0"
+								HorizontalAlignment="Stretch"
+								/>
+
+						<Label
+								Content="{Binding PropertyD2}"
+								Grid.Column="2"
+								Padding="0"
+								HorizontalAlignment="Stretch"
+								/>
+
+						<Label
+								Content="{Binding PropertyI1}"
+								Grid.Column="3"
+								Padding="0"
+								HorizontalAlignment="Stretch"
+								/>
+
+						<Label
+								Content="{Binding PropertyI2}"
+								Grid.Column="4"
+								Padding="0"
+								HorizontalAlignment="Stretch"
+								/>
+
+					</Grid>
+				</DataTemplate>
+			</ListBox.Resources>
+
+
+		</ListBox>
+
+		<!-- 
+		i got the information to show up for design time data
+		and with the actual data by NOT having the
+		datacontext as a part of the Text binding
+		-->
+
+		<TextBlock
+				x:Name="textBlock1"
+				Grid.Row="1"
+				Margin="98,5.8,0,0"
+				Width="67"
+				Height="18"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				DataContext="{Binding ElementName=mainWindow}"
+				Text="{Binding Mgr.Test1}"
+				TextWrapping="Wrap"
+				Background="LightSlateGray"
+				/>
+
+		<TextBlock
+				x:Name="textBlock2"
+				Grid.Row="1"
+				Margin="235,5.8,0,0"
+				Width="67"
+				Height="16"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				DataContext="{Binding ElementName=mainWindow}"
+				Text="{Binding Mgr.Sx.Count}"
+				TextWrapping="Wrap"
+				Background="LightSlateGray"
+				/>
+
+
+		<Grid
+				Grid.Row="2"
+				>
+			<Grid.RowDefinitions>
+				<RowDefinition
+						Height="30"
+						/>
+				<RowDefinition
+						Height="*"
+						/>
+				<RowDefinition
+						Height="10"
+						/>
+			</Grid.RowDefinitions>
+
+			<ListBox
+					Name="ListBox3"
+					Grid.RowSpan="3"
+					Margin="41,30,74.6,9.4"
+					d:DataContext="{d:DesignInstance d:Type=local:MainWindow,
+																					 IsDesignTimeCreatable=True}"
+					DataContext="{Binding ElementName=mainWindow}"
+					ItemTemplate="{DynamicResource Dt2}"
+					ItemsSource="{Binding Mgr2.Sm2.Dx, Mode=TwoWay}"
+					>
+				<ListBox.Resources>
+					<DataTemplate
+							x:Key="Dt2"
+							>
+						<Grid
+								HorizontalAlignment="Stretch"
+								Background="DarkGray"
+								>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition
+										Width="130"
+										/>
+								<ColumnDefinition
+										Width="130"
+										/>
+								<ColumnDefinition
+										Width="130"
+										/>
+								<ColumnDefinition
+										Width="130"
+										/>
+								<ColumnDefinition
+										Width="130"
+										/>
+
+							</Grid.ColumnDefinitions>
+
+							<Label
+									Content="{Binding PropertyS}"
+									Grid.Column="0"
+									Padding="0"
+									HorizontalAlignment="Stretch"
+									/>
+							<Label
+									Content="{Binding PropertyD1}"
+									Grid.Column="1"
+									Padding="0"
+									HorizontalAlignment="Stretch"
+									/>
+
+							<Label
+									Content="{Binding PropertyD2}"
+									Grid.Column="2"
+									Padding="0"
+									HorizontalAlignment="Stretch"
+									/>
+
+							<Label
+									Content="{Binding PropertyI1}"
+									Grid.Column="3"
+									Padding="0"
+									HorizontalAlignment="Stretch"
+									/>
+
+							<Label
+									Content="{Binding PropertyI2}"
+									Grid.Column="4"
+									Padding="0"
+									HorizontalAlignment="Stretch"
+									/>
+
+						</Grid>
+					</DataTemplate>
+				</ListBox.Resources>
+			</ListBox>
+
+			<TextBlock
+					x:Name="textBlock31"
+					Margin="105,7,0,0"
+					Width="67"
+					Height="18"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+					d:DataContext="{d:DesignInstance d:Type=local:MainWindow,
+																					 IsDesignTimeCreatable=True}"
+					DataContext="{Binding ElementName=mainWindow}"
+					Text="{Binding Mgr2.Sm2.Test2}"
+					TextWrapping="Wrap"
+					Background="LightSlateGray"
+					/>
+
+			<TextBlock
+					x:Name="textBlock32"
+					Margin="240,7,0,0"
+					Width="67"
+					Height="18"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+					d:DataContext="{d:DesignInstance d:Type=local:MainWindow,
+																					 IsDesignTimeCreatable=True}"
+					DataContext="{Binding ElementName=mainWindow}"
+					Text="{Binding Path=Mgr2.TestDm}"
+					TextWrapping="Wrap"
+					Background="LightSlateGray"
+					/>
+
+			<TextBlock
+					x:Name="textBlock33"
+					Margin="382,7,0,0"
+					Width="67"
+					Height="18"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+					d:DataContext="{d:DesignInstance d:Type=local:MainWindow,
+																					 IsDesignTimeCreatable=True}"
+					DataContext="{Binding ElementName=mainWindow}"
+					Text="{Binding Mgr2.Sm2.Dx.Count}"
+					TextWrapping="Wrap"
+					Background="LightSlateGray"
+					/>
+
+
+		</Grid>
+
+	</Grid>
+</Window>

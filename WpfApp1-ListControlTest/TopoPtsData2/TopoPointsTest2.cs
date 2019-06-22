@@ -33,33 +33,33 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 			tps.Message = "initialized\n";
 		}
-
-		public void CreateData()
-		{
-			x = 12001.0;
-			y = 22001.0;
-			z = 32001.0;
-
-			tps2.Initialize(new TopoStartPoint(new XYZ2(x, y, z)));
-
-			NextPoint(100,10); // 1 (12101.0...)
-			NextPoint(100,10); // 2 (12201.0...)
-			NextPoint(100,10); // 3 (12301.0...)
-			NextPoint(100,10); // 4 (12401.0...)
-			NextPoint(100,10); // 5 (12501.0...)
-			NextPoint(100,10); // 6 (12601.0...)
-
-			tps2.Finalize(new TopoEndPoint(new XYZ2(12801.0, 22801.0, 32801.0)));
-		}
-
-		private void NextPoint(double xy_delta, double z_delta)
-		{
-			x += xy_delta;
-			y += xy_delta;
-			z += z_delta;
-
-			tps2.Add(new XYZ2(x, y, z));
-		}
+//
+//		public void CreateData()
+//		{
+//			x = 12001.0;
+//			y = 22001.0;
+//			z = 32001.0;
+//
+//			tps2.Initialize(new TopoStartPoint(new XYZ2(x, y, z)));
+//
+//			NextPoint(100,10); // 1 (12101.0...)
+//			NextPoint(100,10); // 2 (12201.0...)
+//			NextPoint(100,10); // 3 (12301.0...)
+//			NextPoint(100,10); // 4 (12401.0...)
+//			NextPoint(100,10); // 5 (12501.0...)
+//			NextPoint(100,10); // 6 (12601.0...)
+//
+//			tps2.Finalize(new TopoEndPoint(new XYZ2(12801.0, 22801.0, 32801.0)));
+//		}
+//
+//		private void NextPoint(double xy_delta, double z_delta)
+//		{
+//			x += xy_delta;
+//			y += xy_delta;
+//			z += z_delta;
+//
+//			tps2.Add(new XYZ2(x, y, z));
+//		}
 
 
 		#region > Test All Tests

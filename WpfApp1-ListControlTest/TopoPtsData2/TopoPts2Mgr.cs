@@ -22,14 +22,16 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 	// all of the routines to work with the collection
 	public class TopoPts2Mgr
 	{
-		public TopoPtsConsts TpConsts { get; private set; } = new TopoPtsConsts();
-		public TopoPoints2 Tpts2 { get; set; } = new TopoPoints2();
+		public TopoPtsConsts TpConsts { get; private set; }
+		public TopoPoints2 Tpts2 { get; set; }
 
-		private TopoPts2MgrSupport TptSupport = new TopoPts2MgrSupport();
+		public TopoPts2MgrSupport TptSupport = new TopoPts2MgrSupport();
 
 		public TopoPts2Mgr()
 		{
 			TpConsts = new TopoPtsConsts();
+
+			Tpts2 = new TopoPoints2();
 			
 			TptSupport.LoadDesignData(Tpts2);
 
