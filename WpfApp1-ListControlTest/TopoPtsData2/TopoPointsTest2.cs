@@ -3,6 +3,7 @@
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Text;
+using WpfApp1_ListControlTest.TopoPtsData2.Support;
 
 #endregion
 
@@ -158,6 +159,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			tps2.Append = "\n*** run test: change X of [1] ***\n\n";
 
 			tps2[1].X = 11101.0 + a;
+
 
 			a += 10;
 		}

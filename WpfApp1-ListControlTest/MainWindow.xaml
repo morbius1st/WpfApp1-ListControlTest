@@ -1371,57 +1371,58 @@
 								</Grid.RowDefinitions>
 
 
-								<!-- this area may contain controls							
-								that apply to the whole row
-								I remove this as I changed my mind
-								and I don't want to provide
-								apply / undo for the row
-								
-								
-								 <Grid
-								 		Grid.Row="0"
-								 		Grid.Column="0"
-								 		HorizontalAlignment="Stretch"
-								 		VerticalAlignment="Stretch"
-								 		RowSpan="2"
-								 		>
-								 	<Grid.RowDefinitions>
-								 		<RowDefinition
-								 				Height="*"
-								 				/>
-								 		<RowDefinition
-								 				Height="*"
-								 				/>
-								 		<RowDefinition
-								 				Height="*"
-								 				/>
-								 	</Grid.RowDefinitions>
-								 	<Button
-								 			x:Name="lb3BtnApply"
-								 			Content="Apply/Update"
-								 			Grid.Row="0"
-								 			Grid.Column="0"
-								 			d:DataContext="{d:DesignInstance Type=local:MainWindow,
-								 																			 IsDesignTimeCreatable=True}"
-								 			IsDefault="True"
-								 			IsEnabled="{Binding HasRevision}"
-								 			Click="Lb3BtnApply_Click"
-								 			Style="{StaticResource Lb3ApplyUndoForRowBtn}"
-								 			/>
-								
-								 	<Button
-								 			x:Name="lb3BtnUndo"
-								 			Content="Undo/Cancel"
-								 			Grid.Row="1"
-								 			Grid.Column="0"
-								 			d:DataContext="{d:DesignInstance Type=local:MainWindow,
-								 																			 IsDesignTimeCreatable=True}"
-								 			IsEnabled="{Binding HasRevision}"
-								 			Click="Lb3BtnUndo_Click"
-								 			Style="{StaticResource Lb3ApplyUndoForRowBtn}"
-								 			/>
-								 </Grid>
+								<!--
+									this area may contain controls
+									that apply to the whole row
+									I remove this as I changed my mind
+									and I don't want to provide
+									apply / undo for the row
 								-->
+
+								<!--  <Grid  -->
+								<!--  Grid.Row="0"  -->
+								<!--  Grid.Column="0"  -->
+								<!--  HorizontalAlignment="Stretch"  -->
+								<!--  VerticalAlignment="Stretch"  -->
+								<!--  RowSpan="2"  -->
+								<!--  >  -->
+								<!--								 	<Grid.RowDefinitions> -->
+								<!--  <RowDefinition  -->
+								<!--  Height="*"  -->
+								<!--  />  -->
+								<!--  <RowDefinition  -->
+								<!--  Height="*"  -->
+								<!--  />  -->
+								<!--  <RowDefinition  -->
+								<!--  Height="*"  -->
+								<!--  />  -->
+								<!--								 	</Grid.RowDefinitions> -->
+								<!--  <Button  -->
+								<!--  x:Name="lb3BtnApply"  -->
+								<!--  Content="Apply/Update"  -->
+								<!--  Grid.Row="0"  -->
+								<!--  Grid.Column="0"  -->
+								<!--  d:DataContext="{d:DesignInstance Type=local:MainWindow,  -->
+								<!--  IsDesignTimeCreatable=True}"  -->
+								<!--  IsDefault="True"  -->
+								<!--  IsEnabled="{Binding HasRevision}"  -->
+								<!--  Click="Lb3BtnApply_Click"  -->
+								<!--  Style="{StaticResource Lb3ApplyUndoForRowBtn}"  -->
+								<!--  />  -->
+								<!--    -->
+								<!--  <Button  -->
+								<!--  x:Name="lb3BtnUndo"  -->
+								<!--  Content="Undo/Cancel"  -->
+								<!--  Grid.Row="1"  -->
+								<!--  Grid.Column="0"  -->
+								<!--  d:DataContext="{d:DesignInstance Type=local:MainWindow,  -->
+								<!--  IsDesignTimeCreatable=True}"  -->
+								<!--  IsEnabled="{Binding HasRevision}"  -->
+								<!--  Click="Lb3BtnUndo_Click"  -->
+								<!--  Style="{StaticResource Lb3ApplyUndoForRowBtn}"  -->
+								<!--  />  -->
+								<!--								 </Grid> -->
+
 
 								<!--#region > point values-->
 

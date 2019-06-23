@@ -12,6 +12,7 @@ using WpfApp1_ListControlTest.MultiLineLB;
 using WpfApp1_ListControlTest.TopoPts;
 using WpfApp1_ListControlTest.TopoPtsData;
 using WpfApp1_ListControlTest.TopoPtsData2;
+using WpfApp1_ListControlTest.TopoPtsData2.Support;
 using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResources;
 
 namespace WpfApp1_ListControlTest
@@ -134,39 +135,14 @@ namespace WpfApp1_ListControlTest
 //			}
 		}
 
-		private void Lb3BtnApply_Click(object sender, RoutedEventArgs e)
-		{
-			ClickInfo(sender, e, "Apply");
-		}
-
-		private void Lb3BtnUndo_Click(object sender, RoutedEventArgs e)
-		{
-			ClickInfo(sender, e, "Undo");
-		}
-
-		private void Lb3BtnApplyX_Click(object sender, RoutedEventArgs e)
-		{
-			ClickInfo(sender, e, "ApplyX");
-		}
-
 		private void Lb3BtnUndoX_Click(object sender, RoutedEventArgs e)
 		{
 			ClickInfo(sender, e, "UndoX");
 		}
 
-		private void Lb3BtnApplyY_Click(object sender, RoutedEventArgs e)
-		{
-			ClickInfo(sender, e, "ApplyY");
-		}
-
 		private void Lb3BtnUndoY_Click(object sender, RoutedEventArgs e)
 		{
 			ClickInfo(sender, e, "UndoY");
-		}
-
-		private void Lb3BtnApplyZ_Click(object sender, RoutedEventArgs e)
-		{
-			ClickInfo(sender, e, "ApplyZ");
 		}
 
 		private void Lb3BtnUndoZ_Click(object sender, RoutedEventArgs e)
@@ -194,12 +170,6 @@ namespace WpfApp1_ListControlTest
 		{
 			MainWindow.Lb3 = (ListBox) sender;
 		}
-
-
-
-
-
-
 
 	#region > control buttons
 

@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using WpfApp1_ListControlTest.TopoPts.Support;
 
-namespace WpfApp1_ListControlTest.TopoPtsData2
+namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 {
 	public class XYZ2 : IEquatable<XYZ2>, INotifyPropertyChanged, ICloneable
 	{
@@ -173,7 +173,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			if (e.PropertyName.Equals(XYZChange))
 			{
 				OnPropertyChange("IsRevisedX");
-//				OnPropertyChange("HasRevision");
 			}
 			else
 			{
@@ -189,7 +188,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			if (e.PropertyName.Equals(XYZChange))
 			{
 				OnPropertyChange("IsRevisedY");
-//				OnPropertyChange("HasRevision");
 			}
 			else
 			{
@@ -205,7 +203,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			if (e.PropertyName.Equals(XYZChange))
 			{
 				OnPropertyChange("IsRevisedZ");
-//				OnPropertyChange("HasRevision");
 			}
 			else
 			{
@@ -242,13 +239,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		{
 			// the value of this number
 			private double value;
-
-			// the number used to show in the UI
-			// this will typically match value
-			// however, when being edited, this
-			// holds the proposed number waiting
-			// to be applied
-			private double displayValue;
 
 			// this is the original number saved
 			// so that we can preform an undo
@@ -322,6 +312,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 				if (IsRevised)
 				{
 					Value = UndoValue;
+					UndoValue = double.NaN;
 					IsRevised = false;
 				}
 			}
@@ -350,7 +341,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 				Coordinate clone = new Coordinate();
 
 				clone.value = value;
-				clone.displayValue = displayValue;
 				clone.undoValue = undoValue;
 				clone.isRevised = isRevised;
 				clone.value = value;
