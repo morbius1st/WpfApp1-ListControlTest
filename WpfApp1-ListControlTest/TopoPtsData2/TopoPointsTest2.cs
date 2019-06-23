@@ -86,6 +86,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //			return $"{dx:F4}, {dy:F4}, {dz:F4}";
 //		}
 
+		public void BtnDebugMarker_Click()
+		{
+			tps2.Append = "\n\n*** Debug Marker ***\n\n";
+		}
 
 		public void BtnBatchAdjustZByAmount_Click()
 		{
@@ -164,10 +168,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			a += 10;
 		}
 
-		public void BtnDebugMarker_Click()
-		{
-			tps2.Append = "\n\n*** Debug Marker ***\n\n";
-		}
 
 
 

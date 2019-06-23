@@ -125,8 +125,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			{
 				if (!value.Equals(point))
 				{
-//					originalPointValue = point;
-
 					OnPropertyChange("XYZstart");
 
 					if (!Double.IsNaN(value.X))
@@ -152,7 +150,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			}
 		}
 
-
 		// XYZ2 values can be set individually
 		// however, since there is no prior point
 		// cannot re-calculate values
@@ -164,10 +161,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			{
 				if (!value.Equals(point.X))
 				{
-//					Debug.WriteLine("     | @ TopoPoint2| @ pre-assign orig point value" + "\n");
-//					originalPointValue = point;
-//					Debug.WriteLine("     | @ TopoPoint2| @ post-assign orig point value" + "\n");
-
 					Debug.WriteLine("     | @ TopoPoint2| @ pre-change X" + "\n");
 					point.X = value;
 					Debug.WriteLine("     | @ TopoPoint2| @ post-change X" + "\n");
@@ -186,8 +179,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			{
 				if (!value.Equals(point.Y))
 				{
-//					originalPointValue = point;
-
 					point.Y = value;
 
 					checkForNaN(value, (UInt32) BitFlag.Yflag);
@@ -204,8 +195,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			{
 				if (!value.Equals(point.Z))
 				{
-//					originalPointValue = point;
-
 					point.Z = value;
 
 					checkForNaN(value, (UInt32) BitFlag.Zflag);
@@ -227,12 +216,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 				index = value;
 				OnPropertyChange();
 			}
-		}
-
-		public bool HasRevision
-		{
-			get => point.IsRevised;
-			set => OnPropertyChange();
 		}
 
 		public bool IsBeingEdited
@@ -342,7 +325,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		// update all of the computed values for this point
 		// the XYZ2 values have been updated before this
 		// adjusted to minimize property change events
-		public void Update(int index, TopoPoint2 precedingPoint)
+		public void Update(int index, TopoPoint2 precedingPoint, bool ignoreUndo)
 		{
 			Debug.WriteLine("     | @ TopoPoint2| @ update|"
 				+ " index| " + index + "\n");
@@ -362,13 +345,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			if (Index != index) Index = index;
 
 			//update X + XΔ  
-			bool result1 = UpdateX(precedingPoint.X);
+			bool result1 = UpdateX(precedingPoint.X, ignoreUndo);
 
 			//update Y + YΔ
-			bool result2 = UpdateY(precedingPoint.Y);
+			bool result2 = UpdateY(precedingPoint.Y, ignoreUndo);
 
 			//update Z + ZΔ
-			UpdateZ(precedingPoint.Z);
+			UpdateZ(precedingPoint.Z, ignoreUndo);
 
 			// XYZ2 updated, XΔ, YΔ, ZΔ updated
 			// need to update XYΔ?
@@ -392,10 +375,11 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		// update values based on the current
 		// XYZ2 values and the prior point
 		// and the prior point
-		private bool UpdateX(double preceding)
+		private bool UpdateX(double preceding, bool ignoreUndo)
 		{
+			point.IgnoreUndo = ignoreUndo;
+
 			if (point.X.Equals(preceding)) return false;
-//			if (point.X.Equals(originalPointValue.X)) return false;
 
 			StatusFlagSet(BitFlag.Xflag);
 			UpdateXΔ(preceding);
@@ -403,10 +387,11 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			return true;
 		}
 
-		private bool UpdateY(double preceding)
+		private bool UpdateY(double preceding, bool ignoreUndo)
 		{
+			point.IgnoreUndo = ignoreUndo;
+
 			if (point.Y.Equals(preceding)) return false;
-//			if (point.Y.Equals(originalPointValue.Y)) return false;
 
 			StatusFlagSet(BitFlag.Yflag);
 			UpdateYΔ(preceding);
@@ -414,10 +399,11 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			return true;
 		}
 
-		private bool UpdateZ(double preceding)
+		private bool UpdateZ(double preceding, bool ignoreUndo)
 		{
+			point.IgnoreUndo = ignoreUndo;
+
 			if (point.Z.Equals(preceding)) return false;
-//			if (point.Z.Equals(originalPointValue.Z)) return false;
 
 			StatusFlagSet(BitFlag.Zflag);
 			UpdateZΔ(preceding);

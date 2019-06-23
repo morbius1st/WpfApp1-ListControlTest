@@ -383,11 +383,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 				+ "\n\n"
 				;
 
-
+			bool ignoreUndo = false;
 
 			for (i = start; i < j; i++)
 			{
-				UpdateItem(i, i - 1);
+				UpdateItem(i, i - 1, ignoreUndo);
+
+				ignoreUndo = true;
 			}
 
 			for (; i < Items.Count; i++)
@@ -410,14 +412,14 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 				;
 		}
 
-		private void UpdateItem(int j, int i)
+		private void UpdateItem(int j, int i, bool ignoreUndo)
 		{
 			if (j > EndIdx || i < 0)
 			{
 				return;
 			}
 
-			Items[j].Update(j, Items[i]);
+			Items[j].Update(j, Items[i], ignoreUndo);
 		}
 
 	#if DEBUG

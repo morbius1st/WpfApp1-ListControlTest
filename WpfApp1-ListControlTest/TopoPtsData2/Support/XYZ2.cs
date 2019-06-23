@@ -20,6 +20,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 		private const string XYZChange = "xyz";
 		private const string UndoChange = "undo";
 
+		public bool IgnoreUndo { private get; set; }
+
 		public XYZ2(double x = Double.NaN, double y = Double.NaN, double z = Double.NaN)
 		{
 			this.x.PropertyChanged += CoordinateChangedX;
@@ -42,7 +44,15 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 				if (Double.IsNaN(value)
 					|| value.Equals(x.Value)) return;
 
-				x.Value = value;
+				if (IgnoreUndo)
+				{
+					x.ValueNoUndo = value;
+					IgnoreUndo = false;
+				}
+				else
+				{
+					x.Value = value;
+				}
 			}
 		}
 
@@ -54,7 +64,15 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 				if (Double.IsNaN(value)
 					|| value.Equals(y.Value)) return;
 
-				y.Value = value;
+				if (IgnoreUndo)
+				{
+					y.ValueNoUndo = value;
+					IgnoreUndo = false;
+				}
+				else
+				{
+					y.Value = value;
+				}
 			}
 		}
 
@@ -66,7 +84,15 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 				if (Double.IsNaN(value)
 					|| value.Equals(z.Value)) return;
 
-				z.Value = value;
+				if (IgnoreUndo)
+				{
+					z.ValueNoUndo = value;
+					IgnoreUndo = false;
+				}
+				else
+				{
+					z.Value = value;
+				}
 			}
 		}
 
@@ -97,8 +123,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 			}
 			else
 			{
-//				Coordinate c = null;
-
 				switch (which)
 				{
 				case TopoPtsConsts.xTag:
@@ -269,6 +293,25 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 					IsRevised = true;
 				}
 			}
+
+
+			// change the value of this coordinate but do not
+			// process for undo - that is
+			// do not save an undo value and
+			// do not flag IsRevised
+			public double ValueNoUndo
+			{
+				set
+				{
+					// do nothing if no change
+					if (this.value.Equals(value)) return;
+
+					this.value = value;
+
+					OnPropertyChange(XYZChange);
+				}
+			}
+
 
 			// update the value of this coordinate
 			// note that this only has (1) undo level
