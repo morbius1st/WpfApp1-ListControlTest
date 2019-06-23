@@ -90,8 +90,7 @@ namespace WpfApp1_ListControlTest
 
 			bool d = TopoMgr.Tpts2[0].XYZ.IsRevised;
 
-			bool e = TopoMgr.Tpts2[0].XYZ.HasUndoX;
-			bool f = TopoMgr.Tpts2[0].XYZ.HasValueX;
+			bool e = TopoMgr.Tpts2[0].XYZ.IsRevisedX;
 			double x = TopoMgr.Tpts2[0].XYZ.UndoValueX;
 			double y = TopoMgr.Tpts2[0].XYZ.UndoValueY;
 			double z = TopoMgr.Tpts2[0].XYZ.UndoValueZ;

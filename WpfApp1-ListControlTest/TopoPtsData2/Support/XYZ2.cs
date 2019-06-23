@@ -11,7 +11,7 @@ using WpfApp1_ListControlTest.TopoPts.Support;
 
 namespace WpfApp1_ListControlTest.TopoPtsData2
 {
-	public class XYZ2 : IEquatable<XYZ2>, INotifyPropertyChanged
+	public class XYZ2 : IEquatable<XYZ2>, INotifyPropertyChanged, ICloneable
 	{
 		private Coordinate x = new Coordinate();
 		private Coordinate y = new Coordinate();
@@ -74,18 +74,14 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		public double UndoValueY => y.UndoValue;
 		public double UndoValueZ => z.UndoValue;
 
-		public bool HasUndoX => x.HasUndo;
-		public bool HasUndoY => y.HasUndo;
-		public bool HasUndoZ => z.HasUndo;
-		
-		public bool HasValueX => x.HasValue;
-		public bool HasValueY => y.HasValue;
-		public bool HasValueZ => z.HasValue;
+		public bool IsRevisedX => x.IsRevised;
+		public bool IsRevisedY => y.IsRevised;
+		public bool IsRevisedZ => z.IsRevised;
 
 		public bool IsValid => !Double.IsNaN(X) &&
 			!Double.IsNaN(Y) && !Double.IsNaN(Z);
 
-		public bool IsRevised => HasUndoX || HasUndoY || HasUndoZ;
+		public bool IsRevised => IsRevisedX || IsRevisedY || IsRevisedZ;
 
 	#endregion
 
@@ -146,6 +142,17 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 				Z.ToString("F4"));
 		}
 
+		public object Clone()
+		{
+			XYZ2 clone = new XYZ2();
+
+			clone.x = x.Clone() as Coordinate;
+			clone.y = y.Clone() as Coordinate;
+			clone.z = z.Clone() as Coordinate;
+
+			return clone;
+		}
+
 	#endregion
 
 	#region > event handlers
@@ -165,7 +172,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 			if (e.PropertyName.Equals(XYZChange))
 			{
-				OnPropertyChange("HasUndoX");
+				OnPropertyChange("IsRevisedX");
 				OnPropertyChange("HasRevision");
 			}
 			else
@@ -181,7 +188,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		#endif
 			if (e.PropertyName.Equals(XYZChange))
 			{
-				OnPropertyChange("HasUndoY");
+				OnPropertyChange("IsRevisedY");
 				OnPropertyChange("HasRevision");
 			}
 			else
@@ -197,7 +204,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		#endif
 			if (e.PropertyName.Equals(XYZChange))
 			{
-				OnPropertyChange("HasUndoZ");
+				OnPropertyChange("IsRevisedZ");
 				OnPropertyChange("HasRevision");
 			}
 			else
@@ -224,34 +231,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(memberName));
 		}
 
-
-		public event PropertyChangedEventHandler PropertyChangedX;
-
-		private void OnPropertyChangeX([CallerMemberName] string memberName = "")
-		{
-			PropChangedMessage("X", memberName);
-
-			PropertyChangedX?.Invoke(this, new PropertyChangedEventArgs(memberName));
-		}
-
-		public event PropertyChangedEventHandler PropertyChangedY;
-
-		private void OnPropertyChangeY([CallerMemberName] string memberName = "")
-		{
-			PropChangedMessage("Y", memberName);
-
-			PropertyChangedY?.Invoke(this, new PropertyChangedEventArgs(memberName));
-		}
-
-		public event PropertyChangedEventHandler PropertyChangedZ;
-
-		private void OnPropertyChangeZ([CallerMemberName] string memberName = "")
-		{
-			PropChangedMessage("Z", memberName);
-
-			PropertyChangedZ?.Invoke(this, new PropertyChangedEventArgs(memberName));
-		}
-
 	#endregion
 
 	#region > coordinate
@@ -259,31 +238,47 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		// an X or Y or Z value 
 		// along with a backup value
 		// to allow undo
-		public class Coordinate : INotifyPropertyChanged
+		public class Coordinate : INotifyPropertyChanged, ICloneable
 		{
+			// the value of this number
 			private double value;
+
+			// the number used to show in the UI
+			// this will typically match value
+			// however, when being edited, this
+			// holds the proposed number waiting
+			// to be applied
 			private double displayValue;
+
+			// this is the original number saved
+			// so that we can preform an undo
 			private double undoValue;
-			private bool hasValue;
-			private bool hasUndo;
+
+			// indicates that this Coordinate has 
+			// an undo value
+			private bool isRevised;
 
 			public Coordinate()
 			{
 				value = Double.NaN;
 				UndoValue = Double.NaN;
-				hasUndo = false;
-				hasValue = false;
+				isRevised = false;
 			}
 
 			public double UndoValue
 			{
 				get => undoValue;
-				set
+				private set
 				{
 					if (value.Equals(undoValue)) return;
+
 					undoValue = value;
 
 					OnPropertyChange(UndoChange);
+
+					IsRevised = true;
+
+
 				}
 			}
 
@@ -303,20 +298,21 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 					// if true, save current value as
 					// the undo value and set
 					// both flags true
-					if (HasValue)
+					if (!double.IsNaN(value))
 					{
 						UndoValue = this.value;
+
 						this.value = value;
-						HasValue = true;
-						HasUndo = true;
+
 					}
 					// no value previously set (first time set)
-					// copy values, setflags
 					else
 					{
 						this.value = value;
-						HasValue = true;
-						HasUndo = false;
+
+						// use internal value to prevent 
+						// an extra event
+						isRevised = false;
 					}
 
 					OnPropertyChange(XYZChange);
@@ -325,43 +321,43 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 			public void Undo()
 			{
-				if (HasUndo)
+				if (IsRevised)
 				{
 					Value = UndoValue;
-					HasValue = true;
-					HasUndo = false;
+					IsRevised = false;
 				}
 			}
 
-			public bool HasValue
+			public bool IsRevised
 			{
-				get => hasValue;
-				private set
-				{
-					// don't flag no status change events
-					if (value == hasValue) return;
-
-					hasValue = value;
-				}
-			}
-
-			public bool HasUndo
-			{
-				get => hasUndo;
+				get => isRevised;
 				private set
 				{
 					// don't flag no change events
-//					if (hasUndo == value) return;
+					if (isRevised == value) return;
 
-					hasUndo = value;
+					isRevised = value;
 
-//					OnPropertyChange();
+					OnPropertyChange();
 				}
 			}
 
 			public override string ToString()
 			{
 				return value.ToString("F4");
+			}
+
+			public object Clone()
+			{
+				Coordinate clone = new Coordinate();
+
+				clone.value = value;
+				clone.displayValue = displayValue;
+				clone.undoValue = undoValue;
+				clone.isRevised = isRevised;
+				clone.value = value;
+
+				return clone;
 			}
 
 			public event PropertyChangedEventHandler PropertyChanged;

@@ -773,7 +773,7 @@
 	<!--  Content="Apply"  -->
 	<!--  FontSize="8"  -->
 	<!--  Margin="1"  -->
-	<!--  IsEnabled="{Binding XYZ.HasUndoX}" Click="Lb3BtnApplyX_Click"  -->
+	<!--  IsEnabled="{Binding XYZ.IsRevisedX}" Click="Lb3BtnApplyX_Click"  -->
 	<!--  />  -->
 	<!--    -->
 	<!--  <Button x:Name="lb3BtnUndoX" Grid.Row="0"  -->
@@ -781,7 +781,7 @@
 	<!--  Content="Undo"  -->
 	<!--  FontSize="8"  -->
 	<!--  Margin="1"  -->
-	<!--  IsEnabled="{Binding XYZ.HasUndoX}" Click="Lb3BtnUndoX_Click"  -->
+	<!--  IsEnabled="{Binding XYZ.IsRevisedX}" Click="Lb3BtnUndoX_Click"  -->
 	<!--  />  -->
 	<!--    -->
 	<!--  <Border  -->
@@ -862,7 +862,7 @@
 	<!--  BorderBrush="DimGray"  -->
 	<!--  >  -->
 	<!--  <TextBlock  -->
-	<!--  Text="{Binding XYZ.HasUndoX}"  -->
+	<!--  Text="{Binding XYZ.IsRevisedX}"  -->
 	<!--  TextAlignment="Center"  -->
 	<!--  Background="{StaticResource Normal.Inactive.Background}"  -->
 	<!--  />  -->
@@ -925,7 +925,7 @@
 	<!--  Content="Apply"  -->
 	<!--  FontSize="8"  -->
 	<!--  Margin="1"  -->
-	<!--  IsEnabled="{Binding XYZ.HasUndoY}"  -->
+	<!--  IsEnabled="{Binding XYZ.IsRevisedY}"  -->
 	<!--  Click="Lb3BtnApplyY_Click" />  -->
 	<!--    -->
 	<!--  <Button x:Name="lb3BtnUndoY"  -->
@@ -934,7 +934,7 @@
 	<!--  Content="Undo"  -->
 	<!--  FontSize="8"  -->
 	<!--  Margin="1"  -->
-	<!--  IsEnabled="{Binding XYZ.HasUndoY}"  -->
+	<!--  IsEnabled="{Binding XYZ.IsRevisedY}"  -->
 	<!--  Click="Lb3BtnUndoY_Click" />  -->
 	<!--    -->
 	<!--    -->
@@ -1014,7 +1014,7 @@
 	<!--  BorderBrush="DimGray"  -->
 	<!--  >  -->
 	<!--  <TextBlock  -->
-	<!--  Text="{Binding XYZ.HasUndoY}"  -->
+	<!--  Text="{Binding XYZ.IsRevisedY}"  -->
 	<!--  TextAlignment="Center"  -->
 	<!--  Background="{StaticResource Normal.Inactive.Background}"  -->
 	<!--  />  -->
@@ -1073,7 +1073,7 @@
 	<!--  Content="Apply"  -->
 	<!--  FontSize="8"  -->
 	<!--  Margin="1"  -->
-	<!--  IsEnabled="{Binding XYZ.HasUndoZ}"  -->
+	<!--  IsEnabled="{Binding XYZ.IsRevisedZ}"  -->
 	<!--  Click="Lb3BtnApplyZ_Click" />  -->
 	<!--    -->
 	<!--  <Button x:Name="lb3BtnUndoZ"  -->
@@ -1082,7 +1082,7 @@
 	<!--  Content="Undo"  -->
 	<!--  FontSize="8"  -->
 	<!--  Margin="1"  -->
-	<!--  IsEnabled="{Binding XYZ.HasUndoZ}"  -->
+	<!--  IsEnabled="{Binding XYZ.IsRevisedZ}"  -->
 	<!--  Click="Lb3BtnUndoZ_Click" />  -->
 	<!--    -->
 	<!--  <Border  -->
@@ -1164,7 +1164,7 @@
 	<!--  BorderBrush="DimGray"  -->
 	<!--  >  -->
 	<!--  <TextBlock  -->
-	<!--  Text="{Binding XYZ.HasUndoZ}"  -->
+	<!--  Text="{Binding XYZ.IsRevisedZ}"  -->
 	<!--  TextAlignment="Center"  -->
 	<!--  Background="{StaticResource Normal.Inactive.Background}"  -->
 	<!--  />  -->
