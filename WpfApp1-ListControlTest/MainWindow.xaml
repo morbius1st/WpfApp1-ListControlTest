@@ -935,6 +935,123 @@
 					</Style>
 
 					<Style
+							x:Key="Lb3ApplyUndoForCellBtnX"
+							TargetType="Button"
+							BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
+							>
+						<Style.Triggers>
+							<DataTrigger
+									Binding="{Binding XYZ.IsRevisedX}"
+									Value="False"
+									>
+								<Setter Property="IsEnabled" Value="False" />
+							</DataTrigger>
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding IsBeingEdited}" Value="True" />
+									<Condition Binding="{Binding XYZ.IsRevisedX}" Value="True" />
+								</MultiDataTrigger.Conditions>
+								<MultiDataTrigger.Setters>
+									<Setter Property="IsEnabled" Value="True" />
+								</MultiDataTrigger.Setters>
+							</MultiDataTrigger>
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding IsBeingEdited}" Value="False" />
+									<Condition Binding="{Binding XYZ.IsRevisedX}" Value="True" />
+								</MultiDataTrigger.Conditions>
+								<MultiDataTrigger.Setters>
+									<Setter Property="IsEnabled" Value="False" />
+								</MultiDataTrigger.Setters>
+							</MultiDataTrigger>
+							<DataTrigger
+									Binding="{Binding IsBeingEdited}"
+									Value="False"
+									>
+								<Setter Property="IsEnabled" Value="False" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+
+					<Style
+							x:Key="Lb3ApplyUndoForCellBtnY"
+							TargetType="Button"
+							BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
+							>
+						<Style.Triggers>
+							<DataTrigger
+									Binding="{Binding XYZ.IsRevisedY}"
+									Value="False"
+									>
+								<Setter Property="IsEnabled" Value="False" />
+							</DataTrigger>
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding IsBeingEdited}" Value="True" />
+									<Condition Binding="{Binding XYZ.IsRevisedY}" Value="True" />
+								</MultiDataTrigger.Conditions>
+								<MultiDataTrigger.Setters>
+									<Setter Property="IsEnabled" Value="True" />
+								</MultiDataTrigger.Setters>
+							</MultiDataTrigger>
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding IsBeingEdited}" Value="False" />
+									<Condition Binding="{Binding XYZ.IsRevisedY}" Value="True" />
+								</MultiDataTrigger.Conditions>
+								<MultiDataTrigger.Setters>
+									<Setter Property="IsEnabled" Value="False" />
+								</MultiDataTrigger.Setters>
+							</MultiDataTrigger>
+							<DataTrigger
+									Binding="{Binding IsBeingEdited}"
+									Value="False"
+									>
+								<Setter Property="IsEnabled" Value="False" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+
+					<Style
+							x:Key="Lb3ApplyUndoForCellBtnZ"
+							TargetType="Button"
+							BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
+							>
+						<Style.Triggers>
+							<DataTrigger
+									Binding="{Binding XYZ.IsRevisedZ}"
+									Value="False"
+									>
+								<Setter Property="IsEnabled" Value="False" />
+							</DataTrigger>
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding IsBeingEdited}" Value="True" />
+									<Condition Binding="{Binding XYZ.IsRevisedZ}" Value="True" />
+								</MultiDataTrigger.Conditions>
+								<MultiDataTrigger.Setters>
+									<Setter Property="IsEnabled" Value="True" />
+								</MultiDataTrigger.Setters>
+							</MultiDataTrigger>
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding IsBeingEdited}" Value="False" />
+									<Condition Binding="{Binding XYZ.IsRevisedZ}" Value="True" />
+								</MultiDataTrigger.Conditions>
+								<MultiDataTrigger.Setters>
+									<Setter Property="IsEnabled" Value="False" />
+								</MultiDataTrigger.Setters>
+							</MultiDataTrigger>
+							<DataTrigger
+									Binding="{Binding IsBeingEdited}"
+									Value="False"
+									>
+								<Setter Property="IsEnabled" Value="False" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+
+					<Style
 							x:Key="CellTxBox"
 							TargetType="{x:Type TextBox}"
 							>
@@ -972,6 +1089,40 @@
 						<Style.Triggers>
 							<DataTrigger
 									Binding="{Binding XYZ.IsRevisedX}"
+									Value="True"
+									>
+								<Setter Property="FontWeight" Value="Bold" />
+								<Setter Property="Foreground" Value="{StaticResource Normal.Modified.Foreground}" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+
+
+					<Style
+							x:Key="CellTxBoxY"
+							TargetType="TextBox"
+							BasedOn="{StaticResource CellTxBox}"
+							>
+						<Style.Triggers>
+							<DataTrigger
+									Binding="{Binding XYZ.IsRevisedY}"
+									Value="True"
+									>
+								<Setter Property="FontWeight" Value="Bold" />
+								<Setter Property="Foreground" Value="{StaticResource Normal.Modified.Foreground}" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+
+
+					<Style
+							x:Key="CellTxBoxZ"
+							TargetType="TextBox"
+							BasedOn="{StaticResource CellTxBox}"
+							>
+						<Style.Triggers>
+							<DataTrigger
+									Binding="{Binding XYZ.IsRevisedZ}"
 									Value="True"
 									>
 								<Setter Property="FontWeight" Value="Bold" />
@@ -1311,7 +1462,7 @@
 											Name="tbx"
 											Tag="{Binding TopoMgr.TpConsts.Ytag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
 											Text="{Binding Y, Converter={StaticResource Converter.Xyz}}"
-											Style="{StaticResource CellTxBox}"
+											Style="{StaticResource CellTxBoxY}"
 											/>
 								</Border>
 								<Border
@@ -1322,7 +1473,7 @@
 									<TextBox
 											Tag="{Binding TopoMgr.TpConsts.Ztag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
 											Text="{Binding Z, Converter={StaticResource Converter.Xyz}}"
-											Style="{StaticResource CellTxBox}"
+											Style="{StaticResource CellTxBoxZ}"
 											/>
 								</Border>
 								<Border
@@ -1399,7 +1550,7 @@
 												Width="*"
 												/>
 										<ColumnDefinition
-												Width="*"
+												Width="0"
 												/>
 									</Grid.ColumnDefinitions>
 									<Grid.RowDefinitions>
@@ -1423,19 +1574,19 @@
 												Style="{StaticResource lblSubValueHdr}"
 												/>
 									</Border>
-
-									<Border
-											Grid.Row="0"
-											Grid.Column="1"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="has revision"
-												FontSize="7"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
-									</Border>
+									<!--    -->
+									<!--  <Border  -->
+									<!--  Grid.Row="0"  -->
+									<!--  Grid.Column="1"  -->
+									<!--  BorderThickness="0,0,1,0"  -->
+									<!--  BorderBrush="DimGray"  -->
+									<!--  >  -->
+									<!--  <Label  -->
+									<!--  Content="has revision"  -->
+									<!--  FontSize="7"  -->
+									<!--  Style="{StaticResource lblSubValueHdr}"  -->
+									<!--  />  -->
+									<!-- </Border> -->
 
 
 									<Border
@@ -1453,22 +1604,22 @@
 												Background="{StaticResource Normal.Inactive.Background}"
 												/>
 									</Border>
-
-									<Border
-											Grid.Row="1"
-											Grid.Column="1"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<TextBlock
-												HorizontalAlignment="Stretch"
-												VerticalAlignment="Stretch"
-												FontSize="10"
-												Text="{Binding HasRevision}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
-									</Border>
+									<!--    -->
+									<!--  <Border  -->
+									<!--  Grid.Row="1"  -->
+									<!--  Grid.Column="1"  -->
+									<!--  BorderThickness="0,0,1,0"  -->
+									<!--  BorderBrush="DimGray"  -->
+									<!--  >  -->
+									<!--  <TextBlock  -->
+									<!--  HorizontalAlignment="Stretch"  -->
+									<!--  VerticalAlignment="Stretch"  -->
+									<!--  FontSize="10"  -->
+									<!--  Text="{Binding HasRevision}"  -->
+									<!--  TextAlignment="Center"  -->
+									<!--  Background="{StaticResource Normal.Inactive.Background}"  -->
+									<!--  />  -->
+									<!-- </Border> -->
 
 								</Grid>
 								<!--#endregion-->
@@ -1528,10 +1679,10 @@
 											Grid.Column="1"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
-											IsEnabled="{Binding XYZ.IsRevisedX}"
 											Click="Lb3BtnUndoX_Click"
-											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
+											Style="{StaticResource Lb3ApplyUndoForCellBtnX}"
 											/>
+									<!--  IsEnabled="{Binding XYZ.IsRevisedX}"  -->
 
 									<Border
 											Grid.Row="0"
@@ -1693,9 +1844,8 @@
 											Grid.Column="1"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
-											IsEnabled="{Binding XYZ.IsRevisedY}"
 											Click="Lb3BtnUndoY_Click"
-											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
+											Style="{StaticResource Lb3ApplyUndoForCellBtnY}"
 											/>
 
 
@@ -1856,9 +2006,8 @@
 											Grid.Column="1"
 											d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																											 IsDesignTimeCreatable=True}"
-											IsEnabled="{Binding XYZ.IsRevisedZ}"
 											Click="Lb3BtnUndoZ_Click"
-											Style="{StaticResource Lb3ApplyUndoForCellBtn}"
+											Style="{StaticResource Lb3ApplyUndoForCellBtnZ}"
 											/>
 
 									<Border

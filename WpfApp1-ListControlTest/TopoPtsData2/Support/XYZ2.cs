@@ -173,7 +173,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			if (e.PropertyName.Equals(XYZChange))
 			{
 				OnPropertyChange("IsRevisedX");
-				OnPropertyChange("HasRevision");
+//				OnPropertyChange("HasRevision");
 			}
 			else
 			{
@@ -189,7 +189,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			if (e.PropertyName.Equals(XYZChange))
 			{
 				OnPropertyChange("IsRevisedY");
-				OnPropertyChange("HasRevision");
+//				OnPropertyChange("HasRevision");
 			}
 			else
 			{
@@ -205,7 +205,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			if (e.PropertyName.Equals(XYZChange))
 			{
 				OnPropertyChange("IsRevisedZ");
-				OnPropertyChange("HasRevision");
+//				OnPropertyChange("HasRevision");
 			}
 			else
 			{
@@ -277,8 +277,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 					OnPropertyChange(UndoChange);
 
 					IsRevised = true;
-
-
 				}
 			}
 

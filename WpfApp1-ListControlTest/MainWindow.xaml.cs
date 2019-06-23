@@ -108,28 +108,30 @@ namespace WpfApp1_ListControlTest
 
 		private void ListBox3_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			ListBox lb = sender as ListBox;
+			ListBox lb3 = sender as ListBox;
 
-			TopoPoint2 tp2 = (TopoPoint2) lb.Items[lb.SelectedIndex];
+			TopoPoint2 tp2 = (TopoPoint2) lb3.Items[lb3.SelectedIndex];
 
 			Debug.WriteLine("@ MainResource3| @selectionChanged|" 
 				+ " selected count| " + e.AddedItems.Count 
-				+ " selected idx| " + lb.SelectedIndex
+				+ " selected idx| " + lb3.SelectedIndex
 			);
 
+			((TopoPoint2) lb3.Items[PriorRowBeingEdited]).IsBeingEdited = false;
+			tp2.IsBeingEdited = true;
+			PriorRowBeingEdited = lb3.SelectedIndex;
 
-
-			if (!((TopoPoint2) lb.Items[PriorRowBeingEdited]).HasRevision)
-			{
-				((TopoPoint2) lb.Items[PriorRowBeingEdited]).IsBeingEdited = false;
-				tp2.IsBeingEdited = true;
-
-				PriorRowBeingEdited = lb.SelectedIndex;
-			}
-			else
-			{
-				lb.SelectedIndex = PriorRowBeingEdited;
-			}
+//			if (!((TopoPoint2) lb3.Items[PriorRowBeingEdited]).HasRevision)
+//			{
+//				((TopoPoint2) lb3.Items[PriorRowBeingEdited]).IsBeingEdited = false;
+//				tp2.IsBeingEdited = true;
+//
+//				PriorRowBeingEdited = lb3.SelectedIndex;
+//			}
+//			else
+//			{
+//				lb3.SelectedIndex = PriorRowBeingEdited;
+//			}
 		}
 
 		private void Lb3BtnApply_Click(object sender, RoutedEventArgs e)
