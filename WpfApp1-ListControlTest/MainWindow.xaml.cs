@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using WpfApp1_ListControlTest.SampleData;
 using WpfApp1_ListControlTest.ControlPtsWin;
 using WpfApp1_ListControlTest.ListBoxWithHdrAndFtr;
@@ -12,6 +9,7 @@ using WpfApp1_ListControlTest.MultiLineLB;
 using WpfApp1_ListControlTest.TopoPts;
 using WpfApp1_ListControlTest.TopoPtsData;
 using WpfApp1_ListControlTest.TopoPtsData2;
+using WpfApp1_ListControlTest.TopoPts.Support;
 using WpfApp1_ListControlTest.TopoPtsData2.Support;
 using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResources;
 
@@ -25,7 +23,9 @@ namespace WpfApp1_ListControlTest
 		public TopoPoints tps { get; set; }  = new TopoPoints();
 		public TopoPointsTest TpTest { get; set; }
 
-		public TopoPts2Mgr TopoMgr { get; set; } 
+		public TopoPts2Mgr TopoMgr { get; set; }
+
+		public TopoPtsConsts TpConsts = new TopoPtsConsts();
 
 //		public TopoPoints2 tps2 { get; set; }  = new TopoPoints2();
 		public TopoPointsTest2 TpTest2 { get; set; }
@@ -55,7 +55,7 @@ namespace WpfApp1_ListControlTest
 			TpTest.CreateData();
 
 			TopoMgr = new TopoPts2Mgr(); 
-			TpTest2 = new TopoPointsTest2(TopoMgr.Tpts2);
+			TpTest2 = new TopoPointsTest2(TopoMgr.Tpts2, TopoMgr);
 
 
 			InitializeComponent();
@@ -83,26 +83,24 @@ namespace WpfApp1_ListControlTest
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "12a", SheetName = "name 12a", SheetData = "data 12a", SheetInfo = "info 12a", SheetInfo2 = "info2 12a"});
 		}
 
-		void test()
-		{
-			bool a = TopoMgr.Tpts2[0].ControlPoint;
-			bool b = TopoMgr.Tpts2[0].IsBeingEdited;
-			XYZ2 c = TopoMgr.Tpts2[0].XYZ;
-
-			bool d = TopoMgr.Tpts2[0].XYZ.IsRevised;
-
-			bool e = TopoMgr.Tpts2[0].XYZ.IsRevisedX;
-			double x = TopoMgr.Tpts2[0].XYZ.UndoValueX;
-			double y = TopoMgr.Tpts2[0].XYZ.UndoValueY;
-			double z = TopoMgr.Tpts2[0].XYZ.UndoValueZ;
-		}
+//		void test()
+//		{
+//			bool a = TopoMgr.Tpts2[0].ControlPoint;
+//			bool b = TopoMgr.Tpts2[0].IsBeingEdited;
+//			XYZ2 c = TopoMgr.Tpts2[0].XYZ;
+//
+//			bool d = TopoMgr.Tpts2[0].XYZ.IsRevised;
+//
+//			bool e = TopoMgr.Tpts2[0].XYZ.IsRevisedX;
+//			double x = TopoMgr.Tpts2[0].XYZ.UndoValueX;
+//			double y = TopoMgr.Tpts2[0].XYZ.UndoValueY;
+//			double z = TopoMgr.Tpts2[0].XYZ.UndoValueZ;
+//		}
 
 
 		private void MainWindow_Loaded(object sender, RoutedEventArgs e)
 		{
 			loaded = true;
-
-
 		}
 
 				int PriorRowBeingEdited = 0;
@@ -138,31 +136,61 @@ namespace WpfApp1_ListControlTest
 		private void Lb3BtnUndoX_Click(object sender, RoutedEventArgs e)
 		{
 			ClickInfo(sender, e, "UndoX");
+
+			TopoMgr.Undo(sender, Lb3.SelectedIndex);
+
 		}
 
 		private void Lb3BtnUndoY_Click(object sender, RoutedEventArgs e)
 		{
 			ClickInfo(sender, e, "UndoY");
+
+			TopoMgr.Undo(sender, Lb3.SelectedIndex);
 		}
 
 		private void Lb3BtnUndoZ_Click(object sender, RoutedEventArgs e)
 		{
 			ClickInfo(sender, e, "UndoZ");
+
+			TopoMgr.Undo(sender, Lb3.SelectedIndex);
 		}
+
+		private void Lb3BtnUndoEndPtX_Click(object sender, RoutedEventArgs e)
+		{
+			ClickInfo(sender, e, "UndoX");
+
+			TopoMgr.Tpts2.EndPointXYZ.Undo(TpConsts.Xtag);
+		}
+		
+		private void Lb3BtnUndoEndPtY_Click(object sender, RoutedEventArgs e)
+		{
+			ClickInfo(sender, e, "UndoY");
+
+			TopoMgr.Tpts2.EndPointXYZ.Undo(TpConsts.Ytag);
+		}
+		
+		private void Lb3BtnUndoEndPtZ_Click(object sender, RoutedEventArgs e)
+		{
+			ClickInfo(sender, e, "UndoZ");
+
+			TopoMgr.Tpts2.EndPointXYZ.Undo(TpConsts.Ztag);
+		}
+
 
 		private void ClickInfo(object sender, RoutedEventArgs e, string fromWho)
 		{
 
-			((TextBox) sender).GetBindingExpression(TextBox.TextProperty).UpdateSource();
+//			((TextBox) sender).GetBindingExpression(TextBox.TextProperty).UpdateSource();
 
 			ListBox lb = MainWindow.Lb3;
 
 			TopoPoint2 tp2 = (TopoPoint2) MainWindow.Lb3.Items[lb.SelectedIndex];
 
-			Debug.WriteLine("@ MainResource3| @button pressed|"
+			Debug.WriteLine("\n@ MainResource3| @button pressed|"
 				+ " from| " + fromWho
 				+ " selected idx| " + lb.SelectedIndex
 				+ " xyz| " + tp2.ToString()
+				+ "\n"
 				);
 		}
 
@@ -312,6 +340,10 @@ namespace WpfApp1_ListControlTest
 
 	#region > listbox3 buttons
 
+		private void BtnBatchAdd10ToYfrom3_Click(object sender, RoutedEventArgs e)
+		{
+			TpTest2.BtnBatchAdd10ToYfrom3_Click();
+		}
 		private void BtnBatchAdjustZByAmount_Click(object sender, RoutedEventArgs e)
 		{
 			TpTest2.BtnBatchAdjustZByAmount_Click();

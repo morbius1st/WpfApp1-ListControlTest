@@ -27,10 +27,12 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //		private double z;
 
 		public TopoPoints2 tps2 { get; set; }
+		public TopoPts2Mgr tpMgr { get; set; }
 
-		public TopoPointsTest2(TopoPoints2 tps)
+		public TopoPointsTest2(TopoPoints2 tps, TopoPts2Mgr tpMgr)
 		{
 			this.tps2 = tps;
+			this.tpMgr = tpMgr;
 
 			tps.Message = "initialized\n";
 		}
@@ -85,6 +87,15 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //		{
 //			return $"{dx:F4}, {dy:F4}, {dz:F4}";
 //		}
+
+		public void BtnBatchAdd10ToYfrom3_Click()
+		{
+			tps2.Append = "\n*** run test: batch Add 10 to [3+]Y ***\n";
+
+			tpMgr.BatchIncreaseEachXyxByAmount(3, "Y", 10);
+
+			tps2.Append = "\n*** run test: Complete ***\n";
+		}
 
 
 		public void BtnBatchAdjustZByAmount_Click()

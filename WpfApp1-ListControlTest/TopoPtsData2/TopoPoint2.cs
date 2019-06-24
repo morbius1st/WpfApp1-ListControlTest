@@ -4,6 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using WpfApp1_ListControlTest.TopoPts.Support;
 using WpfApp1_ListControlTest.TopoPtsData2.Support;
 
 #endregion
@@ -68,7 +69,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		// from the prior point
 		private double _xΔ = Double.NaN;
 		private double _yΔ = Double.NaN;
-
 		private double _zΔ = Double.NaN;
 
 		// the XY distance change
@@ -125,23 +125,21 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			{
 				if (!value.Equals(point))
 				{
-//					originalPointValue = point;
-
 					OnPropertyChange("XYZstart");
 
-					if (!Double.IsNaN(value.X))
+					if (!double.IsNaN(value.X))
 					{
 						point.X = value.X;
 						OnPropertyChange("X");
 					}
 
-					if (!Double.IsNaN(value.Y))
+					if (!double.IsNaN(value.Y))
 					{
 						point.Y = value.Y;
 						OnPropertyChange("Y");
 					}
 
-					if (!Double.IsNaN(value.Z))
+					if (!double.IsNaN(value.Z))
 					{
 						point.Z = value.Z;
 						OnPropertyChange("Z");
@@ -164,10 +162,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			{
 				if (!value.Equals(point.X))
 				{
-//					Debug.WriteLine("     | @ TopoPoint2| @ pre-assign orig point value" + "\n");
-//					originalPointValue = point;
-//					Debug.WriteLine("     | @ TopoPoint2| @ post-assign orig point value" + "\n");
-
 					Debug.WriteLine("     | @ TopoPoint2| @ pre-change X" + "\n");
 					point.X = value;
 					Debug.WriteLine("     | @ TopoPoint2| @ post-change X" + "\n");
@@ -186,8 +180,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			{
 				if (!value.Equals(point.Y))
 				{
-//					originalPointValue = point;
-
 					point.Y = value;
 
 					checkForNaN(value, (UInt32) BitFlag.Yflag);
@@ -204,8 +196,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			{
 				if (!value.Equals(point.Z))
 				{
-//					originalPointValue = point;
-
 					point.Z = value;
 
 					checkForNaN(value, (UInt32) BitFlag.Zflag);
@@ -232,7 +222,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		public bool HasRevision
 		{
 			get => point.IsRevised;
-			set => OnPropertyChange();
 		}
 
 		public bool IsBeingEdited
@@ -335,7 +324,85 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			}
 		}
 
+
+		public double this[string which]
+		{
+			get
+			{
+				switch (which)
+				{
+				case TopoPtsConsts.xTag:
+					{
+						return X;
+					}
+				case TopoPtsConsts.yTag:
+					{
+						return Y;
+					}
+				case TopoPtsConsts.zTag:
+					{
+						return Z;
+					}
+				}
+
+				return double.NaN;
+			}
+
+			set
+			{
+				switch (which)
+				{
+				case TopoPtsConsts.xTag:
+					{
+						X = value;
+						break;
+					}
+				case TopoPtsConsts.yTag:
+					{
+						Y = value;
+						break;
+					}
+				case TopoPtsConsts.zTag:
+					{
+						Z = value;
+						break;
+					}
+				}
+			}
+		}
+
+
 	#endregion
+//
+//		public double this[string which]
+//		{
+//			get => point[which];
+//
+//			set
+//			{
+//				switch (which)
+//				{
+//				case TopoPtsConsts.xTag:
+//					{
+//						if (!value.Equals(point.X)) return;
+//							X = value;
+//						break;
+//					}
+//				case TopoPtsConsts.yTag:
+//					{
+//						if (!value.Equals(point.Y)) return;
+//							Y = value;
+//						break;
+//					}
+//				case TopoPtsConsts.zTag:
+//					{
+//						if (!value.Equals(point.Z)) return;
+//							Z = value;
+//						break;
+//					}
+//				}
+//			}
+//		}
 
 	#region > public methods
 
@@ -380,10 +447,17 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			// assumption is that at least one
 			// X or Y or Z changed
 			CalcSlope();
-
-			// clear the prior point
-//			originalPointValue = XYZ2.Empty;
 		}
+
+		public void Undo(string which)
+		{
+			point.Undo(which);
+
+			OnPropertyChange(which);
+		}
+
+
+
 
 	#endregion
 
@@ -395,7 +469,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		private bool UpdateX(double preceding)
 		{
 			if (point.X.Equals(preceding)) return false;
-//			if (point.X.Equals(originalPointValue.X)) return false;
 
 			StatusFlagSet(BitFlag.Xflag);
 			UpdateXΔ(preceding);
@@ -406,7 +479,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		private bool UpdateY(double preceding)
 		{
 			if (point.Y.Equals(preceding)) return false;
-//			if (point.Y.Equals(originalPointValue.Y)) return false;
 
 			StatusFlagSet(BitFlag.Yflag);
 			UpdateYΔ(preceding);
@@ -417,7 +489,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		private bool UpdateZ(double preceding)
 		{
 			if (point.Z.Equals(preceding)) return false;
-//			if (point.Z.Equals(originalPointValue.Z)) return false;
 
 			StatusFlagSet(BitFlag.Zflag);
 			UpdateZΔ(preceding);
@@ -469,8 +540,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 			StatusFlagSet(BitFlag.XYΔflag);
 
-			//			OnPropertyChange("XYΔ");
-
 			return true;
 		}
 
@@ -505,14 +574,16 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		public void Clear()
 		{
 			Index = -1;
-			point.X = Double.NaN;
-			point.Y = Double.NaN;
-			point.Z = Double.NaN;
+			point = new XYZ2();
 			XΔ = Double.NaN;
 			YΔ = Double.NaN;
 			ZΔ = Double.NaN;
+			XYΔ = Double.NaN;
+			XYZΔ = Double.NaN;
 			Slope = Double.NaN;
 
+			isBeingEdited = false;
+			controlPoint = false;
 			statusFlag = 0;
 		}
 
@@ -548,7 +619,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		}
 
 	#endregion
-
 
 	#region > overriding members
 

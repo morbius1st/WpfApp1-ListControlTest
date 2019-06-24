@@ -495,6 +495,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		public double EndPointY => Items[EndIdx].Y;
 		public double EndPointZ => Items[EndIdx].Z;
 
+		public XYZ2 EndPointXYZ => Items[EndIdx].XYZ;
+
 		public double EndPointXΔ => Items[EndIdx].XΔ;
 		public double EndPointYΔ => Items[EndIdx].YΔ;
 		public double EndPointZΔ => Items[EndIdx].ZΔ;

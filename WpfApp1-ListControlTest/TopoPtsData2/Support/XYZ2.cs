@@ -19,6 +19,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 
 		private const string XYZChange = "xyz";
 		private const string UndoChange = "undo";
+		private const string IsRevisedChange = "IsRevised";
 
 		public XYZ2(double x = Double.NaN, double y = Double.NaN, double z = Double.NaN)
 		{
@@ -97,8 +98,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 			}
 			else
 			{
-//				Coordinate c = null;
-
 				switch (which)
 				{
 				case TopoPtsConsts.xTag:
@@ -311,9 +310,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 			{
 				if (IsRevised)
 				{
-					Value = UndoValue;
-					UndoValue = double.NaN;
-					IsRevised = false;
+					value = UndoValue;
+					undoValue = double.NaN;
+					isRevised = false;
+
+					OnPropertyChange(UndoChange);
+
+					OnPropertyChange(XYZChange);
 				}
 			}
 
@@ -327,7 +330,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 
 					isRevised = value;
 
-					OnPropertyChange();
+//					OnPropertyChange(IsRevisedChange);
 				}
 			}
 

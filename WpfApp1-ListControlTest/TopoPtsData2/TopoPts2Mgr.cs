@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using WpfApp1_ListControlTest.TopoPts.Support;
 using WpfApp1_ListControlTest.TopoPtsData2.Support;
 
@@ -35,6 +36,32 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			
 			TptSupport.LoadDesignData(Tpts2);
 
+		}
+
+		public void Undo(object sender, int idx)
+		{
+			Button b = sender as Button;
+
+			Tpts2[idx].Undo(b.Tag as string);
+		}
+
+		public void BatchIncreaseEachXyxByAmount(int startIdx, string which, double amount)
+		{
+			if (startIdx > Tpts2.EndIdx || startIdx < 1
+				|| double.IsNaN(amount)
+				)
+			{
+				return;
+			}
+
+			Tpts2.BatchBegin();
+
+			for (int i = startIdx; i < Tpts2.Count; i++)
+			{
+				Tpts2[i][which] += amount;
+			}
+
+			Tpts2.BatchFinalize();
 		}
 	}
 }

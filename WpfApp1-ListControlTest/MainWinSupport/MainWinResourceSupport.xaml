@@ -66,12 +66,14 @@
 		<Setter Property="Margin" Value="2" />
 		<Setter Property="Padding" Value="0" />
 	</Style>
-	
-	<Style x:Key="controlPointLblDelta"
+
+	<Style
+			x:Key="controlPointLblDelta"
 			TargetType="Label"
-			BasedOn="{StaticResource controlPointLbl}">
-		<Setter Property="FontSize" Value="12"/>
-		<Setter Property="VerticalContentAlignment" Value="Center"/>
+			BasedOn="{StaticResource controlPointLbl}"
+			>
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
 
 	</Style>
 
