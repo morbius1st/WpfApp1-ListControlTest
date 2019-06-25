@@ -75,6 +75,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 		public double UndoValueY => y.UndoValue;
 		public double UndoValueZ => z.UndoValue;
 
+		public double RedoValueX => x.RedoValue;
+		public double RedoValueY => y.RedoValue;
+		public double RedoValueZ => z.RedoValue;
+
 		public bool IsRevisedX => x.IsRevised;
 		public bool IsRevisedY => y.IsRevised;
 		public bool IsRevisedZ => z.IsRevised;
@@ -243,6 +247,11 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 			// so that we can preform an undo
 			private double undoValue;
 
+			// this is the value after an
+			// undo operation and allows
+			// for a redo operation
+			private double redoValue;
+
 			// indicates that this Coordinate has 
 			// an undo value
 			private bool isRevised;
@@ -250,7 +259,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 			public Coordinate()
 			{
 				value = Double.NaN;
-				UndoValue = Double.NaN;
+				undoValue = Double.NaN;
+				redoValue = Double.NaN;
 				isRevised = false;
 			}
 
@@ -268,6 +278,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 					IsRevised = true;
 				}
 			}
+
+			public double RedoValue => undoValue;
 
 			// update the value of this coordinate
 			// note that this only has (1) undo level
@@ -310,15 +322,31 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 			{
 				if (IsRevised)
 				{
-					value = UndoValue;
-					undoValue = double.NaN;
+					redoValue =  value;
+					value = undoValue;
 					isRevised = false;
+//					undoValue = double.NaN;
 
 					OnPropertyChange(UndoChange);
 
 					OnPropertyChange(XYZChange);
 				}
 			}
+
+			public void Redo()
+			{
+				if (!double.IsNaN(redoValue))
+				{
+					value = undoValue;
+					redoValue = double.NaN;
+					isRevised = true;
+
+					OnPropertyChange(UndoChange);
+
+					OnPropertyChange(XYZChange);
+				}
+			}
+
 
 			public bool IsRevised
 			{
@@ -329,8 +357,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 					if (isRevised == value) return;
 
 					isRevised = value;
-
-//					OnPropertyChange(IsRevisedChange);
 				}
 			}
 

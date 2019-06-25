@@ -133,7 +133,7 @@ namespace WpfApp1_ListControlTest
 //			}
 		}
 
-		private void Lb3BtnUndoX_Click(object sender, RoutedEventArgs e)
+		private void Lb3BtnUndo_Click(object sender, RoutedEventArgs e)
 		{
 			ClickInfo(sender, e, "UndoX");
 
@@ -141,41 +141,12 @@ namespace WpfApp1_ListControlTest
 
 		}
 
-		private void Lb3BtnUndoY_Click(object sender, RoutedEventArgs e)
-		{
-			ClickInfo(sender, e, "UndoY");
-
-			TopoMgr.Undo(sender, Lb3.SelectedIndex);
-		}
-
-		private void Lb3BtnUndoZ_Click(object sender, RoutedEventArgs e)
-		{
-			ClickInfo(sender, e, "UndoZ");
-
-			TopoMgr.Undo(sender, Lb3.SelectedIndex);
-		}
-
-		private void Lb3BtnUndoEndPtX_Click(object sender, RoutedEventArgs e)
+		private void Lb3BtnUndoEndPt_Click(object sender, RoutedEventArgs e)
 		{
 			ClickInfo(sender, e, "UndoX");
 
-			TopoMgr.Tpts2.EndPointXYZ.Undo(TpConsts.Xtag);
+			TopoMgr.Undo(sender);
 		}
-		
-		private void Lb3BtnUndoEndPtY_Click(object sender, RoutedEventArgs e)
-		{
-			ClickInfo(sender, e, "UndoY");
-
-			TopoMgr.Tpts2.EndPointXYZ.Undo(TpConsts.Ytag);
-		}
-		
-		private void Lb3BtnUndoEndPtZ_Click(object sender, RoutedEventArgs e)
-		{
-			ClickInfo(sender, e, "UndoZ");
-
-			TopoMgr.Tpts2.EndPointXYZ.Undo(TpConsts.Ztag);
-		}
-
 
 		private void ClickInfo(object sender, RoutedEventArgs e, string fromWho)
 		{

@@ -376,14 +376,11 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 				j = last + 1;
 			}
 
-
 			Append = "reidx| @ TopoPoints2| pre-reindex| "
 				+ " start| " + start
 				+ " end| " + j
 				+ "\n\n"
 				;
-
-
 
 			for (i = start; i < j; i++)
 			{

@@ -24,9 +24,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 	public class TopoPts2Mgr
 	{
 		public TopoPtsConsts TpConsts { get; private set; }
+
 		public TopoPoints2 Tpts2 { get; set; }
 
-		public TopoPts2MgrSupport TptSupport = new TopoPts2MgrSupport();
+		private TopoPts2MgrSupport TptSupport = new TopoPts2MgrSupport();
 
 		public TopoPts2Mgr()
 		{
@@ -35,14 +36,24 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			Tpts2 = new TopoPoints2();
 			
 			TptSupport.LoadDesignData(Tpts2);
-
 		}
 
 		public void Undo(object sender, int idx)
 		{
 			Button b = sender as Button;
 
+			if (b == null) return;
+
 			Tpts2[idx].Undo(b.Tag as string);
+		}
+
+		public void Undo(object sender)
+		{
+			Button b = sender as Button;
+
+			if (b == null) return;
+
+			Tpts2[Tpts2.EndIdx].Undo(b.Tag as string);
 		}
 
 		public void BatchIncreaseEachXyxByAmount(int startIdx, string which, double amount)
