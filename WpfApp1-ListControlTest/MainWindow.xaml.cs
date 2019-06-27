@@ -52,10 +52,12 @@ namespace WpfApp1_ListControlTest
 
 
 			TpTest = new TopoPointsTest(tps);
-			TpTest.CreateData();
+//			TpTest.CreateData();
 
 			TopoMgr = new TopoPts2Mgr(); 
 			TpTest2 = new TopoPointsTest2(TopoMgr.Tpts2, TopoMgr);
+
+
 
 
 			InitializeComponent();
@@ -109,6 +111,8 @@ namespace WpfApp1_ListControlTest
 		{
 			ListBox lb3 = sender as ListBox;
 
+			if (lb3.SelectedIndex < 0) return;
+
 			TopoPoint2 tp2 = (TopoPoint2) lb3.Items[lb3.SelectedIndex];
 
 			Debug.WriteLine("@ MainResource3| @selectionChanged|" 
@@ -141,11 +145,26 @@ namespace WpfApp1_ListControlTest
 
 		}
 
+		private void Lb3BtnRedo_Click(object sender, RoutedEventArgs e)
+		{
+			ClickInfo(sender, e, "UndoX");
+
+			TopoMgr.Redo(sender, Lb3.SelectedIndex);
+
+		}
+
 		private void Lb3BtnUndoEndPt_Click(object sender, RoutedEventArgs e)
 		{
 			ClickInfo(sender, e, "UndoX");
 
 			TopoMgr.Undo(sender);
+		}
+		
+		private void Lb3BtnRedoEndPt_Click(object sender, RoutedEventArgs e)
+		{
+			ClickInfo(sender, e, "UndoX");
+
+			TopoMgr.Redo(sender);
 		}
 
 		private void ClickInfo(object sender, RoutedEventArgs e, string fromWho)
@@ -311,10 +330,17 @@ namespace WpfApp1_ListControlTest
 
 	#region > listbox3 buttons
 
+
+		private void BtnInitialize_Click(object sender, RoutedEventArgs e)
+		{
+			TopoMgr.LoadData();
+		}
+
 		private void BtnBatchAdd10ToYfrom3_Click(object sender, RoutedEventArgs e)
 		{
 			TpTest2.BtnBatchAdd10ToYfrom3_Click();
 		}
+
 		private void BtnBatchAdjustZByAmount_Click(object sender, RoutedEventArgs e)
 		{
 			TpTest2.BtnBatchAdjustZByAmount_Click();

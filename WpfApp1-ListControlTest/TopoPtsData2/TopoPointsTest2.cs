@@ -36,34 +36,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 			tps.Message = "initialized\n";
 		}
-//
-//		public void CreateData()
-//		{
-//			x = 12001.0;
-//			y = 22001.0;
-//			z = 32001.0;
-//
-//			tps2.Initialize(new TopoStartPoint(new XYZ2(x, y, z)));
-//
-//			NextPoint(100,10); // 1 (12101.0...)
-//			NextPoint(100,10); // 2 (12201.0...)
-//			NextPoint(100,10); // 3 (12301.0...)
-//			NextPoint(100,10); // 4 (12401.0...)
-//			NextPoint(100,10); // 5 (12501.0...)
-//			NextPoint(100,10); // 6 (12601.0...)
-//
-//			tps2.Finalize(new TopoEndPoint(new XYZ2(12801.0, 22801.0, 32801.0)));
-//		}
-//
-//		private void NextPoint(double xy_delta, double z_delta)
-//		{
-//			x += xy_delta;
-//			y += xy_delta;
-//			z += z_delta;
-//
-//			tps2.Add(new XYZ2(x, y, z));
-//		}
-
 
 		#region > Test All Tests
 
@@ -87,9 +59,20 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 //		{
 //			return $"{dx:F4}, {dy:F4}, {dz:F4}";
 //		}
+		public void DataNotLoaded()
+		{
+			tps2.Append = "\n*** FAIL: LOAD DATA FIRST ***\n";
+		}
+
 
 		public void BtnBatchAdd10ToYfrom3_Click()
 		{
+			if (!tpMgr.DataLoaded)
+			{
+				DataNotLoaded();
+				return;
+			}
+
 			tps2.Append = "\n*** run test: batch Add 10 to [3+]Y ***\n";
 
 			tpMgr.BatchIncreaseEachXyxByAmount(3, "Y", 10);
@@ -100,6 +83,12 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 		public void BtnBatchAdjustZByAmount_Click()
 		{
+			if (!tpMgr.DataLoaded)
+			{
+				DataNotLoaded();
+				return;
+			}
+
 			tps2.Append = "\n*** run test: batch Adjust Z [3] by Amount ***\n";
 
 			// change the Z delta for item3 to item 4
@@ -118,6 +107,12 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 		public void BtnBatchAdjustZBySlope_Click()
 		{
+			if (!tpMgr.DataLoaded)
+			{
+				DataNotLoaded();
+				return;
+			}
+
 			tps2.Append = "\n*** run test: batch Adjust Z [4] by Slope ***\n";
 
 			// change the Z delta for item3 to item 4
@@ -137,7 +132,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		// modify the Z value of [index] and
 		// update the value of all subsequent Z values
 		// by maintaining the original delta
-		public bool AdjustZ(int index, double deltaZ)
+		private bool AdjustZ(int index, double deltaZ)
 		{
 			if (index > tps2.EndIdx ||
 				index < 1 ||
@@ -167,10 +162,15 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 		public void BtnChangeXof1_Click()
 		{
+			if (!tpMgr.DataLoaded)
+			{
+				DataNotLoaded();
+				return;
+			}
+
 			tps2.Append = "\n*** run test: change X of [1] ***\n\n";
 
 			tps2[1].X = 11101.0 + a;
-
 
 			a += 10;
 		}

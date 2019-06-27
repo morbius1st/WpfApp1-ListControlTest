@@ -96,8 +96,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		// start the process of creating a topopoints collection
 		public void Initialize(TopoStartPoint start)
 		{
-			Items[0] = start;
+			base.SetItem(0, start);
+
+//			UpdateStartPointValues();
+
 			Items[0].PropertyChanged += TopoPoints_PropertyChangedStartPt;
+		
+//			Items[0].Refresh();
 
 			Status[processPropChangeUpdate] = false;
 			Status[gotStartPoint] = true;
@@ -110,8 +115,14 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 			end.Index = EndIdx;
 
-			Items[EndIdx] = end;
+			base.SetItem(EndIdx, end);
+			
+//			UpdateEndPointValues();
+
 			Items[EndIdx].PropertyChanged += TopoPoints_PropertyChangedEndPt;
+			
+//			Items[EndIdx].Refresh();
+
 
 			Status[gotEndPoint] = true;
 
@@ -138,10 +149,9 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 			if (idx <= 0 || idx > EndIdx) { throw new ArgumentException("Invalid Index"); }
 
-			base.Insert(idx, new TopoPoint2(xyz));
+			base.Insert(idx, (new TopoPoint2(xyz)));
 
 			Items[idx].PropertyChanged += TopoPoints_PropertyChanged;
-
 
 			Status[gotPoints] = true;
 
@@ -166,9 +176,14 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			// clear status
 			Status = new bool[statusLength];
 
-			Items.Insert(0, new TopoPoint2(XYZ2.Empty));
-			Items.Insert(1, new TopoPoint2(XYZ2.Empty));
+//			Items.Insert(0, (new TopoEndPoint(new XYZ2(0, 0, 0)){Index = 1}));
+//			Items.Insert(0, (new TopoStartPoint(new XYZ2(0, 0, 0)){Index = 0}));
 
+			Items.Insert(0, (new TopoPoint2(XYZ2.Empty) {Index = 1}));
+			Items.Insert(0, (new TopoPoint2(XYZ2.Empty) {Index = 0}));
+
+			
+			// issue events
 			UpdateStartPointValues();
 			UpdateEndPointValues();
 
@@ -478,6 +493,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 		private void UpdateStartPointValues()
 		{
+			OnPropertyChanged("StartPointCp");
 			OnPropertyChanged("StartPointIndex");
 			OnPropertyChanged("StartPointX");
 			OnPropertyChanged("StartPointY");
@@ -507,6 +523,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		private void UpdateEndPointBaseValues()
 		{
 			OnPropertyChanged("EndPointIndex");
+			OnPropertyChanged("EndPointCp");
 			OnPropertyChanged("EndPointX");
 			OnPropertyChanged("EndPointY");
 			OnPropertyChanged("EndPointZ");

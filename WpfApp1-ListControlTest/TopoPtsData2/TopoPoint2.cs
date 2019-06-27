@@ -95,6 +95,11 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 		private string message;
 
+		private string[] PropertyEvents = {"Index", 
+			"IsBeingEdited", "ControlPoint", "HasRevision", 
+			"X", "Y", "Z", "XΔ", "YΔ", "ZΔ", "XYΔ", "XYZΔ",	
+			"Slope" };
+
 	#endregion
 
 	#region > constructors
@@ -324,7 +329,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			}
 		}
 
-
 		public double this[string which]
 		{
 			get
@@ -373,36 +377,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 
 
 	#endregion
-//
-//		public double this[string which]
-//		{
-//			get => point[which];
-//
-//			set
-//			{
-//				switch (which)
-//				{
-//				case TopoPtsConsts.xTag:
-//					{
-//						if (!value.Equals(point.X)) return;
-//							X = value;
-//						break;
-//					}
-//				case TopoPtsConsts.yTag:
-//					{
-//						if (!value.Equals(point.Y)) return;
-//							Y = value;
-//						break;
-//					}
-//				case TopoPtsConsts.zTag:
-//					{
-//						if (!value.Equals(point.Z)) return;
-//							Z = value;
-//						break;
-//					}
-//				}
-//			}
-//		}
 
 	#region > public methods
 
@@ -454,6 +428,21 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			point.Undo(which);
 
 			OnPropertyChange(which);
+		}
+		
+		public void Redo(string which)
+		{
+			point.Undo(which);
+
+			OnPropertyChange(which);
+		}
+
+		public void Refresh()
+		{
+			foreach (string eventName in PropertyEvents)
+			{
+				OnPropertyChange(eventName);
+			}
 		}
 
 

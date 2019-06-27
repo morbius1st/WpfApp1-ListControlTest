@@ -34,8 +34,16 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			TpConsts = new TopoPtsConsts();
 
 			Tpts2 = new TopoPoints2();
-			
+
+		}
+
+		public bool DataLoaded { get; private set; } = false;
+
+		public void LoadData()
+		{
 			TptSupport.LoadDesignData(Tpts2);
+
+			DataLoaded = true;
 		}
 
 		public void Undo(object sender, int idx)
@@ -47,6 +55,15 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			Tpts2[idx].Undo(b.Tag as string);
 		}
 
+		public void Redo(object sender, int idx)
+		{
+			Button b = sender as Button;
+
+			if (b == null) return;
+
+			Tpts2[idx].Redo(b.Tag as string);
+		}
+
 		public void Undo(object sender)
 		{
 			Button b = sender as Button;
@@ -54,6 +71,15 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 			if (b == null) return;
 
 			Tpts2[Tpts2.EndIdx].Undo(b.Tag as string);
+		}
+
+		public void Redo(object sender)
+		{
+			Button b = sender as Button;
+
+			if (b == null) return;
+
+			Tpts2[Tpts2.EndIdx].Redo(b.Tag as string);
 		}
 
 		public void BatchIncreaseEachXyxByAmount(int startIdx, string which, double amount)

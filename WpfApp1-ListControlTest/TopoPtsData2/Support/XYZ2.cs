@@ -17,9 +17,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 		private Coordinate y = new Coordinate();
 		private Coordinate z = new Coordinate();
 
-		private const string XYZChange = "xyz";
-		private const string UndoChange = "undo";
-		private const string IsRevisedChange = "IsRevised";
+		private const string ValueChange = "value";
+		private const string UndoValueChange = "undo";
+		private const string RedoValueChange = "redo";
+
 
 		public XYZ2(double x = Double.NaN, double y = Double.NaN, double z = Double.NaN)
 		{
@@ -82,11 +83,16 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 		public bool IsRevisedX => x.IsRevised;
 		public bool IsRevisedY => y.IsRevised;
 		public bool IsRevisedZ => z.IsRevised;
+		
+		public bool HasRedoX => x.HasRedo;
+		public bool HasRedoY => y.HasRedo;
+		public bool HasRedoZ => z.HasRedo;
 
 		public bool IsValid => !Double.IsNaN(X) &&
 			!Double.IsNaN(Y) && !Double.IsNaN(Z);
 
 		public bool IsRevised => IsRevisedX || IsRevisedY || IsRevisedZ;
+		public bool HasRedo => HasRedoX || HasRedoY || HasRedoZ;
 
 	#endregion
 
@@ -119,6 +125,28 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 						z.Undo();
 						break;
 					}
+				}
+			}
+		}
+
+		public void Redo(string which)
+		{
+			switch (which)
+			{
+			case TopoPtsConsts.xTag:
+				{
+					x.Redo();
+					break;
+				}
+			case TopoPtsConsts.yTag:
+				{
+					y.Redo();
+					break;
+				}
+			case TopoPtsConsts.zTag:
+				{
+					z.Redo();
+					break;
 				}
 			}
 		}
@@ -173,13 +201,17 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 			CoordinateMessage("X", e.PropertyName);
 		#endif
 
-			if (e.PropertyName.Equals(XYZChange))
+			if (e.PropertyName.Equals(ValueChange))
 			{
 				OnPropertyChange("IsRevisedX");
 			}
-			else
+			else if (e.PropertyName.Equals(UndoValueChange))
 			{
 				OnPropertyChange("UndoValueX");
+			}
+			else
+			{
+				OnPropertyChange("RedoValueX");
 			}
 		}
 
@@ -188,13 +220,17 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 		#if DEBUG
 			CoordinateMessage("Y", e.PropertyName);
 		#endif
-			if (e.PropertyName.Equals(XYZChange))
+			if (e.PropertyName.Equals(ValueChange))
 			{
 				OnPropertyChange("IsRevisedY");
 			}
-			else
+			else if (e.PropertyName.Equals(UndoValueChange))
 			{
 				OnPropertyChange("UndoValueY");
+			}
+			else
+			{
+				OnPropertyChange("RedoValueY");
 			}
 		}
 
@@ -203,13 +239,17 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 		#if DEBUG
 			CoordinateMessage("Z", e.PropertyName);
 		#endif
-			if (e.PropertyName.Equals(XYZChange))
+			if (e.PropertyName.Equals(ValueChange))
 			{
 				OnPropertyChange("IsRevisedZ");
 			}
-			else
+			else if (e.PropertyName.Equals(UndoValueChange))
 			{
 				OnPropertyChange("UndoValueZ");
+			}
+			else
+			{
+				OnPropertyChange("RedoValueZ");
 			}
 		}
 
@@ -256,30 +296,18 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 			// an undo value
 			private bool isRevised;
 
+			// indicates that this Coordinate 
+			// has a redo value
+			private bool hasRedo;
+
 			public Coordinate()
 			{
 				value = Double.NaN;
 				undoValue = Double.NaN;
 				redoValue = Double.NaN;
 				isRevised = false;
+				hasRedo = false;
 			}
-
-			public double UndoValue
-			{
-				get => undoValue;
-				private set
-				{
-					if (value.Equals(undoValue)) return;
-
-					undoValue = value;
-
-					OnPropertyChange(UndoChange);
-
-					IsRevised = true;
-				}
-			}
-
-			public double RedoValue => undoValue;
 
 			// update the value of this coordinate
 			// note that this only has (1) undo level
@@ -297,11 +325,31 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 					// if true, save current value as
 					// the undo value and set
 					// both flags true
-					if (!double.IsNaN(value))
+					if (!double.IsNaN(this.value))
 					{
 						UndoValue = this.value;
 
+						RedoValue = double.NaN;
+
 						this.value = value;
+
+						IsRevised = true;
+
+					}
+					// clear / reset the current value
+					else if (double.IsInfinity(value))
+					{
+						this.value = Double.NaN;
+
+						undoValue = Double.NaN;
+						redoValue = Double.NaN;
+
+						OnPropertyChange(ValueChange);
+						OnPropertyChange(UndoValueChange);
+						OnPropertyChange(RedoValueChange);
+
+						IsRevised = false;
+						HasRedo = false;
 
 					}
 					// no value previously set (first time set)
@@ -309,44 +357,46 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 					{
 						this.value = value;
 
-						// use internal value to prevent 
-						// an extra event
-						isRevised = false;
+//						undoValue = Double.NaN;
+//						redoValue = Double.NaN;
+//
+//						// use internal value to prevent 
+//						// an extra event
+//						isRevised = false;
+//						hasRedo = false;
 					}
 
-					OnPropertyChange(XYZChange);
+					OnPropertyChange(ValueChange);
 				}
 			}
 
-			public void Undo()
+			public double UndoValue
 			{
-				if (IsRevised)
+				get => undoValue;
+				private set
 				{
-					redoValue =  value;
-					value = undoValue;
-					isRevised = false;
-//					undoValue = double.NaN;
+					if (value.Equals(undoValue)) return;
 
-					OnPropertyChange(UndoChange);
+					undoValue = value;
 
-					OnPropertyChange(XYZChange);
+					OnPropertyChange(UndoValueChange);
 				}
 			}
 
-			public void Redo()
+			public double RedoValue
 			{
-				if (!double.IsNaN(redoValue))
+				get => redoValue;
+				private set
 				{
-					value = undoValue;
-					redoValue = double.NaN;
-					isRevised = true;
+					if (value.Equals(redoValue)) return;
 
-					OnPropertyChange(UndoChange);
+					redoValue = value;
 
-					OnPropertyChange(XYZChange);
+					OnPropertyChange(RedoValueChange);
+
+					 HasRedo = !double.IsNaN(redoValue);
 				}
 			}
-
 
 			public bool IsRevised
 			{
@@ -357,6 +407,59 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 					if (isRevised == value) return;
 
 					isRevised = value;
+				}
+			}
+
+			public bool HasRedo
+			{
+				get => hasRedo;
+				private set
+				{
+					// don't flag no change events
+					if (value == hasRedo) return;
+
+					hasRedo = value;
+
+					OnPropertyChange();
+				}
+			}
+
+
+
+			public void Undo()
+			{
+				if (IsRevised)
+				{
+					RedoValue =  value;
+
+					value = undoValue;
+
+					IsRevised = false;
+
+					OnPropertyChange(UndoValueChange);
+
+					OnPropertyChange(ValueChange);
+				}
+			}
+
+			public void Redo()
+			{
+				if (HasRedo)
+				{
+
+					Value = redoValue;
+
+//					undoValue = value;
+//
+//					value = redoValue;
+//
+//					RedoValue = double.NaN;
+//
+//					isRevised = true;
+//
+//					OnPropertyChange(UndoValueChange);
+//
+//					OnPropertyChange(ValueChange);
 				}
 			}
 

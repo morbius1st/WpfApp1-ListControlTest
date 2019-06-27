@@ -38,7 +38,7 @@ namespace WpfApp1_ListControlTest.TopoPts
 		{
 			InitializeComponent();
 
-			LoadData();
+//			LoadData();
 
 			Message = "Message Window\n";
 		}
