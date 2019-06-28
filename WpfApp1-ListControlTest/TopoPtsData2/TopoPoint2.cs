@@ -432,7 +432,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2
 		
 		public void Redo(string which)
 		{
-			point.Undo(which);
+			point.Redo(which);
 
 			OnPropertyChange(which);
 		}

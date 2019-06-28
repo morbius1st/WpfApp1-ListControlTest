@@ -17,9 +17,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 		private Coordinate y = new Coordinate();
 		private Coordinate z = new Coordinate();
 
-		private const string ValueChange = "value";
-		private const string UndoValueChange = "undo";
-		private const string RedoValueChange = "redo";
+		private const string ValueChange = "IsRevised";
+		private const string UndoValueChange = "UndoValue";
+		private const string RedoValueChange = "RedoValue";
+		private const string HasRedoValueChange = "HasRedo";
 
 
 		public XYZ2(double x = Double.NaN, double y = Double.NaN, double z = Double.NaN)
@@ -201,18 +202,22 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 			CoordinateMessage("X", e.PropertyName);
 		#endif
 
-			if (e.PropertyName.Equals(ValueChange))
-			{
-				OnPropertyChange("IsRevisedX");
-			}
-			else if (e.PropertyName.Equals(UndoValueChange))
-			{
-				OnPropertyChange("UndoValueX");
-			}
-			else
-			{
-				OnPropertyChange("RedoValueX");
-			}
+			OnPropertyChange(e.PropertyName + "X");
+
+
+
+//			if (e.PropertyName.Equals(ValueChange))
+//			{
+//				OnPropertyChange("IsRevisedX");
+//			}
+//			else if (e.PropertyName.Equals(UndoValueChange))
+//			{
+//				OnPropertyChange("UndoValueX");
+//			}
+//			else
+//			{
+//				OnPropertyChange("RedoValueX");
+//			}
 		}
 
 		private void CoordinateChangedY(object sender, PropertyChangedEventArgs e)
@@ -220,18 +225,23 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 		#if DEBUG
 			CoordinateMessage("Y", e.PropertyName);
 		#endif
-			if (e.PropertyName.Equals(ValueChange))
-			{
-				OnPropertyChange("IsRevisedY");
-			}
-			else if (e.PropertyName.Equals(UndoValueChange))
-			{
-				OnPropertyChange("UndoValueY");
-			}
-			else
-			{
-				OnPropertyChange("RedoValueY");
-			}
+
+			OnPropertyChange(e.PropertyName + "Y");
+
+
+
+//			if (e.PropertyName.Equals(ValueChange))
+//			{
+//				OnPropertyChange("IsRevisedY");
+//			}
+//			else if (e.PropertyName.Equals(UndoValueChange))
+//			{
+//				OnPropertyChange("UndoValueY");
+//			}
+//			else
+//			{
+//				OnPropertyChange("RedoValueY");
+//			}
 		}
 
 		private void CoordinateChangedZ(object sender, PropertyChangedEventArgs e)
@@ -239,18 +249,23 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 		#if DEBUG
 			CoordinateMessage("Z", e.PropertyName);
 		#endif
-			if (e.PropertyName.Equals(ValueChange))
-			{
-				OnPropertyChange("IsRevisedZ");
-			}
-			else if (e.PropertyName.Equals(UndoValueChange))
-			{
-				OnPropertyChange("UndoValueZ");
-			}
-			else
-			{
-				OnPropertyChange("RedoValueZ");
-			}
+
+			OnPropertyChange(e.PropertyName + "Z");
+
+
+
+//			if (e.PropertyName.Equals(ValueChange))
+//			{
+//				OnPropertyChange("IsRevisedZ");
+//			}
+//			else if (e.PropertyName.Equals(UndoValueChange))
+//			{
+//				OnPropertyChange("UndoValueZ");
+//			}
+//			else
+//			{
+//				OnPropertyChange("RedoValueZ");
+//			}
 		}
 
 	#endregion
@@ -420,7 +435,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData2.Support
 
 					hasRedo = value;
 
-					OnPropertyChange();
+					OnPropertyChange(HasRedoValueChange);
 				}
 			}
 
