@@ -38,7 +38,7 @@
 				mainWindow
 			</sys:String>
 
-			<!-- overall field row -->
+			<!--  overall field row  -->
 			<GridLength x:Key="Lb3EditCtrlColWidth">
 				36
 			</GridLength>
@@ -70,7 +70,7 @@
 
 
 
-			<!-- xyz fields -->
+			<!--  xyz fields  -->
 
 			<GridLength x:Key="Lb3UndoRedoColWidth">
 				30
@@ -94,7 +94,7 @@
 
 
 
-			<!-- start end rows -->
+			<!--  start end rows  -->
 			<GridLength x:Key="Lb3StartEndEditCtrlColWidth">
 				4
 			</GridLength>
@@ -813,7 +813,8 @@
 				</Label.RenderTransform>
 			</Label>
 
-			<Grid Name="StartPointGrid"
+			<Grid
+					Name="StartPointGrid"
 					Grid.RowSpan="2"
 					Grid.Column="1"
 					Grid.ColumnSpan="2"
@@ -858,7 +859,8 @@
 						Background="{StaticResource Normal.Background}"
 						/>
 
-				<Grid Name="StartPointRow"
+				<Grid
+						Name="StartPointRow"
 						Grid.Row="2"
 						Grid.Column="0"
 						Grid.ColumnSpan="9"
@@ -954,7 +956,7 @@
 					IsSynchronizedWithCurrentItem="True"
 					ItemContainerStyle="{DynamicResource ListBoxItemStyle}"
 					ItemTemplate="{DynamicResource topopoints}"
-					ItemsSource="{Binding TopoMgr.Tpts2, Mode=TwoWay}" PreviewMouseDown="ListBox3_PreviewMouseDown"
+					ItemsSource="{Binding TopoMgr.Tpts2, Mode=TwoWay}"
 					>
 				<ListBox.Resources>
 
@@ -1321,7 +1323,8 @@
 									Binding="{Binding IsBeingEdited}"
 									Value="False"
 									>
-								<Setter Property="Foreground" Value="#999999" />
+								<Setter Property="Foreground" Value="#555555" />
+								<Setter Property="IsEnabled" Value="False" />
 								<Setter Property="IsReadOnly" Value="True" />
 							</DataTrigger>
 							<DataTrigger
@@ -1329,8 +1332,12 @@
 									Value="True"
 									>
 								<Setter Property="Background" Value="#cceeff" />
+								<Setter Property="IsEnabled" Value="True" />
 								<Setter Property="IsReadOnly" Value="False" />
 							</DataTrigger>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Background" Value="#FFC1EAFF" />
+							</Trigger>
 						</Style.Triggers>
 					</Style>
 					<!-- <Setter Property="IsReadOnly" Value="{Binding IsBeingEdited, Converter={StaticResource boolInvert}}" /> -->
@@ -1533,6 +1540,7 @@
 							<Grid
 									Name="FieldPointsGrid"
 									Margin="2,0,0,0"
+									IsHitTestVisible="True"
 									>
 
 								<Grid.ColumnDefinitions>
@@ -1653,9 +1661,10 @@
 										Style="{StaticResource lblHeaderBdrTop}"
 										>
 									<TextBox
+											DataContext="{Binding}"
 											Tag="{Binding TopoMgr.TpConsts.Xtag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
 											Text="{Binding X, Converter={StaticResource Converter.Xyz}}"
-											Style="{StaticResource CellTxBoxX}" 
+											Style="{StaticResource CellTxBoxX}"
 											/>
 								</Border>
 
@@ -1838,7 +1847,7 @@
 										<ColumnDefinition Width="{StaticResource Lb3TagColWidth}" />
 										<ColumnDefinition Width="{StaticResource Lb3IsRevisedColWidth}" />
 										<ColumnDefinition Width="{StaticResource Lb3valueColWidth}" />
-										<ColumnDefinition Width="{StaticResource Lb3HasRedoColWidth}"/>
+										<ColumnDefinition Width="{StaticResource Lb3HasRedoColWidth}" />
 										<ColumnDefinition Width="{StaticResource Lb3valueColWidth}" />
 									</Grid.ColumnDefinitions>
 									<Grid.RowDefinitions>
@@ -1956,21 +1965,29 @@
 
 
 									<!--  has redo  -->
-									<Border Grid.Row="0"
+									<Border
+											Grid.Row="0"
 											Grid.Column="5"
 											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray">
-										<Label Content="HasRedoX"
-												Style="{StaticResource lblSubValueHdr}" />
+											BorderBrush="DimGray"
+											>
+										<Label
+												Content="HasRedoX"
+												Style="{StaticResource lblSubValueHdr}"
+												/>
 									</Border>
 
-									<Border Grid.Row="1"
+									<Border
+											Grid.Row="1"
 											Grid.Column="5"
 											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray">
-										<TextBlock Text="{Binding XYZ.HasRedoX}"
+											BorderBrush="DimGray"
+											>
+										<TextBlock
+												Text="{Binding XYZ.HasRedoX}"
 												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}" />
+												Background="{StaticResource Normal.Inactive.Background}"
+												/>
 									</Border>
 
 									<!--  redo value  -->
@@ -2155,7 +2172,7 @@
 												Background="{StaticResource Normal.Inactive.Background}"
 												/>
 									</Border>
-									
+
 									<!--  redo value  -->
 									<Border
 											Grid.Row="0"
@@ -2210,7 +2227,7 @@
 										<RowDefinition Height="*" />
 									</Grid.RowDefinitions>
 
-									<!-- buttons -->
+									<!--  buttons  -->
 									<Button
 											x:Name="lb3BtnUndoZ"
 											Content="Undo"
@@ -2235,7 +2252,7 @@
 											Style="{StaticResource Lb3ApplyRedoForCellBtnZ}"
 											/>
 
-									<!-- tag -->
+									<!--  tag  -->
 									<Border
 											Grid.Row="0"
 											Grid.Column="2"
@@ -2248,19 +2265,23 @@
 												/>
 									</Border>
 
-									<Border Grid.Row="1"
+									<Border
+											Grid.Row="1"
 											Grid.Column="2"
 											BorderThickness="1,0,1,0"
-											BorderBrush="DimGray">
-										<TextBlock d:DataContext="{d:DesignInstance Type=local:MainWindow,
+											BorderBrush="DimGray"
+											>
+										<TextBlock
+												d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																												 IsDesignTimeCreatable=True}"
 												DataContext="{Binding ElementName=mainWindow}"
 												Text="{Binding TopoMgr.TpConsts.Ztag}"
 												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}" />
+												Background="{StaticResource Normal.Inactive.Background}"
+												/>
 									</Border>
 
-									<!-- is revised -->
+									<!--  is revised  -->
 									<Border
 											Grid.Row="0"
 											Grid.Column="3"
@@ -2273,16 +2294,20 @@
 												/>
 									</Border>
 
-									<Border Grid.Row="1"
+									<Border
+											Grid.Row="1"
 											Grid.Column="3"
 											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray">
-										<TextBlock Text="{Binding XYZ.IsRevisedZ}"
+											BorderBrush="DimGray"
+											>
+										<TextBlock
+												Text="{Binding XYZ.IsRevisedZ}"
 												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}" />
+												Background="{StaticResource Normal.Inactive.Background}"
+												/>
 									</Border>
 
-									<!-- undo value -->
+									<!--  undo value  -->
 									<Border
 											Grid.Row="0"
 											Grid.Column="4"
@@ -2308,25 +2333,33 @@
 												/>
 									</Border>
 
-									<!-- has redo -->
-									<Border Grid.Row="0"
+									<!--  has redo  -->
+									<Border
+											Grid.Row="0"
 											Grid.Column="5"
 											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray">
-										<Label Content="HasRedoZ"
-												Style="{StaticResource lblSubValueHdr}" />
+											BorderBrush="DimGray"
+											>
+										<Label
+												Content="HasRedoZ"
+												Style="{StaticResource lblSubValueHdr}"
+												/>
 									</Border>
 
-									<Border Grid.Row="1"
+									<Border
+											Grid.Row="1"
 											Grid.Column="5"
 											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray">
-										<TextBlock Text="{Binding XYZ.HasRedoZ}"
+											BorderBrush="DimGray"
+											>
+										<TextBlock
+												Text="{Binding XYZ.HasRedoZ}"
 												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}" />
+												Background="{StaticResource Normal.Inactive.Background}"
+												/>
 									</Border>
 
-									<!-- redo value -->
+									<!--  redo value  -->
 									<Border
 											Grid.Row="0"
 											Grid.Column="6"
@@ -2390,23 +2423,23 @@
 											Background="Aqua"
 											>
 										<Grid.ColumnDefinitions>
-											<!-- 0 -->
+											<!--  0  -->
 											<ColumnDefinition Width="{StaticResource Lb3EditCtrlColWidth}" />
-											<!-- 1 -->
+											<!--  1  -->
 											<ColumnDefinition Width="{StaticResource Lb3IndexColWidth}" />
-											<!-- 2 -->
+											<!--  2  -->
 											<ColumnDefinition Width="{StaticResource XyzColWidth}" />
-											<!-- 3 -->
+											<!--  3  -->
 											<ColumnDefinition Width="{StaticResource XyzColWidth}" />
-											<!-- 4 -->
+											<!--  4  -->
 											<ColumnDefinition Width="{StaticResource XyzColWidth}" />
-											<!-- 5  -->
+											<!--  5  -->
 											<ColumnDefinition Width="{StaticResource XdeltaColWidth}" />
-											<!-- 6  -->
+											<!--  6  -->
 											<ColumnDefinition Width="{StaticResource YdeltaColWidth}" />
-											<!-- 7  -->
+											<!--  7  -->
 											<ColumnDefinition Width="{StaticResource ZdeltaColWidth}" />
-											<!-- 8  -->
+											<!--  8  -->
 											<ColumnDefinition Width="{StaticResource XYdeltaColWidth}" />
 											<ColumnDefinition Width="1*" />
 											<ColumnDefinition Width="1*" />
@@ -2602,7 +2635,7 @@
 
 				</DockPanel>
 
-				<Grid 
+				<Grid
 						Name="Xendpoint"
 						Grid.Column="2"
 						Background="#3a3a3a"
@@ -2642,7 +2675,7 @@
 							BorderBrush="DimGray"
 							/>
 
-					<!-- buttong -->
+					<!--  buttong  -->
 					<Button
 							Content="Undo"
 							Grid.Row="1"
@@ -2661,7 +2694,7 @@
 							Style="{StaticResource controlPointBtnX}"
 							/>
 
-					<!-- tag -->
+					<!--  tag  -->
 					<Border
 							Grid.Row="1"
 							Grid.Column="2"
@@ -2674,17 +2707,21 @@
 								/>
 					</Border>
 
-					<Border Grid.Row="2"
+					<Border
+							Grid.Row="2"
 							Grid.Column="2"
 							BorderThickness="1,0,1,0"
-							BorderBrush="DimGray">
-						<TextBlock d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							BorderBrush="DimGray"
+							>
+						<TextBlock
+								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
 								Text="{Binding TopoMgr.TpConsts.Xtag, Mode=OneWay}"
-								Style="{StaticResource TerminusTxBlk}" />
+								Style="{StaticResource TerminusTxBlk}"
+								/>
 					</Border>
 
-					<!-- is revised -->
+					<!--  is revised  -->
 					<Border
 							Grid.Row="1"
 							Grid.Column="3"
@@ -2697,17 +2734,21 @@
 								/>
 					</Border>
 
-					<Border Grid.Row="2"
+					<Border
+							Grid.Row="2"
 							Grid.Column="3"
 							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray">
-						<TextBlock d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							BorderBrush="DimGray"
+							>
+						<TextBlock
+								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
 								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedX}"
-								Style="{StaticResource TerminusTxBlk}" />
+								Style="{StaticResource TerminusTxBlk}"
+								/>
 					</Border>
 
-					<!-- undo value -->
+					<!--  undo value  -->
 					<Border
 							Grid.Row="1"
 							Grid.Column="4"
@@ -2734,26 +2775,34 @@
 								/>
 					</Border>
 
-					<!-- has undo -->
-					<Border Grid.Row="1"
+					<!--  has undo  -->
+					<Border
+							Grid.Row="1"
 							Grid.Column="5"
 							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray">
-						<Label Content="HasUndoX"
-								Style="{StaticResource lblSubValueHdr}" />
+							BorderBrush="DimGray"
+							>
+						<Label
+								Content="HasUndoX"
+								Style="{StaticResource lblSubValueHdr}"
+								/>
 					</Border>
 
-					<Border Grid.Row="2"
+					<Border
+							Grid.Row="2"
 							Grid.Column="5"
 							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray">
-						<TextBlock d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							BorderBrush="DimGray"
+							>
+						<TextBlock
+								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
 								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.HasRedoX}"
-								Style="{StaticResource TerminusTxBlk}" />
+								Style="{StaticResource TerminusTxBlk}"
+								/>
 					</Border>
 
-					<!-- redo value -->
+					<!--  redo value  -->
 					<Border
 							Grid.Row="1"
 							Grid.Column="6"
@@ -2824,7 +2873,7 @@
 							BorderBrush="DimGray"
 							/>
 
-					<!-- buttons -->
+					<!--  buttons  -->
 					<Button
 							Content="Undo"
 							Grid.Row="1"
@@ -2843,7 +2892,7 @@
 							Style="{StaticResource controlPointBtnY}"
 							/>
 
-					<!-- tag -->
+					<!--  tag  -->
 					<Border
 							Grid.Row="1"
 							Grid.Column="2"
@@ -2856,17 +2905,21 @@
 								/>
 					</Border>
 
-					<Border Grid.Row="2"
+					<Border
+							Grid.Row="2"
 							Grid.Column="2"
 							BorderThickness="1,0,1,0"
-							BorderBrush="DimGray">
-						<TextBlock d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							BorderBrush="DimGray"
+							>
+						<TextBlock
+								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
 								Text="{Binding TopoMgr.TpConsts.Ytag, Mode=OneWay}"
-								Style="{StaticResource TerminusTxBlk}" />
+								Style="{StaticResource TerminusTxBlk}"
+								/>
 					</Border>
 
-					<!-- is revised -->
+					<!--  is revised  -->
 					<Border
 							Grid.Row="1"
 							Grid.Column="3"
@@ -2879,17 +2932,21 @@
 								/>
 					</Border>
 
-					<Border Grid.Row="2"
+					<Border
+							Grid.Row="2"
 							Grid.Column="3"
 							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray">
-						<TextBlock d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							BorderBrush="DimGray"
+							>
+						<TextBlock
+								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
 								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedY}"
-								Style="{StaticResource TerminusTxBlk}" />
+								Style="{StaticResource TerminusTxBlk}"
+								/>
 					</Border>
 
-					<!-- undo value -->
+					<!--  undo value  -->
 					<Border
 							Grid.Row="1"
 							Grid.Column="4"
@@ -2902,17 +2959,21 @@
 								/>
 					</Border>
 
-					<Border Grid.Row="2"
+					<Border
+							Grid.Row="2"
 							Grid.Column="4"
 							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray">
-						<TextBlock d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							BorderBrush="DimGray"
+							>
+						<TextBlock
+								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
 								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.UndoValueY, StringFormat=F2}"
-								Style="{StaticResource TerminusTxBlk}" />
+								Style="{StaticResource TerminusTxBlk}"
+								/>
 					</Border>
 
-					<!-- redo value -->
+					<!--  redo value  -->
 					<Border
 							Grid.Row="1"
 							Grid.Column="5"
@@ -2925,33 +2986,45 @@
 								/>
 					</Border>
 
-					<Border Grid.Row="2"
+					<Border
+							Grid.Row="2"
 							Grid.Column="5"
 							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray">
-						<TextBlock d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							BorderBrush="DimGray"
+							>
+						<TextBlock
+								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
 								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.RedoValueY, StringFormat=F2}"
-								Style="{StaticResource TerminusTxBlk}" />
+								Style="{StaticResource TerminusTxBlk}"
+								/>
 					</Border>
 
-					<!-- has redo -->
-					<Border Grid.Row="1"
+					<!--  has redo  -->
+					<Border
+							Grid.Row="1"
 							Grid.Column="6"
 							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray">
-						<Label Content="HasRedoY"
-								Style="{StaticResource lblSubValueHdr}" />
+							BorderBrush="DimGray"
+							>
+						<Label
+								Content="HasRedoY"
+								Style="{StaticResource lblSubValueHdr}"
+								/>
 					</Border>
 
-					<Border Grid.Row="2"
+					<Border
+							Grid.Row="2"
 							Grid.Column="6"
 							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray">
-						<TextBlock d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							BorderBrush="DimGray"
+							>
+						<TextBlock
+								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
 								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.HasRedoY}"
-								Style="{StaticResource TerminusTxBlk}" />
+								Style="{StaticResource TerminusTxBlk}"
+								/>
 					</Border>
 
 
@@ -3099,23 +3172,31 @@
 								/>
 					</Border>
 
-					<!-- has redo -->
-					<Border Grid.Row="1"
+					<!--  has redo  -->
+					<Border
+							Grid.Row="1"
 							Grid.Column="5"
 							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray">
-						<Label Content="HasRedoZ"
-								Style="{StaticResource lblSubValueHdr}" />
+							BorderBrush="DimGray"
+							>
+						<Label
+								Content="HasRedoZ"
+								Style="{StaticResource lblSubValueHdr}"
+								/>
 					</Border>
 
-					<Border Grid.Row="2"
+					<Border
+							Grid.Row="2"
 							Grid.Column="5"
 							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray">
-						<TextBlock d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							BorderBrush="DimGray"
+							>
+						<TextBlock
+								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
 								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.HasRedoZ}"
-								Style="{StaticResource TerminusTxBlk}" />
+								Style="{StaticResource TerminusTxBlk}"
+								/>
 					</Border>
 
 					<!--  redo value  -->

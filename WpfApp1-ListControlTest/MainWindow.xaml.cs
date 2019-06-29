@@ -362,17 +362,9 @@ namespace WpfApp1_ListControlTest
 		}
 
 
+
+
 		#endregion
 
-
-		private void ListBox3_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-		{
-			ListBox lb = ((ListBox) sender);
-
-			
-
-
-			TopoMgr.Tpts2.Append = "\n  *** ListBox GOT PREVIEWMOUSEDOWN ***\n\n";
-		}
 	}
 }
