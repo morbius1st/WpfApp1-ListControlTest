@@ -1,7 +1,9 @@
 ﻿#region + Using Directives
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,15 +20,113 @@ using System.Threading.Tasks;
 
 namespace WpfContextTest.Data
 {
-	public class SimpleData
+	public class SimpleData : INotifyPropertyChanged
 	{
+		private int index = 0;
+		private string propertyS = "void";
+		private double propertyD1 = 100.1;
+		private double propertyD2 = 200.2;
+		private int propertyI1 = 1001;
+		private int propertyI2 = 2002;
 
-		public string PropertyS { get; set; }
-		public double PropertyD1 { get; set; }
-		public double PropertyD2 { get; set; }
-		public int PropertyI1 { get; set; }
-		public int PropertyI2 { get; set; }
+		public SimpleData(
+			int index, string propertyS, double propertyD1,
+			double propertyD2, int propertyI1, int propertyI2
+			)
+		{
+			this.index = index;
+			this.propertyS = propertyS;
+			this.propertyD1 = propertyD1;
+			this.propertyD2 = propertyD2;
+			this.propertyI1 = propertyI1;
+			this.propertyI2 = propertyI2;
+		}
 
+		public SimpleData() { }
 
+		public int Index
+		{
+			get => index;
+			set
+			{
+				if (value == index) return;
+
+				index = value;
+
+				OnPropertyChange();
+			}
+		}
+
+		public string PropertyS
+		{
+			get => propertyS;
+			set
+			{
+				if (value.Equals(propertyS)) return;
+
+				propertyS = value;
+
+				OnPropertyChange();
+			}
+		}
+
+		public double PropertyD1
+		{
+			get => propertyD1;
+			set
+			{
+				if (value.Equals(propertyD1)) return;
+
+				propertyD1 = value;
+
+				OnPropertyChange();
+			}
+		}
+
+		public double PropertyD2
+		{
+			get => propertyD2;
+			set
+			{
+				if (value.Equals(propertyD2)) return;
+
+				propertyD2 = value;
+
+				OnPropertyChange();
+			}
+		}
+
+		public int PropertyI1
+		{
+			get => propertyI1;
+			set
+			{
+				if (value == propertyI1) return;
+
+				propertyI1 = value;
+
+				OnPropertyChange();
+			}
+		}
+
+		public int PropertyI2
+		{
+			get => propertyI2;
+			set
+			{
+				if (value == propertyI2) return;
+
+				propertyI2 = value;
+
+				OnPropertyChange();
+			}
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private void OnPropertyChange([CallerMemberName] string memberName = "")
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(memberName));
+		}
 	}
 }

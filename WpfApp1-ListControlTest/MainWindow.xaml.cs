@@ -13,11 +13,41 @@ using WpfApp1_ListControlTest.TopoPts.Support;
 using WpfApp1_ListControlTest.TopoPtsData2.Support;
 using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResources;
 
+
+/* Todo
+ * this relates to ListBox3 + TopoPoint(s)2
+ * basic system is worked out.  
+ * Investigations:
+ * make this a user control?  does this make sense?
+ *
+ * need:
+ * 1. apply for the whole listbox (eliminates any undo's / redo's)
+ * 2. undo for the whole listbox (revert all undo's - one level undo)
+ * 3. all each line to have a check box to allow user to select lines for
+ *		deletion
+ * 4. confirm that delete line works, add line works
+ * 
+ * next steps:
+ * 1. depending on user control question, make this transferable
+ * 2. add commands or events to disassociate this from manager
+ * 3. make this self-contained
+ * 4. make the width more variable - use min / max width rather than a set width
+ *
+ */
+
+
+
+
+
+
+
+
+
+
+
 namespace WpfApp1_ListControlTest
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
+
 	public partial class MainWindow : Window
 	{
 		public TopoPoints tps { get; set; }  = new TopoPoints();
@@ -27,7 +57,6 @@ namespace WpfApp1_ListControlTest
 
 		public TopoPtsConsts TpConsts = new TopoPtsConsts();
 
-//		public TopoPoints2 tps2 { get; set; }  = new TopoPoints2();
 		public TopoPointsTest2 TpTest2 { get; set; }
 
 		internal static MultiLineLB.MultiLineListBox Mlb { get; private set; } = new MultiLineLB.MultiLineListBox();
@@ -46,24 +75,13 @@ namespace WpfApp1_ListControlTest
 
 		public static ListBox Lb3 { get; set; }
 
-
 		public MainWindow()
 		{
-
-
 			TpTest = new TopoPointsTest(tps);
-//			TpTest.CreateData();
 
 			TopoMgr = new TopoPts2Mgr(); 
 			TpTest2 = new TopoPointsTest2(TopoMgr.Tpts2, TopoMgr);
-
-
-
-
 			InitializeComponent();
-
-// try out a new reindex method
-//			Tests.ReIndexTest();
 
 			CreateSampleData();
 		}
@@ -84,20 +102,6 @@ namespace WpfApp1_ListControlTest
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "11a", SheetName = "name 11a", SheetData = "data 11a", SheetInfo = "info 11a", SheetInfo2 = "info2 11a"});
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "12a", SheetName = "name 12a", SheetData = "data 12a", SheetInfo = "info 12a", SheetInfo2 = "info2 12a"});
 		}
-
-//		void test()
-//		{
-//			bool a = TopoMgr.Tpts2[0].ControlPoint;
-//			bool b = TopoMgr.Tpts2[0].IsBeingEdited;
-//			XYZ2 c = TopoMgr.Tpts2[0].XYZ;
-//
-//			bool d = TopoMgr.Tpts2[0].XYZ.IsRevised;
-//
-//			bool e = TopoMgr.Tpts2[0].XYZ.IsRevisedX;
-//			double x = TopoMgr.Tpts2[0].XYZ.UndoValueX;
-//			double y = TopoMgr.Tpts2[0].XYZ.UndoValueY;
-//			double z = TopoMgr.Tpts2[0].XYZ.UndoValueZ;
-//		}
 
 
 		private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -124,17 +128,6 @@ namespace WpfApp1_ListControlTest
 			tp2.IsBeingEdited = true;
 			PriorRowBeingEdited = lb3.SelectedIndex;
 
-//			if (!((TopoPoint2) lb3.Items[PriorRowBeingEdited]).HasRevision)
-//			{
-//				((TopoPoint2) lb3.Items[PriorRowBeingEdited]).IsBeingEdited = false;
-//				tp2.IsBeingEdited = true;
-//
-//				PriorRowBeingEdited = lb3.SelectedIndex;
-//			}
-//			else
-//			{
-//				lb3.SelectedIndex = PriorRowBeingEdited;
-//			}
 		}
 
 		private void Lb3BtnUndo_Click(object sender, RoutedEventArgs e)

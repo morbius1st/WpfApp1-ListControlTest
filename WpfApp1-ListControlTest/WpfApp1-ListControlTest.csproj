@@ -104,6 +104,13 @@
     <Compile Include="SampleData\SampleDataClass.cs" />
     <Compile Include="TestRoutines\ReIndexTest.cs" />
     <Compile Include="TestRoutines\Tests.cs" />
+    <Compile Include="TopoPtsData3\Support\TopoPoint3Support.cs" />
+    <Compile Include="TopoPtsData3\Support\TopoPts3MgrSupport.cs" />
+    <Compile Include="TopoPtsData3\Support\XYZ3.cs" />
+    <Compile Include="TopoPtsData3\TopoPoint3.cs" />
+    <Compile Include="TopoPtsData3\TopoPoints3.cs" />
+    <Compile Include="TopoPtsData3\TopoPointsTest3.cs" />
+    <Compile Include="TopoPtsData3\TopoPts3Mgr.cs" />
     <Compile Include="TopoPtsData2\Support\TopoPts2MgrSupport.cs" />
     <Compile Include="TopoPtsData2\TopoPoint2.cs" />
     <Compile Include="TopoPtsData2\Support\TopoPoint2Support.cs" />

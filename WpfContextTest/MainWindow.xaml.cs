@@ -39,8 +39,6 @@ namespace WpfContextTest
 			Mgr2 = new DataManager();
 
 			InitializeComponent();
-
-
 		}
 
 		public void LoadData1()
@@ -50,6 +48,18 @@ namespace WpfContextTest
 			Sd.Add(new SimpleData() {PropertyS = "First", PropertyD1 = 100.1, PropertyD2 = 201.1, PropertyI1 = 1001, PropertyI2 = 2001 }) ;
 			Sd.Add(new SimpleData() {PropertyS = "Second", PropertyD1 = 100.2, PropertyD2 = 201.2, PropertyI1 = 1002, PropertyI2 = 2002 }) ;
 			Sd.Add(new SimpleData() {PropertyS = "Third", PropertyD1 = 100.3, PropertyD2 = 201.3, PropertyI1 = 1003, PropertyI2 = 2003 }) ;
+		}
+
+		private void ColorPicker_OnColorChanged(object sender,
+			RoutedPropertyChangedEventArgs<Color> e
+			)
+		{
+
+		}
+
+		private void MainWindow_TargetUpdated(object sender, DataTransferEventArgs e)
+		{
+
 		}
 	}
 }
