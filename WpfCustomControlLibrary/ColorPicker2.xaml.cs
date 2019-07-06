@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,12 +14,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace WpfCustomControlLibrary
 {
 	/// <summary>
-	/// Interaction logic for ColorPicker.xaml
+	/// Interaction logic for ColorPicker22.xaml
 	/// </summary>
-	public class ColorPicker : System.Windows.Controls.Control
+	public partial class ColorPicker2 : UserControl
 	{
 		public static DependencyProperty ColorProperty;
 
@@ -38,140 +38,101 @@ namespace WpfCustomControlLibrary
 
 	#region ctor
 
-		static ColorPicker()
+		public ColorPicker2()
 		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof(ColorPicker), 
-				new FrameworkPropertyMetadata(typeof(ColorPicker)));
+			InitializeComponent();
+		}
 
-
+		static ColorPicker2()
+		{
 			SliderMarginProperty = DependencyProperty.Register(
-				"SliderMargin", typeof(Thickness), typeof(ColorPicker),
+				"SliderMargin", typeof(Thickness), typeof(ColorPicker2),
 				new FrameworkPropertyMetadata(new Thickness(0, 0, 0, 0)) );
 			RectangleMarginProperty = DependencyProperty.Register(
-				"RectangleMargin", typeof(Thickness), typeof(ColorPicker),
+				"RectangleMargin", typeof(Thickness), typeof(ColorPicker2),
 				new FrameworkPropertyMetadata(new Thickness(0, 0, 0, 0)) );
-			ColorProperty = DependencyProperty.Register(
-				"Color", typeof(Color), typeof(ColorPicker),
-				new FrameworkPropertyMetadata(Colors.Black,
-					new PropertyChangedCallback(OnColorChanged)));
+
 			AlphaChannelProperty = DependencyProperty.Register(
-				"Alpha", typeof(byte), typeof(ColorPicker),
-				new FrameworkPropertyMetadata((byte) 255,
+				"Alpha", typeof(byte), typeof(ColorPicker2),
+				new FrameworkPropertyMetadata(
 					new PropertyChangedCallback(OnColorARGBChanged)));
 			RedProperty = DependencyProperty.Register(
-				"Red", typeof(byte), typeof(ColorPicker),
+				"Red", typeof(byte), typeof(ColorPicker2),
 				new FrameworkPropertyMetadata(
 					new PropertyChangedCallback(OnColorARGBChanged)));
 			GreenProperty = DependencyProperty.Register(
-				"Green", typeof(byte), typeof(ColorPicker),
+				"Green", typeof(byte), typeof(ColorPicker2),
 				new FrameworkPropertyMetadata(
 					new PropertyChangedCallback(OnColorARGBChanged)));
 			BlueProperty = DependencyProperty.Register(
-				"Blue", typeof(byte), typeof(ColorPicker),
+				"Blue", typeof(byte), typeof(ColorPicker2),
 				new FrameworkPropertyMetadata(
 					new PropertyChangedCallback(OnColorARGBChanged)));
+			ColorProperty = DependencyProperty.Register(
+				"Color", typeof(Color), typeof(ColorPicker2),
+				new FrameworkPropertyMetadata(
+					new PropertyChangedCallback(OnColorChanged)));
 
 			ColorChangedEvent = EventManager.RegisterRoutedEvent(
 				"ColorChanged", RoutingStrategy.Bubble,
-				typeof(RoutedPropertyChangedEventHandler<Color>), typeof(ColorPicker));
+				typeof(RoutedPropertyChangedEventHandler<Color>), typeof(ColorPicker2));
 
-			CommandManager.RegisterClassCommandBinding(typeof(ColorPicker),
+			CommandManager.RegisterClassCommandBinding(typeof(ColorPicker2),
 				new CommandBinding(ApplicationCommands.Undo,
 					UndoCommand_Executed, UndoCommand_CanExecute));
-		}
 
-		public ColorPicker()
-		{
-			
+//			DefaultStyleKeyProperty.OverrideMetadata(typeof(ColorPicker2),
+//				new FrameworkPropertyMetadata(typeof(ColorPicker2)));
 		}
 
 	#endregion
 
-		public override void OnApplyTemplate()
-		{
-			base.OnApplyTemplate();
-
-			SetBinding("PART_AlphaSlider", "Alpha");
-			SetBinding("PART_RedSlider", "Red");
-			SetBinding("PART_GreenSlider", "Green");
-			SetBinding("PART_BlueSlider", "Blue");
-
-			SolidColorBrush brush = GetTemplateChild("PART_Swatch") as SolidColorBrush;
-
-			if (brush != null)
-			{
-				// bind to the red property in the control using a two-way binding
-				Binding binding = new Binding("Color");
-				binding.Source = brush;
-				binding.Mode = BindingMode.OneWayToSource;
-
-				this.SetBinding(ColorPicker.ColorProperty, binding);
-			}
-		}
-
 		private static void UndoCommand_CanExecute(object sender,
-			CanExecuteRoutedEventArgs e)
+			CanExecuteRoutedEventArgs e
+			)
 		{
-			e.CanExecute = ((ColorPicker) sender).prevColor.HasValue;
+			e.CanExecute = ((ColorPicker2) sender).prevColor.HasValue;
 		}
 
 		private static void UndoCommand_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
-			ColorPicker colorPicker = ((ColorPicker) sender);
+			ColorPicker2 ColorPicker2 = ((ColorPicker2) sender);
 
-			Color currentColor = colorPicker.Color;
+			Color currentColor = ColorPicker2.Color;
 
-			colorPicker.Color = (Color) colorPicker.prevColor;
+			ColorPicker2.Color = (Color) ColorPicker2.prevColor;
 		}
-
-		private void SetBinding(string childPartName, string propertyName)
-		{
-			RangeBase slider = GetTemplateChild(childPartName) as RangeBase;
-
-			if (slider != null)
-			{
-				// bind to the red property in the control using a two-way binding
-				Binding binding = new Binding(propertyName);
-				binding.Source = this;
-				binding.Mode = BindingMode.TwoWay;
-
-				slider.SetBinding(RangeBase.ValueProperty, binding);
-			}
-		}
-
-
 
 	#region properties
 
 		public Color Color
 		{
-			get { return (Color) GetValue(ColorProperty); }
-			set { SetValue(ColorProperty, value); }
+			get => (Color) GetValue(ColorProperty);
+			set => SetValue(ColorProperty, value);
 		}
-
 
 		public byte Alpha
 		{
-			get { return (byte) GetValue(AlphaChannelProperty); }
-			set { SetValue(AlphaChannelProperty, value); }
+			get => (byte) GetValue(AlphaChannelProperty);
+			set => SetValue(AlphaChannelProperty, value);
 		}
-		
+
 		public byte Red
 		{
-			get { return (byte) GetValue(RedProperty); }
-			set { SetValue(RedProperty, value); }
+			get => (byte) GetValue(RedProperty);
+			set => SetValue(RedProperty, value);
 		}
 
 		public byte Green
 		{
-			get { return (byte) GetValue(GreenProperty); }
-			set { SetValue(GreenProperty, value); }
+			get => (byte) GetValue(GreenProperty);
+			set => SetValue(GreenProperty, value);
 		}
 
 		public byte Blue
 		{
-			get { return (byte) GetValue(BlueProperty); }
-			set { SetValue(BlueProperty, value); }
+			get => (byte) GetValue(BlueProperty);
+			set => SetValue(BlueProperty, value);
 		}
 
 		public Thickness SliderMargin
@@ -179,7 +140,7 @@ namespace WpfCustomControlLibrary
 			get => (Thickness) GetValue(SliderMarginProperty);
 			set => SetValue(SliderMarginProperty, value);
 		}
-		
+
 		public Thickness RectangleMargin
 		{
 			get => (Thickness) GetValue(RectangleMarginProperty);
@@ -194,8 +155,8 @@ namespace WpfCustomControlLibrary
 			DependencyPropertyChangedEventArgs e
 			)
 		{
-			ColorPicker colorPicker = (ColorPicker) sender;
-			Color color = colorPicker.Color;
+			ColorPicker2 ColorPicker2 = (ColorPicker2) sender;
+			Color color = ColorPicker2.Color;
 			if (e.Property == AlphaChannelProperty)
 				color.A = (byte) e.NewValue;
 			else if (e.Property == RedProperty)
@@ -204,7 +165,8 @@ namespace WpfCustomControlLibrary
 				color.G = (byte) e.NewValue;
 			else if (e.Property == BlueProperty)
 				color.B = (byte) e.NewValue;
-			colorPicker.Color = color;
+
+			ColorPicker2.Color = color;
 		}
 
 		private static void OnColorChanged(DependencyObject sender,
@@ -214,26 +176,26 @@ namespace WpfCustomControlLibrary
 			Color newColor = (Color) e.NewValue;
 			Color oldColor = (Color) e.OldValue;
 
-			ColorPicker colorPicker = (ColorPicker) sender;
-			colorPicker.Red = newColor.R;
-			colorPicker.Green = newColor.G;
-			colorPicker.Blue = newColor.B;
+			ColorPicker2 ColorPicker2 = (ColorPicker2) sender;
+			ColorPicker2.Red = newColor.R;
+			ColorPicker2.Green = newColor.G;
+			ColorPicker2.Blue = newColor.B;
 
-			colorPicker.prevColor = (Color) e.OldValue;
+			ColorPicker2.prevColor = (Color) e.OldValue;
 
 			RoutedPropertyChangedEventArgs<Color> args =
 				new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor);
-			args.RoutedEvent = ColorPicker.ColorChangedEvent;
+			args.RoutedEvent = ColorPicker2.ColorChangedEvent;
 
-			colorPicker.RaiseEvent(args);
+			ColorPicker2.RaiseEvent(args);
 		}
-
-	#endregion
 
 		public event RoutedPropertyChangedEventHandler<Color> ColorChanged
 		{
 			add { AddHandler(ColorChangedEvent, value); }
 			remove { RemoveHandler(ColorChangedEvent, value); }
 		}
+
+	#endregion
 	}
 }

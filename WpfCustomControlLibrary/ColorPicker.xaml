@@ -1,79 +1,75 @@
-﻿<UserControl
-		x:Class="WpfCustomControlLibrary.ColorPicker"
-		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-		xmlns:local="clr-namespace:WpfCustomControlLibrary"
-		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		Name="colorPicker"
-		d:DesignHeight="200"
-		d:DesignWidth="500"
-		mc:Ignorable="d"
-		
-		>
-	<Grid
-			Margin="0"
-			>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition Width="Auto" MinWidth="159.2" />
-		</Grid.ColumnDefinitions>
-		<Slider
-				Name="sliderAlpha"
-				Grid.Row="0"
-				Margin="0"
-				HorizontalAlignment="Stretch"
-				Maximum="255"
-				Minimum="0"
-				TickFrequency="8"
-				TickPlacement="TopLeft"
-				Value="{Binding ElementName=colorPicker, Path=Alpha, FallbackValue=255}"
-				/>
-
-		<Slider
-				Name="sliderRed"
-				Grid.Row="1"
-				Margin="0"
-				HorizontalAlignment="Stretch"
-				Maximum="255"
-				Minimum="1"
-				Value="{Binding ElementName=colorPicker, Path=Red}"
-				/>
-		<Slider
-				Name="sliderGreen"
-				Grid.Row="2"
-				Margin="0"
-				Maximum="255"
-				Minimum="0"
-				Value="{Binding ElementName=colorPicker, Path=Green}"
-				/>
-		<Slider
-				Name="sliderBlue"
-				Grid.Row="3"
-				Margin="0"
-				Maximum="255"
-				Minimum="0"
-				Value="{Binding ElementName=colorPicker, Path=Blue}"
-				/>
-		<Rectangle
-				Grid.RowSpan="4"
-				Grid.Column="1"
-				Margin="4,0,1.2,1.2"
-				Stroke="Black"
-				StrokeThickness="1"
-				>
-			<Rectangle.Fill>
-				<SolidColorBrush
-						Color="{Binding ElementName=colorPicker, Path=Color}"
-						/>
-			</Rectangle.Fill>
-		</Rectangle>
-
-	</Grid>
-</UserControl>
+﻿  <UserControl 
+ 		x:Class="WpfCustomControlLibrary.ColorPicker" 
+ 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+ 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+ 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+ 		xmlns:local="clr-namespace:WpfCustomControlLibrary" 
+ 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+ 		Name="colorPicker" 
+ 		d:DesignHeight="200" 
+ 		d:DesignWidth="500" 
+ 		mc:Ignorable="d" 
+ 		> 
+ 
+ 	<Grid 
+ 			Margin="0" 
+ 			> 
+ 		<Grid.RowDefinitions> 
+ 			<RowDefinition Height="*" /> 
+ 			<RowDefinition Height="*" /> 
+ 			<RowDefinition Height="*" /> 
+ 			<RowDefinition Height="*" /> 
+ 		</Grid.RowDefinitions> 
+ 		<Grid.ColumnDefinitions> 
+ 			<ColumnDefinition /> 
+ 			<ColumnDefinition Width="Auto" MinWidth="159.2" /> 
+ 		</Grid.ColumnDefinitions> 
+ 		<Slider 
+ 				Name="PART_SliderAlpha" 
+ 				Grid.Row="0" 
+ 				Margin="0" 
+ 				HorizontalAlignment="Stretch" 
+ 				Maximum="255" 
+ 				Minimum="0" 
+ 				TickFrequency="8" 
+ 				TickPlacement="TopLeft" 
+ 				/> 
+ 
+ 		<Slider 
+ 				Name="PART_SliderRed" 
+ 				Grid.Row="1" 
+ 				Margin="0" 
+ 				HorizontalAlignment="Stretch" 
+ 				Maximum="255" 
+ 				Minimum="1" 
+ 				/> 
+ 		<Slider 
+ 				Name="PART_SliderGreen" 
+ 				Grid.Row="2" 
+ 				Margin="0" 
+ 				Maximum="255" 
+ 				Minimum="0" 
+ 				/> 
+ 		<Slider 
+ 				Name="PART_SliderBlue" 
+ 				Grid.Row="3" 
+ 				Margin="0" 
+ 				Maximum="255" 
+ 				Minimum="0" 
+ 				/> 
+ 		<Rectangle 
+ 				Grid.RowSpan="4" 
+ 				Grid.Column="1" 
+ 				Margin="4,0,1.2,1.2" 
+ 				Stroke="Black" 
+ 				StrokeThickness="1" 
+ 				> 
+ 			<Rectangle.Fill> 
+ 				<SolidColorBrush 
+ 						Color="{Binding ElementName=colorPicker, Path=Color}" 
+ 						/> 
+ 			</Rectangle.Fill> 
+ 		</Rectangle> 
+ 
+ 	</Grid> 
+ </UserControl> 

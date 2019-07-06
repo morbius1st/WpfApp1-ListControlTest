@@ -103,6 +103,7 @@
     <ProjectReference Include="..\WpfCustomControlLibrary\WpfCustomControlLibrary.csproj">
       <Project>{a78d5d23-f7ff-44f2-a9e3-66ea90297411}</Project>
       <Name>WpfCustomControlLibrary</Name>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

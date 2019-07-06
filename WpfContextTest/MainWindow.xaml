@@ -13,9 +13,11 @@
 		Height="568.4"
 		d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
 																		 Type={x:Type local:MainWindow}}"
+		TargetUpdated="MainWindow_TargetUpdated"
 		mc:Ignorable="d"
-		Background="#333333" TargetUpdated="MainWindow_TargetUpdated"
+		Background="#333333"
 		>
+	<!--  xmlns:themes="clr-namespace:WpfCustomControlLibrary.Themes;assembly=WpfCustomControlLibrary"  -->
 	<Window.Resources>
 
 		<sys:String
@@ -40,8 +42,9 @@
 		<ListBox
 				Name="listBox1"
 				Grid.Row="0"
-				Margin="41,36,0,0"
+				Margin="41,30,0,0"
 				Width="679"
+				Height="79"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				d:DataContext="{d:DesignInstance d:Type=local:MainWindow,
@@ -233,15 +236,13 @@
 				<ListBox.Resources>
 					<DataTemplate
 							x:Key="Dt2"
-							
 							>
 						<Grid
 								HorizontalAlignment="Stretch"
 								Background="DarkGray"
-								
 								>
 							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="100"/>
+								<ColumnDefinition Width="100" />
 								<ColumnDefinition Width="100" />
 								<ColumnDefinition Width="100" />
 								<ColumnDefinition Width="100" />
@@ -263,11 +264,10 @@
 									HorizontalAlignment="Stretch"
 									/>
 							<TextBox
-									Text="{Binding PropertyD1, Mode=TwoWay}"
 									Grid.Column="2"
 									Padding="0"
 									HorizontalAlignment="Stretch"
-
+									Text="{Binding PropertyD1, Mode=TwoWay}"
 									/>
 
 							<Label
@@ -344,16 +344,37 @@
 
 		</Grid>
 
-		<!-- <cslib:ColorPicker -->
-		<!-- 		Name="ColorPicker" -->
-		<!-- 		Grid.Row="3" -->
-		<!-- 		Margin="41,10,0,5" -->
-		<!-- 		Width="435" -->
-		<!-- 		HorizontalAlignment="Left" -->
-		<!-- 		VerticalAlignment="Stretch" -->
-		<!-- 		ColorChanged="ColorPicker_OnColorChanged" -->
-		<!-- 		Color="Aqua" -->
-		<!-- 		/> -->
+		<cslib:ColorPicker2
+				Name="ColorPicker2"
+				Grid.Row="3"
+				Margin="41,10,0,5"
+				Width="335"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Stretch"
+				Alpha="255"
+				ColorChanged="ColorPicker_OnColorChanged"
+				RectangleMargin="0,5,5,5"
+				SliderMargin="10,7,0,0"
+				Color="Aqua"
+				/>
+		<!--  ColorChanged="ColorPicker_OnColorChanged"  -->
+
+		<!--  <themes:ColorPicker  -->
+		<!--  Name="ColorPicker"  -->
+		<!--  Grid.Row="3"  -->
+		<!--  Margin="41,10,0,5"  -->
+		<!--  Width="335"  -->
+		<!--  HorizontalAlignment="Left"  -->
+		<!--  VerticalAlignment="Stretch"  -->
+		<!--  ColorChanged="ColorPicker_OnColorChanged"  -->
+		<!--  RectangleMargin="5"  -->
+		<!--  SliderMargin="5"  -->
+		<!--  Alpha="255"  -->
+		<!--  Color="Red"  -->
+		<!--  />  -->
+
+
+
 		<Label
 				x:Name="label"
 				Content="Color RGB:"
@@ -367,31 +388,31 @@
 				HorizontalContentAlignment="right"
 				Foreground="White"
 				/>
-		<!-- <Label -->
-		<!-- 		x:Name="label_Copy" -->
-		<!-- 		Content="{Binding ElementName=ColorPicker, Path=Color}" -->
-		<!-- 		Grid.Row="3" -->
-		<!-- 		Margin="574,10.2,0,0" -->
-		<!-- 		Width="80" -->
-		<!-- 		Height="17" -->
-		<!-- 		Padding="0" -->
-		<!-- 		HorizontalAlignment="Left" -->
-		<!-- 		VerticalAlignment="Top" -->
-		<!-- 		HorizontalContentAlignment="Left" -->
-		<!-- 		Foreground="White" -->
-		<!-- 		/> -->
-		<!-- <Button -->
-		<!-- 		x:Name="button" -->
-		<!-- 		Content="Undo" -->
-		<!-- 		Grid.Row="3" -->
-		<!-- 		Margin="505,32.2,0,0" -->
-		<!-- 		Width="84" -->
-		<!-- 		Height="32" -->
-		<!-- 		HorizontalAlignment="Left" -->
-		<!-- 		VerticalAlignment="Top" -->
-		<!-- 		Command="Undo" -->
-		<!-- 		CommandTarget="{Binding ElementName=ColorPicker}" -->
-		<!-- 		/> -->
+		<Label
+				x:Name="label_Copy"
+				Content="{Binding ElementName=ColorPicker2, Path=Color}"
+				Grid.Row="3"
+				Margin="574,10.2,0,0"
+				Width="80"
+				Height="17"
+				Padding="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				HorizontalContentAlignment="Left"
+				Foreground="White"
+				/>
+		<!--  <Button  -->
+		<!--  x:Name="button"  -->
+		<!--  Content="Undo"  -->
+		<!--  Grid.Row="3"  -->
+		<!--  Margin="505,32.2,0,0"  -->
+		<!--  Width="84"  -->
+		<!--  Height="32"  -->
+		<!--  HorizontalAlignment="Left"  -->
+		<!--  VerticalAlignment="Top"  -->
+		<!--  Command="Undo"  -->
+		<!--  CommandTarget="{Binding ElementName=ColorPicker}"  -->
+		<!--  />  -->
 
 	</Grid>
 </Window>

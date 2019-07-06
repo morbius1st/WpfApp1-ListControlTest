@@ -1,0 +1,142 @@
+﻿<UserControl
+	x:Class="WpfCustomControlLibrary.ColorPicker2"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:WpfCustomControlLibrary"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Name="colorPicker2"
+	d:DesignHeight="150"
+	d:DesignWidth="600"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+
+		<Style x:Key="Slider" TargetType="Slider">
+			<Setter Property="Maximum" Value="255" />
+			<Setter Property="Minimum" Value="0" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="{Binding ElementName=colorPicker2, Path=SliderMargin}" />
+		</Style>
+
+		<Style x:Key="TextBox" TargetType="TextBox">
+			<Setter Property="Margin" Value="5" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="Background" Value="#444444" />
+			<Setter Property="BorderBrush" Value="Transparent" />
+		</Style>
+
+		<Style x:Key="Label" TargetType="Label">
+			<Setter Property="Margin" Value="5" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="Background" Value="#444444" />
+			<Setter Property="BorderBrush" Value="Transparent" />
+			<Setter Property="Padding" Value="4,2,4,2" />
+			<Setter Property="FontSize" Value="10" />
+		</Style>
+
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="46" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="40" />
+			<ColumnDefinition Width="110" />
+		</Grid.ColumnDefinitions>
+
+		<Label
+			Grid.Row="0"
+			Grid.Column="0"
+			Content="Alpha"
+			Style="{DynamicResource Label}" />
+		<TextBox
+			Grid.Row="0"
+			Grid.Column="2"
+			Style="{DynamicResource TextBox}"
+			Text="{Binding ElementName=colorPicker2, Path=Alpha, Mode=TwoWay}" />
+		<Slider
+			Name="SliderAlpha"
+			Grid.Row="0"
+			Grid.Column="1"
+			Style="{DynamicResource Slider}"
+			TickFrequency="8"
+			TickPlacement="TopLeft"
+			Value="{Binding ElementName=colorPicker2, Path=Alpha}" />
+
+
+		<Label
+			Grid.Row="1"
+			Grid.Column="0"
+			Content="Red"
+			Style="{DynamicResource Label}" />
+		<TextBox
+			Grid.Row="1"
+			Grid.Column="2"
+			Style="{DynamicResource TextBox}"
+			Text="{Binding ElementName=colorPicker2, Path=Red, Mode=TwoWay}" />
+		<Slider
+			Name="SliderRed"
+			Grid.Row="1"
+			Grid.Column="1"
+			Style="{DynamicResource Slider}"
+			Value="{Binding ElementName=colorPicker2, Path=Red}" />
+
+
+		<Label
+			Grid.Row="2"
+			Grid.Column="0"
+			Content="Green"
+			Style="{DynamicResource Label}" />
+		<TextBox
+			Grid.Row="2"
+			Grid.Column="2"
+			Style="{DynamicResource TextBox}"
+			Text="{Binding ElementName=colorPicker2, Path=Green, Mode=TwoWay}" />
+		<Slider
+			Name="SliderGreen"
+			Grid.Row="2"
+			Grid.Column="1"
+			Style="{DynamicResource Slider}"
+			Value="{Binding ElementName=colorPicker2, Path=Green}" />
+
+
+		<Label
+			Grid.Row="3"
+			Grid.Column="0"
+			Content="Blue"
+			Style="{DynamicResource Label}" />
+		<TextBox
+			Grid.Row="3"
+			Grid.Column="2"
+			Style="{DynamicResource TextBox}"
+			Text="{Binding ElementName=colorPicker2, Path=Blue, Mode=TwoWay}" />
+		<Slider
+			Name="SliderBlue"
+			Grid.Row="3"
+			Grid.Column="1"
+			Style="{DynamicResource Slider}"
+			Value="{Binding ElementName=colorPicker2, Path=Blue}" />
+
+		<Rectangle
+			Grid.Row="0"
+			Grid.RowSpan="4"
+			Grid.Column="3"
+			Width="90"
+			Margin="{Binding ElementName=colorPicker2, Path=RectangleMargin}"
+			Stroke="Black"
+			StrokeThickness="1">
+			<Rectangle.Fill>
+				<SolidColorBrush Color="{Binding ElementName=colorPicker2, Path=Color}" />
+			</Rectangle.Fill>
+		</Rectangle>
+	</Grid>
+</UserControl>
