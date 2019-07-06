@@ -27,17 +27,17 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.Support
 		private int xStart = 1001;
 		private int yStart = 1101;
 
-		public void LoadDesignData(TopoPoints3 Tps2)
+		public void LoadDesignData(TopoPoints3 Tps3)
 		{
 			lastX = 10299 + xStart;
 			lastY = 20299 + yStart;
 			lastZ = 31300;
 
-			Tps2.Initialize(new TopoStartPoint(new XYZ3(lastX, lastY, lastZ)));
+			Tps3.Initialize(new TopoStartPoint(new XYZ3(lastX, lastY, lastZ)));
 
-			CreatePoints2(9, Tps2);
+			CreatePoints3(9, Tps3);
 
-			Tps2.Finalize(new TopoEndPoint(new XYZ3(lastX, lastY, lastZ)));
+			Tps3.Finalize(new TopoEndPoint(new XYZ3(lastX, lastY, lastZ)));
 		}
 
 		private double CalcZ(double x, double y, double slope)
@@ -47,7 +47,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.Support
 			return xy * slope;
 		} 
 
-		private void CreatePoints2(int qty, TopoPoints3 tps2)
+		private void CreatePoints3(int qty, TopoPoints3 tps3)
 		{
 			int x = xStart;
 			int y = yStart;
@@ -59,7 +59,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.Support
 
 			for (int i = 1; i < qty; i++)
 			{
-				tps2.Add(new XYZ3(lastX, lastY, lastZ));
+				tps3.Add(new XYZ3(lastX, lastY, lastZ));
 
 				lastX += x;
 				lastY += y;

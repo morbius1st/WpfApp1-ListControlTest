@@ -25,7 +25,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 	{
 		public TopoPtsConsts TpConsts { get; private set; }
 
-		public TopoPoints3 Tpts2 { get; set; }
+		public TopoPoints3 TopoPts { get; set; }
 
 		private TopoPts3MgrSupport TptSupport = new TopoPts3MgrSupport();
 
@@ -33,7 +33,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 		{
 			TpConsts = new TopoPtsConsts();
 
-			Tpts2 = new TopoPoints3();
+			TopoPts = new TopoPoints3();
 
 		}
 
@@ -41,7 +41,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 		public void LoadData()
 		{
-			TptSupport.LoadDesignData(Tpts2);
+			TptSupport.LoadDesignData(TopoPts);
 
 			DataLoaded = true;
 		}
@@ -52,7 +52,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			if (b == null) return;
 
-			Tpts2[idx].Undo(b.Tag as string);
+			TopoPts[idx].Undo(b.Tag as string);
 		}
 
 		public void Redo(object sender, int idx)
@@ -61,7 +61,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			if (b == null) return;
 
-			Tpts2[idx].Redo(b.Tag as string);
+			TopoPts[idx].Redo(b.Tag as string);
 		}
 
 		public void Undo(object sender)
@@ -70,7 +70,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			if (b == null) return;
 
-			Tpts2[Tpts2.EndIdx].Undo(b.Tag as string);
+			TopoPts[TopoPts.EndIdx].Undo(b.Tag as string);
 		}
 
 		public void Redo(object sender)
@@ -79,26 +79,26 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			if (b == null) return;
 
-			Tpts2[Tpts2.EndIdx].Redo(b.Tag as string);
+			TopoPts[TopoPts.EndIdx].Redo(b.Tag as string);
 		}
 
 		public void BatchIncreaseEachXyxByAmount(int startIdx, string which, double amount)
 		{
-			if (startIdx > Tpts2.EndIdx || startIdx < 1
+			if (startIdx > TopoPts.EndIdx || startIdx < 1
 				|| double.IsNaN(amount)
 				)
 			{
 				return;
 			}
 
-			Tpts2.BatchBegin();
+			TopoPts.BatchBegin();
 
-			for (int i = startIdx; i < Tpts2.Count; i++)
+			for (int i = startIdx; i < TopoPts.Count; i++)
 			{
-				Tpts2[i][which] += amount;
+				TopoPts[i][which] += amount;
 			}
 
-			Tpts2.BatchFinalize();
+			TopoPts.BatchFinalize();
 		}
 	}
 }

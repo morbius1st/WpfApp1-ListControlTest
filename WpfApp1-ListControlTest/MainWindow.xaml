@@ -640,13 +640,13 @@
 						>
 					<Style.Triggers>
 						<DataTrigger
-								Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedX, ElementName=mainWindow}"
+								Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedX, ElementName=mainWindow}"
 								Value="True"
 								>
 							<Setter Property="IsEnabled" Value="True" />
 						</DataTrigger>
 						<DataTrigger
-								Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedX, ElementName=mainWindow}"
+								Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedX, ElementName=mainWindow}"
 								Value="False"
 								>
 							<Setter Property="IsEnabled" Value="False" />
@@ -661,13 +661,13 @@
 						>
 					<Style.Triggers>
 						<DataTrigger
-								Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedY, ElementName=mainWindow}"
+								Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY, ElementName=mainWindow}"
 								Value="True"
 								>
 							<Setter Property="IsEnabled" Value="True" />
 						</DataTrigger>
 						<DataTrigger
-								Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedY, ElementName=mainWindow}"
+								Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY, ElementName=mainWindow}"
 								Value="False"
 								>
 							<Setter Property="IsEnabled" Value="False" />
@@ -682,13 +682,13 @@
 						>
 					<Style.Triggers>
 						<DataTrigger
-								Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedZ, ElementName=mainWindow}"
+								Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedZ, ElementName=mainWindow}"
 								Value="True"
 								>
 							<Setter Property="IsEnabled" Value="True" />
 						</DataTrigger>
 						<DataTrigger
-								Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedZ, ElementName=mainWindow}"
+								Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedZ, ElementName=mainWindow}"
 								Value="False"
 								>
 							<Setter Property="IsEnabled" Value="False" />
@@ -891,14 +891,14 @@
 							>
 
 						<Label
-								Content="{Binding TopoMgr.Tpts2.StartPointCp, Mode=OneWay}"
+								Content="{Binding TopoMgr.TopoPts.StartPointCp, Mode=OneWay}"
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
 								Style="{StaticResource controlPointLbl}"
 								/>
 
 						<Label
-								Content="{Binding TopoMgr.Tpts2.StartPointIndex, Mode=OneWay}"
+								Content="{Binding TopoMgr.TopoPts.StartPointIndex, Mode=OneWay}"
 								Width="38"
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
@@ -908,7 +908,7 @@
 					</DockPanel>
 
 					<Label
-							Content="{Binding TopoMgr.Tpts2.StartPointX, Converter={StaticResource Converter.Xyz}}"
+							Content="{Binding TopoMgr.TopoPts.StartPointX, Converter={StaticResource Converter.Xyz}}"
 							Grid.Column="2"
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																							 IsDesignTimeCreatable=True}"
@@ -916,7 +916,7 @@
 							Style="{StaticResource controlPointLbl}"
 							/>
 					<Label
-							Content="{Binding TopoMgr.Tpts2.StartPointY, Converter={StaticResource Converter.Xyz}}"
+							Content="{Binding TopoMgr.TopoPts.StartPointY, Converter={StaticResource Converter.Xyz}}"
 							Grid.Column="3"
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																							 IsDesignTimeCreatable=True}"
@@ -925,7 +925,7 @@
 							/>
 
 					<Label
-							Content="{Binding TopoMgr.Tpts2.StartPointZ, Converter={StaticResource Converter.Xyz}}"
+							Content="{Binding TopoMgr.TopoPts.StartPointZ, Converter={StaticResource Converter.Xyz}}"
 							Grid.Column="4"
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																							 IsDesignTimeCreatable=True}"
@@ -956,7 +956,7 @@
 					IsSynchronizedWithCurrentItem="True"
 					ItemContainerStyle="{DynamicResource ListBoxItemStyle}"
 					ItemTemplate="{DynamicResource topopoints}"
-					ItemsSource="{Binding TopoMgr.Tpts2, Mode=TwoWay}"
+					ItemsSource="{Binding TopoMgr.TopoPts, Mode=TwoWay}"
 					>
 				<ListBox.Resources>
 
@@ -2616,7 +2616,7 @@
 						Grid.Column="1"
 						>
 					<Label
-							Content="{Binding TopoMgr.Tpts2.EndPointCp}"
+							Content="{Binding TopoMgr.TopoPts.EndPointCp}"
 							VerticalAlignment="Top"
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																							 IsDesignTimeCreatable=True}"
@@ -2624,7 +2624,7 @@
 							/>
 
 					<Label
-							Content="{Binding TopoMgr.Tpts2.EndPointIndex}"
+							Content="{Binding TopoMgr.TopoPts.EndPointIndex}"
 							Width="38"
 							VerticalAlignment="Top"
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
@@ -2656,7 +2656,7 @@
 					</Grid.RowDefinitions>
 
 					<Label
-							Content="{Binding TopoMgr.Tpts2.EndPointX, Converter={StaticResource Converter.Xyz}}"
+							Content="{Binding TopoMgr.TopoPts.EndPointX, Converter={StaticResource Converter.Xyz}}"
 							Grid.Row="0"
 							Grid.Column="0"
 							Grid.ColumnSpan="7"
@@ -2743,7 +2743,7 @@
 						<TextBlock
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedX}"
+								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedX}"
 								Style="{StaticResource TerminusTxBlk}"
 								/>
 					</Border>
@@ -2770,7 +2770,7 @@
 						<TextBlock
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.UndoValueX, StringFormat=F2}"
+								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.UndoValueX, StringFormat=F2}"
 								Style="{StaticResource TerminusTxBlk}"
 								/>
 					</Border>
@@ -2797,7 +2797,7 @@
 						<TextBlock
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.HasRedoX}"
+								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.HasRedoX}"
 								Style="{StaticResource TerminusTxBlk}"
 								/>
 					</Border>
@@ -2824,7 +2824,7 @@
 						<TextBlock
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.RedoValueX, StringFormat=F2}"
+								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.RedoValueX, StringFormat=F2}"
 								Style="{StaticResource TerminusTxBlk}"
 								/>
 					</Border>
@@ -2854,7 +2854,7 @@
 					</Grid.RowDefinitions>
 
 					<Label
-							Content="{Binding TopoMgr.Tpts2.EndPointY, Converter={StaticResource Converter.Xyz}}"
+							Content="{Binding TopoMgr.TopoPts.EndPointY, Converter={StaticResource Converter.Xyz}}"
 							Grid.Row="0"
 							Grid.Column="0"
 							Grid.ColumnSpan="7"
@@ -2941,7 +2941,7 @@
 						<TextBlock
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedY}"
+								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY}"
 								Style="{StaticResource TerminusTxBlk}"
 								/>
 					</Border>
@@ -2968,7 +2968,7 @@
 						<TextBlock
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.UndoValueY, StringFormat=F2}"
+								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.UndoValueY, StringFormat=F2}"
 								Style="{StaticResource TerminusTxBlk}"
 								/>
 					</Border>
@@ -2995,7 +2995,7 @@
 						<TextBlock
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.RedoValueY, StringFormat=F2}"
+								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.RedoValueY, StringFormat=F2}"
 								Style="{StaticResource TerminusTxBlk}"
 								/>
 					</Border>
@@ -3022,7 +3022,7 @@
 						<TextBlock
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.HasRedoY}"
+								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.HasRedoY}"
 								Style="{StaticResource TerminusTxBlk}"
 								/>
 					</Border>
@@ -3053,7 +3053,7 @@
 
 					<!--  Z value  -->
 					<Label
-							Content="{Binding TopoMgr.Tpts2.EndPointZ, Converter={StaticResource Converter.Xyz}}"
+							Content="{Binding TopoMgr.TopoPts.EndPointZ, Converter={StaticResource Converter.Xyz}}"
 							Grid.Row="0"
 							Grid.Column="0"
 							Grid.ColumnSpan="7"
@@ -3140,7 +3140,7 @@
 						<TextBlock
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedZ}"
+								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedZ}"
 								Style="{StaticResource TerminusTxBlk}"
 								/>
 					</Border>
@@ -3167,7 +3167,7 @@
 						<TextBlock
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.UndoValueX, StringFormat=F2}"
+								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.UndoValueX, StringFormat=F2}"
 								Style="{StaticResource TerminusTxBlk}"
 								/>
 					</Border>
@@ -3194,7 +3194,7 @@
 						<TextBlock
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.HasRedoZ}"
+								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.HasRedoZ}"
 								Style="{StaticResource TerminusTxBlk}"
 								/>
 					</Border>
@@ -3221,7 +3221,7 @@
 						<TextBlock
 								d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.Tpts2.EndPointXYZ.RedoValueX, StringFormat=F2}"
+								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.RedoValueX, StringFormat=F2}"
 								Style="{StaticResource TerminusTxBlk}"
 								/>
 					</Border>
@@ -3231,7 +3231,7 @@
 				<!--#endregion-->
 
 				<Label
-						Content="{Binding TopoMgr.Tpts2.EndPointXΔ}"
+						Content="{Binding TopoMgr.TopoPts.EndPointXΔ}"
 						Grid.Column="5"
 						d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																						 IsDesignTimeCreatable=True}"
@@ -3239,7 +3239,7 @@
 						Style="{StaticResource controlPointLblDelta}"
 						/>
 				<Label
-						Content="{Binding TopoMgr.Tpts2.EndPointYΔ}"
+						Content="{Binding TopoMgr.TopoPts.EndPointYΔ}"
 						Grid.Column="6"
 						d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																						 IsDesignTimeCreatable=True}"
@@ -3247,7 +3247,7 @@
 						Style="{StaticResource controlPointLblDelta}"
 						/>
 				<Label
-						Content="{Binding TopoMgr.Tpts2.EndPointZΔ}"
+						Content="{Binding TopoMgr.TopoPts.EndPointZΔ}"
 						Grid.Column="7"
 						d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																						 IsDesignTimeCreatable=True}"
@@ -3255,7 +3255,7 @@
 						Style="{StaticResource controlPointLblDelta}"
 						/>
 				<Label
-						Content="{Binding TopoMgr.Tpts2.EndPointXYΔ}"
+						Content="{Binding TopoMgr.TopoPts.EndPointXYΔ}"
 						Grid.Column="8"
 						d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																						 IsDesignTimeCreatable=True}"
@@ -3263,7 +3263,7 @@
 						Style="{StaticResource controlPointLblDelta}"
 						/>
 				<Label
-						Content="{Binding TopoMgr.Tpts2.EndPointXYΔ}"
+						Content="{Binding TopoMgr.TopoPts.EndPointXYΔ}"
 						Grid.Column="9"
 						d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																						 IsDesignTimeCreatable=True}"
@@ -3272,7 +3272,7 @@
 						/>
 
 				<Label
-						Content="{Binding TopoMgr.Tpts2.EndPointSlope}"
+						Content="{Binding TopoMgr.TopoPts.EndPointSlope}"
 						Grid.Column="10"
 						d:DataContext="{d:DesignInstance Type=local:MainWindow,
 																						 IsDesignTimeCreatable=True}"
@@ -3318,7 +3318,7 @@
 					VerticalAlignment="Stretch"
 					FontSize="16"
 					DataContext="{Binding ElementName=mainWindow}"
-					Text="{Binding TopoMgr.Tpts2.Message}"
+					Text="{Binding TopoMgr.TopoPts.Message}"
 					VerticalScrollBarVisibility="Visible"
 					Background="#444444"
 					Foreground="White"

@@ -10,7 +10,8 @@ using WpfApp1_ListControlTest.TopoPts;
 using WpfApp1_ListControlTest.TopoPtsData;
 using WpfApp1_ListControlTest.TopoPtsData2;
 using WpfApp1_ListControlTest.TopoPts.Support;
-using WpfApp1_ListControlTest.TopoPtsData2.Support;
+//using WpfApp1_ListControlTest.TopoPtsData2.Support;
+using WpfApp1_ListControlTest.TopoPtsData3;
 using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResources;
 
 
@@ -36,15 +37,6 @@ using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResource
  */
 
 
-
-
-
-
-
-
-
-
-
 namespace WpfApp1_ListControlTest
 {
 
@@ -53,11 +45,11 @@ namespace WpfApp1_ListControlTest
 		public TopoPoints tps { get; set; }  = new TopoPoints();
 		public TopoPointsTest TpTest { get; set; }
 
-		public TopoPts2Mgr TopoMgr { get; set; }
-
 		public TopoPtsConsts TpConsts = new TopoPtsConsts();
 
-		public TopoPointsTest2 TpTest2 { get; set; }
+		public TopoPts3Mgr TopoMgr { get; set; }
+
+		public TopoPointsTest3 TopoPointTest { get; set; }
 
 		internal static MultiLineLB.MultiLineListBox Mlb { get; private set; } = new MultiLineLB.MultiLineListBox();
 	
@@ -79,8 +71,8 @@ namespace WpfApp1_ListControlTest
 		{
 			TpTest = new TopoPointsTest(tps);
 
-			TopoMgr = new TopoPts2Mgr(); 
-			TpTest2 = new TopoPointsTest2(TopoMgr.Tpts2, TopoMgr);
+			TopoMgr = new TopoPts3Mgr(); 
+			TopoPointTest = new TopoPointsTest3(TopoMgr.TopoPts, TopoMgr);
 			InitializeComponent();
 
 			CreateSampleData();
@@ -117,14 +109,14 @@ namespace WpfApp1_ListControlTest
 
 			if (lb3.SelectedIndex < 0) return;
 
-			TopoPoint2 tp2 = (TopoPoint2) lb3.Items[lb3.SelectedIndex];
+			TopoPoint3 tp2 = (TopoPoint3) lb3.Items[lb3.SelectedIndex];
 
 			Debug.WriteLine("@ MainResource3| @selectionChanged|" 
 				+ " selected count| " + e.AddedItems.Count 
 				+ " selected idx| " + lb3.SelectedIndex
 			);
 
-			((TopoPoint2) lb3.Items[PriorRowBeingEdited]).IsBeingEdited = false;
+			((TopoPoint3) lb3.Items[PriorRowBeingEdited]).IsBeingEdited = false;
 			tp2.IsBeingEdited = true;
 			PriorRowBeingEdited = lb3.SelectedIndex;
 
@@ -331,27 +323,27 @@ namespace WpfApp1_ListControlTest
 
 		private void BtnBatchAdd10ToYfrom3_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest2.BtnBatchAdd10ToYfrom3_Click();
+			TopoPointTest.BtnBatchAdd10ToYfrom3_Click();
 		}
 
 		private void BtnBatchAdjustZByAmount_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest2.BtnBatchAdjustZByAmount_Click();
+			TopoPointTest.BtnBatchAdjustZByAmount_Click();
 		}
 
 		private void BtnBatchAdjustZBySlope_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest2.BtnBatchAdjustZBySlope_Click();
+			TopoPointTest.BtnBatchAdjustZBySlope_Click();
 		}
 
 		private void BtnChangeXof1_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest2.BtnChangeXof1_Click();
+			TopoPointTest.BtnChangeXof1_Click();
 		}
 
 		private void BtnDebugMarker_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest2.BtnDebugMarker_Click();
+			TopoPointTest.BtnDebugMarker_Click();
 		}
 
 
