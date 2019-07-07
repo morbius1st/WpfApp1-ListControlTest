@@ -170,8 +170,7 @@ namespace WpfCustomControlLibrary
 		}
 
 		private static void OnColorChanged(DependencyObject sender,
-			DependencyPropertyChangedEventArgs e
-			)
+			DependencyPropertyChangedEventArgs e)
 		{
 			Color newColor = (Color) e.NewValue;
 			Color oldColor = (Color) e.OldValue;

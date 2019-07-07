@@ -10,7 +10,7 @@
 		Name="mainWindow"
 		Title="Main Window"
 		Width="800"
-		Height="568.4"
+		Height="700"
 		d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
 																		 Type={x:Type local:MainWindow}}"
 		TargetUpdated="MainWindow_TargetUpdated"
@@ -34,10 +34,12 @@
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
+			<RowDefinition Height="180" />
+			<RowDefinition Height="140" />
 			<RowDefinition Height="30" />
 		</Grid.RowDefinitions>
 
+		<!--#region > first listbox-->
 
 		<ListBox
 				Name="listBox1"
@@ -49,7 +51,6 @@
 				VerticalAlignment="Top"
 				d:DataContext="{d:DesignInstance d:Type=local:MainWindow,
 																				 IsDesignTimeCreatable=True}"
-				DataContext="{Binding ElementName=mainWindow}"
 				ItemsSource="{Binding Sd}"
 				>
 			<ListBox.ItemTemplate>
@@ -106,6 +107,10 @@
 			</ListBox.ItemTemplate>
 
 		</ListBox>
+
+		<!--#endregion-->
+
+		<!--#region > second listbox +-->
 
 		<ListBox
 				Name="ListBox2"
@@ -212,7 +217,9 @@
 				TextWrapping="Wrap"
 				Background="LightSlateGray"
 				/>
+		<!--#endregion-->
 
+		<!--#region > third listbox +-->
 
 		<Grid
 				Grid.Row="2"
@@ -343,10 +350,26 @@
 
 
 		</Grid>
+		<!--#endregion-->
+
+
+		<cslib:CustomListBox1
+				Name="CustomListBox1"
+				Grid.Row="3"
+				Margin="30,0,30,0"
+				VerticalAlignment="Stretch"
+				d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+																				 Type={x:Type local:MainWindow}}"
+				DataContext="{Binding ElementName=mainWindow}"
+				ItemSource="{Binding Sdx}"
+				/>
+		<!--  ItemSource="{Binding ElementName=mainWindow, Path=Sdx, Mode=TwoWay}"  -->
+
+		<!--#region > colorpicker +-->
 
 		<cslib:ColorPicker2
 				Name="ColorPicker2"
-				Grid.Row="3"
+				Grid.Row="4"
 				Margin="41,10,0,5"
 				Width="335"
 				HorizontalAlignment="Left"
@@ -357,6 +380,8 @@
 				SliderMargin="10,7,0,0"
 				Color="Aqua"
 				/>
+
+
 		<!--  ColorChanged="ColorPicker_OnColorChanged"  -->
 
 		<!--  <themes:ColorPicker  -->
@@ -378,7 +403,7 @@
 		<Label
 				x:Name="label"
 				Content="Color RGB:"
-				Grid.Row="3"
+				Grid.Row="4"
 				Margin="481,10.2,0,0"
 				Width="80"
 				Height="17"
@@ -391,7 +416,7 @@
 		<Label
 				x:Name="label_Copy"
 				Content="{Binding ElementName=ColorPicker2, Path=Color}"
-				Grid.Row="3"
+				Grid.Row="4"
 				Margin="574,10.2,0,0"
 				Width="80"
 				Height="17"
@@ -414,5 +439,6 @@
 		<!--  CommandTarget="{Binding ElementName=ColorPicker}"  -->
 		<!--  />  -->
 
+		<!--#endregion-->
 	</Grid>
 </Window>

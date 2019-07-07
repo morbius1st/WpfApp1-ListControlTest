@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0009A919-60A9-464A-A100-1611BE9DF7B1}</ProjectGuid>
+    <ProjectGuid>{BFACB572-0436-40C1-9B71-C5BA1A3F67C1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WpfContextTest</RootNamespace>
-    <AssemblyName>WpfContextTest</AssemblyName>
+    <RootNamespace>WpfData</RootNamespace>
+    <AssemblyName>WpfData</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -37,7 +37,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,10 +63,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\DataManager.cs" />
-    <Compile Include="Data\SimpleData.cs" />
-    <Compile Include="Data\SimpleDataCollection2.cs" />
-    <Compile Include="Data\SimpleDataMgr.cs" />
+    <Compile Include="Data\DataManager3.cs" />
+    <Compile Include="Data\SimpleData3.cs" />
+    <Compile Include="Data\SimpleDataCollection3.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -98,17 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WpfCustomControlLibrary\WpfCustomControlLibrary.csproj">
-      <Project>{a78d5d23-f7ff-44f2-a9e3-66ea90297411}</Project>
-      <Name>WpfCustomControlLibrary</Name>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\WpfData\WpfData.csproj">
-      <Project>{bfacb572-0436-40c1-9b71-c5ba1a3f67c1}</Project>
-      <Name>WpfData</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
