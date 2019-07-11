@@ -9,8 +9,9 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using WpfApp1_ListControlTest.TopoPts.Support;
 
-namespace WpfApp1_ListControlTest.TopoPtsData3.Support
+namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 {
+
 	public class XYZ3 : IEquatable<XYZ3>, INotifyPropertyChanged, ICloneable
 	{
 		private Coordinate x = new Coordinate();
@@ -28,7 +29,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.Support
 			this.x.PropertyChanged += CoordinateChangedX;
 			this.y.PropertyChanged += CoordinateChangedY;
 			this.z.PropertyChanged += CoordinateChangedZ;
-
 
 			this.x.Value = x;
 			this.y.Value = y;

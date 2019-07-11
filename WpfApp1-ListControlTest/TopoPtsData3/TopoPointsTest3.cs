@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Text;
 using WpfApp1_ListControlTest.TopoPtsData3.Support;
+using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3;
+using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support;
 
 #endregion
 
@@ -64,6 +66,21 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 			tps3.Append = "\n*** FAIL: LOAD DATA FIRST ***\n";
 		}
 
+
+		public void BtnAdd10ToZofStart_Click()
+		{
+			if (!tpMgr.DataLoaded)
+			{
+				DataNotLoaded();
+				return;
+			}
+
+			tps3.Append = "\n*** run test: Add 10 to start Z ***\n\n";
+
+			tpMgr.TopoPts[0].Z += 10;
+
+			tps3.Append = "*** run test: Complete ***\n";
+		}
 
 		public void BtnBatchAdd10ToYfrom3_Click()
 		{

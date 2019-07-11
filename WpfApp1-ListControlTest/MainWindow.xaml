@@ -771,6 +771,12 @@
 							Click="BtnBatchAdd10ToYfrom3_Click"
 							Style="{StaticResource TestButtonStyle}"
 							/>
+					<Button
+							x:Name="BtnAdd10ToZofStart"
+							Content="Add 10 to [start] Z "
+							Click="BtnAdd10ToZofStart_Click"
+							Style="{StaticResource TestButtonStyle}"
+							/>
 				</StackPanel>
 				<StackPanel
 						Margin="0,0,0,0"

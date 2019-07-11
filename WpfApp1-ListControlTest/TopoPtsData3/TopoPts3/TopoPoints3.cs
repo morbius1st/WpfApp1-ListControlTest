@@ -6,27 +6,39 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
-using WpfApp1_ListControlTest.TopoPtsData3.Support;
+using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support;
 
 #endregion
 
 
 // projname: WpfApp1_ListControlTest.TopoPts
-// tpname: TopoPoints
+// name: TopoPoints
 // username: jeffs
 // created:  5/21/2019 7:40:37 PM
 
-namespace WpfApp1_ListControlTest.TopoPtsData3
+namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 {
 	/*
 	 * a list of topographic points
-	 * the index number of the tp is its sequence in the point array
-	 * this means that TopoPoint(s) must be kept in the correct order
+	 * the index number of the tpt is its sequence in the point array
+	 * this means that index must be updated for each modification
+	 * to the array (reindexed)
 	 *
 	 * point arrangement
 	 * 0 = startpoint
 	 * # = intermediate topo points
 	 * EndIdx = endpoint
+	 *
+	 *
+	 * delegates:
+	 *
+	 * UpdateFirstItem
+	 * UpdateMiddleItem
+	 * UpdateLastItem
+	 *
+	 * this allows the data in the array to be revised when the
+	 * array is modified / reindexed
+	 *
 	 *
 	 */
 
@@ -45,6 +57,18 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 		private bool[] Status;
 
 		private string _message;
+
+		private AftrReindexItem aftrReindexItem;
+
+
+
+	#region > deletages
+
+		public delegate void AftrReindexItem(int newIdx, TopoPoint3 precedingTpt3);
+
+
+	#endregion
+
 
 	#region > constructor
 
@@ -88,6 +112,12 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 	#endif
 
 		public int EndIdx => Items.Count - 1;
+
+		public AftrReindexItem AfterReindexItem
+		{
+			get => aftrReindexItem;
+			set => aftrReindexItem = value;
+		}
 
 	#endregion
 
@@ -289,12 +319,16 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			if (eventProcessingTest(name))
 			{
+#if DEBUG
 				Append = "     | @ TopoPoints3| @propChange| pre-reindex\n\n";
+  #endif
 
 				ReIndex(idx, false);
 			}
 
+#if DEBUG
 			Append = "     | @ TopoPoints3| @propChange| post-reindex\n\n";
+  #endif
 		}
 
 		// only startpoint property change events
@@ -316,7 +350,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 			OnPropertyChanged("StartPoint" + e.PropertyName);
 		}
 
-		// only endpoint events
+		// only endpoint property change events
 		// this will, depending on the defer flag, 
 		// update the end point
 		private void TopoPoints_PropertyChangedEndPt(object sender, PropertyChangedEventArgs e)
@@ -409,11 +443,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			if (start == 0)
 			{
+				// send events for start point values
 				UpdateStartPointValues();
 			}
 
 			if (j == Items.Count)
 			{
+				// send events for end point values
 				UpdateEndPointBaseValues();
 			}
 
@@ -422,14 +458,17 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 				;
 		}
 
-		private void UpdateItem(int j, int i)
+		private void UpdateItem(int newIdx, int precedingIdx)
 		{
-			if (j > EndIdx || i < 0)
+			if (newIdx > EndIdx || precedingIdx < 0)
 			{
 				return;
 			}
 
-			Items[j].Update(j, Items[i]);
+			Items[newIdx].Update(newIdx, Items[precedingIdx]);
+
+			aftrReindexItem?.Invoke(newIdx, Items[precedingIdx]);
+
 		}
 
 	#if DEBUG

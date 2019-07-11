@@ -5,7 +5,7 @@
 
 using System;
 
-namespace WpfApp1_ListControlTest.TopoPtsData3.Support 
+namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support 
 {
 	public static class BitFlag
 	{

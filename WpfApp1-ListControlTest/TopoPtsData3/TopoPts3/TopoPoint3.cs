@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using WpfApp1_ListControlTest.TopoPts.Support;
-using WpfApp1_ListControlTest.TopoPtsData3.Support;
+using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support;
 
 #endregion
 
@@ -16,7 +16,7 @@ using WpfApp1_ListControlTest.TopoPtsData3.Support;
 // created:  5/21/2019 7:41:18 PM
 
 
-namespace WpfApp1_ListControlTest.TopoPtsData3
+namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 {
 #region	> special Topopoints
 
@@ -383,10 +383,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 		// update all of the computed values for this point
 		// the XYZ3 values have been updated before this
 		// adjusted to minimize property change events
-		public void Update(int index, TopoPoint3 precedingPoint)
+		public void Update(int newIdx, TopoPoint3 precedingPoint)
 		{
 			Debug.WriteLine("     | @ TopoPoint3| @ update|"
-				+ " index| " + index + "\n");
+				+ " index| " + newIdx + "\n");
 
 			statusFlag = BitFlag.Reset();
 
@@ -400,7 +400,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 			}
 
 			// update index
-			if (Index != index) Index = index;
+			if (Index != newIdx) Index = newIdx;
 
 			//update X + XΔ  
 			bool result1 = UpdateX(precedingPoint.X);
@@ -444,9 +444,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 				OnPropertyChange(eventName);
 			}
 		}
-
-
-
 
 	#endregion
 
@@ -534,12 +531,11 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 		private bool CalcSlope()
 		{
-			XYZΔ = XYΔ;
-
 			StatusFlagSet(BitFlag.XYΔZflag);
 
 			if (Double.IsNaN(ZΔ) || Double.IsNaN(XYΔ) || XYΔ.Equals(0))
 			{
+				XYZΔ = XYΔ;
 				Slope = Double.NaN;
 				return false;
 			}
@@ -548,7 +544,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			if (ZΔ.Equals(0))
 			{
-
+				XYZΔ = XYΔ;
 				Slope = 0;
 				return true;
 			}

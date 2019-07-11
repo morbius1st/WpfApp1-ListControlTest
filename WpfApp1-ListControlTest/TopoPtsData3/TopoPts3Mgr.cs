@@ -1,4 +1,4 @@
-﻿#region + Using Directives
+﻿#region > Using Directives
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using WpfApp1_ListControlTest.TopoPts.Support;
 using WpfApp1_ListControlTest.TopoPtsData3.Support;
+using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3;
 
 #endregion
-
 
 // projname: WpfApp1_ListControlTest.TopoPtsData3
 // itemname: TopoPts3Mgr
@@ -35,6 +35,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			TopoPts = new TopoPoints3();
 
+			TopoPts.AfterReindexItem += updateItemAfterReindex;
+		}
+
+		private void updateItemAfterReindex(int newidx, TopoPoint3 precedingtpt3)
+		{
+			TopoPts.Append = "\n     | @TopoPts3Mgr| got updateItemAfterReindex"
+				+ " (" + newidx + ")\n\n";
 		}
 
 		public bool DataLoaded { get; private set; } = false;
@@ -46,40 +53,40 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 			DataLoaded = true;
 		}
 
-		public void Undo(object sender, int idx)
+		public void Undo(string tag, int idx)
 		{
-			Button b = sender as Button;
+//			Button b = sender as Button;
+//
+//			if (b == null) return;
 
-			if (b == null) return;
-
-			TopoPts[idx].Undo(b.Tag as string);
+			TopoPts[idx].Undo(tag);
 		}
 
-		public void Redo(object sender, int idx)
+		public void Redo(string tag, int idx)
 		{
-			Button b = sender as Button;
+//			Button b = sender as Button;
+//
+//			if (b == null) return;
 
-			if (b == null) return;
-
-			TopoPts[idx].Redo(b.Tag as string);
+			TopoPts[idx].Redo(tag);
 		}
 
-		public void Undo(object sender)
+		public void Undo(string tag)
 		{
-			Button b = sender as Button;
+//			Button b = sender as Button;
+//
+//			if (b == null) return;
 
-			if (b == null) return;
-
-			TopoPts[TopoPts.EndIdx].Undo(b.Tag as string);
+			TopoPts[TopoPts.EndIdx].Undo(tag);
 		}
 
-		public void Redo(object sender)
+		public void Redo(string tag)
 		{
-			Button b = sender as Button;
+//			Button b = sender as Button;
+//
+//			if (b == null) return;
 
-			if (b == null) return;
-
-			TopoPts[TopoPts.EndIdx].Redo(b.Tag as string);
+			TopoPts[TopoPts.EndIdx].Redo(tag);
 		}
 
 		public void BatchIncreaseEachXyxByAmount(int startIdx, string which, double amount)

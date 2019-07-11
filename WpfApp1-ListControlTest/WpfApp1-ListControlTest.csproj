@@ -74,6 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\..\UtilityLibrary\UtilityLibrary\CsEnum.cs">
+      <Link>External\CsEnum.cs</Link>
+    </Compile>
     <Compile Include="ControlPtsData\ControlPts.cs" />
     <Compile Include="ControlPtsWin\ControlPointCommandHandler.cs" />
     <Compile Include="ControlPtsWin\ControlPointConverters.cs" />
@@ -104,11 +107,12 @@
     <Compile Include="SampleData\SampleDataClass.cs" />
     <Compile Include="TestRoutines\ReIndexTest.cs" />
     <Compile Include="TestRoutines\Tests.cs" />
-    <Compile Include="TopoPtsData3\Support\TopoPoint3Support.cs" />
+    <Compile Include="TopoPtsData3\TopoPts3\Support\TopoPoint3Support.cs" />
     <Compile Include="TopoPtsData3\Support\TopoPts3MgrSupport.cs" />
-    <Compile Include="TopoPtsData3\Support\XYZ3.cs" />
-    <Compile Include="TopoPtsData3\TopoPoint3.cs" />
-    <Compile Include="TopoPtsData3\TopoPoints3.cs" />
+    <Compile Include="TopoPtsData3\TopoPts3\Support\XYZ3.cs" />
+    <Compile Include="TopoPtsData3\Support\XYZEnum.cs" />
+    <Compile Include="TopoPtsData3\TopoPts3\TopoPoint3.cs" />
+    <Compile Include="TopoPtsData3\TopoPts3\TopoPoints3.cs" />
     <Compile Include="TopoPtsData3\TopoPointsTest3.cs" />
     <Compile Include="TopoPtsData3\TopoPts3Mgr.cs" />
     <Compile Include="TopoPtsData2\Support\TopoPts2MgrSupport.cs" />

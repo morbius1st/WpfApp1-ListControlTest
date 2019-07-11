@@ -12,6 +12,7 @@ using WpfApp1_ListControlTest.TopoPtsData2;
 using WpfApp1_ListControlTest.TopoPts.Support;
 //using WpfApp1_ListControlTest.TopoPtsData2.Support;
 using WpfApp1_ListControlTest.TopoPtsData3;
+using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3;
 using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResources;
 
 
@@ -99,6 +100,8 @@ namespace WpfApp1_ListControlTest
 		private void MainWindow_Loaded(object sender, RoutedEventArgs e)
 		{
 			loaded = true;
+
+			
 		}
 
 				int PriorRowBeingEdited = 0;
@@ -126,7 +129,7 @@ namespace WpfApp1_ListControlTest
 		{
 			ClickInfo(sender, e, "UndoX");
 
-			TopoMgr.Undo(sender, Lb3.SelectedIndex);
+			TopoMgr.Undo(((Button) sender)?.Tag as string, Lb3.SelectedIndex);
 
 		}
 
@@ -134,7 +137,7 @@ namespace WpfApp1_ListControlTest
 		{
 			ClickInfo(sender, e, "UndoX");
 
-			TopoMgr.Redo(sender, Lb3.SelectedIndex);
+			TopoMgr.Redo(((Button) sender)?.Tag as string, Lb3.SelectedIndex);
 
 		}
 
@@ -142,14 +145,14 @@ namespace WpfApp1_ListControlTest
 		{
 			ClickInfo(sender, e, "UndoX");
 
-			TopoMgr.Undo(sender);
+			TopoMgr.Undo(((Button) sender)?.Tag as string);
 		}
 		
 		private void Lb3BtnRedoEndPt_Click(object sender, RoutedEventArgs e)
 		{
 			ClickInfo(sender, e, "UndoX");
 
-			TopoMgr.Redo(sender);
+			TopoMgr.Redo(((Button) sender)?.Tag as string);
 		}
 
 		private void ClickInfo(object sender, RoutedEventArgs e, string fromWho)
@@ -159,7 +162,7 @@ namespace WpfApp1_ListControlTest
 
 			ListBox lb = MainWindow.Lb3;
 
-			TopoPoint2 tp2 = (TopoPoint2) MainWindow.Lb3.Items[lb.SelectedIndex];
+			TopoPoint3 tp2 = (TopoPoint3) MainWindow.Lb3.Items[lb.SelectedIndex];
 
 			Debug.WriteLine("\n@ MainResource3| @button pressed|"
 				+ " from| " + fromWho
@@ -321,6 +324,11 @@ namespace WpfApp1_ListControlTest
 			TopoMgr.LoadData();
 		}
 
+		private void BtnAdd10ToZofStart_Click(object sender, RoutedEventArgs e)
+		{
+			TopoPointTest.BtnAdd10ToZofStart_Click();
+		}
+		
 		private void BtnBatchAdd10ToYfrom3_Click(object sender, RoutedEventArgs e)
 		{
 			TopoPointTest.BtnBatchAdd10ToYfrom3_Click();
