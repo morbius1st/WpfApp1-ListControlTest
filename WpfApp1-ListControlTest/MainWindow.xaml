@@ -1,40 +1,31 @@
 ﻿<Window
-		x:Class="WpfApp1_ListControlTest.MainWindow"
-		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:converter="clr-namespace:WpfApp1_ListControlTest.MainWinSupport"
-		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-		xmlns:local="clr-namespace:WpfApp1_ListControlTest"
-		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:sys="clr-namespace:System;assembly=mscorlib"
-		xmlns:topoPtsData="clr-namespace:WpfApp1_ListControlTest.TopoPtsData"
-		x:Name="mainWindow"
-		Title="MainWindow"
-		Width="1680"
-		Height="1400"
-		Loaded="MainWindow_Loaded"
-		mc:Ignorable="d"
-		Background="#FF2C2C2C"
-		>
+	x:Class="WpfApp1_ListControlTest.MainWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:converter="clr-namespace:WpfApp1_ListControlTest.MainWinSupport"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:WpfApp1_ListControlTest"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib"
+	xmlns:topoPtsData="clr-namespace:WpfApp1_ListControlTest.TopoPtsData"
+	x:Name="mainWindow"
+	Title="MainWindow"
+	Width="1680"
+	Height="1400"
+	Background="#FF2C2C2C"
+	Loaded="MainWindow_Loaded"
+	mc:Ignorable="d">
 
 	<Window.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 
-				<ResourceDictionary
-						Source="WpfResources/VisualStates.xaml"
-						/>
-				<ResourceDictionary
-						Source="MainWinSupport/MainWinResourceSupport.xaml"
-						/>
-				<ResourceDictionary
-						Source="MainWinSupport/MainWinResource2.xaml"
-						/>
+				<ResourceDictionary Source="WpfResources/VisualStates.xaml" />
+				<ResourceDictionary Source="MainWinSupport/MainWinResourceSupport.xaml" />
+				<ResourceDictionary Source="MainWinSupport/MainWinResource2.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 
-			<sys:String
-					x:Key="Parent"
-					>
+			<sys:String x:Key="Parent">
 				mainWindow
 			</sys:String>
 
@@ -96,7 +87,7 @@
 
 			<!--  start end rows  -->
 			<GridLength x:Key="Lb3StartEndEditCtrlColWidth">
-				4
+				1
 			</GridLength>
 
 			<GridLength x:Key="Lb3StartEndIndexColWidth">
@@ -105,20 +96,14 @@
 
 
 
-			<Style
-					x:Key="TestButtonStyle"
-					TargetType="Button"
-					>
+			<Style x:Key="TestButtonStyle" TargetType="Button">
 				<Setter Property="Height" Value="27" />
 				<Setter Property="Margin" Value="1,0,1,0" />
 				<Setter Property="Width" Value="80" />
 			</Style>
 
 
-			<Style
-					x:Key="lblSubValueHdr"
-					TargetType="{x:Type Label}"
-					>
+			<Style x:Key="lblSubValueHdr" TargetType="{x:Type Label}">
 				<Setter Property="Background" Value="{StaticResource Normal.SelectedInActive.Background}" />
 				<Setter Property="FontSize" Value="7" />
 				<Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -130,9 +115,7 @@
 		</ResourceDictionary>
 	</Window.Resources>
 
-	<Grid
-			Margin="0,0,-0.4,7"
-			>
+	<Grid Margin="0,0,-0.4,7">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="840" />
 			<ColumnDefinition Width="*" />
@@ -147,9 +130,7 @@
 		<Grid.Resources>
 			<ResourceDictionary>
 				<ResourceDictionary.MergedDictionaries>
-					<ResourceDictionary
-							Source="MainWinSupport/MainWinResource1.xaml"
-							/>
+					<ResourceDictionary Source="MainWinSupport/MainWinResource1.xaml" />
 
 				</ResourceDictionary.MergedDictionaries>
 
@@ -161,13 +142,12 @@
 
 		<!--#region > listbox2-->
 		<Grid
-				Grid.Row="0"
-				Grid.Column="0"
-				Grid.ColumnSpan="2"
-				Margin="0,0,0,0"
-				HorizontalAlignment="Stretch"
-				VerticalAlignment="Stretch"
-				>
+			Grid.Row="0"
+			Grid.Column="0"
+			Grid.ColumnSpan="2"
+			Margin="0,0,0,0"
+			HorizontalAlignment="Stretch"
+			VerticalAlignment="Stretch">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="110" />
 				<RowDefinition Height="80" />
@@ -181,20 +161,19 @@
 			</Grid.ColumnDefinitions>
 
 			<Label
-					x:Name="label1"
-					Content="* ListBox *"
-					Grid.Row="0"
-					Grid.Column="1"
-					Margin="0.2,53,0,0"
-					Width="72"
-					Height="22"
-					Padding="0"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Top"
-					FontSize="16"
-					RenderTransformOrigin="0,1"
-					Foreground="White"
-					>
+				x:Name="label1"
+				Grid.Row="0"
+				Grid.Column="1"
+				Width="72"
+				Height="22"
+				Margin="0.2,53,0,0"
+				Padding="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Content="* ListBox *"
+				FontSize="16"
+				Foreground="White"
+				RenderTransformOrigin="0,1">
 				<Label.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform />
@@ -206,177 +185,146 @@
 			</Label>
 
 			<StackPanel
-					Grid.Row="0"
-					Grid.Column="1"
-					Grid.ColumnSpan="2"
-					Margin="0.2,5,796.6,5.4"
-					HorizontalAlignment="Stretch"
-					Orientation="Vertical"
-					>
+				Grid.Row="0"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Margin="0.2,5,796.6,5.4"
+				HorizontalAlignment="Stretch"
+				Orientation="Vertical">
 				<Border
-						Padding="1"
-						HorizontalAlignment="Left"
-						VerticalAlignment="Top"
-						BorderThickness="2"
-						BorderBrush="White"
-						>
+					Padding="1"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+					BorderBrush="White"
+					BorderThickness="2">
 
 					<StackPanel
-							Margin="0"
-							HorizontalAlignment="Left"
-							Orientation="Horizontal"
-							>
+						Margin="0"
+						HorizontalAlignment="Left"
+						Orientation="Horizontal">
 						<Button
-								x:Name="test_all"
-								Content="Test All"
-								Click="BtnTestAll_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_all"
+							Click="BtnTestAll_Click"
+							Content="Test All"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_add1"
-								Content="Add 1"
-								Click="BtnAdd1_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_add1"
+							Click="BtnAdd1_Click"
+							Content="Add 1"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_insert1"
-								Content="Insert 1"
-								Click="BtnInsert1_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_insert1"
+							Click="BtnInsert1_Click"
+							Content="Insert 1"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_changeend"
-								Content="Change End"
-								Click="BtnChangeE_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_changeend"
+							Click="BtnChangeE_Click"
+							Content="Change End"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_changestart"
-								Content="Change Start"
-								Click="BtnChangeS_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_changestart"
+							Click="BtnChangeS_Click"
+							Content="Change Start"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_change4x"
-								Content="Chg [4] X"
-								Click="BtnChange4X_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_change4x"
+							Click="BtnChange4X_Click"
+							Content="Chg [4] X"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_change4y"
-								Content="Chg [4] Y"
-								Click="BtnChange4Y_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_change4y"
+							Click="BtnChange4Y_Click"
+							Content="Chg [4] Y"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_change4z"
-								Content="Chg [4] Z"
-								Click="BtnChange4Z_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_change4z"
+							Click="BtnChange4Z_Click"
+							Content="Chg [4] Z"
+							Style="{StaticResource TestButtonStyle}" />
 					</StackPanel>
 				</Border>
 
 				<StackPanel
-						Margin="3"
-						HorizontalAlignment="Stretch"
-						Orientation="Vertical"
-						>
-					<StackPanel
-							Margin="0,0,0,1"
-							Orientation="Horizontal"
-							>
+					Margin="3"
+					HorizontalAlignment="Stretch"
+					Orientation="Vertical">
+					<StackPanel Margin="0,0,0,1" Orientation="Horizontal">
 						<Button
-								x:Name="test_changestartx"
-								Content="Chg Start X"
-								Click="BtnChangeStartX_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_changestartx"
+							Click="BtnChangeStartX_Click"
+							Content="Chg Start X"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_changeendx"
-								Content="Chg End X"
-								Click="BtnChangeEndX_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_changeendx"
+							Click="BtnChangeEndX_Click"
+							Content="Chg End X"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_contains"
-								Content="Contains?"
-								Click="BtnContains_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_contains"
+							Click="BtnContains_Click"
+							Content="Contains?"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_indexof"
-								Content="Index Of?"
-								Click="BtnIndexOf_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_indexof"
+							Click="BtnIndexOf_Click"
+							Content="Index Of?"
+							Style="{StaticResource TestButtonStyle}" />
 					</StackPanel>
-					<StackPanel
-							Orientation="Horizontal"
-							>
+					<StackPanel Orientation="Horizontal">
 						<Button
-								x:Name="test_removeat"
-								Content="Remove At (2)"
-								Click="BtnRemoveAt_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_removeat"
+							Click="BtnRemoveAt_Click"
+							Content="Remove At (2)"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_remove"
-								Content="Remove (2)"
-								Click="BtnRemove_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_remove"
+							Click="BtnRemove_Click"
+							Content="Remove (2)"
+							Style="{StaticResource TestButtonStyle}" />
 
 						<Button
-								x:Name="test_copyto"
-								Content="CopyTo"
-								Click="BtnCopyTo_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_copyto"
+							Click="BtnCopyTo_Click"
+							Content="CopyTo"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_clear"
-								Content="Clear"
-								Click="BtnClear_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_clear"
+							Click="BtnClear_Click"
+							Content="Clear"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_batch_v1"
-								Click="BtnBatch_Click"
-								Style="{StaticResource TestButtonStyle}"
-								>
+							x:Name="test_batch_v1"
+							Click="BtnBatch_Click"
+							Style="{StaticResource TestButtonStyle}">
 							<Button.ContentTemplate>
 								<DataTemplate>
 									<TextBlock
-											FontSize="9"
-											Text="Batch X + 12&#x0D; to items 3 to 5"
-											TextAlignment="Center"
-											TextWrapping="Wrap"
-											Background="Transparent"
-											IsHitTestVisible="False"
-											/>
+										Background="Transparent"
+										FontSize="9"
+										IsHitTestVisible="False"
+										Text="Batch X + 12&#x0D; to items 3 to 5"
+										TextAlignment="Center"
+										TextWrapping="Wrap" />
 								</DataTemplate>
 							</Button.ContentTemplate>
-
 						</Button>
 						<Button
-								x:Name="test_change4XYZ"
-								Content="Chg [4] XYZ"
-								Click="BtnChange4XYZ_Click"
-								Style="{StaticResource TestButtonStyle}"
-								/>
+							x:Name="test_change4XYZ"
+							Click="BtnChange4XYZ_Click"
+							Content="Chg [4] XYZ"
+							Style="{StaticResource TestButtonStyle}" />
 						<Button
-								x:Name="test_batch_v2"
-								Click="BtnBatchv2_Click"
-								Style="{StaticResource TestButtonStyle}"
-								>
+							x:Name="test_batch_v2"
+							Click="BtnBatchv2_Click"
+							Style="{StaticResource TestButtonStyle}">
 							<Button.ContentTemplate>
 								<DataTemplate>
 									<TextBlock
-											Text="Batch v2"
-											TextWrapping="Wrap"
-											Background="Transparent"
-											IsHitTestVisible="False"
-											/>
+										Background="Transparent"
+										IsHitTestVisible="False"
+										Text="Batch v2"
+										TextWrapping="Wrap" />
 								</DataTemplate>
 							</Button.ContentTemplate>
 
@@ -386,30 +334,28 @@
 			</StackPanel>
 
 			<ContentControl
-					Content="{StaticResource listBox2}"
-					Grid.Row="2"
-					Grid.Column="1"
-					Grid.ColumnSpan="2"
-					HorizontalAlignment="Stretch"
-					VerticalAlignment="Stretch"
-					/>
+				Grid.Row="2"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
+				Content="{StaticResource listBox2}" />
 
 			<Label
-					Content="start point:"
-					Grid.Row="1"
-					Grid.Column="0"
-					Grid.ColumnSpan="2"
-					Margin="24,54.6,0,0"
-					Width="76"
-					Height="22"
-					Padding="0"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Top"
-					HorizontalContentAlignment="Right"
-					FontSize="16"
-					RenderTransformOrigin="0,1"
-					Foreground="White"
-					>
+				Grid.Row="1"
+				Grid.Column="0"
+				Grid.ColumnSpan="2"
+				Width="76"
+				Height="22"
+				Margin="24,54.6,0,0"
+				Padding="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				HorizontalContentAlignment="Right"
+				Content="start point:"
+				FontSize="16"
+				Foreground="White"
+				RenderTransformOrigin="0,1">
 				<Label.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform />
@@ -423,30 +369,28 @@
 			</Label>
 
 			<ContentControl
-					Content="{StaticResource StartPoint2}"
-					Grid.Row="1"
-					Grid.Column="1"
-					Grid.ColumnSpan="2"
-					HorizontalAlignment="Stretch"
-					VerticalAlignment="Bottom"
-					/>
+				Grid.Row="1"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Bottom"
+				Content="{StaticResource StartPoint2}" />
 
 			<Label
-					Content="end point:"
-					Grid.Row="3"
-					Grid.Column="0"
-					Grid.ColumnSpan="2"
-					Margin="24,52.6,0,0"
-					Width="72"
-					Height="22"
-					Padding="0"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Top"
-					HorizontalContentAlignment="Right"
-					FontSize="16"
-					RenderTransformOrigin="0,1"
-					Foreground="White"
-					>
+				Grid.Row="3"
+				Grid.Column="0"
+				Grid.ColumnSpan="2"
+				Width="72"
+				Height="22"
+				Margin="24,52.6,0,0"
+				Padding="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				HorizontalContentAlignment="Right"
+				Content="end point:"
+				FontSize="16"
+				Foreground="White"
+				RenderTransformOrigin="0,1">
 				<Label.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform />
@@ -458,29 +402,27 @@
 			</Label>
 
 			<ContentControl
-					Content="{StaticResource EndPoint2}"
-					Grid.Row="3"
-					Grid.Column="1"
-					Grid.ColumnSpan="2"
-					HorizontalAlignment="Stretch"
-					VerticalAlignment="Top"
-					/>
+				Grid.Row="3"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Top"
+				Content="{StaticResource EndPoint2}" />
 
 			<Label
-					x:Name="label1_Copy1"
-					Content="messages:"
-					Grid.Row="0"
-					Grid.Column="2"
-					Margin="0.2,75,0,0"
-					Width="72"
-					Height="22"
-					Padding="0"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Top"
-					HorizontalContentAlignment="Left"
-					FontSize="16"
-					Foreground="White"
-					>
+				x:Name="label1_Copy1"
+				Grid.Row="0"
+				Grid.Column="2"
+				Width="72"
+				Height="22"
+				Margin="0.2,75,0,0"
+				Padding="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				HorizontalContentAlignment="Left"
+				Content="messages:"
+				FontSize="16"
+				Foreground="White">
 				<Label.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform />
@@ -492,20 +434,19 @@
 			</Label>
 
 			<TextBox
-					x:Name="tbxLbxMsg"
-					Grid.Row="0"
-					Grid.Column="2"
-					Margin="30.2,0,10,0"
-					Padding="0"
-					HorizontalAlignment="Stretch"
-					VerticalAlignment="Stretch"
-					FontSize="16"
-					DataContext="{Binding ElementName=mainWindow}"
-					Text="{Binding tps.message}"
-					VerticalScrollBarVisibility="Visible"
-					Background="#444444"
-					Foreground="White"
-					/>
+				x:Name="tbxLbxMsg"
+				Grid.Row="0"
+				Grid.Column="2"
+				Margin="30.2,0,10,0"
+				Padding="0"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
+				Background="#444444"
+				DataContext="{Binding ElementName=mainWindow}"
+				FontSize="16"
+				Foreground="White"
+				Text="{Binding tps.message}"
+				VerticalScrollBarVisibility="Visible" />
 
 		</Grid>
 		<!--#endregion-->
@@ -513,42 +454,34 @@
 		<!--#region > listbox3-->
 
 		<Grid
-				Name="ListBox3Grid"
-				Grid.Row="1"
-				Grid.Column="0"
-				Grid.ColumnSpan="2"
-				Margin="0,0,0,0"
-				HorizontalAlignment="Stretch"
-				VerticalAlignment="Stretch"
-				>
+			Name="ListBox3Grid"
+			Grid.Row="1"
+			Grid.Column="0"
+			Grid.ColumnSpan="2"
+			Margin="0,20,0,0"
+			HorizontalAlignment="Stretch"
+			VerticalAlignment="Stretch">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="110" />
-				<RowDefinition Height="80" />
 				<RowDefinition Height="*" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="350" />
 				<RowDefinition Height="80" />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="24.8" />
-				<ColumnDefinition Width="1100" />
+				<ColumnDefinition Width="238" />
+				<ColumnDefinition Width="862" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 
 			<Grid.Resources>
 
-				<converter:TopoPoint2XYZConverter
-						x:Key="Converter.Xyz"
-						/>
-				<converter:TopoPoint2SlopeConverter
-						x:Key="Converter.Slope"
-						/>
-				<converter:NegateBooleanConverter
-						x:Key="boolInvert"
-						/>
+				<converter:TopoPoint2XYZConverter x:Key="Converter.Xyz" />
+				<converter:TopoPoint2SlopeConverter x:Key="Converter.Slope" />
+				<converter:NegateBooleanConverter x:Key="boolInvert" />
 
-				<Style
-						x:Key="CellTxBlk"
-						TargetType="{x:Type TextBlock}"
-						>
+				<Style x:Key="CellTxBlk" TargetType="{x:Type TextBlock}">
 					<Setter Property="Background" Value="#c1c1c1" />
 					<Setter Property="Foreground" Value="#717171" />
 					<Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -558,10 +491,7 @@
 					<Setter Property="VerticalAlignment" Value="Top" />
 				</Style>
 
-				<Style
-						x:Key="TerminusTxBlk"
-						TargetType="TextBlock"
-						>
+				<Style x:Key="TerminusTxBlk" TargetType="TextBlock">
 					<Setter Property="Background" Value="{StaticResource Normal.Inactive.Background}" />
 					<Setter Property="DataContext" Value="{Binding ElementName=mainWindow, Mode=OneWay}" />
 					<Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -571,15 +501,11 @@
 				</Style>
 
 				<Style
-						x:Key="controlPointLblX"
-						TargetType="Label"
-						BasedOn="{StaticResource controlPointLbl}"
-						>
+					x:Key="controlPointLblX"
+					BasedOn="{StaticResource controlPointLbl}"
+					TargetType="Label">
 					<Style.Triggers>
-						<DataTrigger
-								Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedX}"
-								Value="True"
-								>
+						<DataTrigger Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedX}" Value="True">
 							<Setter Property="FontWeight" Value="Bold" />
 							<Setter Property="Foreground" Value="{StaticResource Normal.Modified.Foreground}" />
 						</DataTrigger>
@@ -587,15 +513,11 @@
 				</Style>
 
 				<Style
-						x:Key="controlPointLblY"
-						TargetType="Label"
-						BasedOn="{StaticResource controlPointLbl}"
-						>
+					x:Key="controlPointLblY"
+					BasedOn="{StaticResource controlPointLbl}"
+					TargetType="Label">
 					<Style.Triggers>
-						<DataTrigger
-								Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedY}"
-								Value="True"
-								>
+						<DataTrigger Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedY}" Value="True">
 							<Setter Property="FontWeight" Value="Bold" />
 							<Setter Property="Foreground" Value="{StaticResource Normal.Modified.Foreground}" />
 						</DataTrigger>
@@ -603,25 +525,18 @@
 				</Style>
 
 				<Style
-						x:Key="controlPointLblZ"
-						TargetType="Label"
-						BasedOn="{StaticResource controlPointLbl}"
-						>
+					x:Key="controlPointLblZ"
+					BasedOn="{StaticResource controlPointLbl}"
+					TargetType="Label">
 					<Style.Triggers>
-						<DataTrigger
-								Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedZ}"
-								Value="True"
-								>
+						<DataTrigger Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedZ}" Value="True">
 							<Setter Property="FontWeight" Value="Bold" />
 							<Setter Property="Foreground" Value="{StaticResource Normal.Modified.Foreground}" />
 						</DataTrigger>
 					</Style.Triggers>
 				</Style>
 
-				<Style
-						x:Key="controlPointBtn"
-						TargetType="Button"
-						>
+				<Style x:Key="controlPointBtn" TargetType="Button">
 					<Setter Property="Background" Value="White" />
 					<Setter Property="BorderBrush" Value="#555555" />
 					<Setter Property="BorderThickness" Value="1" />
@@ -634,63 +549,42 @@
 				</Style>
 
 				<Style
-						x:Key="controlPointBtnX"
-						TargetType="Button"
-						BasedOn="{StaticResource controlPointBtn}"
-						>
+					x:Key="controlPointBtnX"
+					BasedOn="{StaticResource controlPointBtn}"
+					TargetType="Button">
 					<Style.Triggers>
-						<DataTrigger
-								Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedX, ElementName=mainWindow}"
-								Value="True"
-								>
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedX, ElementName=mainWindow}" Value="True">
 							<Setter Property="IsEnabled" Value="True" />
 						</DataTrigger>
-						<DataTrigger
-								Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedX, ElementName=mainWindow}"
-								Value="False"
-								>
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedX, ElementName=mainWindow}" Value="False">
 							<Setter Property="IsEnabled" Value="False" />
 						</DataTrigger>
 					</Style.Triggers>
 				</Style>
 
 				<Style
-						x:Key="controlPointBtnY"
-						TargetType="Button"
-						BasedOn="{StaticResource controlPointBtn}"
-						>
+					x:Key="controlPointBtnY"
+					BasedOn="{StaticResource controlPointBtn}"
+					TargetType="Button">
 					<Style.Triggers>
-						<DataTrigger
-								Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY, ElementName=mainWindow}"
-								Value="True"
-								>
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY, ElementName=mainWindow}" Value="True">
 							<Setter Property="IsEnabled" Value="True" />
 						</DataTrigger>
-						<DataTrigger
-								Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY, ElementName=mainWindow}"
-								Value="False"
-								>
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY, ElementName=mainWindow}" Value="False">
 							<Setter Property="IsEnabled" Value="False" />
 						</DataTrigger>
 					</Style.Triggers>
 				</Style>
 
 				<Style
-						x:Key="controlPointBtnZ"
-						TargetType="Button"
-						BasedOn="{StaticResource controlPointBtn}"
-						>
+					x:Key="controlPointBtnZ"
+					BasedOn="{StaticResource controlPointBtn}"
+					TargetType="Button">
 					<Style.Triggers>
-						<DataTrigger
-								Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedZ, ElementName=mainWindow}"
-								Value="True"
-								>
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedZ, ElementName=mainWindow}" Value="True">
 							<Setter Property="IsEnabled" Value="True" />
 						</DataTrigger>
-						<DataTrigger
-								Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedZ, ElementName=mainWindow}"
-								Value="False"
-								>
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedZ, ElementName=mainWindow}" Value="False">
 							<Setter Property="IsEnabled" Value="False" />
 						</DataTrigger>
 					</Style.Triggers>
@@ -700,19 +594,19 @@
 			</Grid.Resources>
 
 			<Label
-					Content="** ListBox3 **"
-					Grid.Row="0"
-					Grid.Column="1"
-					Margin="0.2,72,0,0"
-					Width="94"
-					Height="22"
-					Padding="0"
-					HorizontalAlignment="Left"
-					VerticalAlignment="top"
-					FontSize="16"
-					RenderTransformOrigin="0,1"
-					Foreground="White"
-					>
+				Grid.Row="0"
+				Grid.RowSpan="2"
+				Grid.Column="1"
+				Width="94"
+				Height="22"
+				Margin="0.2,72,0,0"
+				Padding="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="top"
+				Content="** ListBox3 **"
+				FontSize="16"
+				Foreground="White"
+				RenderTransformOrigin="0,1">
 				<Label.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform />
@@ -724,90 +618,110 @@
 			</Label>
 
 			<StackPanel
-					Grid.Row="0"
-					Grid.Column="1"
-					Margin="3.2,3,3,3.4"
-					HorizontalAlignment="Stretch"
-					Orientation="Vertical"
-					>
-				<StackPanel
-						Margin="0,0,0,0"
-						Orientation="Horizontal"
-						>
+				Grid.Row="0"
+				Grid.RowSpan="2"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Margin="3.2,3,2.8,3.4"
+				HorizontalAlignment="Stretch"
+				Orientation="Vertical">
+				<StackPanel Margin="0,0,0,0" Orientation="Horizontal">
 					<Button
-							x:Name="BtnInitialize"
-							Content="Initialize"
-							Click="BtnInitialize_Click"
-							Style="{StaticResource TestButtonStyle}"
-							/>
+						x:Name="BtnInitialize"
+						Click="BtnInitialize_Click"
+						Content="Initialize"
+						Style="{StaticResource TestButtonStyle}" />
 
 				</StackPanel>
-				<StackPanel
-						Margin="0,0,0,0"
-						Orientation="Horizontal"
-						>
+				<StackPanel Margin="0,0,0,0" Orientation="Horizontal">
 					<Button
-							x:Name="BtnChangeXof1"
-							Content="Chg X of [1]"
-							Click="BtnChangeXof1_Click"
-							Style="{StaticResource TestButtonStyle}"
-							/>
+						x:Name="BtnChangeXof1"
+						Click="BtnChangeXof1_Click"
+						Content="Chg X of [1]"
+						Style="{StaticResource TestButtonStyle}" />
 
 					<Button
-							x:Name="BtnBatchAdjustZByAmount"
-							Content="Adj Z by Amt"
-							Click="BtnBatchAdjustZByAmount_Click"
-							Style="{StaticResource TestButtonStyle}"
-							/>
+						x:Name="BtnBatchAdjustZByAmount"
+						Click="BtnBatchAdjustZByAmount_Click"
+						Style="{StaticResource TestButtonStyle}">
+						<Button.ContentTemplate>
+							<DataTemplate>
+								<TextBlock
+									Background="Transparent"
+									FontSize="9"
+									IsHitTestVisible="False"
+									Text="Batch Add amt to&#x0D;[3] Z to [end]"
+									TextAlignment="Center"
+									TextWrapping="Wrap" />
+							</DataTemplate>
+						</Button.ContentTemplate>
+					</Button>
 					<Button
-							x:Name="BtnBatchAdjustZBySlope"
-							Content="Adj Z by Slope"
-							Click="BtnBatchAdjustZBySlope_Click"
-							Style="{StaticResource TestButtonStyle}"
-							/>
+						x:Name="BtnBatchAdjustZBySlope"
+						Click="BtnBatchAdjustZBySlope_Click"
+						Content="Adj Z by Slope"
+						Style="{StaticResource TestButtonStyle}" />
 					<Button
-							x:Name="BtnBatchAdd10ToYfrom3"
-							Content="Add 10 to [3+]Y"
-							Click="BtnBatchAdd10ToYfrom3_Click"
-							Style="{StaticResource TestButtonStyle}"
-							/>
+						x:Name="BtnBatchAdd10ToYfrom3"
+						Click="BtnBatchAdd10ToYfrom3_Click"
+						Content="Add 10 to [3+]Y"
+						Style="{StaticResource TestButtonStyle}" />
 					<Button
-							x:Name="BtnAdd10ToZofStart"
-							Content="Add 10 to [start] Z "
-							Click="BtnAdd10ToZofStart_Click"
-							Style="{StaticResource TestButtonStyle}"
-							/>
+						x:Name="BtnAdd10ToZofStart"
+						Click="BtnAdd10ToZofStart_Click"
+						Style="{StaticResource TestButtonStyle}">
+						<Button.ContentTemplate>
+							<DataTemplate>
+								<TextBlock
+									Background="Transparent"
+									FontSize="9"
+									IsHitTestVisible="False"
+									Text="Add 10 to&#x0D;[start] Z"
+									TextAlignment="Center"
+									TextWrapping="Wrap" />
+							</DataTemplate>
+						</Button.ContentTemplate>
+					</Button>
 				</StackPanel>
-				<StackPanel
-						Margin="0,0,0,0"
-						Orientation="Horizontal"
-						>
+				<StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+					<Button x:Name="BtnBatchAdd5ToAll" Style="{StaticResource TestButtonStyle}">
+						<Button.ContentTemplate>
+							<DataTemplate>
+								<TextBlock
+									Background="Transparent"
+									FontSize="9"
+									IsHitTestVisible="False"
+									Text="Batch Add 5&#x0D;to [1] to [end]"
+									TextAlignment="Center"
+									TextWrapping="Wrap" />
+							</DataTemplate>
+						</Button.ContentTemplate>
+					</Button>
+				</StackPanel>
+				<StackPanel Margin="0,0,0,0" Orientation="Horizontal">
 					<Button
-							x:Name="DebugMarker"
-							Content="Debug Marker"
-							Click="BtnDebugMarker_Click"
-							Style="{StaticResource TestButtonStyle}"
-							/>
-
+						x:Name="DebugMarker"
+						Click="BtnDebugMarker_Click"
+						Content="Debug Marker"
+						Style="{StaticResource TestButtonStyle}" />
 				</StackPanel>
 			</StackPanel>
 
 			<Label
-					Content="start point:"
-					Grid.Row="1"
-					Grid.Column="0"
-					Grid.ColumnSpan="2"
-					Margin="24,56.6,0,1.4"
-					Width="76"
-					Height="22"
-					Padding="0"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Center"
-					HorizontalContentAlignment="Right"
-					FontSize="16"
-					RenderTransformOrigin="0,1"
-					Foreground="White"
-					>
+				Grid.Row="2"
+				Grid.Column="0"
+				Grid.ColumnSpan="2"
+				Width="76"
+				Height="22"
+				Margin="24,56.6,0,1.4"
+				Padding="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Center"
+				HorizontalContentAlignment="Right"
+				Content="start point:"
+				FontSize="16"
+				Foreground="White"
+				RenderTransformOrigin="0,1">
 
 				<Label.RenderTransform>
 					<TransformGroup>
@@ -820,15 +734,14 @@
 			</Label>
 
 			<Grid
-					Name="StartPointGrid"
-					Grid.RowSpan="2"
-					Grid.Column="1"
-					Grid.ColumnSpan="2"
-					Margin="0.2,110,-0.4,0.4"
-					>
+				Name="StartPointGrid"
+				Grid.Row="2"
+				Grid.Column="1"
+				Grid.ColumnSpan="3"
+				Margin="0.2,0,-0.4,0.4">
 
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="90" />
+					<ColumnDefinition Width="84" />
 					<ColumnDefinition Width="90" />
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
@@ -840,42 +753,38 @@
 
 
 				<Border
-						BorderThickness="0,0,1,0"
-						BorderBrush="{StaticResource GridBorderGrey}"
-						>
+					Grid.Row="1"
+					Grid.Column="0"
+					VerticalAlignment="top"
+					BorderBrush="{StaticResource GridBorderGrey}"
+					BorderThickness="0,0,1,0">
 					<Label
-							x:Name="label"
-							Content="Selected index "
-							Grid.Row="0"
-							Grid.Column="0"
-							HorizontalAlignment="Stretch"
-							VerticalAlignment="Stretch"
-							HorizontalContentAlignment="Right"
-							Background="{StaticResource Normal.Background}"
-							/>
+						x:Name="label"
+						HorizontalAlignment="Stretch"
+						HorizontalContentAlignment="Right"
+						Background="{StaticResource Normal.Background}"
+						Content="Selected index " />
 				</Border>
 
 				<Label
-						Content="{Binding SelectedIndex, ElementName=ListBox3}"
-						Grid.Row="0"
-						Grid.Column="1"
-						HorizontalAlignment="Stretch"
-						VerticalAlignment="Stretch"
-						HorizontalContentAlignment="Left"
-						Background="{StaticResource Normal.Background}"
-						/>
+					Grid.Row="1"
+					Grid.Column="1"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="top"
+					HorizontalContentAlignment="Left"
+					Background="{StaticResource Normal.Background}"
+					Content="{Binding SelectedIndex, ElementName=ListBox3}" />
 
 				<Grid
-						Name="StartPointRow"
-						Grid.Row="2"
-						Grid.Column="0"
-						Grid.ColumnSpan="9"
-						Margin="0,0,28,0"
-						HorizontalAlignment="Stretch"
-						VerticalAlignment="Bottom"
-						d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																						 IsDesignTimeCreatable=True}"
-						>
+					Name="StartPointRow"
+					Grid.Row="2"
+					Grid.Column="0"
+					Grid.ColumnSpan="9"
+					Margin="0,0,28,0"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Bottom"
+					d:DataContext="{d:DesignInstance Type=local:MainWindow,
+					                                 IsDesignTimeCreatable=True}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="{StaticResource Lb3StartEndEditCtrlColWidth}" />
 						<ColumnDefinition Width="{StaticResource Lb3StartEndIndexColWidth}" />
@@ -891,79 +800,70 @@
 
 					</Grid.ColumnDefinitions>
 
-					<DockPanel
-							Grid.Column="1"
-							HorizontalAlignment="Stretch"
-							>
+					<DockPanel Grid.Column="1" HorizontalAlignment="Stretch">
 
 						<Label
-								Content="{Binding TopoMgr.TopoPts.StartPointCp, Mode=OneWay}"
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Style="{StaticResource controlPointLbl}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Content="{Binding TopoMgr.TopoPts.StartPointCp, Mode=OneWay}"
+							Style="{StaticResource controlPointLbl}" />
 
 						<Label
-								Content="{Binding TopoMgr.TopoPts.StartPointIndex, Mode=OneWay}"
-								Width="38"
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Style="{StaticResource controlPointLbl}"
-								/>
+							Width="38"
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Content="{Binding TopoMgr.TopoPts.StartPointIndex, Mode=OneWay}"
+							Style="{StaticResource controlPointLbl}" />
 
 					</DockPanel>
 
 					<Label
-							Content="{Binding TopoMgr.TopoPts.StartPointX, Converter={StaticResource Converter.Xyz}}"
-							Grid.Column="2"
-							d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																							 IsDesignTimeCreatable=True}"
-							ContentStringFormat="F2"
-							Style="{StaticResource controlPointLbl}"
-							/>
+						Grid.Column="2"
+						d:DataContext="{d:DesignInstance Type=local:MainWindow,
+						                                 IsDesignTimeCreatable=True}"
+						Content="{Binding TopoMgr.TopoPts.StartPointX, Converter={StaticResource Converter.Xyz}}"
+						ContentStringFormat="F2"
+						Style="{StaticResource controlPointLbl}" />
 					<Label
-							Content="{Binding TopoMgr.TopoPts.StartPointY, Converter={StaticResource Converter.Xyz}}"
-							Grid.Column="3"
-							d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																							 IsDesignTimeCreatable=True}"
-							ContentStringFormat="F2"
-							Style="{StaticResource controlPointLbl}"
-							/>
+						Grid.Column="3"
+						d:DataContext="{d:DesignInstance Type=local:MainWindow,
+						                                 IsDesignTimeCreatable=True}"
+						Content="{Binding TopoMgr.TopoPts.StartPointY, Converter={StaticResource Converter.Xyz}}"
+						ContentStringFormat="F2"
+						Style="{StaticResource controlPointLbl}" />
 
 					<Label
-							Content="{Binding TopoMgr.TopoPts.StartPointZ, Converter={StaticResource Converter.Xyz}}"
-							Grid.Column="4"
-							d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																							 IsDesignTimeCreatable=True}"
-							ContentStringFormat="F2"
-							Style="{StaticResource controlPointLbl}"
-							/>
+						Grid.Column="4"
+						d:DataContext="{d:DesignInstance Type=local:MainWindow,
+						                                 IsDesignTimeCreatable=True}"
+						Content="{Binding TopoMgr.TopoPts.StartPointZ, Converter={StaticResource Converter.Xyz}}"
+						ContentStringFormat="F2"
+						Style="{StaticResource controlPointLbl}" />
 				</Grid>
 
 
 			</Grid>
 
 			<ListBox
-					Name="ListBox3"
-					Grid.Row="1"
-					Grid.RowSpan="3"
-					Grid.Column="1"
-					Margin="0.2,79.6,4,79.8"
-					HorizontalAlignment="Stretch"
-					VerticalAlignment="Stretch"
-					HorizontalContentAlignment="Stretch"
-					d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																					 IsDesignTimeCreatable=True}"
-					DataContext="{Binding ElementName=mainWindow}"
-					Loaded="ListBox3_Loaded"
-					ScrollViewer.VerticalScrollBarVisibility="Visible"
-					SelectionChanged="ListBox3_SelectionChanged"
-					Background="LightGray"
-					IsSynchronizedWithCurrentItem="True"
-					ItemContainerStyle="{DynamicResource ListBoxItemStyle}"
-					ItemTemplate="{DynamicResource topopoints}"
-					ItemsSource="{Binding TopoMgr.TopoPts, Mode=TwoWay}"
-					>
+				Name="ListBox3"
+				Grid.Row="3"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Margin="0.2,0,3.8,0"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
+				HorizontalContentAlignment="Stretch"
+				d:DataContext="{d:DesignInstance Type=local:MainWindow,
+				                                 IsDesignTimeCreatable=True}"
+				Background="LightGray"
+				DataContext="{Binding ElementName=mainWindow}"
+				IsSynchronizedWithCurrentItem="True"
+				ItemContainerStyle="{DynamicResource ListBoxItemStyle}"
+				ItemTemplate="{DynamicResource topopoints}"
+				ItemsSource="{Binding TopoMgr.TopoPts, Mode=TwoWay}"
+				Loaded="ListBox3_Loaded"
+				ScrollViewer.VerticalScrollBarVisibility="Visible"
+				SelectionChanged="ListBox3_SelectionChanged">
 				<ListBox.Resources>
 
 
@@ -1046,50 +946,39 @@
 					<!-- 	</Style.Resources> -->
 					<!-- </Style> -->
 
-					<Style
-							x:Key="Lb3ApplyUndoBtn"
-							TargetType="Button"
-							>
+					<Style x:Key="Lb3ApplyUndoBtn" TargetType="Button">
 						<Setter Property="Background" Value="White" />
 						<Setter Property="Margin" Value="3,2,2,0" />
 						<Setter Property="Padding" Value="0" />
 						<Setter Property="Template" Value="{StaticResource Button.Normal.ControlTemplate}" />
 						<Style.Resources>
-							<Thickness
-									x:Key="Normal.Default.BorderThickness.Inner"
-									>
+							<Thickness x:Key="Normal.Default.BorderThickness.Inner">
 								6,0,0,0
 							</Thickness>
 						</Style.Resources>
 					</Style>
 
 					<Style
-							x:Key="Lb3ApplyUndoForRowBtn"
-							TargetType="Button"
-							BasedOn="{StaticResource Lb3ApplyUndoBtn}"
-							>
+						x:Key="Lb3ApplyUndoForRowBtn"
+						BasedOn="{StaticResource Lb3ApplyUndoBtn}"
+						TargetType="Button">
 						<Setter Property="FontSize" Value="10" />
 					</Style>
 
 					<Style
-							x:Key="Lb3ApplyUndoForCellBtn"
-							TargetType="Button"
-							BasedOn="{StaticResource Lb3ApplyUndoBtn}"
-							>
+						x:Key="Lb3ApplyUndoForCellBtn"
+						BasedOn="{StaticResource Lb3ApplyUndoBtn}"
+						TargetType="Button">
 						<Setter Property="FontSize" Value="8" />
 						<Setter Property="Margin" Value="1,1,1,1" />
 					</Style>
 
 					<Style
-							x:Key="Lb3ApplyUndoForCellBtnX"
-							TargetType="Button"
-							BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
-							>
+						x:Key="Lb3ApplyUndoForCellBtnX"
+						BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
+						TargetType="Button">
 						<Style.Triggers>
-							<DataTrigger
-									Binding="{Binding XYZ.IsRevisedX}"
-									Value="False"
-									>
+							<DataTrigger Binding="{Binding XYZ.IsRevisedX}" Value="False">
 								<Setter Property="IsEnabled" Value="False" />
 							</DataTrigger>
 							<MultiDataTrigger>
@@ -1110,25 +999,18 @@
 									<Setter Property="IsEnabled" Value="False" />
 								</MultiDataTrigger.Setters>
 							</MultiDataTrigger>
-							<DataTrigger
-									Binding="{Binding IsBeingEdited}"
-									Value="False"
-									>
+							<DataTrigger Binding="{Binding IsBeingEdited}" Value="False">
 								<Setter Property="IsEnabled" Value="False" />
 							</DataTrigger>
 						</Style.Triggers>
 					</Style>
 
 					<Style
-							x:Key="Lb3ApplyRedoForCellBtnX"
-							TargetType="Button"
-							BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
-							>
+						x:Key="Lb3ApplyRedoForCellBtnX"
+						BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
+						TargetType="Button">
 						<Style.Triggers>
-							<DataTrigger
-									Binding="{Binding XYZ.HasRedoX}"
-									Value="False"
-									>
+							<DataTrigger Binding="{Binding XYZ.HasRedoX}" Value="False">
 								<Setter Property="IsEnabled" Value="False" />
 							</DataTrigger>
 							<MultiDataTrigger>
@@ -1149,25 +1031,18 @@
 									<Setter Property="IsEnabled" Value="False" />
 								</MultiDataTrigger.Setters>
 							</MultiDataTrigger>
-							<DataTrigger
-									Binding="{Binding IsBeingEdited}"
-									Value="False"
-									>
+							<DataTrigger Binding="{Binding IsBeingEdited}" Value="False">
 								<Setter Property="IsEnabled" Value="False" />
 							</DataTrigger>
 						</Style.Triggers>
 					</Style>
 
 					<Style
-							x:Key="Lb3ApplyUndoForCellBtnY"
-							TargetType="Button"
-							BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
-							>
+						x:Key="Lb3ApplyUndoForCellBtnY"
+						BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
+						TargetType="Button">
 						<Style.Triggers>
-							<DataTrigger
-									Binding="{Binding XYZ.IsRevisedY}"
-									Value="False"
-									>
+							<DataTrigger Binding="{Binding XYZ.IsRevisedY}" Value="False">
 								<Setter Property="IsEnabled" Value="False" />
 							</DataTrigger>
 							<MultiDataTrigger>
@@ -1188,25 +1063,18 @@
 									<Setter Property="IsEnabled" Value="False" />
 								</MultiDataTrigger.Setters>
 							</MultiDataTrigger>
-							<DataTrigger
-									Binding="{Binding IsBeingEdited}"
-									Value="False"
-									>
+							<DataTrigger Binding="{Binding IsBeingEdited}" Value="False">
 								<Setter Property="IsEnabled" Value="False" />
 							</DataTrigger>
 						</Style.Triggers>
 					</Style>
 
 					<Style
-							x:Key="Lb3ApplyRedoForCellBtnY"
-							TargetType="Button"
-							BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
-							>
+						x:Key="Lb3ApplyRedoForCellBtnY"
+						BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
+						TargetType="Button">
 						<Style.Triggers>
-							<DataTrigger
-									Binding="{Binding XYZ.HasRedoY}"
-									Value="False"
-									>
+							<DataTrigger Binding="{Binding XYZ.HasRedoY}" Value="False">
 								<Setter Property="IsEnabled" Value="False" />
 							</DataTrigger>
 							<MultiDataTrigger>
@@ -1227,25 +1095,18 @@
 									<Setter Property="IsEnabled" Value="False" />
 								</MultiDataTrigger.Setters>
 							</MultiDataTrigger>
-							<DataTrigger
-									Binding="{Binding IsBeingEdited}"
-									Value="False"
-									>
+							<DataTrigger Binding="{Binding IsBeingEdited}" Value="False">
 								<Setter Property="IsEnabled" Value="False" />
 							</DataTrigger>
 						</Style.Triggers>
 					</Style>
 
 					<Style
-							x:Key="Lb3ApplyUndoForCellBtnZ"
-							TargetType="Button"
-							BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
-							>
+						x:Key="Lb3ApplyUndoForCellBtnZ"
+						BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
+						TargetType="Button">
 						<Style.Triggers>
-							<DataTrigger
-									Binding="{Binding XYZ.IsRevisedZ}"
-									Value="False"
-									>
+							<DataTrigger Binding="{Binding XYZ.IsRevisedZ}" Value="False">
 								<Setter Property="IsEnabled" Value="False" />
 							</DataTrigger>
 							<MultiDataTrigger>
@@ -1266,25 +1127,18 @@
 									<Setter Property="IsEnabled" Value="False" />
 								</MultiDataTrigger.Setters>
 							</MultiDataTrigger>
-							<DataTrigger
-									Binding="{Binding IsBeingEdited}"
-									Value="False"
-									>
+							<DataTrigger Binding="{Binding IsBeingEdited}" Value="False">
 								<Setter Property="IsEnabled" Value="False" />
 							</DataTrigger>
 						</Style.Triggers>
 					</Style>
 
 					<Style
-							x:Key="Lb3ApplyRedoForCellBtnZ"
-							TargetType="Button"
-							BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
-							>
+						x:Key="Lb3ApplyRedoForCellBtnZ"
+						BasedOn="{StaticResource Lb3ApplyUndoForCellBtn}"
+						TargetType="Button">
 						<Style.Triggers>
-							<DataTrigger
-									Binding="{Binding XYZ.HasRedoZ}"
-									Value="False"
-									>
+							<DataTrigger Binding="{Binding XYZ.HasRedoZ}" Value="False">
 								<Setter Property="IsEnabled" Value="False" />
 							</DataTrigger>
 							<MultiDataTrigger>
@@ -1305,19 +1159,13 @@
 									<Setter Property="IsEnabled" Value="False" />
 								</MultiDataTrigger.Setters>
 							</MultiDataTrigger>
-							<DataTrigger
-									Binding="{Binding IsBeingEdited}"
-									Value="False"
-									>
+							<DataTrigger Binding="{Binding IsBeingEdited}" Value="False">
 								<Setter Property="IsEnabled" Value="False" />
 							</DataTrigger>
 						</Style.Triggers>
 					</Style>
 
-					<Style
-							x:Key="CellTxBox"
-							TargetType="{x:Type TextBox}"
-							>
+					<Style x:Key="CellTxBox" TargetType="{x:Type TextBox}">
 						<Setter Property="BorderThickness" Value="0,0,0,0" />
 						<Setter Property="HorizontalContentAlignment" Value="Center" />
 						<Setter Property="Margin" Value="0,0,0,0" />
@@ -1325,18 +1173,12 @@
 						<Setter Property="VerticalAlignment" Value="Stretch" />
 						<Setter Property="VerticalContentAlignment" Value="Center" />
 						<Style.Triggers>
-							<DataTrigger
-									Binding="{Binding IsBeingEdited}"
-									Value="False"
-									>
+							<DataTrigger Binding="{Binding IsBeingEdited}" Value="False">
 								<Setter Property="Foreground" Value="#555555" />
 								<Setter Property="IsEnabled" Value="False" />
 								<Setter Property="IsReadOnly" Value="True" />
 							</DataTrigger>
-							<DataTrigger
-									Binding="{Binding IsBeingEdited}"
-									Value="True"
-									>
+							<DataTrigger Binding="{Binding IsBeingEdited}" Value="True">
 								<Setter Property="Background" Value="#cceeff" />
 								<Setter Property="IsEnabled" Value="True" />
 								<Setter Property="IsReadOnly" Value="False" />
@@ -1352,15 +1194,11 @@
 
 
 					<Style
-							x:Key="CellTxBoxX"
-							TargetType="TextBox"
-							BasedOn="{StaticResource CellTxBox}"
-							>
+						x:Key="CellTxBoxX"
+						BasedOn="{StaticResource CellTxBox}"
+						TargetType="TextBox">
 						<Style.Triggers>
-							<DataTrigger
-									Binding="{Binding XYZ.IsRevisedX}"
-									Value="True"
-									>
+							<DataTrigger Binding="{Binding XYZ.IsRevisedX}" Value="True">
 								<Setter Property="FontWeight" Value="Bold" />
 								<Setter Property="Foreground" Value="{StaticResource Normal.Modified.Foreground}" />
 							</DataTrigger>
@@ -1369,15 +1207,11 @@
 
 
 					<Style
-							x:Key="CellTxBoxY"
-							TargetType="TextBox"
-							BasedOn="{StaticResource CellTxBox}"
-							>
+						x:Key="CellTxBoxY"
+						BasedOn="{StaticResource CellTxBox}"
+						TargetType="TextBox">
 						<Style.Triggers>
-							<DataTrigger
-									Binding="{Binding XYZ.IsRevisedY}"
-									Value="True"
-									>
+							<DataTrigger Binding="{Binding XYZ.IsRevisedY}" Value="True">
 								<Setter Property="FontWeight" Value="Bold" />
 								<Setter Property="Foreground" Value="{StaticResource Normal.Modified.Foreground}" />
 							</DataTrigger>
@@ -1386,15 +1220,11 @@
 
 
 					<Style
-							x:Key="CellTxBoxZ"
-							TargetType="TextBox"
-							BasedOn="{StaticResource CellTxBox}"
-							>
+						x:Key="CellTxBoxZ"
+						BasedOn="{StaticResource CellTxBox}"
+						TargetType="TextBox">
 						<Style.Triggers>
-							<DataTrigger
-									Binding="{Binding XYZ.IsRevisedZ}"
-									Value="True"
-									>
+							<DataTrigger Binding="{Binding XYZ.IsRevisedZ}" Value="True">
 								<Setter Property="FontWeight" Value="Bold" />
 								<Setter Property="Foreground" Value="{StaticResource Normal.Modified.Foreground}" />
 							</DataTrigger>
@@ -1404,70 +1234,49 @@
 
 
 
-					<Style
-							x:Key="lblHeaderBdrTop"
-							TargetType="{x:Type Border}"
-							>
+					<Style x:Key="lblHeaderBdrTop" TargetType="{x:Type Border}">
 						<Setter Property="BorderBrush" Value="{DynamicResource GridBorderGrey}" />
 						<Setter Property="BorderThickness" Value="0,0,1,0" />
 						<Setter Property="Margin" Value="0" />
 					</Style>
 
-					<Style
-							x:Key="lblHeaderBdrBottom"
-							TargetType="{x:Type Border}"
-							>
+					<Style x:Key="lblHeaderBdrBottom" TargetType="{x:Type Border}">
 						<Setter Property="BorderBrush" Value="{DynamicResource GridBorderGrey}" />
 						<Setter Property="BorderThickness" Value="0,0,1,0" />
 						<Setter Property="Margin" Value="0" />
 					</Style>
 
 
-					<Style
-							x:Key="FocusVisual"
-							>
+					<Style x:Key="FocusVisual">
 						<Setter Property="Control.Template">
 							<Setter.Value>
 								<ControlTemplate>
 									<Rectangle
-											Margin="5"
-											SnapsToDevicePixels="true"
-											Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-											StrokeDashArray="1 2"
-											StrokeThickness="1"
-											/>
+										Margin="5"
+										SnapsToDevicePixels="true"
+										Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+										StrokeDashArray="1 2"
+										StrokeThickness="1" />
 								</ControlTemplate>
 							</Setter.Value>
 						</Setter>
 					</Style>
 
-					<Style
-							x:Key="PointsTestHeader"
-							TargetType="{x:Type Border}"
-							>
+					<Style x:Key="PointsTestHeader" TargetType="{x:Type Border}">
 						<Setter Property="BorderBrush" Value="Black" />
 						<Setter Property="BorderThickness" Value="0,0,1,1" />
 						<Setter Property="Margin" Value="0" />
 						<Setter Property="Padding" Value="4,0,0,0" />
 					</Style>
 
-					<Style
-							x:Key="PointsTestHeaderLabel"
-							TargetType="{x:Type Label}"
-							>
+					<Style x:Key="PointsTestHeaderLabel" TargetType="{x:Type Label}">
 						<Setter Property="HorizontalContentAlignment" Value="Center" />
 						<Setter Property="VerticalContentAlignment" Value="Center" />
 					</Style>
 
-					<Style
-							x:Key="ListBoxItemStyle"
-							TargetType="{x:Type ListBoxItem}"
-							>
+					<Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
 						<Style.Triggers>
-							<DataTrigger
-									Binding="{Binding ControlPoint}"
-									Value="True"
-									>
+							<DataTrigger Binding="{Binding ControlPoint}" Value="True">
 								<Setter Property="Visibility" Value="Collapsed" />
 							</DataTrigger>
 						</Style.Triggers>
@@ -1481,23 +1290,19 @@
 
 						<Setter Property="Template">
 							<Setter.Value>
-								<ControlTemplate
-										TargetType="{x:Type ListBoxItem}"
-										>
+								<ControlTemplate TargetType="{x:Type ListBoxItem}">
 									<Border
-											x:Name="Bd"
-											Margin="0,0,0,-4"
-											Padding="{TemplateBinding Padding}"
-											SnapsToDevicePixels="true"
-											Background="{TemplateBinding Background}"
-											BorderThickness="{TemplateBinding BorderThickness}"
-											BorderBrush="{TemplateBinding BorderBrush}"
-											>
+										x:Name="Bd"
+										Margin="0,0,0,-4"
+										Padding="{TemplateBinding Padding}"
+										Background="{TemplateBinding Background}"
+										BorderBrush="{TemplateBinding BorderBrush}"
+										BorderThickness="{TemplateBinding BorderThickness}"
+										SnapsToDevicePixels="true">
 										<ContentPresenter
-												HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-												VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-												SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-												/>
+											HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+											SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
 									</Border>
 									<ControlTemplate.Triggers>
 
@@ -1535,19 +1340,15 @@
 						<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
 					</Style>
 
-					<ControlTemplate
-							x:Key="FieldPoints"
-							>
+					<ControlTemplate x:Key="FieldPoints">
 						<Border
-								x:Name="BDx"
-								BorderThickness="0,0,0,7"
-								BorderBrush="{DynamicResource ShadowDetail}"
-								>
+							x:Name="BDx"
+							BorderBrush="{DynamicResource ShadowDetail}"
+							BorderThickness="0,0,0,7">
 							<Grid
-									Name="FieldPointsGrid"
-									Margin="2,0,0,0"
-									IsHitTestVisible="True"
-									>
+								Name="FieldPointsGrid"
+								Margin="2,0,0,0"
+								IsHitTestVisible="True">
 
 								<Grid.ColumnDefinitions>
 									<!--  0  -->
@@ -1646,128 +1447,95 @@
 
 								<!--  index  -->
 								<Border
-										Name="Index"
-										Grid.Row="2"
-										Grid.Column="1"
-										Style="{StaticResource lblHeaderBdrTop}"
-										>
+									Name="Index"
+									Grid.Row="2"
+									Grid.Column="1"
+									Style="{StaticResource lblHeaderBdrTop}">
 									<TextBox
-											Text="{Binding Index}"
-											Foreground="Black"
-											IsReadOnly="True"
-											Style="{StaticResource CellTxBox}"
-											/>
+										Foreground="Black"
+										IsReadOnly="True"
+										Style="{StaticResource CellTxBox}"
+										Text="{Binding Index}" />
 								</Border>
 
 								<!--  x  -->
 								<Border
-										Name="Xvalue"
-										Grid.Row="2"
-										Grid.Column="2"
-										Style="{StaticResource lblHeaderBdrTop}"
-										>
+									Name="Xvalue"
+									Grid.Row="2"
+									Grid.Column="2"
+									Style="{StaticResource lblHeaderBdrTop}">
 									<TextBox
-											DataContext="{Binding}"
-											Tag="{Binding TopoMgr.TpConsts.Xtag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
-											Text="{Binding X, Converter={StaticResource Converter.Xyz}}"
-											Style="{StaticResource CellTxBoxX}"
-											/>
+										DataContext="{Binding}"
+										Style="{StaticResource CellTxBoxX}"
+										Tag="{Binding TopoMgr.TpConsts.Xtag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
+										Text="{Binding X, Converter={StaticResource Converter.Xyz}}" />
 								</Border>
 
 
 								<Border
-										Grid.Row="2"
-										Grid.Column="3"
-										Style="{StaticResource lblHeaderBdrTop}"
-										>
+									Grid.Row="2"
+									Grid.Column="3"
+									Style="{StaticResource lblHeaderBdrTop}">
 									<TextBox
-											Name="tbx"
-											Tag="{Binding TopoMgr.TpConsts.Ytag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
-											Text="{Binding Y, Converter={StaticResource Converter.Xyz}}"
-											Style="{StaticResource CellTxBoxY}"
-											/>
+										Name="tbx"
+										Style="{StaticResource CellTxBoxY}"
+										Tag="{Binding TopoMgr.TpConsts.Ytag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
+										Text="{Binding Y, Converter={StaticResource Converter.Xyz}}" />
 								</Border>
 								<Border
-										Grid.Row="2"
-										Grid.Column="4"
-										Style="{StaticResource lblHeaderBdrTop}"
-										>
+									Grid.Row="2"
+									Grid.Column="4"
+									Style="{StaticResource lblHeaderBdrTop}">
 									<TextBox
-											Tag="{Binding TopoMgr.TpConsts.Ztag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
-											Text="{Binding Z, Converter={StaticResource Converter.Xyz}}"
-											Style="{StaticResource CellTxBoxZ}"
-											/>
+										Style="{StaticResource CellTxBoxZ}"
+										Tag="{Binding TopoMgr.TpConsts.Ztag, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
+										Text="{Binding Z, Converter={StaticResource Converter.Xyz}}" />
 								</Border>
 								<Border
-										Grid.Row="2"
-										Grid.Column="5"
-										Style="{StaticResource lblHeaderBdrTop}"
-										>
-									<TextBlock
-											Text="{Binding XΔ, StringFormat=F2}"
-											Style="{StaticResource CellTxBlk}"
-											/>
+									Grid.Row="2"
+									Grid.Column="5"
+									Style="{StaticResource lblHeaderBdrTop}">
+									<TextBlock Style="{StaticResource CellTxBlk}" Text="{Binding XΔ, StringFormat=F2}" />
 								</Border>
 								<Border
-										Grid.Row="2"
-										Grid.Column="6"
-										Style="{StaticResource lblHeaderBdrTop}"
-										>
-									<TextBlock
-											Text="{Binding YΔ, StringFormat=F2}"
-											Style="{StaticResource CellTxBlk}"
-											/>
+									Grid.Row="2"
+									Grid.Column="6"
+									Style="{StaticResource lblHeaderBdrTop}">
+									<TextBlock Style="{StaticResource CellTxBlk}" Text="{Binding YΔ, StringFormat=F2}" />
 								</Border>
 								<Border
-										Grid.Row="2"
-										Grid.Column="7"
-										Style="{StaticResource lblHeaderBdrTop}"
-										>
-									<TextBlock
-											Text="{Binding ZΔ, StringFormat=F2}"
-											Style="{StaticResource CellTxBlk}"
-											/>
+									Grid.Row="2"
+									Grid.Column="7"
+									Style="{StaticResource lblHeaderBdrTop}">
+									<TextBlock Style="{StaticResource CellTxBlk}" Text="{Binding ZΔ, StringFormat=F2}" />
 								</Border>
 								<Border
-										Grid.Row="2"
-										Grid.Column="8"
-										Style="{StaticResource lblHeaderBdrBottom}"
-										>
-									<TextBlock
-											Text="{Binding XYΔ, StringFormat=F4}"
-											Style="{StaticResource CellTxBlk}"
-											/>
+									Grid.Row="2"
+									Grid.Column="8"
+									Style="{StaticResource lblHeaderBdrBottom}">
+									<TextBlock Style="{StaticResource CellTxBlk}" Text="{Binding XYΔ, StringFormat=F4}" />
 								</Border>
 								<Border
-										Grid.Row="2"
-										Grid.Column="9"
-										Style="{StaticResource lblHeaderBdrBottom}"
-										>
-									<TextBlock
-											Text="{Binding XYZΔ, StringFormat=F4}"
-											Style="{StaticResource CellTxBlk}"
-											/>
+									Grid.Row="2"
+									Grid.Column="9"
+									Style="{StaticResource lblHeaderBdrBottom}">
+									<TextBlock Style="{StaticResource CellTxBlk}" Text="{Binding XYZΔ, StringFormat=F4}" />
 								</Border>
 								<Border
-										Grid.Row="2"
-										Grid.Column="10"
-										Style="{StaticResource lblHeaderBdrTop}"
-										>
-									<TextBlock
-											Text="{Binding Slope, Converter={StaticResource Converter.Slope}}"
-											Style="{StaticResource CellTxBlk}"
-											/>
+									Grid.Row="2"
+									Grid.Column="10"
+									Style="{StaticResource lblHeaderBdrTop}">
+									<TextBlock Style="{StaticResource CellTxBlk}" Text="{Binding Slope, Converter={StaticResource Converter.Slope}}" />
 								</Border>
 								<!--#endregion-->
 
 								<!--#region > index settings-->
 								<Grid
-										Name="IndexSettings"
-										Grid.Row="3"
-										Grid.Column="1"
-										HorizontalAlignment="Stretch"
-										VerticalAlignment="Stretch"
-										>
+									Name="IndexSettings"
+									Grid.Row="3"
+									Grid.Column="1"
+									HorizontalAlignment="Stretch"
+									VerticalAlignment="Stretch">
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="*" />
 										<ColumnDefinition Width="0" />
@@ -1778,16 +1546,14 @@
 									</Grid.RowDefinitions>
 
 									<Border
-											Grid.Row="0"
-											Grid.Column="0"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="0"
+										Grid.Column="0"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<Label
-												Content="being edited"
-												FontSize="7"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+											Content="being edited"
+											FontSize="7"
+											Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 									<!--    -->
 									<!--  <Border  -->
@@ -1805,19 +1571,17 @@
 
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="0"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="0"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<TextBlock
-												HorizontalAlignment="Stretch"
-												VerticalAlignment="Stretch"
-												FontSize="10"
-												Text="{Binding IsBeingEdited}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											HorizontalAlignment="Stretch"
+											VerticalAlignment="Stretch"
+											Background="{StaticResource Normal.Inactive.Background}"
+											FontSize="10"
+											Text="{Binding IsBeingEdited}"
+											TextAlignment="Center" />
 									</Border>
 									<!--    -->
 									<!--  <Border  -->
@@ -1841,12 +1605,11 @@
 
 								<!--#region > x settings-->
 								<Grid
-										Name="Xsettings"
-										Grid.Row="3"
-										Grid.Column="2"
-										HorizontalAlignment="Stretch"
-										VerticalAlignment="Stretch"
-										>
+									Name="Xsettings"
+									Grid.Row="3"
+									Grid.Column="2"
+									HorizontalAlignment="Stretch"
+									VerticalAlignment="Stretch">
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="0" />
 										<ColumnDefinition Width="{StaticResource Lb3UndoRedoColWidth}" />
@@ -1863,163 +1626,131 @@
 
 									<!--  buttons  -->
 									<Button
-											x:Name="lb3BtnUndoX"
-											Content="Undo"
-											Grid.Row="0"
-											Grid.Column="1"
-											d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																											 IsDesignTimeCreatable=True}"
-											Tag="{Binding TopoMgr.TpConsts.Xtag, ElementName=mainWindow}"
-											Click="Lb3BtnUndo_Click"
-											Style="{StaticResource Lb3ApplyUndoForCellBtnX}"
-											/>
+										x:Name="lb3BtnUndoX"
+										Grid.Row="0"
+										Grid.Column="1"
+										d:DataContext="{d:DesignInstance Type=local:MainWindow,
+										                                 IsDesignTimeCreatable=True}"
+										Click="Lb3BtnUndo_Click"
+										Content="Undo"
+										Style="{StaticResource Lb3ApplyUndoForCellBtnX}"
+										Tag="{Binding TopoMgr.TpConsts.Xtag, ElementName=mainWindow}" />
 
 									<Button
-											x:Name="lb3BtnRedoX"
-											Content="Redo"
-											Grid.Row="1"
-											Grid.Column="1"
-											d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																											 IsDesignTimeCreatable=True}"
-											Tag="{Binding TopoMgr.TpConsts.Xtag, ElementName=mainWindow}"
-											Click="Lb3BtnRedo_Click"
-											Style="{StaticResource Lb3ApplyRedoForCellBtnX}"
-											/>
+										x:Name="lb3BtnRedoX"
+										Grid.Row="1"
+										Grid.Column="1"
+										d:DataContext="{d:DesignInstance Type=local:MainWindow,
+										                                 IsDesignTimeCreatable=True}"
+										Click="Lb3BtnRedo_Click"
+										Content="Redo"
+										Style="{StaticResource Lb3ApplyRedoForCellBtnX}"
+										Tag="{Binding TopoMgr.TpConsts.Xtag, ElementName=mainWindow}" />
 
 									<!--  tag  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="2"
-											BorderThickness="1,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="tag"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="2"
+										BorderBrush="DimGray"
+										BorderThickness="1,0,1,0">
+										<Label Content="tag" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="2"
-											BorderThickness="1,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="2"
+										BorderBrush="DimGray"
+										BorderThickness="1,0,1,0">
 										<TextBlock
-												HorizontalAlignment="Stretch"
-												VerticalAlignment="Stretch"
-												d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																												 IsDesignTimeCreatable=True}"
-												DataContext="{Binding ElementName=mainWindow}"
-												Text="{Binding TopoMgr.TpConsts.Xtag}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											HorizontalAlignment="Stretch"
+											VerticalAlignment="Stretch"
+											d:DataContext="{d:DesignInstance Type=local:MainWindow,
+											                                 IsDesignTimeCreatable=True}"
+											Background="{StaticResource Normal.Inactive.Background}"
+											DataContext="{Binding ElementName=mainWindow}"
+											Text="{Binding TopoMgr.TpConsts.Xtag}"
+											TextAlignment="Center" />
 									</Border>
 
 									<!--  is revised  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="3"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="IsRevisedX"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="3"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
+										<Label Content="IsRevisedX" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="3"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="3"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<TextBlock
-												Text="{Binding XYZ.IsRevisedX}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											Background="{StaticResource Normal.Inactive.Background}"
+											Text="{Binding XYZ.IsRevisedX}"
+											TextAlignment="Center" />
 									</Border>
 
 									<!--  undo value  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="4"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="Undo Value X"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="4"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
+										<Label Content="Undo Value X" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="4"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="4"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<TextBlock
-												Text="{Binding XYZ.UndoValueX, StringFormat=F2}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											Background="{StaticResource Normal.Inactive.Background}"
+											Text="{Binding XYZ.UndoValueX, StringFormat=F2}"
+											TextAlignment="Center" />
 									</Border>
 
 
 									<!--  has redo  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="5"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="HasRedoX"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="5"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
+										<Label Content="HasRedoX" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="5"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="5"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<TextBlock
-												Text="{Binding XYZ.HasRedoX}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											Background="{StaticResource Normal.Inactive.Background}"
+											Text="{Binding XYZ.HasRedoX}"
+											TextAlignment="Center" />
 									</Border>
 
 									<!--  redo value  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="6"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="Redo Value X"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="6"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
+										<Label Content="Redo Value X" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="6"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="6"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<TextBlock
-												Text="{Binding XYZ.RedoValueX, StringFormat=F2}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											Background="{StaticResource Normal.Inactive.Background}"
+											Text="{Binding XYZ.RedoValueX, StringFormat=F2}"
+											TextAlignment="Center" />
 									</Border>
 
 								</Grid>
@@ -2027,12 +1758,11 @@
 
 								<!--#region > y settings-->
 								<Grid
-										Name="Ysettings"
-										Grid.Row="3"
-										Grid.Column="3"
-										HorizontalAlignment="Stretch"
-										VerticalAlignment="Stretch"
-										>
+									Name="Ysettings"
+									Grid.Row="3"
+									Grid.Column="3"
+									HorizontalAlignment="Stretch"
+									VerticalAlignment="Stretch">
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="0" />
 										<ColumnDefinition Width="{StaticResource Lb3UndoRedoColWidth}" />
@@ -2049,160 +1779,128 @@
 
 									<!--  buttons  -->
 									<Button
-											x:Name="lb3BtnUndoY"
-											Content="Undo"
-											Grid.Row="0"
-											Grid.Column="1"
-											d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																											 IsDesignTimeCreatable=True}"
-											Tag="{Binding TopoMgr.TpConsts.Ytag, ElementName=mainWindow}"
-											Click="Lb3BtnUndo_Click"
-											Style="{StaticResource Lb3ApplyUndoForCellBtnY}"
-											/>
+										x:Name="lb3BtnUndoY"
+										Grid.Row="0"
+										Grid.Column="1"
+										d:DataContext="{d:DesignInstance Type=local:MainWindow,
+										                                 IsDesignTimeCreatable=True}"
+										Click="Lb3BtnUndo_Click"
+										Content="Undo"
+										Style="{StaticResource Lb3ApplyUndoForCellBtnY}"
+										Tag="{Binding TopoMgr.TpConsts.Ytag, ElementName=mainWindow}" />
 
 									<Button
-											x:Name="lb3BtnRedoY"
-											Content="Redo"
-											Grid.Row="1"
-											Grid.Column="1"
-											d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																											 IsDesignTimeCreatable=True}"
-											Tag="{Binding TopoMgr.TpConsts.Ytag, ElementName=mainWindow}"
-											Click="Lb3BtnRedo_Click"
-											Style="{StaticResource Lb3ApplyRedoForCellBtnY}"
-											/>
+										x:Name="lb3BtnRedoY"
+										Grid.Row="1"
+										Grid.Column="1"
+										d:DataContext="{d:DesignInstance Type=local:MainWindow,
+										                                 IsDesignTimeCreatable=True}"
+										Click="Lb3BtnRedo_Click"
+										Content="Redo"
+										Style="{StaticResource Lb3ApplyRedoForCellBtnY}"
+										Tag="{Binding TopoMgr.TpConsts.Ytag, ElementName=mainWindow}" />
 
 									<!--  tag  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="2"
-											BorderThickness="1,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="tag"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="2"
+										BorderBrush="DimGray"
+										BorderThickness="1,0,1,0">
+										<Label Content="tag" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="2"
-											BorderThickness="1,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="2"
+										BorderBrush="DimGray"
+										BorderThickness="1,0,1,0">
 										<TextBlock
-												d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																												 IsDesignTimeCreatable=True}"
-												DataContext="{Binding ElementName=mainWindow}"
-												Text="{Binding TopoMgr.TpConsts.Ytag}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											d:DataContext="{d:DesignInstance Type=local:MainWindow,
+											                                 IsDesignTimeCreatable=True}"
+											Background="{StaticResource Normal.Inactive.Background}"
+											DataContext="{Binding ElementName=mainWindow}"
+											Text="{Binding TopoMgr.TpConsts.Ytag}"
+											TextAlignment="Center" />
 									</Border>
 
 									<!--  is revised  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="3"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="IsRevisedY"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="3"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
+										<Label Content="IsRevisedY" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="3"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="3"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<TextBlock
-												Text="{Binding XYZ.IsRevisedY}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											Background="{StaticResource Normal.Inactive.Background}"
+											Text="{Binding XYZ.IsRevisedY}"
+											TextAlignment="Center" />
 									</Border>
 
 									<!--  undo value  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="4"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="Undo Value Y"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="4"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
+										<Label Content="Undo Value Y" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="4"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="4"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<TextBlock
-												Text="{Binding XYZ.UndoValueY, StringFormat=F2}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											Background="{StaticResource Normal.Inactive.Background}"
+											Text="{Binding XYZ.UndoValueY, StringFormat=F2}"
+											TextAlignment="Center" />
 									</Border>
 
 									<!--  has redo  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="5"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="HasRedoY"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="5"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
+										<Label Content="HasRedoY" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="5"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="5"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<TextBlock
-												Text="{Binding XYZ.HasRedoY}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											Background="{StaticResource Normal.Inactive.Background}"
+											Text="{Binding XYZ.HasRedoY}"
+											TextAlignment="Center" />
 									</Border>
 
 									<!--  redo value  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="6"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="Redo Value Y"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="6"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
+										<Label Content="Redo Value Y" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="6"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="6"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<TextBlock
-												Text="{Binding XYZ.RedoValueY, StringFormat=F2}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											Background="{StaticResource Normal.Inactive.Background}"
+											Text="{Binding XYZ.RedoValueY, StringFormat=F2}"
+											TextAlignment="Center" />
 									</Border>
 
 
@@ -2213,12 +1911,11 @@
 
 								<!--  z  -->
 								<Grid
-										Name="Zsettings"
-										Grid.Row="3"
-										Grid.Column="4"
-										HorizontalAlignment="Stretch"
-										VerticalAlignment="Stretch"
-										>
+									Name="Zsettings"
+									Grid.Row="3"
+									Grid.Column="4"
+									HorizontalAlignment="Stretch"
+									VerticalAlignment="Stretch">
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="0" />
 										<ColumnDefinition Width="{StaticResource Lb3UndoRedoColWidth}" />
@@ -2235,160 +1932,128 @@
 
 									<!--  buttons  -->
 									<Button
-											x:Name="lb3BtnUndoZ"
-											Content="Undo"
-											Grid.Row="0"
-											Grid.Column="1"
-											d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																											 IsDesignTimeCreatable=True}"
-											Tag="{Binding TopoMgr.TpConsts.Ztag, ElementName=mainWindow}"
-											Click="Lb3BtnUndo_Click"
-											Style="{StaticResource Lb3ApplyUndoForCellBtnZ}"
-											/>
+										x:Name="lb3BtnUndoZ"
+										Grid.Row="0"
+										Grid.Column="1"
+										d:DataContext="{d:DesignInstance Type=local:MainWindow,
+										                                 IsDesignTimeCreatable=True}"
+										Click="Lb3BtnUndo_Click"
+										Content="Undo"
+										Style="{StaticResource Lb3ApplyUndoForCellBtnZ}"
+										Tag="{Binding TopoMgr.TpConsts.Ztag, ElementName=mainWindow}" />
 
 									<Button
-											x:Name="lb3BtnRedoZ"
-											Content="Redo"
-											Grid.Row="1"
-											Grid.Column="1"
-											d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																											 IsDesignTimeCreatable=True}"
-											Tag="{Binding TopoMgr.TpConsts.Ztag, ElementName=mainWindow}"
-											Click="Lb3BtnRedo_Click"
-											Style="{StaticResource Lb3ApplyRedoForCellBtnZ}"
-											/>
+										x:Name="lb3BtnRedoZ"
+										Grid.Row="1"
+										Grid.Column="1"
+										d:DataContext="{d:DesignInstance Type=local:MainWindow,
+										                                 IsDesignTimeCreatable=True}"
+										Click="Lb3BtnRedo_Click"
+										Content="Redo"
+										Style="{StaticResource Lb3ApplyRedoForCellBtnZ}"
+										Tag="{Binding TopoMgr.TpConsts.Ztag, ElementName=mainWindow}" />
 
 									<!--  tag  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="2"
-											BorderThickness="1,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="tag"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="2"
+										BorderBrush="DimGray"
+										BorderThickness="1,0,1,0">
+										<Label Content="tag" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="2"
-											BorderThickness="1,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="2"
+										BorderBrush="DimGray"
+										BorderThickness="1,0,1,0">
 										<TextBlock
-												d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																												 IsDesignTimeCreatable=True}"
-												DataContext="{Binding ElementName=mainWindow}"
-												Text="{Binding TopoMgr.TpConsts.Ztag}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											d:DataContext="{d:DesignInstance Type=local:MainWindow,
+											                                 IsDesignTimeCreatable=True}"
+											Background="{StaticResource Normal.Inactive.Background}"
+											DataContext="{Binding ElementName=mainWindow}"
+											Text="{Binding TopoMgr.TpConsts.Ztag}"
+											TextAlignment="Center" />
 									</Border>
 
 									<!--  is revised  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="3"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="IsRevisedZ"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="3"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
+										<Label Content="IsRevisedZ" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="3"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="3"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<TextBlock
-												Text="{Binding XYZ.IsRevisedZ}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											Background="{StaticResource Normal.Inactive.Background}"
+											Text="{Binding XYZ.IsRevisedZ}"
+											TextAlignment="Center" />
 									</Border>
 
 									<!--  undo value  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="4"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="Undo Value Z"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="4"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
+										<Label Content="Undo Value Z" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="4"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="4"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<TextBlock
-												Text="{Binding XYZ.UndoValueZ, StringFormat=F2}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											Background="{StaticResource Normal.Inactive.Background}"
+											Text="{Binding XYZ.UndoValueZ, StringFormat=F2}"
+											TextAlignment="Center" />
 									</Border>
 
 									<!--  has redo  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="5"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="HasRedoZ"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="5"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
+										<Label Content="HasRedoZ" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="5"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="5"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<TextBlock
-												Text="{Binding XYZ.HasRedoZ}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											Background="{StaticResource Normal.Inactive.Background}"
+											Text="{Binding XYZ.HasRedoZ}"
+											TextAlignment="Center" />
 									</Border>
 
 									<!--  redo value  -->
 									<Border
-											Grid.Row="0"
-											Grid.Column="6"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
-										<Label
-												Content="Redo Value Z"
-												Style="{StaticResource lblSubValueHdr}"
-												/>
+										Grid.Row="0"
+										Grid.Column="6"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
+										<Label Content="Redo Value Z" Style="{StaticResource lblSubValueHdr}" />
 									</Border>
 
 									<Border
-											Grid.Row="1"
-											Grid.Column="6"
-											BorderThickness="0,0,1,0"
-											BorderBrush="DimGray"
-											>
+										Grid.Row="1"
+										Grid.Column="6"
+										BorderBrush="DimGray"
+										BorderThickness="0,0,1,0">
 										<TextBlock
-												Text="{Binding XYZ.RedoValueZ, StringFormat=F2}"
-												TextAlignment="Center"
-												Background="{StaticResource Normal.Inactive.Background}"
-												/>
+											Background="{StaticResource Normal.Inactive.Background}"
+											Text="{Binding XYZ.RedoValueZ, StringFormat=F2}"
+											TextAlignment="Center" />
 									</Border>
 
 								</Grid>
@@ -2398,12 +2063,8 @@
 						</Border>
 					</ControlTemplate>
 
-					<DataTemplate
-							x:Key="topopoints"
-							>
-						<ContentControl
-								Template="{StaticResource FieldPoints}"
-								/>
+					<DataTemplate x:Key="topopoints">
+						<ContentControl Template="{StaticResource FieldPoints}" />
 					</DataTemplate>
 
 				</ListBox.Resources>
@@ -2412,22 +2073,13 @@
 				<ListBox.Template>
 					<ControlTemplate>
 						<Border
-								Margin="0,0,0,0"
-								BorderThickness="1"
-								BorderBrush="Black"
-								>
-							<ScrollViewer
-									VerticalScrollBarVisibility="Auto"
-									>
-								<DockPanel
-										LastChildFill="True"
-										Background="LightGray"
-										>
+							Margin="0,0,0,0"
+							BorderBrush="Black"
+							BorderThickness="1">
+							<ScrollViewer VerticalScrollBarVisibility="Auto">
+								<DockPanel Background="LightGray" LastChildFill="True">
 
-									<Grid
-											DockPanel.Dock="Top"
-											Background="Aqua"
-											>
+									<Grid Background="Aqua" DockPanel.Dock="Top">
 										<Grid.ColumnDefinitions>
 											<!--  0  -->
 											<ColumnDefinition Width="{StaticResource Lb3EditCtrlColWidth}" />
@@ -2453,110 +2105,42 @@
 										<Grid.RowDefinitions>
 											<RowDefinition Height="Auto" />
 										</Grid.RowDefinitions>
-										<Border
-												Grid.Column="0"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label
-													Content="Edit Control"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
+										<Border Grid.Column="0" Style="{StaticResource PointsTestHeader}">
+											<Label Content="Edit Control" Style="{StaticResource PointsTestHeaderLabel}" />
 										</Border>
-										<Border
-												Grid.Column="1"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label
-													Content="Index"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
+										<Border Grid.Column="1" Style="{StaticResource PointsTestHeader}">
+											<Label Content="Index" Style="{StaticResource PointsTestHeaderLabel}" />
 										</Border>
-										<Border
-												Grid.Column="2"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label
-													Content="X"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
+										<Border Grid.Column="2" Style="{StaticResource PointsTestHeader}">
+											<Label Content="X" Style="{StaticResource PointsTestHeaderLabel}" />
 										</Border>
-										<Border
-												Grid.Column="3"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label
-													Content="Y"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
+										<Border Grid.Column="3" Style="{StaticResource PointsTestHeader}">
+											<Label Content="Y" Style="{StaticResource PointsTestHeaderLabel}" />
 										</Border>
-										<Border
-												Grid.Column="4"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label
-													Content="Z"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
+										<Border Grid.Column="4" Style="{StaticResource PointsTestHeader}">
+											<Label Content="Z" Style="{StaticResource PointsTestHeaderLabel}" />
 										</Border>
-										<Border
-												Grid.Column="5"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label
-													Content="ΔX"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
+										<Border Grid.Column="5" Style="{StaticResource PointsTestHeader}">
+											<Label Content="ΔX" Style="{StaticResource PointsTestHeaderLabel}" />
 										</Border>
-										<Border
-												Grid.Column="6"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label
-													Content="ΔY"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
+										<Border Grid.Column="6" Style="{StaticResource PointsTestHeader}">
+											<Label Content="ΔY" Style="{StaticResource PointsTestHeaderLabel}" />
 										</Border>
-										<Border
-												Grid.Column="7"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label
-													Content="ΔZ"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
+										<Border Grid.Column="7" Style="{StaticResource PointsTestHeader}">
+											<Label Content="ΔZ" Style="{StaticResource PointsTestHeaderLabel}" />
 										</Border>
-										<Border
-												Grid.Column="8"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label
-													Content="ΔXY"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
+										<Border Grid.Column="8" Style="{StaticResource PointsTestHeader}">
+											<Label Content="ΔXY" Style="{StaticResource PointsTestHeaderLabel}" />
 										</Border>
-										<Border
-												Grid.Column="9"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label
-													Content="ΔXYZ"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
+										<Border Grid.Column="9" Style="{StaticResource PointsTestHeader}">
+											<Label Content="ΔXYZ" Style="{StaticResource PointsTestHeaderLabel}" />
 										</Border>
-										<Border
-												Grid.Column="10"
-												Style="{StaticResource PointsTestHeader}"
-												>
-											<Label
-													Content="Slope"
-													Style="{StaticResource PointsTestHeaderLabel}"
-													/>
+										<Border Grid.Column="10" Style="{StaticResource PointsTestHeader}">
+											<Label Content="Slope" Style="{StaticResource PointsTestHeaderLabel}" />
 										</Border>
 									</Grid>
 
-									<ItemsPresenter
-											Margin="-6,-1,-5,0"
-											/>
+									<ItemsPresenter Margin="-6,-1,-5,0" />
 								</DockPanel>
 							</ScrollViewer>
 						</Border>
@@ -2566,21 +2150,20 @@
 			</ListBox>
 
 			<Label
-					Content="end point:"
-					Grid.Row="3"
-					Grid.Column="0"
-					Grid.ColumnSpan="2"
-					Margin="24,52.2,0,0"
-					Width="72"
-					Height="22"
-					Padding="0"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Top"
-					HorizontalContentAlignment="Right"
-					FontSize="16"
-					RenderTransformOrigin="0,1"
-					Foreground="White"
-					>
+				Grid.Row="4"
+				Grid.Column="0"
+				Grid.ColumnSpan="2"
+				Width="72"
+				Height="22"
+				Margin="24,52.2,0,0"
+				Padding="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				HorizontalContentAlignment="Right"
+				Content="end point:"
+				FontSize="16"
+				Foreground="White"
+				RenderTransformOrigin="0,1">
 				<Label.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform />
@@ -2592,14 +2175,14 @@
 			</Label>
 
 			<Grid
-					Name="EndPointRow"
-					Grid.Row="3"
-					Grid.Column="1"
-					Margin="0.2,0.2,22,0"
-					Height="62"
-					HorizontalAlignment="Stretch"
-					VerticalAlignment="Top"
-					>
+				Name="EndPointRow"
+				Grid.Row="4"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Height="62"
+				Margin="0.2,0.2,21.8,0"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Top">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="{StaticResource Lb3StartEndEditCtrlColWidth}" />
 					<ColumnDefinition Width="{StaticResource Lb3StartEndIndexColWidth}" />
@@ -2618,34 +2201,29 @@
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
 
-				<DockPanel
-						Grid.Column="1"
-						>
+				<DockPanel Grid.Column="1">
 					<Label
-							Content="{Binding TopoMgr.TopoPts.EndPointCp}"
-							VerticalAlignment="Top"
-							d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																							 IsDesignTimeCreatable=True}"
-							Style="{StaticResource controlPointLbl}"
-							/>
+						VerticalAlignment="Top"
+						d:DataContext="{d:DesignInstance Type=local:MainWindow,
+						                                 IsDesignTimeCreatable=True}"
+						Content="{Binding TopoMgr.TopoPts.EndPointCp}"
+						Style="{StaticResource controlPointLbl}" />
 
 					<Label
-							Content="{Binding TopoMgr.TopoPts.EndPointIndex}"
-							Width="38"
-							VerticalAlignment="Top"
-							d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																							 IsDesignTimeCreatable=True}"
-							Style="{StaticResource controlPointLbl}"
-							/>
+						Width="38"
+						VerticalAlignment="Top"
+						d:DataContext="{d:DesignInstance Type=local:MainWindow,
+						                                 IsDesignTimeCreatable=True}"
+						Content="{Binding TopoMgr.TopoPts.EndPointIndex}"
+						Style="{StaticResource controlPointLbl}" />
 
 
 				</DockPanel>
 
 				<Grid
-						Name="Xendpoint"
-						Grid.Column="2"
-						Background="#3a3a3a"
-						>
+					Name="Xendpoint"
+					Grid.Column="2"
+					Background="#3a3a3a">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="0" />
 						<ColumnDefinition Width="{StaticResource Lb3UndoRedoColWidth}" />
@@ -2662,177 +2240,143 @@
 					</Grid.RowDefinitions>
 
 					<Label
-							Content="{Binding TopoMgr.TopoPts.EndPointX, Converter={StaticResource Converter.Xyz}}"
-							Grid.Row="0"
-							Grid.Column="0"
-							Grid.ColumnSpan="7"
-							d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																							 IsDesignTimeCreatable=True}"
-							ContentStringFormat="F2"
-							Style="{StaticResource controlPointLblX}"
-							/>
+						Grid.Row="0"
+						Grid.Column="0"
+						Grid.ColumnSpan="7"
+						d:DataContext="{d:DesignInstance Type=local:MainWindow,
+						                                 IsDesignTimeCreatable=True}"
+						Content="{Binding TopoMgr.TopoPts.EndPointX, Converter={StaticResource Converter.Xyz}}"
+						ContentStringFormat="F2"
+						Style="{StaticResource controlPointLblX}" />
 
 					<Border
-							Grid.Row="1"
-							Grid.RowSpan="2"
-							Grid.Column="1"
-							Background="{StaticResource Normal.Inactive.Background}"
-							BorderThickness="0,0,0,0"
-							BorderBrush="DimGray"
-							/>
+						Grid.Row="1"
+						Grid.RowSpan="2"
+						Grid.Column="1"
+						Background="{StaticResource Normal.Inactive.Background}"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,0,0" />
 
 					<!--  buttong  -->
 					<Button
-							Content="Undo"
-							Grid.Row="1"
-							Grid.Column="1"
-							Tag="{Binding TopoMgr.TpConsts.Xtag, ElementName=mainWindow}"
-							Click="Lb3BtnUndoEndPt_Click"
-							Style="{StaticResource controlPointBtnX}"
-							/>
+						Grid.Row="1"
+						Grid.Column="1"
+						Click="Lb3BtnUndoEndPt_Click"
+						Content="Undo"
+						Style="{StaticResource controlPointBtnX}"
+						Tag="{Binding TopoMgr.TpConsts.Xtag, ElementName=mainWindow}" />
 
 					<Button
-							Content="Redo"
-							Grid.Row="2"
-							Grid.Column="1"
-							Tag="{Binding TopoMgr.TpConsts.Xtag, ElementName=mainWindow}"
-							Click="Lb3BtnRedoEndPt_Click"
-							Style="{StaticResource controlPointBtnX}"
-							/>
+						Grid.Row="2"
+						Grid.Column="1"
+						Click="Lb3BtnRedoEndPt_Click"
+						Content="Redo"
+						Style="{StaticResource controlPointBtnX}"
+						Tag="{Binding TopoMgr.TpConsts.Xtag, ElementName=mainWindow}" />
 
 					<!--  tag  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="2"
-							BorderThickness="1,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="tag"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="2"
+						BorderBrush="DimGray"
+						BorderThickness="1,0,1,0">
+						<Label Content="tag" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="2"
-							BorderThickness="1,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="2"
+						BorderBrush="DimGray"
+						BorderThickness="1,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TpConsts.Xtag, Mode=OneWay}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TpConsts.Xtag, Mode=OneWay}" />
 					</Border>
 
 					<!--  is revised  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="3"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="IsRevisedX"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="3"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
+						<Label Content="IsRevisedX" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="3"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="3"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedX}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedX}" />
 					</Border>
 
 					<!--  undo value  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="4"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="Undo Value X"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="4"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
+						<Label Content="Undo Value X" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="4"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="4"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.UndoValueX, StringFormat=F2}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.UndoValueX, StringFormat=F2}" />
 					</Border>
 
 					<!--  has undo  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="5"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="HasUndoX"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="5"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
+						<Label Content="HasUndoX" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="5"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="5"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.HasRedoX}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.HasRedoX}" />
 					</Border>
 
 					<!--  redo value  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="6"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="Redo Value X"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="6"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
+						<Label Content="Redo Value X" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="6"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="6"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.RedoValueX, StringFormat=F2}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.RedoValueX, StringFormat=F2}" />
 					</Border>
 
 
@@ -2840,10 +2384,7 @@
 				</Grid>
 
 				<!--#region > Y Endpoint-->
-				<Grid
-						Name="Yendpoint"
-						Grid.Column="3"
-						>
+				<Grid Name="Yendpoint" Grid.Column="3">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="0" />
 						<ColumnDefinition Width="{StaticResource Lb3UndoRedoColWidth}" />
@@ -2860,177 +2401,143 @@
 					</Grid.RowDefinitions>
 
 					<Label
-							Content="{Binding TopoMgr.TopoPts.EndPointY, Converter={StaticResource Converter.Xyz}}"
-							Grid.Row="0"
-							Grid.Column="0"
-							Grid.ColumnSpan="7"
-							d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																							 IsDesignTimeCreatable=True}"
-							ContentStringFormat="F2"
-							Style="{StaticResource controlPointLblY}"
-							/>
+						Grid.Row="0"
+						Grid.Column="0"
+						Grid.ColumnSpan="7"
+						d:DataContext="{d:DesignInstance Type=local:MainWindow,
+						                                 IsDesignTimeCreatable=True}"
+						Content="{Binding TopoMgr.TopoPts.EndPointY, Converter={StaticResource Converter.Xyz}}"
+						ContentStringFormat="F2"
+						Style="{StaticResource controlPointLblY}" />
 
 					<Border
-							Grid.Row="1"
-							Grid.RowSpan="2"
-							Grid.Column="1"
-							Background="{StaticResource Normal.Inactive.Background}"
-							BorderThickness="0,0,0,0"
-							BorderBrush="DimGray"
-							/>
+						Grid.Row="1"
+						Grid.RowSpan="2"
+						Grid.Column="1"
+						Background="{StaticResource Normal.Inactive.Background}"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,0,0" />
 
 					<!--  buttons  -->
 					<Button
-							Content="Undo"
-							Grid.Row="1"
-							Grid.Column="1"
-							Tag="{Binding TopoMgr.TpConsts.Ytag, ElementName=mainWindow}"
-							Click="Lb3BtnUndoEndPt_Click"
-							Style="{StaticResource controlPointBtnY}"
-							/>
+						Grid.Row="1"
+						Grid.Column="1"
+						Click="Lb3BtnUndoEndPt_Click"
+						Content="Undo"
+						Style="{StaticResource controlPointBtnY}"
+						Tag="{Binding TopoMgr.TpConsts.Ytag, ElementName=mainWindow}" />
 
 					<Button
-							Content="Redo"
-							Grid.Row="2"
-							Grid.Column="1"
-							Tag="{Binding TopoMgr.TpConsts.Ytag, ElementName=mainWindow}"
-							Click="Lb3BtnRedoEndPt_Click"
-							Style="{StaticResource controlPointBtnY}"
-							/>
+						Grid.Row="2"
+						Grid.Column="1"
+						Click="Lb3BtnRedoEndPt_Click"
+						Content="Redo"
+						Style="{StaticResource controlPointBtnY}"
+						Tag="{Binding TopoMgr.TpConsts.Ytag, ElementName=mainWindow}" />
 
 					<!--  tag  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="2"
-							BorderThickness="1,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="tag"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="2"
+						BorderBrush="DimGray"
+						BorderThickness="1,0,1,0">
+						<Label Content="tag" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="2"
-							BorderThickness="1,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="2"
+						BorderBrush="DimGray"
+						BorderThickness="1,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TpConsts.Ytag, Mode=OneWay}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TpConsts.Ytag, Mode=OneWay}" />
 					</Border>
 
 					<!--  is revised  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="3"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="IsRevisedY"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="3"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
+						<Label Content="IsRevisedY" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="3"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="3"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY}" />
 					</Border>
 
 					<!--  undo value  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="4"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="Undo Value Y"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="4"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
+						<Label Content="Undo Value Y" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="4"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="4"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.UndoValueY, StringFormat=F2}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.UndoValueY, StringFormat=F2}" />
 					</Border>
 
 					<!--  redo value  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="5"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="Undo Value Y"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="5"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
+						<Label Content="Undo Value Y" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="5"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="5"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.RedoValueY, StringFormat=F2}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.RedoValueY, StringFormat=F2}" />
 					</Border>
 
 					<!--  has redo  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="6"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="HasRedoY"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="6"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
+						<Label Content="HasRedoY" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="6"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="6"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.HasRedoY}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.HasRedoY}" />
 					</Border>
 
 
@@ -3038,10 +2545,7 @@
 				<!--#endregion-->
 
 				<!--#region > Z endpoint-->
-				<Grid
-						Name="Zendpoint"
-						Grid.Column="4"
-						>
+				<Grid Name="Zendpoint" Grid.Column="4">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="0" />
 						<ColumnDefinition Width="{StaticResource Lb3UndoRedoColWidth}" />
@@ -3059,177 +2563,143 @@
 
 					<!--  Z value  -->
 					<Label
-							Content="{Binding TopoMgr.TopoPts.EndPointZ, Converter={StaticResource Converter.Xyz}}"
-							Grid.Row="0"
-							Grid.Column="0"
-							Grid.ColumnSpan="7"
-							d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																							 IsDesignTimeCreatable=True}"
-							ContentStringFormat="F2"
-							Style="{StaticResource controlPointLblZ}"
-							/>
+						Grid.Row="0"
+						Grid.Column="0"
+						Grid.ColumnSpan="7"
+						d:DataContext="{d:DesignInstance Type=local:MainWindow,
+						                                 IsDesignTimeCreatable=True}"
+						Content="{Binding TopoMgr.TopoPts.EndPointZ, Converter={StaticResource Converter.Xyz}}"
+						ContentStringFormat="F2"
+						Style="{StaticResource controlPointLblZ}" />
 
 					<Border
-							Grid.Row="1"
-							Grid.RowSpan="2"
-							Grid.Column="1"
-							Background="{StaticResource Normal.Inactive.Background}"
-							BorderThickness="0,0,0,0"
-							BorderBrush="DimGray"
-							/>
+						Grid.Row="1"
+						Grid.RowSpan="2"
+						Grid.Column="1"
+						Background="{StaticResource Normal.Inactive.Background}"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,0,0" />
 
 					<!--  buttons  -->
 					<Button
-							Content="Undo"
-							Grid.Row="1"
-							Grid.Column="1"
-							Tag="{Binding TopoMgr.TpConsts.Ztag, ElementName=mainWindow}"
-							Click="Lb3BtnUndoEndPt_Click"
-							Style="{StaticResource controlPointBtnZ}"
-							/>
+						Grid.Row="1"
+						Grid.Column="1"
+						Click="Lb3BtnUndoEndPt_Click"
+						Content="Undo"
+						Style="{StaticResource controlPointBtnZ}"
+						Tag="{Binding TopoMgr.TpConsts.Ztag, ElementName=mainWindow}" />
 					<Button
-							Content="Redo"
-							Grid.Row="2"
-							Grid.Column="1"
-							Tag="{Binding TopoMgr.TpConsts.Ztag, ElementName=mainWindow}"
-							Click="Lb3BtnRedoEndPt_Click"
-							Style="{StaticResource controlPointBtnZ}"
-							/>
+						Grid.Row="2"
+						Grid.Column="1"
+						Click="Lb3BtnRedoEndPt_Click"
+						Content="Redo"
+						Style="{StaticResource controlPointBtnZ}"
+						Tag="{Binding TopoMgr.TpConsts.Ztag, ElementName=mainWindow}" />
 
 
 					<!--  tag  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="2"
-							BorderThickness="1,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="tag"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="2"
+						BorderBrush="DimGray"
+						BorderThickness="1,0,1,0">
+						<Label Content="tag" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="2"
-							BorderThickness="1,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="2"
+						BorderBrush="DimGray"
+						BorderThickness="1,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TpConsts.Ztag, Mode=OneWay}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TpConsts.Ztag, Mode=OneWay}" />
 					</Border>
 
 					<!--  is revised  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="3"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="IsRevisedZ"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="3"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
+						<Label Content="IsRevisedZ" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="3"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="3"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedZ}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedZ}" />
 					</Border>
 
 					<!--  undo value  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="4"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="Undo Value Z"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="4"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
+						<Label Content="Undo Value Z" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="4"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="4"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.UndoValueX, StringFormat=F2}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.UndoValueX, StringFormat=F2}" />
 					</Border>
 
 					<!--  has redo  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="5"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="HasRedoZ"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="5"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
+						<Label Content="HasRedoZ" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="5"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="5"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.HasRedoZ}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.HasRedoZ}" />
 					</Border>
 
 					<!--  redo value  -->
 					<Border
-							Grid.Row="1"
-							Grid.Column="6"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
-						<Label
-								Content="Redo Value Z"
-								Style="{StaticResource lblSubValueHdr}"
-								/>
+						Grid.Row="1"
+						Grid.Column="6"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
+						<Label Content="Redo Value Z" Style="{StaticResource lblSubValueHdr}" />
 					</Border>
 
 					<Border
-							Grid.Row="2"
-							Grid.Column="6"
-							BorderThickness="0,0,1,0"
-							BorderBrush="DimGray"
-							>
+						Grid.Row="2"
+						Grid.Column="6"
+						BorderBrush="DimGray"
+						BorderThickness="0,0,1,0">
 						<TextBlock
-								d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																								 IsDesignTimeCreatable=True}"
-								Text="{Binding TopoMgr.TopoPts.EndPointXYZ.RedoValueX, StringFormat=F2}"
-								Style="{StaticResource TerminusTxBlk}"
-								/>
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+							                                 IsDesignTimeCreatable=True}"
+							Style="{StaticResource TerminusTxBlk}"
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.RedoValueX, StringFormat=F2}" />
 					</Border>
 
 
@@ -3237,72 +2707,66 @@
 				<!--#endregion-->
 
 				<Label
-						Content="{Binding TopoMgr.TopoPts.EndPointXΔ}"
-						Grid.Column="5"
-						d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																						 IsDesignTimeCreatable=True}"
-						ContentStringFormat="F2"
-						Style="{StaticResource controlPointLblDelta}"
-						/>
+					Grid.Column="5"
+					d:DataContext="{d:DesignInstance Type=local:MainWindow,
+					                                 IsDesignTimeCreatable=True}"
+					Content="{Binding TopoMgr.TopoPts.EndPointXΔ}"
+					ContentStringFormat="F2"
+					Style="{StaticResource controlPointLblDelta}" />
 				<Label
-						Content="{Binding TopoMgr.TopoPts.EndPointYΔ}"
-						Grid.Column="6"
-						d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																						 IsDesignTimeCreatable=True}"
-						ContentStringFormat="F2"
-						Style="{StaticResource controlPointLblDelta}"
-						/>
+					Grid.Column="6"
+					d:DataContext="{d:DesignInstance Type=local:MainWindow,
+					                                 IsDesignTimeCreatable=True}"
+					Content="{Binding TopoMgr.TopoPts.EndPointYΔ}"
+					ContentStringFormat="F2"
+					Style="{StaticResource controlPointLblDelta}" />
 				<Label
-						Content="{Binding TopoMgr.TopoPts.EndPointZΔ}"
-						Grid.Column="7"
-						d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																						 IsDesignTimeCreatable=True}"
-						ContentStringFormat="F2"
-						Style="{StaticResource controlPointLblDelta}"
-						/>
+					Grid.Column="7"
+					d:DataContext="{d:DesignInstance Type=local:MainWindow,
+					                                 IsDesignTimeCreatable=True}"
+					Content="{Binding TopoMgr.TopoPts.EndPointZΔ}"
+					ContentStringFormat="F2"
+					Style="{StaticResource controlPointLblDelta}" />
 				<Label
-						Content="{Binding TopoMgr.TopoPts.EndPointXYΔ}"
-						Grid.Column="8"
-						d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																						 IsDesignTimeCreatable=True}"
-						ContentStringFormat="F4"
-						Style="{StaticResource controlPointLblDelta}"
-						/>
+					Grid.Column="8"
+					d:DataContext="{d:DesignInstance Type=local:MainWindow,
+					                                 IsDesignTimeCreatable=True}"
+					Content="{Binding TopoMgr.TopoPts.EndPointXYΔ}"
+					ContentStringFormat="F4"
+					Style="{StaticResource controlPointLblDelta}" />
 				<Label
-						Content="{Binding TopoMgr.TopoPts.EndPointXYΔ}"
-						Grid.Column="9"
-						d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																						 IsDesignTimeCreatable=True}"
-						ContentStringFormat="F4"
-						Style="{StaticResource controlPointLblDelta}"
-						/>
+					Grid.Column="9"
+					d:DataContext="{d:DesignInstance Type=local:MainWindow,
+					                                 IsDesignTimeCreatable=True}"
+					Content="{Binding TopoMgr.TopoPts.EndPointXYΔ}"
+					ContentStringFormat="F4"
+					Style="{StaticResource controlPointLblDelta}" />
 
 				<Label
-						Content="{Binding TopoMgr.TopoPts.EndPointSlope}"
-						Grid.Column="10"
-						d:DataContext="{d:DesignInstance Type=local:MainWindow,
-																						 IsDesignTimeCreatable=True}"
-						ContentStringFormat="P3"
-						Style="{StaticResource controlPointLblDelta}"
-						/>
+					Grid.Column="10"
+					d:DataContext="{d:DesignInstance Type=local:MainWindow,
+					                                 IsDesignTimeCreatable=True}"
+					Content="{Binding TopoMgr.TopoPts.EndPointSlope}"
+					ContentStringFormat="P3"
+					Style="{StaticResource controlPointLblDelta}" />
 
 			</Grid>
 
 
 			<Label
-					Content="messages:"
-					Grid.Row="0"
-					Grid.Column="2"
-					Margin="0,75,0,0"
-					Width="72"
-					Height="22"
-					Padding="0"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Top"
-					HorizontalContentAlignment="Left"
-					FontSize="16"
-					Foreground="White"
-					>
+				Grid.Row="0"
+				Grid.RowSpan="2"
+				Grid.Column="3"
+				Width="72"
+				Height="22"
+				Margin="0.2,75,0,0"
+				Padding="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				HorizontalContentAlignment="Left"
+				Content="messages:"
+				FontSize="16"
+				Foreground="White">
 				<Label.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform />
@@ -3314,21 +2778,20 @@
 			</Label>
 
 			<TextBox
-					Name="TopoPoints2Message"
-					Grid.Row="0"
-					Grid.RowSpan="4"
-					Grid.Column="2"
-					Margin="30,0,9.6,0.4"
-					Padding="0"
-					HorizontalAlignment="Stretch"
-					VerticalAlignment="Stretch"
-					FontSize="16"
-					DataContext="{Binding ElementName=mainWindow}"
-					Text="{Binding TopoMgr.TopoPts.Message}"
-					VerticalScrollBarVisibility="Visible"
-					Background="#444444"
-					Foreground="White"
-					/>
+				Name="TopoPoints2Message"
+				Grid.Row="0"
+				Grid.RowSpan="5"
+				Grid.Column="3"
+				Margin="30.2,0,8.6,-0.2"
+				Padding="0"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
+				Background="#444444"
+				DataContext="{Binding ElementName=mainWindow}"
+				FontSize="16"
+				Foreground="White"
+				Text="{Binding TopoMgr.TopoPts.Message}"
+				VerticalScrollBarVisibility="Visible" />
 
 		</Grid>
 
@@ -3336,82 +2799,75 @@
 
 
 		<ContentControl
-				Content="{StaticResource ListBox1}"
-				Grid.Row="2"
-				Grid.Column="0"
-				Grid.ColumnSpan="2"
-				/>
+			Grid.Row="2"
+			Grid.Column="0"
+			Grid.ColumnSpan="2"
+			Content="{StaticResource ListBox1}" />
 
 		<ContentControl
-				Content="{StaticResource ListView1}"
-				Grid.Row="2"
-				Grid.Column="1"
-				/>
+			Grid.Row="2"
+			Grid.Column="1"
+			Content="{StaticResource ListView1}" />
 
 		<!--#region > > control buttons-->
 
 		<Button
-				x:Name="btnDone"
-				Content="Done"
-				Grid.Row="3"
-				Grid.Column="1"
-				Margin="0,0,10,5"
-				Width="97"
-				Height="48"
-				HorizontalAlignment="Right"
-				VerticalAlignment="Bottom"
-				IsCancel="True"
-				IsDefault="True"
-				Click="BtnDone_Click"
-				/>
+			x:Name="btnDone"
+			Grid.Row="3"
+			Grid.Column="1"
+			Width="97"
+			Height="48"
+			Margin="0,0,10,5"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Bottom"
+			Click="BtnDone_Click"
+			Content="Done"
+			IsCancel="True"
+			IsDefault="True" />
 		<Button
-				x:Name="button_Copy"
-				Content="MultiLineWindow"
-				Grid.Row="3"
-				Grid.Column="1"
-				Margin="0,0,119.8,5"
-				Width="111"
-				Height="48"
-				HorizontalAlignment="Right"
-				VerticalAlignment="Bottom"
-				Click="Button_Copy_Click"
-				/>
+			x:Name="button_Copy"
+			Grid.Row="3"
+			Grid.Column="1"
+			Width="111"
+			Height="48"
+			Margin="0,0,119.8,5"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Bottom"
+			Click="Button_Copy_Click"
+			Content="MultiLineWindow" />
 		<Button
-				x:Name="button_Copy1"
-				Content="Header andFooter"
-				Grid.Row="3"
-				Grid.Column="1"
-				Margin="0,0,249.8,5"
-				Width="111"
-				Height="48"
-				HorizontalAlignment="Right"
-				VerticalAlignment="Bottom"
-				Click="Button_Copy1_Click"
-				/>
+			x:Name="button_Copy1"
+			Grid.Row="3"
+			Grid.Column="1"
+			Width="111"
+			Height="48"
+			Margin="0,0,249.8,5"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Bottom"
+			Click="Button_Copy1_Click"
+			Content="Header andFooter" />
 		<Button
-				x:Name="button_Copy3"
-				Content="Control Points"
-				Grid.Row="3"
-				Grid.Column="1"
-				Margin="0,0,379.8,5"
-				Width="111"
-				Height="48"
-				HorizontalAlignment="Right"
-				VerticalAlignment="Bottom"
-				Click="Button_Copy3_Click"
-				/>
+			x:Name="button_Copy3"
+			Grid.Row="3"
+			Grid.Column="1"
+			Width="111"
+			Height="48"
+			Margin="0,0,379.8,5"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Bottom"
+			Click="Button_Copy3_Click"
+			Content="Control Points" />
 		<Button
-				x:Name="button_Copy2"
-				Content="Topo Points"
-				Grid.Row="3"
-				Grid.Column="1"
-				Margin="0,0,507.6,5"
-				Width="111"
-				Height="48"
-				HorizontalAlignment="Right"
-				VerticalAlignment="Bottom"
-				Click="Button_Copy4_Click"
-				/>
+			x:Name="button_Copy2"
+			Grid.Row="3"
+			Grid.Column="1"
+			Width="111"
+			Height="48"
+			Margin="0,0,507.6,5"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Bottom"
+			Click="Button_Copy4_Click"
+			Content="Topo Points" />
 
 		<!--#endregion-->
 

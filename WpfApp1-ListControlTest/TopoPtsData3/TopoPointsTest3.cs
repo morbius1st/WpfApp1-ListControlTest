@@ -106,7 +106,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 				return;
 			}
 
-			tps3.Append = "\n*** run test: batch Adjust Z [3] by Amount ***\n";
+			tps3.Append = "\n*** run test: Batch Add amt to [3] Z to [end] ***\n";
 
 			// change the Z delta for item3 to item 4
 			int idx = 3;

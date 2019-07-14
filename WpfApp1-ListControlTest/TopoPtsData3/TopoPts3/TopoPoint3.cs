@@ -383,10 +383,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		// update all of the computed values for this point
 		// the XYZ3 values have been updated before this
 		// adjusted to minimize property change events
-		public void Update(int newIdx, TopoPoint3 precedingPoint)
+		public void Update(int idx, TopoPoint3 precedingPoint)
 		{
 			Debug.WriteLine("     | @ TopoPoint3| @ update|"
-				+ " index| " + newIdx + "\n");
+				+ " index| " + idx + "\n");
 
 			statusFlag = BitFlag.Reset();
 
@@ -400,7 +400,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			}
 
 			// update index
-			if (Index != newIdx) Index = newIdx;
+			if (Index != idx) Index = idx;
 
 			//update X + XΔ  
 			bool result1 = UpdateX(precedingPoint.X);
@@ -454,6 +454,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		// and the prior point
 		private bool UpdateX(double preceding)
 		{
+
+
 			if (point.X.Equals(preceding)) return false;
 
 			StatusFlagSet(BitFlag.Xflag);

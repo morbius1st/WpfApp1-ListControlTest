@@ -64,7 +64,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 	#region > deletages
 
-		public delegate void AftrReindexItem(int newIdx, TopoPoint3 precedingTpt3);
+		public delegate void AftrReindexItem(int idx, TopoPoint3 precedingTpt3);
 
 
 	#endregion
@@ -257,11 +257,15 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 		public void BatchBegin()
 		{
+			Append = "\nbatch| @ TopoPoints3| batch begin\n";
+
 			Status[batchMode] = true;
 		}
 
 		public void BatchFinalize()
 		{
+			Append = "\nbatch| @ TopoPoints3| batch finalize\n";
+
 			ReIndex();
 
 			Status[batchMode] = false;
@@ -339,7 +343,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			int idx = ((TopoPoint3) sender).Index;
 
 		#if DEBUG
-			DisplayPropChangeInfo(idx, sender, e, "startpt", " ");
+			DisplayPropChangeInfo(idx, sender, e, "startpt", e.PropertyName);
 		#endif
 
 			if (eventProcessingTest(e.PropertyName))
@@ -358,7 +362,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			int idx = ((TopoPoint3) sender).Index;
 
 		#if DEBUG
-			DisplayPropChangeInfo(idx, sender, e, "endPt ", " ");
+			DisplayPropChangeInfo(idx, sender, e, "@ topopoints3| endPt ", e.PropertyName);
 		#endif
 
 			if (eventProcessingTest(e.PropertyName))
@@ -425,17 +429,19 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 				j = last + 1;
 			}
 
-			Append = "reidx| @ TopoPoints3| pre-reindex| "
+			Append = "\nreidx| @ TopoPoints3| pre-reindex| "
 				+ " start| " + start
 				+ " end| " + j
 				+ "\n\n"
 				;
 
+			// this updates and reindexes
 			for (i = start; i < j; i++)
 			{
 				UpdateItem(i, i - 1);
 			}
 
+			// i think this never runs
 			for (; i < Items.Count; i++)
 			{
 				Items[i].Index = i;
@@ -458,16 +464,19 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 				;
 		}
 
-		private void UpdateItem(int newIdx, int precedingIdx)
+		private void UpdateItem(int idx, int precedingIdx)
 		{
-			if (newIdx > EndIdx || precedingIdx < 0)
+			// do not index when not possible
+			// also prevents the update of [0] as 
+			// precedingIdx will be less than 0
+			if (idx > EndIdx || precedingIdx < 0)
 			{
 				return;
 			}
 
-			Items[newIdx].Update(newIdx, Items[precedingIdx]);
+			Items[idx].Update(idx, Items[precedingIdx]);
 
-			aftrReindexItem?.Invoke(newIdx, Items[precedingIdx]);
+			aftrReindexItem?.Invoke(idx, Items[precedingIdx]);
 
 		}
 
