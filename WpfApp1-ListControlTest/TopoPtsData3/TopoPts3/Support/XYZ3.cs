@@ -11,14 +11,14 @@ using WpfApp1_ListControlTest.TopoPts.Support;
 
 namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 {
-
 	public class XYZ3 : IEquatable<XYZ3>, INotifyPropertyChanged, ICloneable
 	{
 		private Coordinate x = new Coordinate();
 		private Coordinate y = new Coordinate();
 		private Coordinate z = new Coordinate();
 
-		private const string ValueChange = "IsRevised";
+//		private const string ValueChange = "IsRevised";
+		private const string IsRevisedChange = "IsRevised";
 		private const string UndoValueChange = "UndoValue";
 		private const string RedoValueChange = "RedoValue";
 		private const string HasRedoValueChange = "HasRedo";
@@ -81,10 +81,30 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 		public double RedoValueY => y.RedoValue;
 		public double RedoValueZ => z.RedoValue;
 
+		// is revised is also the same as
+		// hasUndo
 		public bool IsRevisedX => x.IsRevised;
 		public bool IsRevisedY => y.IsRevised;
 		public bool IsRevisedZ => z.IsRevised;
+
+		public bool NeedsUpdatingX
+		{
+			get => x.NeedsUpdating;
+			set => x.NeedsUpdating = value;
+		}
 		
+		public bool NeedsUpdatingY
+		{
+			get => y.NeedsUpdating;
+			set => y.NeedsUpdating = value;
+		}
+		
+		public bool NeedsUpdatingZ
+		{
+			get => z.NeedsUpdating;
+			set => z.NeedsUpdating = value;
+		}
+
 		public bool HasRedoX => x.HasRedo;
 		public bool HasRedoY => y.HasRedo;
 		public bool HasRedoZ => z.HasRedo;
@@ -205,7 +225,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 			OnPropertyChange(e.PropertyName + "X");
 
 
-
 //			if (e.PropertyName.Equals(ValueChange))
 //			{
 //				OnPropertyChange("IsRevisedX");
@@ -229,7 +248,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 			OnPropertyChange(e.PropertyName + "Y");
 
 
-
 //			if (e.PropertyName.Equals(ValueChange))
 //			{
 //				OnPropertyChange("IsRevisedY");
@@ -251,7 +269,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 		#endif
 
 			OnPropertyChange(e.PropertyName + "Z");
-
 
 
 //			if (e.PropertyName.Equals(ValueChange))
@@ -311,6 +328,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 			// an undo value
 			private bool isRevised;
 
+
 			// indicates that this Coordinate 
 			// has a redo value
 			private bool hasRedo;
@@ -322,6 +340,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 				redoValue = Double.NaN;
 				isRevised = false;
 				hasRedo = false;
+				NeedsUpdating = false;
 			}
 
 			// update the value of this coordinate
@@ -336,11 +355,22 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 					// do nothing if no change
 					if (this.value.Equals(value)) return;
 
-					// do we currently have a value
-					// if true, save current value as
+					// do we currently have a value?
+
+					// true if current is NaN.
+					// no value previously set (first time set)
+					if (double.IsNaN(this.value))
+					{
+						this.value = value;
+						NeedsUpdating = true;
+					}
+
+					// has a prior value
+					// current is not NaN.
+					// save current value as
 					// the undo value and set
-					// both flags true
-					if (!double.IsNaN(this.value))
+					// flag to true
+					else
 					{
 						UndoValue = this.value;
 
@@ -350,38 +380,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 
 						IsRevised = true;
 
+						NeedsUpdating = true;
 					}
-					// clear / reset the current value
-					else if (double.IsInfinity(value))
-					{
-						this.value = Double.NaN;
-
-						undoValue = Double.NaN;
-						redoValue = Double.NaN;
-
-						OnPropertyChange(ValueChange);
-						OnPropertyChange(UndoValueChange);
-						OnPropertyChange(RedoValueChange);
-
-						IsRevised = false;
-						HasRedo = false;
-
-					}
-					// no value previously set (first time set)
-					else
-					{
-						this.value = value;
-
-//						undoValue = Double.NaN;
-//						redoValue = Double.NaN;
-//
-//						// use internal value to prevent 
-//						// an extra event
-//						isRevised = false;
-//						hasRedo = false;
-					}
-
-					OnPropertyChange(ValueChange);
 				}
 			}
 
@@ -409,7 +409,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 
 					OnPropertyChange(RedoValueChange);
 
-					 HasRedo = !double.IsNaN(redoValue);
+					HasRedo = !double.IsNaN(redoValue);
 				}
 			}
 
@@ -422,6 +422,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 					if (isRevised == value) return;
 
 					isRevised = value;
+
+					OnPropertyChange(IsRevisedChange);
 				}
 			}
 
@@ -439,7 +441,14 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 				}
 			}
 
+			// indicates that the additional values
+			// associated with this coordinate
+			// needs to be updated
 
+			// no pre-check on setter for duplicate value
+			// because there is no event 
+			// associated with this property
+			public bool NeedsUpdating { get; set; }
 
 			public void Undo()
 			{
@@ -449,11 +458,11 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 
 					value = undoValue;
 
+					UndoValue = Double.NaN;
+
 					IsRevised = false;
 
-					OnPropertyChange(UndoValueChange);
-
-					OnPropertyChange(ValueChange);
+					NeedsUpdating = true;
 				}
 			}
 
@@ -461,20 +470,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 			{
 				if (HasRedo)
 				{
-
 					Value = redoValue;
-
-//					undoValue = value;
-//
-//					value = redoValue;
-//
-//					RedoValue = double.NaN;
-//
-//					isRevised = true;
-//
-//					OnPropertyChange(UndoValueChange);
-//
-//					OnPropertyChange(ValueChange);
 				}
 			}
 
@@ -503,7 +499,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 
 				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(memberName));
 			}
-
 		}
 
 	#endregion

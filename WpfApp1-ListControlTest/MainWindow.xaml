@@ -505,7 +505,7 @@
 					BasedOn="{StaticResource controlPointLbl}"
 					TargetType="Label">
 					<Style.Triggers>
-						<DataTrigger Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedX}" Value="True">
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedX}" Value="True">
 							<Setter Property="FontWeight" Value="Bold" />
 							<Setter Property="Foreground" Value="{StaticResource Normal.Modified.Foreground}" />
 						</DataTrigger>
@@ -517,7 +517,7 @@
 					BasedOn="{StaticResource controlPointLbl}"
 					TargetType="Label">
 					<Style.Triggers>
-						<DataTrigger Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedY}" Value="True">
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY}" Value="True">
 							<Setter Property="FontWeight" Value="Bold" />
 							<Setter Property="Foreground" Value="{StaticResource Normal.Modified.Foreground}" />
 						</DataTrigger>
@@ -529,7 +529,7 @@
 					BasedOn="{StaticResource controlPointLbl}"
 					TargetType="Label">
 					<Style.Triggers>
-						<DataTrigger Binding="{Binding TopoMgr.Tpts2.EndPointXYZ.IsRevisedZ}" Value="True">
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedZ}" Value="True">
 							<Setter Property="FontWeight" Value="Bold" />
 							<Setter Property="Foreground" Value="{StaticResource Normal.Modified.Foreground}" />
 						</DataTrigger>

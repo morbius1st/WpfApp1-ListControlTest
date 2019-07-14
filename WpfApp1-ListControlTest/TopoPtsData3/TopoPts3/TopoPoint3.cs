@@ -224,10 +224,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			}
 		}
 
-		public bool HasRevision
-		{
-			get => point.IsRevised;
-		}
+//		public bool HasRevision
+//		{
+//			get => point.IsRevised;
+//		}
 
 		public bool IsBeingEdited
 		{
@@ -385,7 +385,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		// adjusted to minimize property change events
 		public void Update(int idx, TopoPoint3 precedingPoint)
 		{
-			Debug.WriteLine("     | @ TopoPoint3| @ update|"
+			Debug.WriteLine("\n     | @ TopoPoint3| @ update|"
 				+ " index| " + idx + "\n");
 
 			statusFlag = BitFlag.Reset();
@@ -455,8 +455,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		private bool UpdateX(double preceding)
 		{
 
-
-			if (point.X.Equals(preceding)) return false;
+//			if (point.X.Equals(preceding)) return false;
+			if (!point.NeedsUpdatingX) return false;
 
 			StatusFlagSet(BitFlag.Xflag);
 			UpdateXΔ(preceding);
@@ -466,7 +466,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 		private bool UpdateY(double preceding)
 		{
-			if (point.Y.Equals(preceding)) return false;
+//			if (point.Y.Equals(preceding)) return false;
+			if (!point.NeedsUpdatingY) return false;
 
 			StatusFlagSet(BitFlag.Yflag);
 			UpdateYΔ(preceding);
@@ -476,7 +477,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 		private bool UpdateZ(double preceding)
 		{
-			if (point.Z.Equals(preceding)) return false;
+//			if (point.Z.Equals(preceding)) return false;
+			if (!point.NeedsUpdatingZ) return false;
 
 			StatusFlagSet(BitFlag.Zflag);
 			UpdateZΔ(preceding);

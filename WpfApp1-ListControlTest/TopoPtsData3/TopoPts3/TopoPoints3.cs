@@ -126,13 +126,11 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		// start the process of creating a topopoints collection
 		public void Initialize(TopoStartPoint start)
 		{
+			Append = "\ninit | @ TopoPoints3| *** Initialize ***\n";
+
 			base.SetItem(0, start);
 
-//			UpdateStartPointValues();
-
 			Items[0].PropertyChanged += TopoPoints_PropertyChangedStartPt;
-		
-//			Items[0].Refresh();
 
 			Status[processPropChangeUpdate] = false;
 			Status[gotStartPoint] = true;
@@ -146,13 +144,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			end.Index = EndIdx;
 
 			base.SetItem(EndIdx, end);
-			
-//			UpdateEndPointValues();
 
 			Items[EndIdx].PropertyChanged += TopoPoints_PropertyChangedEndPt;
-			
-//			Items[EndIdx].Refresh();
-
 
 			Status[gotEndPoint] = true;
 
@@ -160,6 +153,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 			Status[complete] = true;
 			Status[processPropChangeUpdate] = true;
+
+			Append = "\nfin  | @ TopoPoints3| *** Finalize ***\n";
 		}
 
 		// only allowed after we have a start point
@@ -178,6 +173,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			if (!xyz.IsValid) { throw new ArgumentException("Invalid Point"); }
 
 			if (idx <= 0 || idx > EndIdx) { throw new ArgumentException("Invalid Index"); }
+
+			Append = "\ninsrt| @ TopoPoints3| insert | idx| [" + idx + "]";
 
 			base.Insert(idx, (new TopoPoint3(xyz)));
 
@@ -257,18 +254,18 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 		public void BatchBegin()
 		{
-			Append = "\nbatch| @ TopoPoints3| batch begin\n";
+			Append = "\nbatch| @ TopoPoints3| *** batch begin ***\n";
 
 			Status[batchMode] = true;
 		}
 
 		public void BatchFinalize()
 		{
-			Append = "\nbatch| @ TopoPoints3| batch finalize\n";
-
 			ReIndex();
 
 			Status[batchMode] = false;
+
+			Append = "\nbatch| @ TopoPoints3| *** batch finalize ***\n";
 		}
 
 	#endregion
@@ -317,7 +314,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 			bool result = eventProcessingTest(name);
 
-			DisplayPropChangeInfo(idx, sender, e, "@ TopoPoints3| @propChange| midpt| ", name);
+			DisplayPropChangeInfo(idx, sender, e, "@ TopoPoints3| @propChange| midpt|", name);
 
 		#endif
 
@@ -431,7 +428,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 			Append = "\nreidx| @ TopoPoints3| pre-reindex| "
 				+ " start| " + start
-				+ " end| " + j
+				+ " end| " + (j - 1)
 				+ "\n\n"
 				;
 
@@ -459,7 +456,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 				UpdateEndPointBaseValues();
 			}
 
-			Append = "reidx| @ TopoPoints3| post-reindex| "
+			Append = "\nreidx| @ TopoPoints3| post-reindex| "
 				+ "\n"
 				;
 		}
@@ -487,7 +484,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			)
 		{
 			Append = "(get)| " + who
-				+ "  idx| " + idx
+				+ " idx| " + idx
 				+ "  property name| " + e.PropertyName
 				+ " (" + which + ")"
 //				+ "  value| " 

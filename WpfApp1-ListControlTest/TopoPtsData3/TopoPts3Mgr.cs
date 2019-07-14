@@ -40,8 +40,46 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 		private void updateItemAfterReindex(int idx, TopoPoint3 precedingtpt3)
 		{
-			TopoPts.Append = "     | @TopoPts3Mgr| got updateItemAfterReindex"
-				+ " (" + idx + ")\n\n";
+			TopoPts.Append = "\nafter| @TopoPts3Mgr| got updateItemAfterReindex"
+				+ " (" + idx + ")\n";
+
+
+			if (TopoPts[idx].XYZ.NeedsUpdatingX ||
+				TopoPts[idx].XYZ.NeedsUpdatingY ||
+				TopoPts[idx].XYZ.NeedsUpdatingZ
+				)
+			{
+				if (TopoPts[idx].XYZ.NeedsUpdatingX)
+				{
+					TopoPts.Append = "after| @TopoPts3Mgr| (" + idx + ")"
+						+ " X | needs updating\n";
+
+					TopoPts[idx].XYZ.NeedsUpdatingX = false;
+				}
+
+				if (TopoPts[idx].XYZ.NeedsUpdatingY)
+				{
+					TopoPts.Append = "after| @TopoPts3Mgr| (" + idx + ")"
+						+ " Y | needs updating\n";
+
+					TopoPts[idx].XYZ.NeedsUpdatingY = false;
+				}
+
+				if (TopoPts[idx].XYZ.NeedsUpdatingZ)
+				{
+					TopoPts.Append = "after| @TopoPts3Mgr| (" + idx + ")"
+						+ " Z | needs updating\n";
+
+					TopoPts[idx].XYZ.NeedsUpdatingZ = false;
+				}
+			}
+			else
+			{
+				TopoPts.Append = "after| @TopoPts3Mgr| (" + idx + ")"
+					+ " nothing needs updating\n";
+			}
+
+			TopoPts.Append = "\n";
 		}
 
 		public bool DataLoaded { get; private set; } = false;

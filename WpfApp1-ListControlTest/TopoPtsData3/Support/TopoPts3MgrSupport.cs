@@ -27,17 +27,21 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.Support
 		private int xStart = 1001;
 		private int yStart = 1101;
 
-		public void LoadDesignData(TopoPoints3 Tps3)
+		public void LoadDesignData(TopoPoints3 Tpts3)
 		{
 			lastX = 10299 + xStart;
 			lastY = 20299 + yStart;
 			lastZ = 31300;
 
-			Tps3.Initialize(new TopoStartPoint(new XYZ3(lastX, lastY, lastZ)));
+			Tpts3.Initialize(new TopoStartPoint(new XYZ3(lastX, lastY, lastZ)));
 
-			CreatePoints3(9, Tps3);
+			Tpts3.Append = "\ninit | @ support| *** start: load data ***\n";
 
-			Tps3.Finalize(new TopoEndPoint(new XYZ3(lastX, lastY, lastZ)));
+			CreatePoints3(9, Tpts3);
+
+			Tpts3.Append = "\n\ninit | @ support| *** end: load data ***\n\n";
+
+			Tpts3.Finalize(new TopoEndPoint(new XYZ3(lastX, lastY, lastZ)));
 		}
 
 		private double CalcZ(double x, double y, double slope)

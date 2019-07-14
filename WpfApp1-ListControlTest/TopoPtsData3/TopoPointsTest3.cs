@@ -79,7 +79,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			tpMgr.TopoPts[0].Z += 10;
 
-			tps3.Append = "*** run test: Complete ***\n";
+			tps3.Append = "*** run test: Complete ***\n\n";
 		}
 
 		public void BtnBatchAdd10ToYfrom3_Click()
@@ -94,7 +94,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			tpMgr.BatchIncreaseEachXyxByAmount(3, "Y", 10);
 
-			tps3.Append = "\n*** run test: Complete ***\n";
+			tps3.Append = "\n*** run test: Complete ***\n\n";
 		}
 
 
@@ -113,13 +113,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			double adjDeltaZ = tps3[idx].ZΔ + 3;
 
-			tps3.Append = "\n*** run test: batch Adjust Z =  "
-				+ adjDeltaZ.ToString();
+			tps3.Append = "\n*** run test start: batch Adjust Z =  "
+				+ adjDeltaZ.ToString() + "\n";
 
 			bool result = AdjustZ(idx, adjDeltaZ);
 
-			tps3.Append = "*** run test: batch Adjust Z  = "
-				+ result.ToString();
+			tps3.Append = "*** run test end: batch Adjust Z  = "
+				+ result.ToString() + "\n\n";
 		}
 
 		public void BtnBatchAdjustZBySlope_Click()
@@ -137,13 +137,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			double adjDeltaZ = tps3[idx].XYΔ * 0.05;
 
-			tps3.Append = "\n*** run test: batch Adjust Z (5%) =  "
-				+ adjDeltaZ.ToString();
+			tps3.Append = "\n*** run test start: batch Adjust Z (5%) =  "
+				+ adjDeltaZ.ToString() + "\n";
 
 			bool result = AdjustZ(idx, adjDeltaZ);
 
-			tps3.Append = "*** run test: batch Adjust Z = "
-				+ result.ToString();
+			tps3.Append = "*** run test end: batch Adjust Z = "
+				+ result.ToString() + "\n\n";
 		}
 
 		// modify the Z value of [index] and
@@ -194,7 +194,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 		public void BtnDebugMarker_Click()
 		{
-			tps3.Append = "\n\n*** Debug Marker ***\n\n";
+			tps3.Append = "\n*** Debug Marker ***\n\n";
 		}
 
 

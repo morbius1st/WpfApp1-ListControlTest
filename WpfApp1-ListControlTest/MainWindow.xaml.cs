@@ -40,7 +40,6 @@ using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResource
 
 namespace WpfApp1_ListControlTest
 {
-
 	public partial class MainWindow : Window
 	{
 		public TopoPoints tps { get; set; }  = new TopoPoints();
@@ -53,17 +52,17 @@ namespace WpfApp1_ListControlTest
 		public TopoPointsTest3 TopoPointTest { get; set; }
 
 		internal static MultiLineLB.MultiLineListBox Mlb { get; private set; } = new MultiLineLB.MultiLineListBox();
-	
+
 		internal static ListBoxWithXHeaderAndFooter Haf { get; private set; } = new ListBoxWithXHeaderAndFooter();
-	
+
 		internal static ControlPoints Cps { get; set; } = new ControlPoints();
 		internal static ControlPointsResources Cpr { get; set; }
-	
+
 		internal static TopoPtsWin Tpw { get; set; } = new TopoPtsWin();
 		internal static TopoPtsResources Tpr { get; set; }
-	
+
 		public static string nl = Environment.NewLine;
-	
+
 		public static bool loaded = false;
 
 		public static ListBox Lb3 { get; set; }
@@ -72,7 +71,7 @@ namespace WpfApp1_ListControlTest
 		{
 			TpTest = new TopoPointsTest(tps);
 
-			TopoMgr = new TopoPts3Mgr(); 
+			TopoMgr = new TopoPts3Mgr();
 			TopoPointTest = new TopoPointsTest3(TopoMgr.TopoPts, TopoMgr);
 			InitializeComponent();
 
@@ -81,7 +80,6 @@ namespace WpfApp1_ListControlTest
 
 		private void CreateSampleData()
 		{
-
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "01a", SheetName = "name 01a", SheetData = "data 01a", SheetInfo = "info 01a", SheetInfo2 = "info2 01a"});
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "02a", SheetName = "name 02a", SheetData = "data 02a", SheetInfo = "info 02a", SheetInfo2 = "info2 02a"});
 			SampleCollection.sx.Add(new SampleDataClass() { SheetNumber = "03a", SheetName = "name 03a", SheetData = "data 03a", SheetInfo = "info 03a", SheetInfo2 = "info2 03a"});
@@ -100,11 +98,9 @@ namespace WpfApp1_ListControlTest
 		private void MainWindow_Loaded(object sender, RoutedEventArgs e)
 		{
 			loaded = true;
-
-			
 		}
 
-				int PriorRowBeingEdited = 0;
+		int PriorRowBeingEdited = 0;
 
 		private void ListBox3_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
@@ -112,17 +108,16 @@ namespace WpfApp1_ListControlTest
 
 			if (lb3.SelectedIndex < 0) return;
 
-			TopoPoint3 tp2 = (TopoPoint3) lb3.Items[lb3.SelectedIndex];
+			TopoPoint3 tpt = (TopoPoint3) lb3.Items[lb3.SelectedIndex];
 
-			Debug.WriteLine("@ MainResource3| @selectionChanged|" 
-				+ " selected count| " + e.AddedItems.Count 
+			Debug.WriteLine("@ MainResource3| @selectionChanged|"
+				+ " selected count| " + e.AddedItems.Count
 				+ " selected idx| " + lb3.SelectedIndex
-			);
+				);
 
 			((TopoPoint3) lb3.Items[PriorRowBeingEdited]).IsBeingEdited = false;
-			tp2.IsBeingEdited = true;
+			tpt.IsBeingEdited = true;
 			PriorRowBeingEdited = lb3.SelectedIndex;
-
 		}
 
 		private void Lb3BtnUndo_Click(object sender, RoutedEventArgs e)
@@ -130,7 +125,6 @@ namespace WpfApp1_ListControlTest
 			ClickInfo(sender, e, "UndoX");
 
 			TopoMgr.Undo(((Button) sender)?.Tag as string, Lb3.SelectedIndex);
-
 		}
 
 		private void Lb3BtnRedo_Click(object sender, RoutedEventArgs e)
@@ -138,7 +132,6 @@ namespace WpfApp1_ListControlTest
 			ClickInfo(sender, e, "UndoX");
 
 			TopoMgr.Redo(((Button) sender)?.Tag as string, Lb3.SelectedIndex);
-
 		}
 
 		private void Lb3BtnUndoEndPt_Click(object sender, RoutedEventArgs e)
@@ -147,7 +140,7 @@ namespace WpfApp1_ListControlTest
 
 			TopoMgr.Undo(((Button) sender)?.Tag as string);
 		}
-		
+
 		private void Lb3BtnRedoEndPt_Click(object sender, RoutedEventArgs e)
 		{
 			ClickInfo(sender, e, "UndoX");
@@ -157,7 +150,6 @@ namespace WpfApp1_ListControlTest
 
 		private void ClickInfo(object sender, RoutedEventArgs e, string fromWho)
 		{
-
 //			((TextBox) sender).GetBindingExpression(TextBox.TextProperty).UpdateSource();
 
 			ListBox lb = MainWindow.Lb3;
@@ -196,7 +188,7 @@ namespace WpfApp1_ListControlTest
 			Cps.ShowDialog();
 			Cps = new ControlPoints();
 		}
-		
+
 		private void Button_Copy4_Click(object sender, RoutedEventArgs e)
 		{
 			Tpw.ShowDialog();
@@ -257,7 +249,7 @@ namespace WpfApp1_ListControlTest
 		{
 			TpTest.BtnChangeStartX_Click();
 		}
-		
+
 		private void BtnChangeEndX_Click(object sender, RoutedEventArgs e)
 		{
 			TpTest.BtnChangeEndX_Click();
@@ -265,59 +257,57 @@ namespace WpfApp1_ListControlTest
 
 		private void BtnTestAll_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest.BtnTestAll_Click();	
+			TpTest.BtnTestAll_Click();
 		}
 
 		private void BtnContains_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest.BtnContains_Click();	
+			TpTest.BtnContains_Click();
 		}
 
 		private void BtnIndexOf_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest.BtnIndexOf_Click();	
+			TpTest.BtnIndexOf_Click();
 		}
 
 		private void BtnRemoveAt_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest.BtnRemoveAt_Click();	
+			TpTest.BtnRemoveAt_Click();
 		}
 
 		private void BtnRemove_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest.BtnRemove_Click();	
+			TpTest.BtnRemove_Click();
 		}
 
 		private void BtnClear_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest.BtnClear_Click();	
+			TpTest.BtnClear_Click();
 		}
 
 		private void BtnCopyTo_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest.BtnCopyTo_Click();	
+			TpTest.BtnCopyTo_Click();
 		}
 
 		private void BtnChange4XYZ_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest.BtnChange4XYZ_Click();	
+			TpTest.BtnChange4XYZ_Click();
 		}
 
 		private void BtnBatch_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest.BtnBatch_Click();	
+			TpTest.BtnBatch_Click();
 		}
 
 		private void BtnBatchv2_Click(object sender, RoutedEventArgs e)
 		{
-			TpTest.BtnBatchv2_Click();	
+			TpTest.BtnBatchv2_Click();
 		}
-
 
 	#endregion
 
 	#region > listbox3 buttons
-
 
 		private void BtnInitialize_Click(object sender, RoutedEventArgs e)
 		{
@@ -328,7 +318,7 @@ namespace WpfApp1_ListControlTest
 		{
 			TopoPointTest.BtnAdd10ToZofStart_Click();
 		}
-		
+
 		private void BtnBatchAdd10ToYfrom3_Click(object sender, RoutedEventArgs e)
 		{
 			TopoPointTest.BtnBatchAdd10ToYfrom3_Click();
@@ -354,10 +344,6 @@ namespace WpfApp1_ListControlTest
 			TopoPointTest.BtnDebugMarker_Click();
 		}
 
-
-
-
-		#endregion
-
+	#endregion
 	}
 }
