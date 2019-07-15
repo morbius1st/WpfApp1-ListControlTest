@@ -91,7 +91,7 @@
 			</GridLength>
 
 			<GridLength x:Key="Lb3StartEndIndexColWidth">
-				80
+				83.5
 			</GridLength>
 
 
@@ -517,7 +517,7 @@
 					BasedOn="{StaticResource controlPointLbl}"
 					TargetType="Label">
 					<Style.Triggers>
-						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY}" Value="True">
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ_Y.IsRevisedY}" Value="True">
 							<Setter Property="FontWeight" Value="Bold" />
 							<Setter Property="Foreground" Value="{StaticResource Normal.Modified.Foreground}" />
 						</DataTrigger>
@@ -549,42 +549,84 @@
 				</Style>
 
 				<Style
-					x:Key="controlPointBtnX"
+					x:Key="undoBtnX"
 					BasedOn="{StaticResource controlPointBtn}"
 					TargetType="Button">
 					<Style.Triggers>
-						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedX, ElementName=mainWindow}" Value="True">
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ_X.IsRevisedX, ElementName=mainWindow}" Value="True">
 							<Setter Property="IsEnabled" Value="True" />
 						</DataTrigger>
-						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedX, ElementName=mainWindow}" Value="False">
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ_X.IsRevisedX, ElementName=mainWindow}" Value="False">
+							<Setter Property="IsEnabled" Value="False" />
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+				
+				<Style
+					x:Key="redoBtnX"
+					BasedOn="{StaticResource controlPointBtn}"
+					TargetType="Button">
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ_X.HasRedoX, ElementName=mainWindow}" Value="True">
+							<Setter Property="IsEnabled" Value="True" />
+						</DataTrigger>
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ_X.HasRedoX, ElementName=mainWindow}" Value="False">
 							<Setter Property="IsEnabled" Value="False" />
 						</DataTrigger>
 					</Style.Triggers>
 				</Style>
 
 				<Style
-					x:Key="controlPointBtnY"
+					x:Key="undoBtnY"
 					BasedOn="{StaticResource controlPointBtn}"
 					TargetType="Button">
 					<Style.Triggers>
-						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY, ElementName=mainWindow}" Value="True">
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ_Y.IsRevisedY, ElementName=mainWindow}" Value="True">
 							<Setter Property="IsEnabled" Value="True" />
 						</DataTrigger>
-						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY, ElementName=mainWindow}" Value="False">
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ_Y.IsRevisedY, ElementName=mainWindow}" Value="False">
 							<Setter Property="IsEnabled" Value="False" />
 						</DataTrigger>
 					</Style.Triggers>
 				</Style>
 
 				<Style
-					x:Key="controlPointBtnZ"
+					x:Key="redoBtnY"
 					BasedOn="{StaticResource controlPointBtn}"
 					TargetType="Button">
 					<Style.Triggers>
-						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedZ, ElementName=mainWindow}" Value="True">
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ_Y.HasRedoY, ElementName=mainWindow}" Value="True">
 							<Setter Property="IsEnabled" Value="True" />
 						</DataTrigger>
-						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedZ, ElementName=mainWindow}" Value="False">
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ_Y.HasRedoY, ElementName=mainWindow}" Value="False">
+							<Setter Property="IsEnabled" Value="False" />
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+
+				<Style
+					x:Key="undoBtnZ"
+					BasedOn="{StaticResource controlPointBtn}"
+					TargetType="Button">
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ_Z.IsRevisedZ, ElementName=mainWindow}" Value="True">
+							<Setter Property="IsEnabled" Value="True" />
+						</DataTrigger>
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ_Z.IsRevisedZ, ElementName=mainWindow}" Value="False">
+							<Setter Property="IsEnabled" Value="False" />
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+				
+				<Style
+					x:Key="redoBtnZ"
+					BasedOn="{StaticResource controlPointBtn}"
+					TargetType="Button">
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ_Z.HasRedoZ, ElementName=mainWindow}" Value="True">
+							<Setter Property="IsEnabled" Value="True" />
+						</DataTrigger>
+						<DataTrigger Binding="{Binding TopoMgr.TopoPts.EndPointXYZ_Z.HasRedoZ, ElementName=mainWindow}" Value="False">
 							<Setter Property="IsEnabled" Value="False" />
 						</DataTrigger>
 					</Style.Triggers>
@@ -677,6 +719,22 @@
 									FontSize="9"
 									IsHitTestVisible="False"
 									Text="Add 10 to&#x0D;[start] Z"
+									TextAlignment="Center"
+									TextWrapping="Wrap" />
+							</DataTemplate>
+						</Button.ContentTemplate>
+					</Button>
+					<Button
+						x:Name="BtnBatchAddAmtToYfrom3On"
+						Click="BtnBatchAddAmtToYfrom3On_Click"
+						Style="{StaticResource TestButtonStyle}">
+						<Button.ContentTemplate>
+							<DataTemplate>
+								<TextBlock
+									Background="Transparent"
+									FontSize="9"
+									IsHitTestVisible="False"
+									Text="Add 7+i to&#xA;[3+].Y"
 									TextAlignment="Center"
 									TextWrapping="Wrap" />
 							</DataTemplate>
@@ -809,7 +867,7 @@
 							Style="{StaticResource controlPointLbl}" />
 
 						<Label
-							Width="38"
+
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 							                                 IsDesignTimeCreatable=True}"
 							Content="{Binding TopoMgr.TopoPts.StartPointIndex, Mode=OneWay}"
@@ -2210,7 +2268,7 @@
 						Style="{StaticResource controlPointLbl}" />
 
 					<Label
-						Width="38"
+
 						VerticalAlignment="Top"
 						d:DataContext="{d:DesignInstance Type=local:MainWindow,
 						                                 IsDesignTimeCreatable=True}"
@@ -2263,7 +2321,7 @@
 						Grid.Column="1"
 						Click="Lb3BtnUndoEndPt_Click"
 						Content="Undo"
-						Style="{StaticResource controlPointBtnX}"
+						Style="{StaticResource undoBtnX}"
 						Tag="{Binding TopoMgr.TpConsts.Xtag, ElementName=mainWindow}" />
 
 					<Button
@@ -2271,7 +2329,7 @@
 						Grid.Column="1"
 						Click="Lb3BtnRedoEndPt_Click"
 						Content="Redo"
-						Style="{StaticResource controlPointBtnX}"
+						Style="{StaticResource redoBtnX}"
 						Tag="{Binding TopoMgr.TpConsts.Xtag, ElementName=mainWindow}" />
 
 					<!--  tag  -->
@@ -2313,7 +2371,7 @@
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 							                                 IsDesignTimeCreatable=True}"
 							Style="{StaticResource TerminusTxBlk}"
-							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedX}" />
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ_X.IsRevisedX}" />
 					</Border>
 
 					<!--  undo value  -->
@@ -2334,7 +2392,7 @@
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 							                                 IsDesignTimeCreatable=True}"
 							Style="{StaticResource TerminusTxBlk}"
-							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.UndoValueX, StringFormat=F2}" />
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ_X.UndoValueX, StringFormat=F2}" />
 					</Border>
 
 					<!--  has undo  -->
@@ -2355,7 +2413,7 @@
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 							                                 IsDesignTimeCreatable=True}"
 							Style="{StaticResource TerminusTxBlk}"
-							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.HasRedoX}" />
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ_X.HasRedoX}" />
 					</Border>
 
 					<!--  redo value  -->
@@ -2376,7 +2434,7 @@
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 							                                 IsDesignTimeCreatable=True}"
 							Style="{StaticResource TerminusTxBlk}"
-							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.RedoValueX, StringFormat=F2}" />
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ_X.RedoValueX, StringFormat=F2}" />
 					</Border>
 
 
@@ -2424,7 +2482,7 @@
 						Grid.Column="1"
 						Click="Lb3BtnUndoEndPt_Click"
 						Content="Undo"
-						Style="{StaticResource controlPointBtnY}"
+						Style="{StaticResource undoBtnY}"
 						Tag="{Binding TopoMgr.TpConsts.Ytag, ElementName=mainWindow}" />
 
 					<Button
@@ -2432,7 +2490,7 @@
 						Grid.Column="1"
 						Click="Lb3BtnRedoEndPt_Click"
 						Content="Redo"
-						Style="{StaticResource controlPointBtnY}"
+						Style="{StaticResource redoBtnY}"
 						Tag="{Binding TopoMgr.TpConsts.Ytag, ElementName=mainWindow}" />
 
 					<!--  tag  -->
@@ -2474,7 +2532,7 @@
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 							                                 IsDesignTimeCreatable=True}"
 							Style="{StaticResource TerminusTxBlk}"
-							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedY}" />
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ_Y.IsRevisedY}" />
 					</Border>
 
 					<!--  undo value  -->
@@ -2495,7 +2553,7 @@
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 							                                 IsDesignTimeCreatable=True}"
 							Style="{StaticResource TerminusTxBlk}"
-							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.UndoValueY, StringFormat=F2}" />
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ_Y.UndoValueY, StringFormat=F2}" />
 					</Border>
 
 					<!--  redo value  -->
@@ -2516,7 +2574,7 @@
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 							                                 IsDesignTimeCreatable=True}"
 							Style="{StaticResource TerminusTxBlk}"
-							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.RedoValueY, StringFormat=F2}" />
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ_Y.RedoValueY, StringFormat=F2}" />
 					</Border>
 
 					<!--  has redo  -->
@@ -2537,7 +2595,7 @@
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 							                                 IsDesignTimeCreatable=True}"
 							Style="{StaticResource TerminusTxBlk}"
-							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.HasRedoY}" />
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ_Y.HasRedoY}" />
 					</Border>
 
 
@@ -2586,14 +2644,14 @@
 						Grid.Column="1"
 						Click="Lb3BtnUndoEndPt_Click"
 						Content="Undo"
-						Style="{StaticResource controlPointBtnZ}"
+						Style="{StaticResource undoBtnZ}"
 						Tag="{Binding TopoMgr.TpConsts.Ztag, ElementName=mainWindow}" />
 					<Button
 						Grid.Row="2"
 						Grid.Column="1"
 						Click="Lb3BtnRedoEndPt_Click"
 						Content="Redo"
-						Style="{StaticResource controlPointBtnZ}"
+						Style="{StaticResource redoBtnZ}"
 						Tag="{Binding TopoMgr.TpConsts.Ztag, ElementName=mainWindow}" />
 
 
@@ -2636,7 +2694,7 @@
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 							                                 IsDesignTimeCreatable=True}"
 							Style="{StaticResource TerminusTxBlk}"
-							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.IsRevisedZ}" />
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ_Z.IsRevisedZ}" />
 					</Border>
 
 					<!--  undo value  -->
@@ -2657,7 +2715,7 @@
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 							                                 IsDesignTimeCreatable=True}"
 							Style="{StaticResource TerminusTxBlk}"
-							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.UndoValueX, StringFormat=F2}" />
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ_Z.UndoValueX, StringFormat=F2}" />
 					</Border>
 
 					<!--  has redo  -->
@@ -2678,7 +2736,7 @@
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 							                                 IsDesignTimeCreatable=True}"
 							Style="{StaticResource TerminusTxBlk}"
-							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.HasRedoZ}" />
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ_Z.HasRedoZ}" />
 					</Border>
 
 					<!--  redo value  -->
@@ -2699,7 +2757,7 @@
 							d:DataContext="{d:DesignInstance Type=local:MainWindow,
 							                                 IsDesignTimeCreatable=True}"
 							Style="{StaticResource TerminusTxBlk}"
-							Text="{Binding TopoMgr.TopoPts.EndPointXYZ.RedoValueX, StringFormat=F2}" />
+							Text="{Binding TopoMgr.TopoPts.EndPointXYZ_Z.RedoValueX, StringFormat=F2}" />
 					</Border>
 
 

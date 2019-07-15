@@ -23,11 +23,12 @@ using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResource
  * make this a user control?  does this make sense?
  *
  * need:
- * 1. apply for the whole listbox (eliminates any undo's / redo's)
- * 2. undo for the whole listbox (revert all undo's - one level undo)
+ * 1. "apply" for the whole listbox (eliminates any undo's / redo's)
+ * 2. "undo" for the whole listbox (revert all undo's - one level undo)
  * 3. all each line to have a check box to allow user to select lines for
  *		deletion
  * 4. confirm that delete line works, add line works
+ * 5. add tables below startpoint / add undo / redo buttons
  * 
  * next steps:
  * 1. depending on user control question, make this transferable
@@ -322,6 +323,11 @@ namespace WpfApp1_ListControlTest
 		private void BtnBatchAdd10ToYfrom3_Click(object sender, RoutedEventArgs e)
 		{
 			TopoPointTest.BtnBatchAdd10ToYfrom3_Click();
+		}
+
+		private void BtnBatchAddAmtToYfrom3On_Click(object sender, RoutedEventArgs e)
+		{
+			TopoPointTest.BtnBatchAddAmtToYfrom3On_Click();
 		}
 
 		private void BtnBatchAdjustZByAmount_Click(object sender, RoutedEventArgs e)

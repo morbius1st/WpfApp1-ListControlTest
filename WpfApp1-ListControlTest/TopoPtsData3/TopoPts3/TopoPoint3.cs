@@ -253,7 +253,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		public double XΔ
 		{
 			get => _xΔ;
-			private set
+			set
 			{
 				if (value.Equals(_xΔ)) return;
 				_xΔ = value;
@@ -264,7 +264,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		public double YΔ
 		{
 			get => _yΔ;
-			private set
+			set
 			{
 				if (value.Equals(_yΔ)) return;
 				_yΔ = value;
@@ -275,7 +275,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		public double ZΔ
 		{
 			get => _zΔ;
-			private set
+			set
 			{
 				if (value.Equals(_zΔ)) return;
 				_zΔ = value;
@@ -286,7 +286,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		public double XYΔ
 		{
 			get => _xyΔ;
-			private set
+			set
 			{
 				if (value.Equals(_xyΔ)) return;
 				_xyΔ = value;
@@ -297,7 +297,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		public double XYZΔ
 		{
 			get => _xyzΔ;
-			private set
+			set
 			{
 				if (value.Equals(_xyzΔ)) return;
 				_xyzΔ = value;
@@ -308,7 +308,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		public double Slope
 		{
 			get => _slope;
-			private set
+			set
 			{
 				if (value.Equals(_slope)) return;
 				_slope = value;
@@ -380,48 +380,48 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 	#region > public methods
 
-		// update all of the computed values for this point
-		// the XYZ3 values have been updated before this
-		// adjusted to minimize property change events
-		public void Update(int idx, TopoPoint3 precedingPoint)
-		{
-			Debug.WriteLine("\n     | @ TopoPoint3| @ update|"
-				+ " index| " + idx + "\n");
-
-			statusFlag = BitFlag.Reset();
-
-			// any bad values - clear and return
-			if (TestForNaN(point.X, precedingPoint.X) ||
-				TestForNaN(point.Y, precedingPoint.Y) ||
-				TestForNaN(point.Z, precedingPoint.Z))
-			{
-				Clear();
-				return;
-			}
-
-			// update index
-			if (Index != idx) Index = idx;
-
-			//update X + XΔ  
-			bool result1 = UpdateX(precedingPoint.X);
-
-			//update Y + YΔ
-			bool result2 = UpdateY(precedingPoint.Y);
-
-			//update Z + ZΔ
-			UpdateZ(precedingPoint.Z);
-
-			// XYZ3 updated, XΔ, YΔ, ZΔ updated
-			// need to update XYΔ?
-			if (result1 || result2)
-			{
-				CalcXYΔ();
-			}
-
-			// assumption is that at least one
-			// X or Y or Z changed
-			CalcSlope();
-		}
+//		// update all of the computed values for this point
+//		// the XYZ3 values have been updated before this
+//		// adjusted to minimize property change events
+//		public void Update(int idx, TopoPoint3 precedingPoint)
+//		{
+//			Debug.WriteLine("\n     | @ TopoPoint3| @ update|"
+//				+ " index| " + idx + "\n");
+//
+//			statusFlag = BitFlag.Reset();
+//
+//			// any bad values - clear and return
+//			if (TestForNaN(point.X, precedingPoint.X) ||
+//				TestForNaN(point.Y, precedingPoint.Y) ||
+//				TestForNaN(point.Z, precedingPoint.Z))
+//			{
+//				Clear();
+//				return;
+//			}
+//
+//			// update index
+//			if (Index != idx) Index = idx;
+//
+//			//update X + XΔ  
+//			bool result1 = UpdateX(precedingPoint.X);
+//
+//			//update Y + YΔ
+//			bool result2 = UpdateY(precedingPoint.Y);
+//
+//			//update Z + ZΔ
+//			UpdateZ(precedingPoint.Z);
+//
+//			// XYZ3 updated, XΔ, YΔ, ZΔ updated
+//			// need to update XYΔ?
+//			if (result1 || result2)
+//			{
+//				CalcXYΔ();
+//			}
+//
+//			// assumption is that at least one
+//			// X or Y or Z changed
+//			CalcSlope();
+//		}
 
 		public void Undo(string which)
 		{
@@ -448,117 +448,117 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 	#endregion
 
 	#region > private methods
-
-		// update values based on the current
-		// XYZ3 values and the prior point
-		// and the prior point
-		private bool UpdateX(double preceding)
-		{
-
-//			if (point.X.Equals(preceding)) return false;
-			if (!point.NeedsUpdatingX) return false;
-
-			StatusFlagSet(BitFlag.Xflag);
-			UpdateXΔ(preceding);
-
-			return true;
-		}
-
-		private bool UpdateY(double preceding)
-		{
-//			if (point.Y.Equals(preceding)) return false;
-			if (!point.NeedsUpdatingY) return false;
-
-			StatusFlagSet(BitFlag.Yflag);
-			UpdateYΔ(preceding);
-
-			return true;
-		}
-
-		private bool UpdateZ(double preceding)
-		{
-//			if (point.Z.Equals(preceding)) return false;
-			if (!point.NeedsUpdatingZ) return false;
-
-			StatusFlagSet(BitFlag.Zflag);
-			UpdateZΔ(preceding);
-
-			return true;
-		}
-
-		// calc the x delta
-		private void UpdateXΔ(double preceding)
-		{
-			XΔ = X - preceding;
-			StatusFlagSet(BitFlag.XΔflag);
-		}
-
-		// calc the Y delta
-		private void UpdateYΔ(double preceding)
-		{
-			YΔ = Y - preceding;
-			StatusFlagSet(BitFlag.YΔflag);
-		}
-
-		// calc the Z delta
-		private void UpdateZΔ(double preceding)
-		{
-			ZΔ = Z - preceding;
-			StatusFlagSet(BitFlag.ZΔflag);
-		}
-
-		private bool CalcXYΔ()
-		{
-			if (TestForNaN(XΔ, YΔ))
-			{
-				XYΔ = Double.NaN;
-				return false;
-			}
-
-			if (XΔ.Equals(0))
-			{
-				XYΔ = YΔ;
-			}
-			else if (YΔ.Equals(0))
-			{
-				XYΔ = XΔ;
-			}
-			else
-			{
-				XYΔ = Math.Sqrt(XΔ * XΔ + YΔ * YΔ);
-			}
-
-			StatusFlagSet(BitFlag.XYΔflag);
-
-			return true;
-		}
-
-		private bool CalcSlope()
-		{
-			StatusFlagSet(BitFlag.XYΔZflag);
-
-			if (Double.IsNaN(ZΔ) || Double.IsNaN(XYΔ) || XYΔ.Equals(0))
-			{
-				XYZΔ = XYΔ;
-				Slope = Double.NaN;
-				return false;
-			}
-
-			StatusFlagSet(BitFlag.Slopeflag);
-
-			if (ZΔ.Equals(0))
-			{
-				XYZΔ = XYΔ;
-				Slope = 0;
-				return true;
-			}
-
-			XYZΔ = Math.Sqrt(XYΔ * XYΔ + ZΔ * ZΔ);
-
-			Slope = ZΔ / XYΔ;
-
-			return true;
-		}
+//
+//		// update values based on the current
+//		// XYZ3 values and the prior point
+//		// and the prior point
+//		private bool UpdateX(double preceding)
+//		{
+//
+////			if (point.X.Equals(preceding)) return false;
+//			if (!point.NeedsUpdatingX) return false;
+//
+//			StatusFlagSet(BitFlag.Xflag);
+//			UpdateXΔ(preceding);
+//
+//			return true;
+//		}
+//
+//		private bool UpdateY(double preceding)
+//		{
+////			if (point.Y.Equals(preceding)) return false;
+//			if (!point.NeedsUpdatingY) return false;
+//
+//			StatusFlagSet(BitFlag.Yflag);
+//			UpdateYΔ(preceding);
+//
+//			return true;
+//		}
+//
+//		private bool UpdateZ(double preceding)
+//		{
+////			if (point.Z.Equals(preceding)) return false;
+//			if (!point.NeedsUpdatingZ) return false;
+//
+//			StatusFlagSet(BitFlag.Zflag);
+//			UpdateZΔ(preceding);
+//
+//			return true;
+//		}
+//
+//		// calc the x delta
+//		private void UpdateXΔ(double preceding)
+//		{
+//			XΔ = X - preceding;
+//			StatusFlagSet(BitFlag.XΔflag);
+//		}
+//
+//		// calc the Y delta
+//		private void UpdateYΔ(double preceding)
+//		{
+//			YΔ = Y - preceding;
+//			StatusFlagSet(BitFlag.YΔflag);
+//		}
+//
+//		// calc the Z delta
+//		private void UpdateZΔ(double preceding)
+//		{
+//			ZΔ = Z - preceding;
+//			StatusFlagSet(BitFlag.ZΔflag);
+//		}
+//
+//		private bool CalcXYΔ()
+//		{
+//			if (TestForNaN(XΔ, YΔ))
+//			{
+//				XYΔ = Double.NaN;
+//				return false;
+//			}
+//
+//			if (XΔ.Equals(0))
+//			{
+//				XYΔ = YΔ;
+//			}
+//			else if (YΔ.Equals(0))
+//			{
+//				XYΔ = XΔ;
+//			}
+//			else
+//			{
+//				XYΔ = Math.Sqrt(XΔ * XΔ + YΔ * YΔ);
+//			}
+//
+//			StatusFlagSet(BitFlag.XYΔflag);
+//
+//			return true;
+//		}
+//
+//		private bool CalcSlope()
+//		{
+//			StatusFlagSet(BitFlag.XYΔZflag);
+//
+//			if (Double.IsNaN(ZΔ) || Double.IsNaN(XYΔ) || XYΔ.Equals(0))
+//			{
+//				XYZΔ = XYΔ;
+//				Slope = Double.NaN;
+//				return false;
+//			}
+//
+//			StatusFlagSet(BitFlag.Slopeflag);
+//
+//			if (ZΔ.Equals(0))
+//			{
+//				XYZΔ = XYΔ;
+//				Slope = 0;
+//				return true;
+//			}
+//
+//			XYZΔ = Math.Sqrt(XYΔ * XYΔ + ZΔ * ZΔ);
+//
+//			Slope = ZΔ / XYΔ;
+//
+//			return true;
+//		}
 
 		public void Clear()
 		{

@@ -96,6 +96,32 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			tps3.Append = "\n*** run test: Complete ***\n\n";
 		}
+		
+		public void BtnBatchAddAmtToYfrom3On_Click()
+		{
+			if (!tpMgr.DataLoaded)
+			{
+				DataNotLoaded();
+				return;
+			}
+
+			int seed = 2;
+
+			tps3.Append = "\n*** run test: batch Add Amt to [3+]Y ***\n";
+
+			tps3.BatchBegin();
+
+			for (int i = 3; i < tps3.Count; i++)
+			{
+				seed = (i * 3) + seed;
+
+				tps3[i].Y += seed;
+			}
+
+			tps3.BatchFinalize();
+			
+			tps3.Append = "\n*** run test: Complete ***\n\n";
+		}
 
 
 		public void BtnBatchAdjustZByAmount_Click()

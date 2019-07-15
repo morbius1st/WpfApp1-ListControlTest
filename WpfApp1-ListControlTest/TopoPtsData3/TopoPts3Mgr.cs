@@ -1,13 +1,9 @@
 ﻿#region > Using Directives
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+
 using WpfApp1_ListControlTest.TopoPts.Support;
 using WpfApp1_ListControlTest.TopoPtsData3.Support;
 using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3;
+using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support;
 
 #endregion
 
@@ -43,41 +39,62 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 			TopoPts.Append = "\nafter| @TopoPts3Mgr| got updateItemAfterReindex"
 				+ " (" + idx + ")\n";
 
-
-			if (TopoPts[idx].XYZ.NeedsUpdatingX ||
-				TopoPts[idx].XYZ.NeedsUpdatingY ||
-				TopoPts[idx].XYZ.NeedsUpdatingZ
-				)
-			{
-				if (TopoPts[idx].XYZ.NeedsUpdatingX)
-				{
-					TopoPts.Append = "after| @TopoPts3Mgr| (" + idx + ")"
-						+ " X | needs updating\n";
-
-					TopoPts[idx].XYZ.NeedsUpdatingX = false;
-				}
-
-				if (TopoPts[idx].XYZ.NeedsUpdatingY)
-				{
-					TopoPts.Append = "after| @TopoPts3Mgr| (" + idx + ")"
-						+ " Y | needs updating\n";
-
-					TopoPts[idx].XYZ.NeedsUpdatingY = false;
-				}
-
-				if (TopoPts[idx].XYZ.NeedsUpdatingZ)
-				{
-					TopoPts.Append = "after| @TopoPts3Mgr| (" + idx + ")"
-						+ " Z | needs updating\n";
-
-					TopoPts[idx].XYZ.NeedsUpdatingZ = false;
-				}
-			}
-			else
+			if (TopoPts[idx].XYZ.NeedsUpdatingX)
 			{
 				TopoPts.Append = "after| @TopoPts3Mgr| (" + idx + ")"
-					+ " nothing needs updating\n";
+					+ " X | needs updating\n";
 			}
+
+			if (TopoPts[idx].XYZ.NeedsUpdatingY)
+			{
+				TopoPts.Append = "after| @TopoPts3Mgr| (" + idx + ")"
+					+ " Y | needs updating\n";
+			}
+
+			if (TopoPts[idx].XYZ.NeedsUpdatingZ)
+			{
+				TopoPts.Append = "after| @TopoPts3Mgr| (" + idx + ")"
+					+ " Z | needs updating\n";
+			}
+
+			TopoPoint3 tp3 = TopoPts[idx];
+
+			if (double.IsNaN(tp3.X) || double.IsNaN(precedingtpt3.X)
+				|| double.IsNaN(tp3.Y) || double.IsNaN(precedingtpt3.Y)
+				|| double.IsNaN(tp3.Z) || double.IsNaN(precedingtpt3.Z))
+			{
+				tp3.Clear();
+				return;
+			}
+
+			// update the index
+			if (tp3.Index != idx) tp3.Index = idx;
+
+			// update XΔ
+			bool resultX = Update.UpdateXΔ(tp3, TopoPts[idx - 1]);
+
+			// updateYΔ
+			bool resultY = Update.UpdateYΔ(tp3, TopoPts[idx - 1]);
+
+			// updateZΔ
+			Update.UpdateZΔ(tp3, TopoPts[idx - 1]);
+
+			// XYZ3 updated, XΔ, YΔ, ZΔ updated
+			// need to update XYΔ?
+			if (resultX || resultY)
+			{
+				Update.CalcXYΔ(tp3);
+			}
+
+			// assumption is that at least one
+			// X or Y or Z changed
+			Update.CalcSlope(tp3);
+
+//				//  all updated - adjust flags
+//				TopoPts[idx].XYZ.NeedsUpdatingX = false;
+//				TopoPts[idx].XYZ.NeedsUpdatingY = false;
+//				TopoPts[idx].XYZ.NeedsUpdatingZ = false;
+
 
 			TopoPts.Append = "\n";
 		}
