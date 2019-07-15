@@ -462,10 +462,10 @@
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="*" />
-				<RowDefinition Height="*" />
+				<RowDefinition Height="60" />
+				<RowDefinition Height="60" />
 				<RowDefinition Height="80" />
-				<RowDefinition Height="350" />
+				<RowDefinition Height="*" />
 				<RowDefinition Height="80" />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
