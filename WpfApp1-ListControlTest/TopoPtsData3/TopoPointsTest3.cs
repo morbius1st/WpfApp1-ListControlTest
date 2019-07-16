@@ -77,7 +77,22 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			tps3.Append = "\n*** run test: Add 10 to start Z ***\n\n";
 
-			tpMgr.TopoPts[0].Z += 10;
+			tps3[0].Z += 10;
+
+			tps3.Append = "*** run test: Complete ***\n\n";
+		}
+
+		public void BtnAdd10ToZofEnd_Click()
+		{
+			if (!tpMgr.DataLoaded)
+			{
+				DataNotLoaded();
+				return;
+			}
+
+			tps3.Append = "\n*** run test: Add 10 to end Z ***\n\n";
+
+			tps3[tps3.EndPointIndex].Z += 10;
 
 			tps3.Append = "*** run test: Complete ***\n\n";
 		}

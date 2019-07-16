@@ -319,6 +319,11 @@ namespace WpfApp1_ListControlTest
 		{
 			TopoPointTest.BtnAdd10ToZofStart_Click();
 		}
+		
+		private void BtnAdd10ToZofEnd_Click(object sender, RoutedEventArgs e)
+		{
+			TopoPointTest.BtnAdd10ToZofEnd_Click();
+		}
 
 		private void BtnBatchAdd10ToYfrom3_Click(object sender, RoutedEventArgs e)
 		{

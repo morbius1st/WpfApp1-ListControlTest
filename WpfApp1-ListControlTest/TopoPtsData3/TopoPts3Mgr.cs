@@ -31,10 +31,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			TopoPts = new TopoPoints3();
 
-			TopoPts.AfterReindexItem += updateItemAfterReindex;
+			TopoPts.ReindexUpdateItem += ReindexUpdateItem;
 		}
 
-		private void updateItemAfterReindex(int idx, TopoPoint3 precedingtpt3)
+		private void ReindexUpdateItem(int idx, TopoPoint3 precedingtpt3)
 		{
 			TopoPts.Append = "\nafter| @TopoPts3Mgr| got updateItemAfterReindex"
 				+ " (" + idx + ")\n";
