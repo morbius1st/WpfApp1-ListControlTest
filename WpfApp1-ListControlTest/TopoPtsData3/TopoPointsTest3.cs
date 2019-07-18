@@ -67,6 +67,36 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 		}
 
 
+		public void BtnAdd10ToXofStart_Click()
+		{
+			if (!tpMgr.DataLoaded)
+			{
+				DataNotLoaded();
+				return;
+			}
+
+			tps3.Append = "\n*** run test: Add 10 to start X ***\n\n";
+
+			tps3[0].X+= 10;
+
+			tps3.Append = "*** run test: Complete ***\n\n";
+		}
+		
+		public void BtnAdd10ToXofEnd_Click()
+		{
+			if (!tpMgr.DataLoaded)
+			{
+				DataNotLoaded();
+				return;
+			}
+
+			tps3.Append = "\n*** run test: Add 10 to start X ***\n\n";
+
+			tps3[tps3.EndPointIndex].X+= 10;
+
+			tps3.Append = "*** run test: Complete ***\n\n";
+		}
+		
 		public void BtnAdd10ToZofStart_Click()
 		{
 			if (!tpMgr.DataLoaded)

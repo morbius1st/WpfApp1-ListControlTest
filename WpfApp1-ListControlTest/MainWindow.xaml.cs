@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
@@ -123,30 +124,44 @@ namespace WpfApp1_ListControlTest
 
 		private void Lb3BtnUndo_Click(object sender, RoutedEventArgs e)
 		{
-			ClickInfo(sender, e, "UndoX");
+			ClickInfo(sender, e, "Undo");
 
 			TopoMgr.Undo(((Button) sender)?.Tag as string, Lb3.SelectedIndex);
 		}
 
 		private void Lb3BtnRedo_Click(object sender, RoutedEventArgs e)
 		{
-			ClickInfo(sender, e, "UndoX");
+			ClickInfo(sender, e, "Redo");
 
 			TopoMgr.Redo(((Button) sender)?.Tag as string, Lb3.SelectedIndex);
 		}
 
+		private void Lb3BtnUndoStartPt_Click(object sender, RoutedEventArgs e)
+		{
+			ClickInfo(sender, e, "UndoStart");
+
+			TopoMgr.Undo(((Button) sender)?.Tag as string, 0);
+		}
+
+		private void Lb3BtnRedoStartPt_Click(object sender, RoutedEventArgs e)
+		{
+			ClickInfo(sender, e, "RedoStart");
+
+			TopoMgr.Redo(((Button) sender)?.Tag as string, 0);
+		}
+		
 		private void Lb3BtnUndoEndPt_Click(object sender, RoutedEventArgs e)
 		{
-			ClickInfo(sender, e, "UndoX");
+			ClickInfo(sender, e, "UndoEnd");
 
-			TopoMgr.Undo(((Button) sender)?.Tag as string);
+			TopoMgr.Undo(((Button) sender)?.Tag as string, TopoMgr.TopoPts.EndIdx);
 		}
 
 		private void Lb3BtnRedoEndPt_Click(object sender, RoutedEventArgs e)
 		{
-			ClickInfo(sender, e, "UndoX");
+			ClickInfo(sender, e, "RedoEnd");
 
-			TopoMgr.Redo(((Button) sender)?.Tag as string);
+			TopoMgr.Redo(((Button) sender)?.Tag as string, TopoMgr.TopoPts.EndIdx);
 		}
 
 		private void ClickInfo(object sender, RoutedEventArgs e, string fromWho)
@@ -315,6 +330,16 @@ namespace WpfApp1_ListControlTest
 			TopoMgr.LoadData();
 		}
 
+		private void BtnAdd10ToXofStart_Click(object sender, RoutedEventArgs e)
+		{
+			TopoPointTest.BtnAdd10ToXofStart_Click();
+		}
+		
+		private void BtnAdd10ToXofEnd_Click(object sender, RoutedEventArgs e)
+		{
+			TopoPointTest.BtnAdd10ToXofEnd_Click();
+		}
+		
 		private void BtnAdd10ToZofStart_Click(object sender, RoutedEventArgs e)
 		{
 			TopoPointTest.BtnAdd10ToZofStart_Click();
@@ -356,5 +381,29 @@ namespace WpfApp1_ListControlTest
 		}
 
 	#endregion
+	}
+
+	public class CustomProperties
+	{
+
+		
+		public static readonly DependencyProperty GenericBoolProperty;
+
+		static CustomProperties()
+		{
+			GenericBoolProperty = DependencyProperty.RegisterAttached(
+				"GenericBoolean", typeof(bool), typeof(CustomProperties));
+		}
+
+		
+		public static void SetGenericBoolean(UIElement e, bool value)
+		{
+			e.SetValue(GenericBoolProperty, value);
+		}
+
+		public static bool GetGenericBoolean(UIElement e)
+		{
+			return (bool) e.GetValue(GenericBoolProperty);
+		}
 	}
 }

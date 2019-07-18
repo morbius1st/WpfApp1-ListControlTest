@@ -110,7 +110,7 @@
     <Compile Include="TopoPtsData3\TopoPts3\Support\TopoPoint3Support.cs" />
     <Compile Include="TopoPtsData3\Support\TopoPts3MgrSupport.cs" />
     <Compile Include="TopoPtsData3\TopoPts3\Support\XYZ3.cs" />
-    <Compile Include="TopoPtsData3\Support\XYZEnum.cs" />
+    <Compile Include="TopoPtsData3\Support\Enums.cs" />
     <Compile Include="TopoPtsData3\TopoPts3\TopoPoint3.cs" />
     <Compile Include="TopoPtsData3\TopoPts3\TopoPoints3.cs" />
     <Compile Include="TopoPtsData3\TopoPointsTest3.cs" />

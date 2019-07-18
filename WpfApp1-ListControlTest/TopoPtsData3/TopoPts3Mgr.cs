@@ -21,6 +21,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 	{
 		public TopoPtsConsts TpConsts { get; private set; }
 
+		public TopoPtsTags tags { get; }
+
 		public TopoPoints3 TopoPts { get; set; }
 
 		private TopoPts3MgrSupport TptSupport = new TopoPts3MgrSupport();
@@ -32,6 +34,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 			TopoPts = new TopoPoints3();
 
 			TopoPts.ReindexUpdateItem += ReindexUpdateItem;
+
+			
 		}
 
 		private void ReindexUpdateItem(int idx, TopoPoint3 precedingtpt3)
@@ -110,38 +114,12 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 		public void Undo(string tag, int idx)
 		{
-//			Button b = sender as Button;
-//
-//			if (b == null) return;
-
 			TopoPts[idx].Undo(tag);
 		}
 
 		public void Redo(string tag, int idx)
 		{
-//			Button b = sender as Button;
-//
-//			if (b == null) return;
-
 			TopoPts[idx].Redo(tag);
-		}
-
-		public void Undo(string tag)
-		{
-//			Button b = sender as Button;
-//
-//			if (b == null) return;
-
-			TopoPts[TopoPts.EndIdx].Undo(tag);
-		}
-
-		public void Redo(string tag)
-		{
-//			Button b = sender as Button;
-//
-//			if (b == null) return;
-
-			TopoPts[TopoPts.EndIdx].Redo(tag);
 		}
 
 		public void BatchIncreaseEachXyxByAmount(int startIdx, string which, double amount)
