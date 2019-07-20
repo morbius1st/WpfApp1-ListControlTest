@@ -20,7 +20,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 {
 	public class TopoPointsTest3
 	{
-		private TopoPoint3 testPoint = new TopoPoint3(new XYZ3(10201.0, 20201.0, 30201.0));
+		private TopoPoint3 tp3Test = new TopoPoint3(new XYZ3(10201.0, 20201.0, 30201.0));
 
 //		private double j = 10;
 //		private double k = 50;
@@ -28,13 +28,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 //		private double y;
 //		private double z;
 
-		public TopoPoints3 tps3 { get; set; }
-		public TopoPts3Mgr tpMgr { get; set; }
+		public TopoPoints3 Tpts3 { get; set; }
+		public TopoPts3Mgr Tpts3Mgr { get; set; }
 
-		public TopoPointsTest3(TopoPoints3 tps, TopoPts3Mgr tpMgr)
+		public TopoPointsTest3(TopoPoints3 tps, TopoPts3Mgr tpts3Mgr)
 		{
-			this.tps3 = tps;
-			this.tpMgr = tpMgr;
+			this.Tpts3 = tps;
+			this.Tpts3Mgr = tpts3Mgr;
 
 			tps.Message = "initialized\n";
 		}
@@ -63,88 +63,88 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 //		}
 		public void DataNotLoaded()
 		{
-			tps3.Append = "\n*** FAIL: LOAD DATA FIRST ***\n";
+			Tpts3.Append = "\n*** FAIL: LOAD DATA FIRST ***\n";
 		}
 
 
 		public void BtnAdd10ToXofStart_Click()
 		{
-			if (!tpMgr.DataLoaded)
+			if (!Tpts3Mgr.DataLoaded)
 			{
 				DataNotLoaded();
 				return;
 			}
 
-			tps3.Append = "\n*** run test: Add 10 to start X ***\n\n";
+			Tpts3.Append = "\n*** run test: Add 10 to start X ***\n\n";
 
-			tps3[0].X+= 10;
+			Tpts3[0].X+= 10;
 
-			tps3.Append = "*** run test: Complete ***\n\n";
+			Tpts3.Append = "*** run test: Complete ***\n\n";
 		}
 		
 		public void BtnAdd10ToXofEnd_Click()
 		{
-			if (!tpMgr.DataLoaded)
+			if (!Tpts3Mgr.DataLoaded)
 			{
 				DataNotLoaded();
 				return;
 			}
 
-			tps3.Append = "\n*** run test: Add 10 to start X ***\n\n";
+			Tpts3.Append = "\n*** run test: Add 10 to start X ***\n\n";
 
-			tps3[tps3.EndPointIndex].X+= 10;
+			Tpts3[Tpts3.EndPointIndex].X+= 10;
 
-			tps3.Append = "*** run test: Complete ***\n\n";
+			Tpts3.Append = "*** run test: Complete ***\n\n";
 		}
 		
 		public void BtnAdd10ToZofStart_Click()
 		{
-			if (!tpMgr.DataLoaded)
+			if (!Tpts3Mgr.DataLoaded)
 			{
 				DataNotLoaded();
 				return;
 			}
 
-			tps3.Append = "\n*** run test: Add 10 to start Z ***\n\n";
+			Tpts3.Append = "\n*** run test: Add 10 to start Z ***\n\n";
 
-			tps3[0].Z += 10;
+			Tpts3[0].Z += 10;
 
-			tps3.Append = "*** run test: Complete ***\n\n";
+			Tpts3.Append = "*** run test: Complete ***\n\n";
 		}
 
 		public void BtnAdd10ToZofEnd_Click()
 		{
-			if (!tpMgr.DataLoaded)
+			if (!Tpts3Mgr.DataLoaded)
 			{
 				DataNotLoaded();
 				return;
 			}
 
-			tps3.Append = "\n*** run test: Add 10 to end Z ***\n\n";
+			Tpts3.Append = "\n*** run test: Add 10 to end Z ***\n\n";
 
-			tps3[tps3.EndPointIndex].Z += 10;
+			Tpts3[Tpts3.EndPointIndex].Z += 10;
 
-			tps3.Append = "*** run test: Complete ***\n\n";
+			Tpts3.Append = "*** run test: Complete ***\n\n";
 		}
 
 		public void BtnBatchAdd10ToYfrom3_Click()
 		{
-			if (!tpMgr.DataLoaded)
+			if (!Tpts3Mgr.DataLoaded)
 			{
 				DataNotLoaded();
 				return;
 			}
 
-			tps3.Append = "\n*** run test: batch Add 10 to [3+]Y ***\n";
+			Tpts3.Append = "\n*** run test: batch Add 10 to [3+]Y ***\n";
 
-			tpMgr.BatchIncreaseEachXyxByAmount(3, "Y", 10);
+			Tpts3Mgr.BatchIncreaseEachXyxByAmount(3, "Y", 10);
 
-			tps3.Append = "\n*** run test: Complete ***\n\n";
+			Tpts3.Append = "\n*** run test: Complete ***\n\n";
 		}
 		
 		public void BtnBatchAddAmtToYfrom3On_Click()
 		{
-			if (!tpMgr.DataLoaded)
+			if (!Tpts3Mgr.DataLoaded)
 			{
 				DataNotLoaded();
 				return;
@@ -152,68 +152,68 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			int seed = 2;
 
-			tps3.Append = "\n*** run test: batch Add Amt to [3+]Y ***\n";
+			Tpts3.Append = "\n*** run test: batch Add Amt to [3+]Y ***\n";
 
-			tps3.BatchBegin();
+			Tpts3.BatchBegin();
 
-			for (int i = 3; i < tps3.Count; i++)
+			for (int i = 3; i < Tpts3.Count; i++)
 			{
 				seed = (i * 3) + seed;
 
-				tps3[i].Y += seed;
+				Tpts3[i].Y += seed;
 			}
 
-			tps3.BatchFinalize();
+			Tpts3.BatchFinalize();
 			
-			tps3.Append = "\n*** run test: Complete ***\n\n";
+			Tpts3.Append = "\n*** run test: Complete ***\n\n";
 		}
 
 
 		public void BtnBatchAdjustZByAmount_Click()
 		{
-			if (!tpMgr.DataLoaded)
+			if (!Tpts3Mgr.DataLoaded)
 			{
 				DataNotLoaded();
 				return;
 			}
 
-			tps3.Append = "\n*** run test: Batch Add amt to [3] Z to [end] ***\n";
+			Tpts3.Append = "\n*** run test: Batch Add amt to [3] Z to [end] ***\n";
 
 			// change the Z delta for item3 to item 4
 			int idx = 3;
 
-			double adjDeltaZ = tps3[idx].ZΔ + 3;
+			double adjDeltaZ = Tpts3[idx].ZΔ + 3;
 
-			tps3.Append = "\n*** run test start: batch Adjust Z =  "
+			Tpts3.Append = "\n*** run test start: batch Adjust Z =  "
 				+ adjDeltaZ.ToString() + "\n";
 
 			bool result = AdjustZ(idx, adjDeltaZ);
 
-			tps3.Append = "*** run test end: batch Adjust Z  = "
+			Tpts3.Append = "*** run test end: batch Adjust Z  = "
 				+ result.ToString() + "\n\n";
 		}
 
 		public void BtnBatchAdjustZBySlope_Click()
 		{
-			if (!tpMgr.DataLoaded)
+			if (!Tpts3Mgr.DataLoaded)
 			{
 				DataNotLoaded();
 				return;
 			}
 
-			tps3.Append = "\n*** run test: batch Adjust Z [4] by Slope ***\n";
+			Tpts3.Append = "\n*** run test: batch Adjust Z [4] by Slope ***\n";
 
 			// change the Z delta for item3 to item 4
 			int idx = 4;
 
-			double adjDeltaZ = tps3[idx].XYΔ * 0.05;
+			double adjDeltaZ = Tpts3[idx].XYΔ * 0.05;
 
-			tps3.Append = "\n*** run test start: batch Adjust Z (5%) =  "
+			Tpts3.Append = "\n*** run test start: batch Adjust Z (5%) =  "
 				+ adjDeltaZ.ToString() + "\n";
 
 			bool result = AdjustZ(idx, adjDeltaZ);
 
-			tps3.Append = "*** run test end: batch Adjust Z = "
+			Tpts3.Append = "*** run test end: batch Adjust Z = "
 				+ result.ToString() + "\n\n";
 		}
 
@@ -222,26 +222,26 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 		// by maintaining the original delta
 		private bool AdjustZ(int index, double deltaZ)
 		{
-			if (index > tps3.EndIdx ||
+			if (index > Tpts3.IndexOfEndPoint ||
 				index < 1 ||
 				double.IsNaN(deltaZ)) return false;
 
-			tps3.BatchBegin();
+			Tpts3.BatchBegin();
 
 			// change the Z value of the indexed point
 			// based on the Z value of the prior point
 			// plus the new delta
-			tps3[index].Z = tps3[index - 1].Z + deltaZ;
+			Tpts3[index].Z = Tpts3[index - 1].Z + deltaZ;
 
 			// update the Z value of all subsequent points
 			// based on the Z value of the prior point
 			// plus the original delta
-			for (int i = ++index; i < tps3.Count; i++)
+			for (int i = ++index; i < Tpts3.Count; i++)
 			{
-				tps3[i].Z = tps3[i - 1].Z + tps3[i].ZΔ;
+				Tpts3[i].Z = Tpts3[i - 1].Z + Tpts3[i].ZΔ;
 			}
 
-			tps3.BatchFinalize();
+			Tpts3.BatchFinalize();
 
 			return true;
 		}
@@ -250,22 +250,22 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 		public void BtnChangeXof1_Click()
 		{
-			if (!tpMgr.DataLoaded)
+			if (!Tpts3Mgr.DataLoaded)
 			{
 				DataNotLoaded();
 				return;
 			}
 
-			tps3.Append = "\n*** run test: change X of [1] ***\n\n";
+			Tpts3.Append = "\n*** run test: change X of [1] ***\n\n";
 
-			tps3[1].X = 11101.0 + a;
+			Tpts3[1].X = 11101.0 + a;
 
 			a += 10;
 		}
 
 		public void BtnDebugMarker_Click()
 		{
-			tps3.Append = "\n*** Debug Marker ***\n\n";
+			Tpts3.Append = "\n*** Debug Marker ***\n\n";
 		}
 
 
@@ -385,11 +385,11 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 //
 //			tps3.Append = "\n*** run test: removeat (2) ***\n";
 //
-//			TopoPoint3 tx = tps3[idx];
+//			TopoPoint3 tp3 = tps3[idx];
 //
 //			tps3.RemoveAt(idx);
 //
-//			if (tps3.Contains(tx))
+//			if (tps3.Contains(tp3))
 //			{
 //				tps3.Append = "remove at| NOT removed (fail)\n";
 //			}

@@ -18,12 +18,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 		private Coordinate y = new Coordinate();
 		private Coordinate z = new Coordinate();
 
-//		private const string ValueChange = "IsRevised";
 		private const string IsRevisedChange = "IsRevised";
 		private const string UndoValueChange = "UndoValue";
 		private const string RedoValueChange = "RedoValue";
 		private const string HasRedoValueChange = "HasRedo";
-
 
 		public XYZ3(double x = Double.NaN, double y = Double.NaN, double z = Double.NaN)
 		{
@@ -82,8 +80,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 		public double RedoValueY => y.RedoValue;
 		public double RedoValueZ => z.RedoValue;
 
-		// is revised is also the same as
-		// hasUndo
+		// is revised means the same as hasUndo
 		public bool IsRevisedX => x.IsRevised;
 		public bool IsRevisedY => y.IsRevised;
 		public bool IsRevisedZ => z.IsRevised;
@@ -93,13 +90,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 			get => x.NeedsUpdating;
 			set => x.NeedsUpdating = value;
 		}
-		
+
 		public bool NeedsUpdatingY
 		{
 			get => y.NeedsUpdating;
 			set => y.NeedsUpdating = value;
 		}
-		
+
 		public bool NeedsUpdatingZ
 		{
 			get => z.NeedsUpdating;
@@ -112,9 +109,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 
 		public bool IsValid => !Double.IsNaN(X) &&
 			!Double.IsNaN(Y) && !Double.IsNaN(Z);
-
-		public bool IsRevised => IsRevisedX || IsRevisedY || IsRevisedZ;
-		public bool HasRedo => HasRedoX || HasRedoY || HasRedoZ;
 
 	#endregion
 
@@ -141,7 +135,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 				}
 			}
 		}
-		
+
 		public void Redo(TopoPtsTags tag)
 		{
 			switch (tag.Axis)
@@ -163,59 +157,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 				}
 			}
 		}
-//
-//		public void Undo(string which)
-//		{
-//			if (which.Equals(TopoPtsConsts.aTag))
-//			{
-//				x.Undo();
-//				y.Undo();
-//				z.Undo();
-//			}
-//			else
-//			{
-//				switch (which)
-//				{
-//				case TopoPtsConsts.xTag:
-//					{
-//						x.Undo();
-//						break;
-//					}
-//				case TopoPtsConsts.yTag:
-//					{
-//						y.Undo();
-//						break;
-//					}
-//				case TopoPtsConsts.zTag:
-//					{
-//						z.Undo();
-//						break;
-//					}
-//				}
-//			}
-//		}
-//
-//		public void Redo(string which)
-//		{
-//			switch (which)
-//			{
-//			case TopoPtsConsts.xTag:
-//				{
-//					x.Redo();
-//					break;
-//				}
-//			case TopoPtsConsts.yTag:
-//				{
-//					y.Redo();
-//					break;
-//				}
-//			case TopoPtsConsts.zTag:
-//				{
-//					z.Redo();
-//					break;
-//				}
-//			}
-//		}
 
 	#endregion
 
@@ -268,20 +209,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 		#endif
 
 			OnPropertyChange(e.PropertyName + "X");
-
-
-//			if (e.PropertyName.Equals(ValueChange))
-//			{
-//				OnPropertyChange("IsRevisedX");
-//			}
-//			else if (e.PropertyName.Equals(UndoValueChange))
-//			{
-//				OnPropertyChange("UndoValueX");
-//			}
-//			else
-//			{
-//				OnPropertyChange("RedoValueX");
-//			}
 		}
 
 		private void CoordinateChangedY(object sender, PropertyChangedEventArgs e)
@@ -291,20 +218,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 		#endif
 
 			OnPropertyChange(e.PropertyName + "Y");
-
-
-//			if (e.PropertyName.Equals(ValueChange))
-//			{
-//				OnPropertyChange("IsRevisedY");
-//			}
-//			else if (e.PropertyName.Equals(UndoValueChange))
-//			{
-//				OnPropertyChange("UndoValueY");
-//			}
-//			else
-//			{
-//				OnPropertyChange("RedoValueY");
-//			}
 		}
 
 		private void CoordinateChangedZ(object sender, PropertyChangedEventArgs e)
@@ -314,36 +227,26 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 		#endif
 
 			OnPropertyChange(e.PropertyName + "Z");
-
-
-//			if (e.PropertyName.Equals(ValueChange))
-//			{
-//				OnPropertyChange("IsRevisedZ");
-//			}
-//			else if (e.PropertyName.Equals(UndoValueChange))
-//			{
-//				OnPropertyChange("UndoValueZ");
-//			}
-//			else
-//			{
-//				OnPropertyChange("RedoValueZ");
-//			}
 		}
 
 	#endregion
 
 	#region > event providers
 
+	#if DEBUG
 		private void PropChangedMessage(string who, string membername)
 		{
 			Debug.WriteLine("(send) @ XYZ3.PropChanged| (" + who + " [" + membername + "] )");
 		}
+	#endif
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		private void OnPropertyChange([CallerMemberName] string memberName = "")
 		{
+		#if DEBUG
 			PropChangedMessage("general", memberName);
+		#endif
 
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(memberName));
 		}
@@ -499,7 +402,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 			{
 				if (IsRevised)
 				{
-					RedoValue =  value;
+					RedoValue = value;
 
 					value = undoValue;
 

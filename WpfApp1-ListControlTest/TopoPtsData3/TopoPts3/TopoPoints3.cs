@@ -32,9 +32,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 	 *
 	 * delegates:
 	 *
-	 * UpdateFirstItem
-	 * UpdateMiddleItem
-	 * UpdateLastItem
+	 * ReindexUpdateItem
 	 *
 	 * this allows the data in the array to be revised when the
 	 * array is modified / reindexed
@@ -58,13 +56,9 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 		private string _message;
 
-		private RindexUpdateItem reindexUpdateItem;
+		#region > deletages
 
-
-
-	#region > deletages
-
-		public delegate void RindexUpdateItem(int idx, TopoPoint3 precedingTpt3);
+		public delegate void ReindexUpdateItem(int idx, TopoPoint3 precedingTpt3);
 
 
 	#endregion
@@ -111,17 +105,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		}
 	#endif
 
-		public int EndIdx => Items.Count - 1;
+		public int IndexOfEndPoint => Items.Count - 1;
 
-		public RindexUpdateItem ReindexUpdateItem
-		{
-			get => reindexUpdateItem;
-			set => reindexUpdateItem = value;
-		}
+		public ReindexUpdateItem ReIndexUpdateItem { get; set; }
 
-	#endregion
+		#endregion
 
-	#region >> Public Methods
+		#region >> Public Methods
 
 		// start the process of creating a topopoints collection
 		public void Initialize(TopoStartPoint start)
@@ -141,11 +131,11 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		{
 			if (!CheckStatus(gotEndPoint)) { throw new InvalidOperationException("TopoPoints Not Ready to Finalize"); }
 
-			end.Index = EndIdx;
+			end.Index = IndexOfEndPoint;
 
-			base.SetItem(EndIdx, end);
+			base.SetItem(IndexOfEndPoint, end);
 
-			Items[EndIdx].PropertyChanged += TopoPoints_PropertyChangedEndPt;
+			Items[IndexOfEndPoint].PropertyChanged += TopoPoints_PropertyChangedEndPt;
 
 			Status[gotEndPoint] = true;
 
@@ -161,7 +151,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		// reindex only after "complete",
 		public void Add(XYZ3 xyz)
 		{
-			Insert(EndIdx, xyz);
+			Insert(IndexOfEndPoint, xyz);
 		}
 
 		// only allowed after we have a start point
@@ -172,7 +162,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 			if (!xyz.IsValid) { throw new ArgumentException("Invalid Point"); }
 
-			if (idx <= 0 || idx > EndIdx) { throw new ArgumentException("Invalid Index"); }
+			if (idx <= 0 || idx > IndexOfEndPoint) { throw new ArgumentException("Invalid Index"); }
 
 			Append = "\ninsrt| @ TopoPoints3| insert | idx| [" + idx + "]";
 
@@ -203,7 +193,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			// clear status
 			Status = new bool[statusLength];
 
-//			Items.Insert(0, (new TopoPoint3(XYZ3.Empty) {Index = 1}));
 			Items.Insert(0, (new TopoPoint3(new XYZ3(4.0, 5.0, 6.0)) {Index = 1}));
 			Items.Insert(0, (new TopoPoint3(new XYZ3(1.0, 2.0, 3.0)) {Index = 0}));
 
@@ -235,7 +224,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		// index cannot be >= endpointidx (cannot remove end or beyond)
 		public new void RemoveAt(int index)
 		{
-			if (index <= 0 || index >= EndIdx) { throw new ArgumentException("Invalid Index"); }
+			if (index <= 0 || index >= IndexOfEndPoint) { throw new ArgumentException("Invalid Index"); }
 
 			// remove using the base method to prevent extra events
 			base.RemoveAt(index);
@@ -293,12 +282,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 			string name = e.PropertyName;
 
-			if (name.Equals("Message"))
-			{
-				Message = ((TopoPoint3) sender).Message;
-				return;
-			}
-
 			if (name.Equals("XYZstart")) { Status[xyzMode] = true; }
 
 			if (name.Equals("XYZend"))
@@ -308,15 +291,12 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 		#if DEBUG
 
-			bool result = eventProcessingTest(name);
-
 			DisplayPropChangeInfo(idx, sender, e, "@ TopoPoints3| @propChange| midpt|", name);
 
 		#endif
 
 			if (eventProcessingTest(name))
 			{
-
 				ReIndex(idx, false);
 			}
 
@@ -366,15 +346,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			{
 				OnPropertyChanged("EndPoint" + e.PropertyName);
 			}
-
-//			if (e.PropertyName.Equals("XYZ"))
-//			{
-//				UpdateEndPointBaseValues();
-//			}
-//			else
-//			{
-//				OnPropertyChanged("EndPoint" + e.PropertyName);
-//			}
 		}
 
 		private void OnPropertyChanged([CallerMemberName] string memberName = "")
@@ -405,7 +376,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		private void ReIndex(int start = 0, bool all = true, int last = 0)
 		{
 
-			if (last < 0 || last > EndIdx) { throw new ArgumentException("Invalid Last Index"); }
+			if (last < 0 || last > IndexOfEndPoint) { throw new ArgumentException("Invalid Last Index"); }
 
 			int i;
 			int j;
@@ -470,18 +441,12 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			// do not index when not possible
 			// also prevents the update of [0] as 
 			// precedingIdx will be less than 0
-			if (idx > EndIdx || precedingIdx < 0)
+			if (idx > IndexOfEndPoint || precedingIdx < 0)
 			{
 				return;
 			}
 
-//			Items[idx].Update(idx, Items[precedingIdx]);
-
-			reindexUpdateItem?.Invoke(idx, Items[precedingIdx]);
-
-			Items[idx - 1].XYZ.NeedsUpdatingX = false;
-			Items[idx - 1].XYZ.NeedsUpdatingY = false;
-			Items[idx - 1].XYZ.NeedsUpdatingZ = false;
+			ReIndexUpdateItem?.Invoke(idx, Items[precedingIdx]);
 		}
 
 	#if DEBUG
@@ -542,9 +507,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		public double StartPointZ => Items[0].Z;
 
 		public XYZ3 StartPointXYZ => Items[0].XYZ;
-//		public XYZ3 StartPointXYZ_X => Items[0].XYZ;
-//		public XYZ3 StartPointXYZ_Y => Items[0].XYZ;
-//		public XYZ3 StartPointXYZ_Z => Items[0].XYZ;
 
 		public bool StartPointCp => Items[0].ControlPoint;
 
@@ -558,33 +520,26 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			OnPropertyChanged("StartPointY");
 			OnPropertyChanged("StartPointZ");
 			OnPropertyChanged("StartPointXYZ");
-//			OnPropertyChanged("StartPointXYZ_X");
-//			OnPropertyChanged("StartPointXYZ_Y");
-//			OnPropertyChanged("StartPointXYZ_Z");
 		}
 
-
 		// end point
-		public int EndPointIndex => Items[EndIdx].Index;
+		public int EndPointIndex => Items[IndexOfEndPoint].Index;
 
-		public double EndPointX => Items[EndIdx].X;
-		public double EndPointY => Items[EndIdx].Y;
-		public double EndPointZ => Items[EndIdx].Z;
+		public double EndPointX => Items[IndexOfEndPoint].X;
+		public double EndPointY => Items[IndexOfEndPoint].Y;
+		public double EndPointZ => Items[IndexOfEndPoint].Z;
 
-		public XYZ3 EndPointXYZ => Items[EndIdx].XYZ;
-//		public XYZ3 EndPointXYZ_X => Items[EndIdx].XYZ;
-//		public XYZ3 EndPointXYZ_Y => Items[EndIdx].XYZ;
-//		public XYZ3 EndPointXYZ_Z => Items[EndIdx].XYZ;
+		public XYZ3 EndPointXYZ => Items[IndexOfEndPoint].XYZ;
 
-		public double EndPointXΔ => Items[EndIdx].XΔ;
-		public double EndPointYΔ => Items[EndIdx].YΔ;
-		public double EndPointZΔ => Items[EndIdx].ZΔ;
-		public double EndPointXYΔ => Items[EndIdx].XYΔ;
-		public double EndPointXYZΔ => Items[EndIdx].XYZΔ;
+		public double EndPointXΔ => Items[IndexOfEndPoint].XΔ;
+		public double EndPointYΔ => Items[IndexOfEndPoint].YΔ;
+		public double EndPointZΔ => Items[IndexOfEndPoint].ZΔ;
+		public double EndPointXYΔ => Items[IndexOfEndPoint].XYΔ;
+		public double EndPointXYZΔ => Items[IndexOfEndPoint].XYZΔ;
 
-		public double EndPointSlope => Items[EndIdx].Slope;
+		public double EndPointSlope => Items[IndexOfEndPoint].Slope;
 
-		public bool EndPointCp => Items[EndIdx].ControlPoint;
+		public bool EndPointCp => Items[IndexOfEndPoint].ControlPoint;
 
 		private void UpdateEndPointBaseValues()
 		{
@@ -596,9 +551,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			OnPropertyChanged("EndPointY");
 			OnPropertyChanged("EndPointZ");
 			OnPropertyChanged("EndPointXYZ");
-//			OnPropertyChanged("EndPointXYZ_X");
-//			OnPropertyChanged("EndPointXYZ_Y");
-//			OnPropertyChanged("EndPointXYZ_Z");
 		}
 
 		private void UpdateEndPointValues()

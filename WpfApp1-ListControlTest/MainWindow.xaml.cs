@@ -50,7 +50,7 @@ namespace WpfApp1_ListControlTest
 
 		public TopoPtsConsts TpConsts = new TopoPtsConsts();
 
-		public TopoPts3Mgr TopoMgr { get; set; }
+		public TopoPts3Mgr Tpts3Mgr { get; set; }
 
 		public TopoPointsTest3 TopoPointTest { get; set; }
 
@@ -74,8 +74,8 @@ namespace WpfApp1_ListControlTest
 		{
 			TpTest = new TopoPointsTest(tps);
 
-			TopoMgr = new TopoPts3Mgr();
-			TopoPointTest = new TopoPointsTest3(TopoMgr.TopoPts, TopoMgr);
+			Tpts3Mgr = new TopoPts3Mgr();
+			TopoPointTest = new TopoPointsTest3(Tpts3Mgr.Tpts3, Tpts3Mgr);
 			InitializeComponent();
 
 			CreateSampleData();
@@ -127,56 +127,26 @@ namespace WpfApp1_ListControlTest
 		{
 			ClickInfo(sender, e, "Undo");
 
-			TopoMgr.Undo(((Button) sender)?.Tag, Lb3.SelectedIndex);
+			Tpts3Mgr.Undo(((Button) sender)?.Tag, Lb3.SelectedIndex);
 		}
 
 		private void Lb3BtnRedo_Click(object sender, RoutedEventArgs e)
 		{
 			ClickInfo(sender, e, "Redo");
 
-			TopoMgr.Redo(((Button) sender)?.Tag, Lb3.SelectedIndex);
+			Tpts3Mgr.Redo(((Button) sender)?.Tag, Lb3.SelectedIndex);
 		}
-//
-//		private void Lb3BtnUndoStartPt_Click(object sender, RoutedEventArgs e)
-//		{
-//			ClickInfo(sender, e, "UndoStart");
-//
-//			TopoMgr.Undo(((Button) sender)?.Tag as string, 0);
-//		}
-//
-//		private void Lb3BtnRedoStartPt_Click(object sender, RoutedEventArgs e)
-//		{
-//			ClickInfo(sender, e, "RedoStart");
-//
-//			TopoMgr.Redo(((Button) sender)?.Tag as string, 0);
-//		}
-//		
-//		private void Lb3BtnUndoEndPt_Click(object sender, RoutedEventArgs e)
-//		{
-//			ClickInfo(sender, e, "UndoEnd");
-//
-//			TopoMgr.Undo(((Button) sender)?.Tag as string, TopoMgr.TopoPts.EndIdx);
-//		}
-//
-//		private void Lb3BtnRedoEndPt_Click(object sender, RoutedEventArgs e)
-//		{
-//			ClickInfo(sender, e, "RedoEnd");
-//
-//			TopoMgr.Redo(((Button) sender)?.Tag as string, TopoMgr.TopoPts.EndIdx);
-//		}
 
 		private void ClickInfo(object sender, RoutedEventArgs e, string fromWho)
 		{
-//			((TextBox) sender).GetBindingExpression(TextBox.TextProperty).UpdateSource();
-
 			ListBox lb = MainWindow.Lb3;
 
-			TopoPoint3 tp2 = (TopoPoint3) MainWindow.Lb3.Items[lb.SelectedIndex];
+			TopoPoint3 tp = (TopoPoint3) MainWindow.Lb3.Items[lb.SelectedIndex];
 
 			Debug.WriteLine("\n@ MainResource3| @button pressed|"
 				+ " from| " + fromWho
 				+ " selected idx| " + lb.SelectedIndex
-				+ " xyz| " + tp2.ToString()
+				+ " xyz| " + tp.ToString()
 				+ "\n"
 				);
 		}
@@ -328,7 +298,7 @@ namespace WpfApp1_ListControlTest
 
 		private void BtnInitialize_Click(object sender, RoutedEventArgs e)
 		{
-			TopoMgr.LoadData();
+			Tpts3Mgr.LoadData();
 		}
 
 		private void BtnAdd10ToXofStart_Click(object sender, RoutedEventArgs e)

@@ -20,49 +20,53 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 	// all of the routines to work with the collection
 	public class TopoPts3Mgr
 	{
-		public TopoPtsConsts TpConsts { get; private set; }
+		private readonly TopoPts3MgrSupport _tpts3MgrSupport = new TopoPts3MgrSupport();
 
-		public TopoPtsTags tags { get; }
-
-		public TopoPoints3 TopoPts { get; set; }
-
-		private TopoPts3MgrSupport TptSupport = new TopoPts3MgrSupport();
+	#region constructor
 
 		public TopoPts3Mgr()
 		{
-			TpConsts = new TopoPtsConsts();
+			Tpts3 = new TopoPoints3();
 
-			TopoPts = new TopoPoints3();
-
-			TopoPts.ReindexUpdateItem += ReindexUpdateItem;
-
-			
+			Tpts3.ReIndexUpdateItem += reindexUpdateItem;
 		}
 
-		private void ReindexUpdateItem(int idx, TopoPoint3 precedingtpt3)
+	#endregion
+
+	#region public properties
+
+		public TopoPoints3 Tpts3 { get; set; }
+
+		public bool DataLoaded { get; private set; } = false;
+
+	#endregion
+
+	#region delegated
+
+		private void reindexUpdateItem(int idx, TopoPoint3 precedingtpt3)
 		{
-			TopoPts.Append = "\nafter| @TopoPts3Mgr| got updateItemAfterReindex"
+			Tpts3.Append = "\nafter| @TopoPts3Mgr| got updateItemAfterReindex"
 				+ " (" + idx + ")\n";
 
-			if (TopoPts[idx].XYZ.NeedsUpdatingX)
+			if (Tpts3[idx].XYZ.NeedsUpdatingX)
 			{
-				TopoPts.Append = "after| @TopoPts3Mgr| (" + idx + ")"
+				Tpts3.Append = "after| @TopoPts3Mgr| (" + idx + ")"
 					+ " X | needs updating\n";
 			}
 
-			if (TopoPts[idx].XYZ.NeedsUpdatingY)
+			if (Tpts3[idx].XYZ.NeedsUpdatingY)
 			{
-				TopoPts.Append = "after| @TopoPts3Mgr| (" + idx + ")"
+				Tpts3.Append = "after| @TopoPts3Mgr| (" + idx + ")"
 					+ " Y | needs updating\n";
 			}
 
-			if (TopoPts[idx].XYZ.NeedsUpdatingZ)
+			if (Tpts3[idx].XYZ.NeedsUpdatingZ)
 			{
-				TopoPts.Append = "after| @TopoPts3Mgr| (" + idx + ")"
+				Tpts3.Append = "after| @TopoPts3Mgr| (" + idx + ")"
 					+ " Z | needs updating\n";
 			}
 
-			TopoPoint3 tp3 = TopoPts[idx];
+			TopoPoint3 tp3 = Tpts3[idx];
 
 			if (double.IsNaN(tp3.X) || double.IsNaN(precedingtpt3.X)
 				|| double.IsNaN(tp3.Y) || double.IsNaN(precedingtpt3.Y)
@@ -76,13 +80,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 			if (tp3.Index != idx) tp3.Index = idx;
 
 			// update XΔ
-			bool resultX = Update.UpdateXΔ(tp3, TopoPts[idx - 1]);
+			bool resultX = Update.UpdateXΔ(tp3, Tpts3[idx - 1]);
 
 			// updateYΔ
-			bool resultY = Update.UpdateYΔ(tp3, TopoPts[idx - 1]);
+			bool resultY = Update.UpdateYΔ(tp3, Tpts3[idx - 1]);
 
 			// updateZΔ
-			Update.UpdateZΔ(tp3, TopoPts[idx - 1]);
+			Update.UpdateZΔ(tp3, Tpts3[idx - 1]);
 
 			// XYZ3 updated, XΔ, YΔ, ZΔ updated
 			// need to update XYΔ?
@@ -95,20 +99,21 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 			// X or Y or Z changed
 			Update.CalcSlope(tp3);
 
-//				//  all updated - adjust flags
-//				TopoPts[idx].XYZ.NeedsUpdatingX = false;
-//				TopoPts[idx].XYZ.NeedsUpdatingY = false;
-//				TopoPts[idx].XYZ.NeedsUpdatingZ = false;
+			//  all updated - adjust flags
+			Tpts3[idx - 1].XYZ.NeedsUpdatingX = false;
+			Tpts3[idx - 1].XYZ.NeedsUpdatingY = false;
+			Tpts3[idx - 1].XYZ.NeedsUpdatingZ = false;
 
-
-			TopoPts.Append = "\n";
+			Tpts3.Append = "\n";
 		}
 
-		public bool DataLoaded { get; private set; } = false;
+	#endregion
+
+	#region management methods
 
 		public void LoadData()
 		{
-			TptSupport.LoadDesignData(TopoPts);
+			_tpts3MgrSupport.LoadDesignData(Tpts3);
 
 			DataLoaded = true;
 		}
@@ -121,7 +126,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 			{
 			case -1:
 				{
-					index = TopoPts.EndIdx;
+					index = Tpts3.IndexOfEndPoint;
 					break;
 				}
 			case 0:
@@ -131,7 +136,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 				}
 			}
 
-			TopoPts[index].Undo((TopoPtsTags) tag);
+			Tpts3[index].Undo((TopoPtsTags) tag);
 		}
 
 		public void Redo(object tag, int idx)
@@ -142,7 +147,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 			{
 			case -1:
 				{
-					index = TopoPts.EndIdx;
+					index = Tpts3.IndexOfEndPoint;
 					break;
 				}
 			case 0:
@@ -152,26 +157,32 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 				}
 			}
 
-			TopoPts[index].Redo((TopoPtsTags) tag);
+			Tpts3[index].Redo((TopoPtsTags) tag);
 		}
+
+	#endregion
+
+	#region public methods
 
 		public void BatchIncreaseEachXyxByAmount(int startIdx, string which, double amount)
 		{
-			if (startIdx > TopoPts.EndIdx || startIdx < 1
+			if (startIdx > Tpts3.IndexOfEndPoint || startIdx < 1
 				|| double.IsNaN(amount)
 				)
 			{
 				return;
 			}
 
-			TopoPts.BatchBegin();
+			Tpts3.BatchBegin();
 
-			for (int i = startIdx; i < TopoPts.Count; i++)
+			for (int i = startIdx; i < Tpts3.Count; i++)
 			{
-				TopoPts[i][which] += amount;
+				Tpts3[i][which] += amount;
 			}
 
-			TopoPts.BatchFinalize();
+			Tpts3.BatchFinalize();
 		}
+
+	#endregion
 	}
 }
