@@ -1,5 +1,6 @@
 ﻿#region > Using Directives
 
+using System.Linq.Expressions;
 using WpfApp1_ListControlTest.TopoPts.Support;
 using WpfApp1_ListControlTest.TopoPtsData3.Support;
 using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3;
@@ -112,14 +113,46 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 			DataLoaded = true;
 		}
 
-		public void Undo(string tag, int idx)
+		public void Undo(object tag, int idx)
 		{
-			TopoPts[idx].Undo(tag);
+			int index = idx;
+
+			switch (((TopoPtsTags) tag).Value)
+			{
+			case -1:
+				{
+					index = TopoPts.EndIdx;
+					break;
+				}
+			case 0:
+				{
+					index = 0;
+					break;
+				}
+			}
+
+			TopoPts[index].Undo((TopoPtsTags) tag);
 		}
 
-		public void Redo(string tag, int idx)
+		public void Redo(object tag, int idx)
 		{
-			TopoPts[idx].Redo(tag);
+			int index = idx;
+
+			switch (((TopoPtsTags) tag).Value)
+			{
+			case -1:
+				{
+					index = TopoPts.EndIdx;
+					break;
+				}
+			case 0:
+				{
+					index = 0;
+					break;
+				}
+			}
+
+			TopoPts[index].Redo((TopoPtsTags) tag);
 		}
 
 		public void BatchIncreaseEachXyxByAmount(int startIdx, string which, double amount)

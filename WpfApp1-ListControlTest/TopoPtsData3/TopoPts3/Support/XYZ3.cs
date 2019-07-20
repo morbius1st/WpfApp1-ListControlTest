@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using WpfApp1_ListControlTest.TopoPts.Support;
+using WpfApp1_ListControlTest.TopoPtsData3.Support;
 
 namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 {
@@ -119,58 +120,102 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 
 	#region > methods
 
-		public void Undo(string which)
+		public void Undo(TopoPtsTags tag)
 		{
-			if (which.Equals(TopoPtsConsts.aTag))
+			switch (tag.Axis)
 			{
-				x.Undo();
-				y.Undo();
-				z.Undo();
-			}
-			else
-			{
-				switch (which)
+			case Axes.X:
 				{
-				case TopoPtsConsts.xTag:
-					{
-						x.Undo();
-						break;
-					}
-				case TopoPtsConsts.yTag:
-					{
-						y.Undo();
-						break;
-					}
-				case TopoPtsConsts.zTag:
-					{
-						z.Undo();
-						break;
-					}
+					x.Undo();
+					break;
+				}
+			case Axes.Y:
+				{
+					y.Undo();
+					break;
+				}
+			case Axes.Z:
+				{
+					z.Undo();
+					break;
 				}
 			}
 		}
-
-		public void Redo(string which)
+		
+		public void Redo(TopoPtsTags tag)
 		{
-			switch (which)
+			switch (tag.Axis)
 			{
-			case TopoPtsConsts.xTag:
+			case Axes.X:
 				{
 					x.Redo();
 					break;
 				}
-			case TopoPtsConsts.yTag:
+			case Axes.Y:
 				{
 					y.Redo();
 					break;
 				}
-			case TopoPtsConsts.zTag:
+			case Axes.Z:
 				{
 					z.Redo();
 					break;
 				}
 			}
 		}
+//
+//		public void Undo(string which)
+//		{
+//			if (which.Equals(TopoPtsConsts.aTag))
+//			{
+//				x.Undo();
+//				y.Undo();
+//				z.Undo();
+//			}
+//			else
+//			{
+//				switch (which)
+//				{
+//				case TopoPtsConsts.xTag:
+//					{
+//						x.Undo();
+//						break;
+//					}
+//				case TopoPtsConsts.yTag:
+//					{
+//						y.Undo();
+//						break;
+//					}
+//				case TopoPtsConsts.zTag:
+//					{
+//						z.Undo();
+//						break;
+//					}
+//				}
+//			}
+//		}
+//
+//		public void Redo(string which)
+//		{
+//			switch (which)
+//			{
+//			case TopoPtsConsts.xTag:
+//				{
+//					x.Redo();
+//					break;
+//				}
+//			case TopoPtsConsts.yTag:
+//				{
+//					y.Redo();
+//					break;
+//				}
+//			case TopoPtsConsts.zTag:
+//				{
+//					z.Redo();
+//					break;
+//				}
+//			}
+//		}
 
 	#endregion
 

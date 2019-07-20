@@ -13,6 +13,7 @@ using WpfApp1_ListControlTest.TopoPtsData2;
 using WpfApp1_ListControlTest.TopoPts.Support;
 //using WpfApp1_ListControlTest.TopoPtsData2.Support;
 using WpfApp1_ListControlTest.TopoPtsData3;
+using WpfApp1_ListControlTest.TopoPtsData3.Support;
 using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3;
 using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResources;
 
@@ -126,43 +127,43 @@ namespace WpfApp1_ListControlTest
 		{
 			ClickInfo(sender, e, "Undo");
 
-			TopoMgr.Undo(((Button) sender)?.Tag as string, Lb3.SelectedIndex);
+			TopoMgr.Undo(((Button) sender)?.Tag, Lb3.SelectedIndex);
 		}
 
 		private void Lb3BtnRedo_Click(object sender, RoutedEventArgs e)
 		{
 			ClickInfo(sender, e, "Redo");
 
-			TopoMgr.Redo(((Button) sender)?.Tag as string, Lb3.SelectedIndex);
+			TopoMgr.Redo(((Button) sender)?.Tag, Lb3.SelectedIndex);
 		}
-
-		private void Lb3BtnUndoStartPt_Click(object sender, RoutedEventArgs e)
-		{
-			ClickInfo(sender, e, "UndoStart");
-
-			TopoMgr.Undo(((Button) sender)?.Tag as string, 0);
-		}
-
-		private void Lb3BtnRedoStartPt_Click(object sender, RoutedEventArgs e)
-		{
-			ClickInfo(sender, e, "RedoStart");
-
-			TopoMgr.Redo(((Button) sender)?.Tag as string, 0);
-		}
-		
-		private void Lb3BtnUndoEndPt_Click(object sender, RoutedEventArgs e)
-		{
-			ClickInfo(sender, e, "UndoEnd");
-
-			TopoMgr.Undo(((Button) sender)?.Tag as string, TopoMgr.TopoPts.EndIdx);
-		}
-
-		private void Lb3BtnRedoEndPt_Click(object sender, RoutedEventArgs e)
-		{
-			ClickInfo(sender, e, "RedoEnd");
-
-			TopoMgr.Redo(((Button) sender)?.Tag as string, TopoMgr.TopoPts.EndIdx);
-		}
+//
+//		private void Lb3BtnUndoStartPt_Click(object sender, RoutedEventArgs e)
+//		{
+//			ClickInfo(sender, e, "UndoStart");
+//
+//			TopoMgr.Undo(((Button) sender)?.Tag as string, 0);
+//		}
+//
+//		private void Lb3BtnRedoStartPt_Click(object sender, RoutedEventArgs e)
+//		{
+//			ClickInfo(sender, e, "RedoStart");
+//
+//			TopoMgr.Redo(((Button) sender)?.Tag as string, 0);
+//		}
+//		
+//		private void Lb3BtnUndoEndPt_Click(object sender, RoutedEventArgs e)
+//		{
+//			ClickInfo(sender, e, "UndoEnd");
+//
+//			TopoMgr.Undo(((Button) sender)?.Tag as string, TopoMgr.TopoPts.EndIdx);
+//		}
+//
+//		private void Lb3BtnRedoEndPt_Click(object sender, RoutedEventArgs e)
+//		{
+//			ClickInfo(sender, e, "RedoEnd");
+//
+//			TopoMgr.Redo(((Button) sender)?.Tag as string, TopoMgr.TopoPts.EndIdx);
+//		}
 
 		private void ClickInfo(object sender, RoutedEventArgs e, string fromWho)
 		{

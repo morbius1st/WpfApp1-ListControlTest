@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using WpfApp1_ListControlTest.TopoPts.Support;
+using WpfApp1_ListControlTest.TopoPtsData3.Support;
 using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support;
 
 #endregion
@@ -422,19 +423,33 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 //			// X or Y or Z changed
 //			CalcSlope();
 //		}
-
-		public void Undo(string which)
+//
+//		public void Undo(string which)
+//		{
+//			point.Undo(which);
+//
+//			OnPropertyChange(which);
+//		}
+//		
+//		public void Redo(string which)
+//		{
+//			point.Redo(which);
+//
+//			OnPropertyChange(which);
+//		}
+//		
+		public void Undo(TopoPtsTags which)
 		{
 			point.Undo(which);
 
-			OnPropertyChange(which);
+			OnPropertyChange(which.PropertyName);
 		}
 		
-		public void Redo(string which)
+		public void Redo(TopoPtsTags which)
 		{
 			point.Redo(which);
 
-			OnPropertyChange(which);
+			OnPropertyChange(which.PropertyName);
 		}
 
 		public void Refresh()
