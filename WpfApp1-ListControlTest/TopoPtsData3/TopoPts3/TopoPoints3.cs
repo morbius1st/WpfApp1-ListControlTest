@@ -560,6 +560,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			OnPropertyChanged("StartPointX");
 			OnPropertyChanged("StartPointY");
 			OnPropertyChanged("StartPointZ");
+			OnPropertyChanged("StartPointXYZ");
 			OnPropertyChanged("StartPointXYZ_X");
 			OnPropertyChanged("StartPointXYZ_Y");
 			OnPropertyChanged("StartPointXYZ_Z");
