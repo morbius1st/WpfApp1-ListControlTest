@@ -203,13 +203,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			// clear status
 			Status = new bool[statusLength];
 
-//			Items.Insert(0, (new TopoEndPoint(new XYZ3(0, 0, 0)){Index = 1}));
-//			Items.Insert(0, (new TopoStartPoint(new XYZ3(0, 0, 0)){Index = 0}));
+//			Items.Insert(0, (new TopoPoint3(XYZ3.Empty) {Index = 1}));
+			Items.Insert(0, (new TopoPoint3(new XYZ3(4.0, 5.0, 6.0)) {Index = 1}));
+			Items.Insert(0, (new TopoPoint3(new XYZ3(1.0, 2.0, 3.0)) {Index = 0}));
 
-			Items.Insert(0, (new TopoPoint3(XYZ3.Empty) {Index = 1}));
-			Items.Insert(0, (new TopoPoint3(XYZ3.Empty) {Index = 0}));
-
-			
 			// issue events
 			UpdateStartPointValues();
 			UpdateEndPointValues();
@@ -545,9 +542,9 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		public double StartPointZ => Items[0].Z;
 
 		public XYZ3 StartPointXYZ => Items[0].XYZ;
-		public XYZ3 StartPointXYZ_X => Items[0].XYZ;
-		public XYZ3 StartPointXYZ_Y => Items[0].XYZ;
-		public XYZ3 StartPointXYZ_Z => Items[0].XYZ;
+//		public XYZ3 StartPointXYZ_X => Items[0].XYZ;
+//		public XYZ3 StartPointXYZ_Y => Items[0].XYZ;
+//		public XYZ3 StartPointXYZ_Z => Items[0].XYZ;
 
 		public bool StartPointCp => Items[0].ControlPoint;
 
@@ -561,9 +558,9 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			OnPropertyChanged("StartPointY");
 			OnPropertyChanged("StartPointZ");
 			OnPropertyChanged("StartPointXYZ");
-			OnPropertyChanged("StartPointXYZ_X");
-			OnPropertyChanged("StartPointXYZ_Y");
-			OnPropertyChanged("StartPointXYZ_Z");
+//			OnPropertyChanged("StartPointXYZ_X");
+//			OnPropertyChanged("StartPointXYZ_Y");
+//			OnPropertyChanged("StartPointXYZ_Z");
 		}
 
 
@@ -575,9 +572,9 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		public double EndPointZ => Items[EndIdx].Z;
 
 		public XYZ3 EndPointXYZ => Items[EndIdx].XYZ;
-		public XYZ3 EndPointXYZ_X => Items[EndIdx].XYZ;
-		public XYZ3 EndPointXYZ_Y => Items[EndIdx].XYZ;
-		public XYZ3 EndPointXYZ_Z => Items[EndIdx].XYZ;
+//		public XYZ3 EndPointXYZ_X => Items[EndIdx].XYZ;
+//		public XYZ3 EndPointXYZ_Y => Items[EndIdx].XYZ;
+//		public XYZ3 EndPointXYZ_Z => Items[EndIdx].XYZ;
 
 		public double EndPointXΔ => Items[EndIdx].XΔ;
 		public double EndPointYΔ => Items[EndIdx].YΔ;
@@ -598,9 +595,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			OnPropertyChanged("EndPointX");
 			OnPropertyChanged("EndPointY");
 			OnPropertyChanged("EndPointZ");
-			OnPropertyChanged("EndPointXYZ_X");
-			OnPropertyChanged("EndPointXYZ_Y");
-			OnPropertyChanged("EndPointXYZ_Z");
+			OnPropertyChanged("EndPointXYZ");
+//			OnPropertyChanged("EndPointXYZ_X");
+//			OnPropertyChanged("EndPointXYZ_Y");
+//			OnPropertyChanged("EndPointXYZ_Z");
 		}
 
 		private void UpdateEndPointValues()
