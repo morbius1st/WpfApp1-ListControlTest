@@ -7,8 +7,8 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using WpfApp1_ListControlTest.TopoPts.Support;
-using WpfApp1_ListControlTest.TopoPtsData3.Support;
+
+using static WpfApp1_ListControlTest.TopoPtsData3.Support.TopoPtsConsts;
 
 namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 {
@@ -116,19 +116,19 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 
 		public void Undo(TopoPtsData3.Support.TopoPtsTags tag)
 		{
-			switch (tag.Axis)
+			switch (tag.Value)
 			{
-			case Axes.X:
+			case XaxisIndex:
 				{
 					x.Undo();
 					break;
 				}
-			case Axes.Y:
+			case YaxisIndex:
 				{
 					y.Undo();
 					break;
 				}
-			case Axes.Z:
+			case ZaxisIndex:
 				{
 					z.Undo();
 					break;
@@ -138,19 +138,19 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 
 		public void Redo(TopoPtsData3.Support.TopoPtsTags tag)
 		{
-			switch (tag.Axis)
+			switch (tag.Value)
 			{
-			case Axes.X:
+			case XaxisIndex:
 				{
 					x.Redo();
 					break;
 				}
-			case Axes.Y:
+			case YaxisIndex:
 				{
 					y.Redo();
 					break;
 				}
-			case Axes.Z:
+			case ZaxisIndex:
 				{
 					z.Redo();
 					break;

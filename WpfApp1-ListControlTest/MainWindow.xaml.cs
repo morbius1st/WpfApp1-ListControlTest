@@ -11,7 +11,6 @@ using WpfApp1_ListControlTest.TopoPts;
 using WpfApp1_ListControlTest.TopoPtsData;
 using WpfApp1_ListControlTest.TopoPtsData2;
 using WpfApp1_ListControlTest.TopoPts.Support;
-//using WpfApp1_ListControlTest.TopoPtsData2.Support;
 using WpfApp1_ListControlTest.TopoPtsData3;
 using WpfApp1_ListControlTest.TopoPtsData3.Support;
 using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3;
@@ -48,7 +47,7 @@ namespace WpfApp1_ListControlTest
 		public TopoPoints tps { get; set; }  = new TopoPoints();
 		public TopoPointsTest TpTest { get; set; }
 
-		public TopoPtsConsts TpConsts = new TopoPtsConsts();
+		public TopoPts.Support.TopoPtsConsts TpConsts = new TopoPts.Support.TopoPtsConsts();
 
 		public TopoPts3Mgr Tpts3Mgr { get; set; }
 

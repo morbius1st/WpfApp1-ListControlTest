@@ -122,35 +122,35 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 		{
 			int index = idx;
 
-			switch (((Support.TopoPtsTags) tag).Value)
+			switch ((int) ((TopoPtsTags) tag).LocationIndex)
 			{
-			case -1:
+			case (int) TopoPtsTags.LocationIdx.END:
 				{
 					index = Tpts3.IndexOfEndPoint;
 					break;
 				}
-			case 0:
+			case (int) TopoPtsTags.LocationIdx.START:
 				{
 					index = 0;
 					break;
 				}
 			}
 
-			Tpts3[index].Undo((Support.TopoPtsTags) tag);
+			Tpts3[index].Undo((TopoPtsTags) tag);
 		}
 
 		public void Redo(object tag, int idx)
 		{
 			int index = idx;
 
-			switch (((Support.TopoPtsTags) tag).Value)
+			switch ((int) ((Support.TopoPtsTags) tag).LocationIndex)
 			{
-			case -1:
+			case (int) TopoPtsTags.LocationIdx.END:
 				{
 					index = Tpts3.IndexOfEndPoint;
 					break;
 				}
-			case 0:
+			case (int) TopoPtsTags.LocationIdx.START:
 				{
 					index = 0;
 					break;

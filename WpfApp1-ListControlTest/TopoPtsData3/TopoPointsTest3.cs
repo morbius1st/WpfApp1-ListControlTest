@@ -47,13 +47,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 		{
 			foreach (Support.TopoPtsTags tag in Support.TopoPtsTags.Values())
 			{
-				Debug.Write("for tag name| " + tag.Name);
+				Debug.Write("for tag name| ".PadLeft(20) + tag.Name.PadRight(11));
 				Debug.Write("  ordinal| " + tag.Ordinal);
-				Debug.Write("  axis| " + tag.Axis);
-				Debug.Write("  prop name| " + tag.PropertyName);
+				Debug.Write("  axis name| " + tag.AxisName);
 				Debug.Write("  amount| " + tag.Amount);
-				Debug.Write("  value| " + tag.Value);
-				Debug.Write("  enum| " + tag.Enum);
+				Debug.Write(("  value| " + tag.Value).PadRight(11));
+				Debug.Write(" location idx| " + (int) tag.LocationIndex);
+
 				Debug.Write("\n");
 			}
 		}

@@ -1,12 +1,7 @@
 ﻿#region + Using Directives
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using UtilityLibrary;
+
+using static WpfApp1_ListControlTest.TopoPtsData3.Support.TopoPtsConsts;
 
 #endregion
 
@@ -19,31 +14,74 @@ using UtilityLibrary;
 
 namespace WpfApp1_ListControlTest.TopoPtsData3.Support
 {
-	public enum Axes
-	{
-		X,
-		Y,
-		Z
-	}
 
-
-
+//	public class Axis : CsEnumBase<Axis, int, int>
+//	{
+//	#region > base enum
+//
+//		// these names must match the member names
+//		public enum axis : int
+//		{
+//			X  = 0,
+//			Y  = 1,
+//			Z  = 2
+//
+//		}
+//
+//	#endregion
+//
+//	#region > ctor
+//
+//		// v is the collection index
+//
+//		private Axis(axis x, int v, string p) : base(x, v)
+//		{
+//			base.Add(this);
+//			AxisName = p;
+//		}
+//
+//	#endregion
+//
+//		// no enum specific properties
+//
+//		// no enum specific functions
+//
+//		public string  AxisName { get; private set; }
+//
+//	#region > members
+//
+//		public static readonly Axis X = new Axis(axis.X, (int) axis.X, "X");
+//		public static readonly Axis Y = new Axis(axis.Y, (int) axis.Y, "Y");
+//		public static readonly Axis Z = new Axis(axis.Z, (int) axis.Z, "Z");
+//
+//
+//	#endregion
+//	}
+	
 	public class TopoPtsTags : CsEnumBase<TopoPtsTags, byte, int>
 	{
+		public enum LocationIdx
+		{
+			START = -1,
+			FIELD = 0,
+			END   = 1
+		}
+
+
 	#region > base enum
 
 		// these names must match the member names
 		private enum tags : byte
 		{
-			x = Axes.X,
-			y = Axes.Y,
-			z = Axes.Z,
-			xStart = 3,
-			yStart = 4,
-			zStart = 5,
-			xEnd = 6,
-			yEnd = 7,
-			zEnd = 8,
+			XTag      = XaxisIndex,
+			YTag      = YaxisIndex,
+			ZTag      = ZaxisIndex,
+			XStartTag = 3,
+			YStartTag = 4,
+			ZStartTag = 5,
+			XEndTag   = 6,
+			YEndTag   = 7,
+			ZEndTag   = 8,
 		}
 
 	#endregion
@@ -52,11 +90,11 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.Support
 
 		// v is the collection index
 
-		private TopoPtsTags(tags x, int v, string p, Axes axis) : base(x, v)
+		private TopoPtsTags(tags x, int v, string p, LocationIdx r) : base(x, v)
 		{
 			base.Add(this);
-			PropertyName = p;
-			Axis = axis;
+			AxisName = p;
+			LocationIndex = r;
 		}
 
 	#endregion
@@ -65,32 +103,24 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.Support
 
 		// no enum specific functions
 
-		public string PropertyName { get; }
+		public string AxisName { get; }
 
-		public Axes Axis { get; private set; }
+		public LocationIdx LocationIndex { get; }
 
 	#region > members
 
-		public static readonly TopoPtsTags XStartTag = new TopoPtsTags(tags.xStart, 0, "X", Axes.X);
-		public static readonly TopoPtsTags YStartTag = new TopoPtsTags(tags.yStart, 0, "Y", Axes.Y);
-		public static readonly TopoPtsTags ZStartTag = new TopoPtsTags(tags.zStart, 0, "Z", Axes.Z);
-		public static readonly TopoPtsTags XTag =      new TopoPtsTags(tags.x, 1, "X", Axes.X);
-		public static readonly TopoPtsTags YTag =      new TopoPtsTags(tags.y, 1, "Y", Axes.Y);
-		public static readonly TopoPtsTags ZTag =      new TopoPtsTags(tags.z, 1, "Z", Axes.Z);
-		public static readonly TopoPtsTags XEndTag =   new TopoPtsTags(tags.xEnd, -1, "X", Axes.X);
-		public static readonly TopoPtsTags YEndTag =   new TopoPtsTags(tags.yEnd, -1, "Y", Axes.Y);
-		public static readonly TopoPtsTags ZEndTag =   new TopoPtsTags(tags.zEnd, -1, "Z", Axes.Z);
-
-//		public static readonly TopoPtsTags XStartTag = new TopoPtsTags(nameof(XStartTag), tags.xStart, 0, "X", Axes.X);
-//		public static readonly TopoPtsTags YStartTag = new TopoPtsTags(nameof(YStartTag), tags.yStart, 0, "Y", Axes.Y);
-//		public static readonly TopoPtsTags ZStartTag = new TopoPtsTags(nameof(ZStartTag), tags.zStart, 0, "Z", Axes.Z);
-//		public static readonly TopoPtsTags XTag =      new TopoPtsTags(nameof(XTag), tags.x, 1, "X", Axes.X);
-//		public static readonly TopoPtsTags YTag =      new TopoPtsTags(nameof(YTag), tags.y, 1, "Y", Axes.Y);
-//		public static readonly TopoPtsTags ZTag =      new TopoPtsTags(nameof(ZTag), tags.z, 1, "Z", Axes.Z);
-//		public static readonly TopoPtsTags XEndTag =   new TopoPtsTags(nameof(XEndTag), tags.xEnd, -1, "X", Axes.X);
-//		public static readonly TopoPtsTags YEndTag =   new TopoPtsTags(nameof(YEndTag), tags.yEnd, -1, "Y", Axes.Y);
-//		public static readonly TopoPtsTags ZEndTag =   new TopoPtsTags(nameof(ZEndTag), tags.zEnd, -1, "Z", Axes.Z);
+		public static readonly TopoPtsTags XStartTag = new TopoPtsTags(tags.XStartTag, XaxisIndex, XaxisName, LocationIdx.START);
+		public static readonly TopoPtsTags YStartTag = new TopoPtsTags(tags.YStartTag, YaxisIndex, YaxisName, LocationIdx.START);
+		public static readonly TopoPtsTags ZStartTag = new TopoPtsTags(tags.ZStartTag, ZaxisIndex, ZaxisName, LocationIdx.START);
+		public static readonly TopoPtsTags XTag      = new TopoPtsTags(tags.XTag,      XaxisIndex, XaxisName, LocationIdx.FIELD);
+		public static readonly TopoPtsTags YTag      = new TopoPtsTags(tags.YTag,      YaxisIndex, YaxisName, LocationIdx.FIELD);
+		public static readonly TopoPtsTags ZTag      = new TopoPtsTags(tags.ZTag,      ZaxisIndex, ZaxisName, LocationIdx.FIELD);
+		public static readonly TopoPtsTags XEndTag   = new TopoPtsTags(tags.XEndTag,   XaxisIndex, XaxisName, LocationIdx.END);
+		public static readonly TopoPtsTags YEndTag   = new TopoPtsTags(tags.YEndTag,   YaxisIndex, YaxisName, LocationIdx.END);
+		public static readonly TopoPtsTags ZEndTag   = new TopoPtsTags(tags.ZEndTag,   ZaxisIndex, ZaxisName, LocationIdx.END);
 
 	#endregion
 	}
+
+
 }

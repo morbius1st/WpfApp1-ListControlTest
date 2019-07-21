@@ -4,7 +4,8 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using WpfApp1_ListControlTest.TopoPts.Support;
+using UtilityLibrary;
+//using WpfApp1_ListControlTest.TopoPts.Support;
 using WpfApp1_ListControlTest.TopoPtsData3.Support;
 using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support;
 
@@ -298,15 +299,15 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			{
 				switch (which)
 				{
-				case TopoPtsConsts.xTag:
+				case TopoPtsConsts.XaxisName:
 					{
 						return X;
 					}
-				case TopoPtsConsts.yTag:
+				case TopoPtsConsts.YaxisName:
 					{
 						return Y;
 					}
-				case TopoPtsConsts.zTag:
+				case TopoPtsConsts.ZaxisName:
 					{
 						return Z;
 					}
@@ -319,17 +320,17 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			{
 				switch (which)
 				{
-				case TopoPtsConsts.xTag:
+				case TopoPtsConsts.XaxisName:
 					{
 						X = value;
 						break;
 					}
-				case TopoPtsConsts.yTag:
+				case TopoPtsConsts.YaxisName:
 					{
 						Y = value;
 						break;
 					}
-				case TopoPtsConsts.zTag:
+				case TopoPtsConsts.ZaxisName:
 					{
 						Z = value;
 						break;
@@ -346,14 +347,14 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		{
 			point.Undo(which);
 
-			OnPropertyChange(which.PropertyName);
+			OnPropertyChange(which.AxisName);
 		}
 		
 		public void Redo(TopoPtsData3.Support.TopoPtsTags which)
 		{
 			point.Redo(which);
 
-			OnPropertyChange(which.PropertyName);
+			OnPropertyChange(which.AxisName);
 		}
 
 	#endregion
