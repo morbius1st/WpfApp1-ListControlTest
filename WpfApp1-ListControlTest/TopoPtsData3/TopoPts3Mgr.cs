@@ -122,7 +122,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 		{
 			int index = idx;
 
-			switch (((TopoPtsTags) tag).Value)
+			switch (((Support.TopoPtsTags) tag).Value)
 			{
 			case -1:
 				{
@@ -136,14 +136,14 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 				}
 			}
 
-			Tpts3[index].Undo((TopoPtsTags) tag);
+			Tpts3[index].Undo((Support.TopoPtsTags) tag);
 		}
 
 		public void Redo(object tag, int idx)
 		{
 			int index = idx;
 
-			switch (((TopoPtsTags) tag).Value)
+			switch (((Support.TopoPtsTags) tag).Value)
 			{
 			case -1:
 				{
@@ -157,7 +157,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 				}
 			}
 
-			Tpts3[index].Redo((TopoPtsTags) tag);
+			Tpts3[index].Redo((Support.TopoPtsTags) tag);
 		}
 
 	#endregion

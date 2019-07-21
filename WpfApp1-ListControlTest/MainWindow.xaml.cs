@@ -79,6 +79,8 @@ namespace WpfApp1_ListControlTest
 			InitializeComponent();
 
 			CreateSampleData();
+
+			TopoPointTest.ListTopoPtsTags();
 		}
 
 		private void CreateSampleData()

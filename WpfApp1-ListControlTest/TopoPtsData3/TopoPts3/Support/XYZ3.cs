@@ -114,7 +114,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 
 	#region > methods
 
-		public void Undo(TopoPtsTags tag)
+		public void Undo(TopoPtsData3.Support.TopoPtsTags tag)
 		{
 			switch (tag.Axis)
 			{
@@ -136,7 +136,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support
 			}
 		}
 
-		public void Redo(TopoPtsTags tag)
+		public void Redo(TopoPtsData3.Support.TopoPtsTags tag)
 		{
 			switch (tag.Axis)
 			{

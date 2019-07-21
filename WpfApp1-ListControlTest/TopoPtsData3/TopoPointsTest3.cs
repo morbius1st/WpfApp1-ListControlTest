@@ -3,6 +3,7 @@
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Text;
+using UtilityLibrary;
 using WpfApp1_ListControlTest.TopoPtsData3.Support;
 using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3;
 using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3.Support;
@@ -38,6 +39,29 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			tps.Message = "initialized\n";
 		}
+
+	#region > misc tests
+
+
+		public void ListTopoPtsTags()
+		{
+			foreach (Support.TopoPtsTags tag in Support.TopoPtsTags.Values())
+			{
+				Debug.Write("for tag name| " + tag.Name);
+				Debug.Write("  ordinal| " + tag.Ordinal);
+				Debug.Write("  axis| " + tag.Axis);
+				Debug.Write("  prop name| " + tag.PropertyName);
+				Debug.Write("  amount| " + tag.Amount);
+				Debug.Write("  value| " + tag.Value);
+				Debug.Write("  enum| " + tag.Enum);
+				Debug.Write("\n");
+			}
+		}
+
+	#endregion
+
+
+
 
 		#region > Test All Tests
 

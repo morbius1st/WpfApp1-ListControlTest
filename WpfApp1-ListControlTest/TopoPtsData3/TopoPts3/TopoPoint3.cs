@@ -342,14 +342,14 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 	#region > public methods
 
-		public void Undo(TopoPtsTags which)
+		public void Undo(TopoPtsData3.Support.TopoPtsTags which)
 		{
 			point.Undo(which);
 
 			OnPropertyChange(which.PropertyName);
 		}
 		
-		public void Redo(TopoPtsTags which)
+		public void Redo(TopoPtsData3.Support.TopoPtsTags which)
 		{
 			point.Redo(which);
 

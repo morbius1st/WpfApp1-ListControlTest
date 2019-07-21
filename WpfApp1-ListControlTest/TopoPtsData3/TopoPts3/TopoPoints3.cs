@@ -56,13 +56,11 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 		private string _message;
 
-		#region > deletages
+	#region > deletages
 
 		public delegate void ReindexUpdateItem(int idx, TopoPoint3 precedingTpt3);
 
-
 	#endregion
-
 
 	#region > constructor
 
@@ -109,9 +107,9 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 		public ReindexUpdateItem ReIndexUpdateItem { get; set; }
 
-		#endregion
+	#endregion
 
-		#region >> Public Methods
+	#region >> Public Methods
 
 		// start the process of creating a topopoints collection
 		public void Initialize(TopoStartPoint start)
@@ -299,7 +297,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			{
 				ReIndex(idx, false);
 			}
-
 		}
 
 		// only startpoint property change events
@@ -375,7 +372,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		// all = true, update the remainder of the list
 		private void ReIndex(int start = 0, bool all = true, int last = 0)
 		{
-
 			if (last < 0 || last > IndexOfEndPoint) { throw new ArgumentException("Invalid Last Index"); }
 
 			int i;
@@ -427,9 +423,9 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 				UpdateEndPointBaseValues();
 			}
 
-			Items[i-1].XYZ.NeedsUpdatingX = false;
-			Items[i-1].XYZ.NeedsUpdatingY = false;
-			Items[i-1].XYZ.NeedsUpdatingZ = false;
+			Items[i - 1].XYZ.NeedsUpdatingX = false;
+			Items[i - 1].XYZ.NeedsUpdatingY = false;
+			Items[i - 1].XYZ.NeedsUpdatingZ = false;
 
 			Append = "\nreidx| @ TopoPoints3| post-reindex| "
 				+ "\n"
@@ -566,5 +562,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		}
 
 	#endregion
+
 	}
 }
