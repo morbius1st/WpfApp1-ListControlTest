@@ -15,49 +15,6 @@ using static WpfApp1_ListControlTest.TopoPtsData3.Support.TopoPtsConsts;
 namespace WpfApp1_ListControlTest.TopoPtsData3.Support
 {
 
-//	public class Axis : CsEnumBase<Axis, int, int>
-//	{
-//	#region > base enum
-//
-//		// these names must match the member names
-//		public enum axis : int
-//		{
-//			X  = 0,
-//			Y  = 1,
-//			Z  = 2
-//
-//		}
-//
-//	#endregion
-//
-//	#region > ctor
-//
-//		// v is the collection index
-//
-//		private Axis(axis x, int v, string p) : base(x, v)
-//		{
-//			base.Add(this);
-//			AxisName = p;
-//		}
-//
-//	#endregion
-//
-//		// no enum specific properties
-//
-//		// no enum specific functions
-//
-//		public string  AxisName { get; private set; }
-//
-//	#region > members
-//
-//		public static readonly Axis X = new Axis(axis.X, (int) axis.X, "X");
-//		public static readonly Axis Y = new Axis(axis.Y, (int) axis.Y, "Y");
-//		public static readonly Axis Z = new Axis(axis.Z, (int) axis.Z, "Z");
-//
-//
-//	#endregion
-//	}
-	
 	public class TopoPtsTags : CsEnumBase<TopoPtsTags, byte, int>
 	{
 		public enum LocationIdx
@@ -66,7 +23,6 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.Support
 			FIELD = 0,
 			END   = 1
 		}
-
 
 	#region > base enum
 

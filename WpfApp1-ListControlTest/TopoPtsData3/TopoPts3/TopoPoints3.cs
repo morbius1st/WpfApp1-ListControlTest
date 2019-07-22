@@ -109,7 +109,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 	#endregion
 
-	#region >> Public Methods
+	#region > Public Methods
 
 		// start the process of creating a topopoints collection
 		public void Initialize(TopoStartPoint start)
@@ -337,7 +337,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			{
 				UpdateItem(idx, idx - 1);
 
-				UpdateEndPointBaseValues();
+				UpdateEndPointValues();
 			}
 			else
 			{
@@ -420,7 +420,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 			if (j == Items.Count)
 			{
 				// send events for end point values
-				UpdateEndPointBaseValues();
+				UpdateEndPointValues();
 			}
 
 			Items[i - 1].XYZ.NeedsUpdatingX = false;
@@ -496,71 +496,23 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 	#region > start and end point properties
 
 		// start point
-		public int StartPointIndex => Items[0].Index;
-
-		public double StartPointX => Items[0].X;
-		public double StartPointY => Items[0].Y;
-		public double StartPointZ => Items[0].Z;
-
-		public XYZ3 StartPointXYZ => Items[0].XYZ;
-
-		public bool StartPointCp => Items[0].ControlPoint;
+		public TopoPoint3 StartPoint => Items[0];
 
 		private void UpdateStartPointValues()
 		{
 			Append = "\n     | @ TopoPoints3| UpdateStartPointValues\n";
 
-			OnPropertyChanged("StartPointCp");
-			OnPropertyChanged("StartPointIndex");
-			OnPropertyChanged("StartPointX");
-			OnPropertyChanged("StartPointY");
-			OnPropertyChanged("StartPointZ");
-			OnPropertyChanged("StartPointXYZ");
+			OnPropertyChanged("StartPoint");
 		}
-
 		// end point
-		public int EndPointIndex => Items[IndexOfEndPoint].Index;
-
-		public double EndPointX => Items[IndexOfEndPoint].X;
-		public double EndPointY => Items[IndexOfEndPoint].Y;
-		public double EndPointZ => Items[IndexOfEndPoint].Z;
-
-		public XYZ3 EndPointXYZ => Items[IndexOfEndPoint].XYZ;
-
-		public double EndPointXΔ => Items[IndexOfEndPoint].XΔ;
-		public double EndPointYΔ => Items[IndexOfEndPoint].YΔ;
-		public double EndPointZΔ => Items[IndexOfEndPoint].ZΔ;
-		public double EndPointXYΔ => Items[IndexOfEndPoint].XYΔ;
-		public double EndPointXYZΔ => Items[IndexOfEndPoint].XYZΔ;
-
-		public double EndPointSlope => Items[IndexOfEndPoint].Slope;
-
-		public bool EndPointCp => Items[IndexOfEndPoint].ControlPoint;
-
-		private void UpdateEndPointBaseValues()
-		{
-			Append = "\n     | @ TopoPoints3| UpdateEndPointBaseValues\n";
-
-			OnPropertyChanged("EndPointIndex");
-			OnPropertyChanged("EndPointCp");
-			OnPropertyChanged("EndPointX");
-			OnPropertyChanged("EndPointY");
-			OnPropertyChanged("EndPointZ");
-			OnPropertyChanged("EndPointXYZ");
-		}
+		public TopoPoint3 EndPoint => Items[IndexOfEndPoint];
 
 		private void UpdateEndPointValues()
 		{
-			Append = "\n     | @ TopoPoints3| UpdateEndPointValues\n";
+			Append = "\n     | @ TopoPoints3| UpdateEndPointBaseValues\n";
 
-			UpdateEndPointBaseValues();
-			OnPropertyChanged("EndPointXΔ");
-			OnPropertyChanged("EndPointYΔ");
-			OnPropertyChanged("EndPointZΔ");
-			OnPropertyChanged("EndPointXYΔ");
-			OnPropertyChanged("EndPointSlope");
+			OnPropertyChanged("EndPoint");
 		}
-
 	#endregion
 
 	}

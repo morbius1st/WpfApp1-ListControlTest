@@ -50,7 +50,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 				Debug.Write("for tag name| ".PadLeft(20) + tag.Name.PadRight(11));
 				Debug.Write("  ordinal| " + tag.Ordinal);
 				Debug.Write("  axis name| " + tag.AxisName);
-				Debug.Write("  amount| " + tag.Amount);
+				Debug.Write("  enum value| " + tag.EnumValue);
 				Debug.Write(("  value| " + tag.Value).PadRight(11));
 				Debug.Write(" location idx| " + (int) tag.LocationIndex);
 
@@ -116,7 +116,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			Tpts3.Append = "\n*** run test: Add 10 to start X ***\n\n";
 
-			Tpts3[Tpts3.EndPointIndex].X+= 10;
+			Tpts3[Tpts3.IndexOfEndPoint].X+= 10;
 
 			Tpts3.Append = "*** run test: Complete ***\n\n";
 		}
@@ -146,7 +146,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 
 			Tpts3.Append = "\n*** run test: Add 10 to end Z ***\n\n";
 
-			Tpts3[Tpts3.EndPointIndex].Z += 10;
+			Tpts3[Tpts3.IndexOfEndPoint].Z += 10;
 
 			Tpts3.Append = "*** run test: Complete ***\n\n";
 		}
