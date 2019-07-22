@@ -3089,6 +3089,8 @@
 					<Button Content="Undo"
 							Grid.Row="1"
 							Grid.Column="1"
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+																											 IsDesignTimeCreatable=True}"
 							local:CustomProperties.GenericBoolean="{Binding Tpts3Mgr.Tpts3.EndPoint.XYZ.IsRevisedX, ElementName=mainWindow}"
 							Tag="{x:Static enumTag:TopoPtsTags.XEndTag}"
 							Click="Lb3BtnUndo_Click"
@@ -3098,6 +3100,8 @@
 					<Button Content="Redo"
 							Grid.Row="2"
 							Grid.Column="1"
+							d:DataContext="{d:DesignInstance Type=local:MainWindow,
+																											 IsDesignTimeCreatable=True}"
 							local:CustomProperties.GenericBoolean="{Binding Tpts3Mgr.Tpts3.EndPoint.XYZ.HasRedoX, ElementName=mainWindow}"
 							Tag="{x:Static enumTag:TopoPtsTags.XEndTag}"
 							Click="Lb3BtnRedo_Click"
