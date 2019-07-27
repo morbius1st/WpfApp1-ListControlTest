@@ -10,10 +10,14 @@
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="WpfResources\MasterColorList.xaml" />
 				<ResourceDictionary Source="WpfResources\VisualStates.xaml" />
+				<!-- <ResourceDictionary Source="WpfResources\generic.xaml" /> -->
 			</ResourceDictionary.MergedDictionaries>
-			<DependencyProperty x:Key="DependencyProperty1">
-				Button.IsDefault
-			</DependencyProperty>
+
+			<!-- <Style x:Key="AppStyle" TargetType="Button"> -->
+			<!-- 	<Setter Property="Background" Value="White" /> -->
+			<!--    -->
+			<!-- </Style> -->
+
 
 		</ResourceDictionary>
 	</Application.Resources>

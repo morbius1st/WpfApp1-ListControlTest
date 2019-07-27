@@ -29,14 +29,12 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 	 * # = intermediate topo points
 	 * EndIdx = endpoint
 	 *
-	 *
 	 * delegates:
 	 *
 	 * ReindexUpdateItem
 	 *
 	 * this allows the data in the array to be revised when the
 	 * array is modified / reindexed
-	 *
 	 *
 	 */
 
@@ -54,7 +52,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 		private bool[] Status;
 
-		private string _message;
+		private string message;
 
 	#region > deletages
 
@@ -85,10 +83,10 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 
 		public string Message
 		{
-			get => _message;
+			get => message;
 			set
 			{
-				_message = value;
+				message = value;
 				OnPropertyChanged("Message");
 			}
 		}

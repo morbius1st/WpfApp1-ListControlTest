@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,10 +8,7 @@ using WpfApp1_ListControlTest.ListBoxWithHdrAndFtr;
 using WpfApp1_ListControlTest.MultiLineLB;
 using WpfApp1_ListControlTest.TopoPts;
 using WpfApp1_ListControlTest.TopoPtsData;
-using WpfApp1_ListControlTest.TopoPtsData2;
-using WpfApp1_ListControlTest.TopoPts.Support;
 using WpfApp1_ListControlTest.TopoPtsData3;
-using WpfApp1_ListControlTest.TopoPtsData3.Support;
 using WpfApp1_ListControlTest.TopoPtsData3.TopoPts3;
 using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResources;
 
@@ -355,27 +351,48 @@ namespace WpfApp1_ListControlTest
 	#endregion
 	}
 
+
 	public class CustomProperties
 	{
 
-		
-		public static readonly DependencyProperty GenericBoolProperty;
+		public static readonly DependencyProperty GenericBoolOneProperty = DependencyProperty.RegisterAttached(
+			"GenericBooleanOne", typeof(bool), typeof(CustomProperties),
+			new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.AffectsParentArrange |
+				FrameworkPropertyMetadataOptions.AffectsParentMeasure | FrameworkPropertyMetadataOptions.AffectsArrange |
+				FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
-		static CustomProperties()
+		public static readonly DependencyProperty  GenericBoolTwoProperty = DependencyProperty.RegisterAttached(
+			"GenericBooleanTwo", typeof(bool), typeof(CustomProperties),
+			new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.AffectsParentArrange |
+				FrameworkPropertyMetadataOptions.AffectsParentMeasure | FrameworkPropertyMetadataOptions.AffectsArrange |
+				FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+
+	#region GenericBooleanOne
+
+		public static void SetGenericBooleanOne(UIElement e, bool value)
 		{
-			GenericBoolProperty = DependencyProperty.RegisterAttached(
-				"GenericBoolean", typeof(bool), typeof(CustomProperties));
+			e.SetValue(GenericBoolOneProperty, value);
 		}
 
-		
-		public static void SetGenericBoolean(UIElement e, bool value)
+		public static bool GetGenericBooleanOne(UIElement e)
 		{
-			e.SetValue(GenericBoolProperty, value);
+			return (bool) e.GetValue(GenericBoolOneProperty);
 		}
 
-		public static bool GetGenericBoolean(UIElement e)
+	#endregion
+
+	#region GenericBooleanTwo
+
+		public static void SetGenericBooleanTwo(UIElement e, bool value)
 		{
-			return (bool) e.GetValue(GenericBoolProperty);
+			e.SetValue(GenericBoolTwoProperty, value);
 		}
+
+		public static bool GetGenericBooleanTwo(UIElement e)
+		{
+			return (bool) e.GetValue(GenericBoolTwoProperty);
+		}
+
+	#endregion
 	}
 }
