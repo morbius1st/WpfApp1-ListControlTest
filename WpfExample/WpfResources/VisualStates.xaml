@@ -85,7 +85,7 @@
 
 	<SolidColorBrush
 			x:Key="Normal.MouseOver.Background.C"
-			Color="{StaticResource light.blue.900}"
+			Color="{StaticResource light.blue.850}"
 			/>
 	<SolidColorBrush
 			x:Key="Normal.MouseOver.Border.C"
@@ -111,7 +111,7 @@
 			/>
 	<SolidColorBrush
 			x:Key="Normal.SelectedActive.Border.C"
-			Color="{StaticResource light.blue.500}"
+			Color="{StaticResource light.blue.400}"
 			/>
 
 	<SolidColorBrush
@@ -142,7 +142,7 @@
 
 	<SolidColorBrush
 			x:Key="Normal.Default.Border.Inner.C"
-			Color="{StaticResource blue.400}"
+			Color="{StaticResource blue.300}"
 			/>
 	<!--#endregion-->
 
@@ -482,10 +482,10 @@
 			</Trigger>
 
 			<Trigger Property="IsEnabled" Value="False">
-				<Setter Property="Foreground" Value="{DynamicResource Normal.Disabled.Foreground}" />
-				<Setter TargetName="bdr1" Property="BorderBrush" Value="{DynamicResource Normal.Disabled.Border.Inner}" />
-				<Setter TargetName="border" Property="Background" Value="{DynamicResource Normal.Disabled.Background}" />
-				<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource Normal.Disabled.Border}" />
+				<Setter Property="Foreground" Value="{StaticResource Normal.Disabled.Foreground}" />
+				<Setter TargetName="bdr1" Property="BorderBrush" Value="{StaticResource Normal.Disabled.Border.Inner}" />
+				<Setter TargetName="border" Property="Background" Value="{StaticResource Normal.Disabled.Background}" />
+				<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Normal.Disabled.Border}" />
 			</Trigger>
 
 

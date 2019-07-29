@@ -1,8 +1,16 @@
-﻿<Application x:Class="WpfExample.App"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:local="clr-namespace:WpfExample"
-	StartupUri="MainWindow.xaml"
-	>
-	<Application.Resources />
+﻿<Application
+		x:Class="WpfExample.App"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		StartupUri="MainWindow.xaml"
+		>
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="WpfResources\MasterColorList.xaml" />
+				<ResourceDictionary Source="WpfResources\VisualStates.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+
+		</ResourceDictionary>
+	</Application.Resources>
 </Application>

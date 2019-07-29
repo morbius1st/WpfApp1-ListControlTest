@@ -1,115 +1,261 @@
-﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-				xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-				xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-				xmlns:local="clr-namespace:WpfExample"
-				xmlns:sampleData="clr-namespace:WpfExample.SampleData"
-				x:Class="WpfExample.MainWindow"
-				x:Name="mainWindow"
-				mc:Ignorable="d"
-				DataContext="{Binding ElementName=mainWindow}"
-				d:DataContext="{Binding 
-		Source={d:DesignInstance d:Type=local:MainWindow, IsDesignTimeCreatable=True}}"
-				Background="#FF2C2C2C"
-				Title="{Binding WinTitle}"
-				Height="450"
-				Width="800">
+﻿<Window x:Name="mainWindow" Title="{Binding WinTitle}"
+		x:Class="WpfExample.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:local="clr-namespace:WpfExample"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		Width="800"
+		Height="355.6"
+		DataContext="{Binding ElementName=mainWindow}"
+		mc:Ignorable="d"
+		Background="#FF2C2C2C"
+		>
+	<!--  d:DataContext="{Binding Source={d:DesignInstance d:Type=local:MainWindow, IsDesignTimeCreatable=True}}"  -->
 
 	<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary
+						Source="WpfResources/MainWinResourceSupport.xaml"
+						/>
+				<ResourceDictionary
+						Source="WpfResources/MainWinResource2.xaml"
+						/>
+			</ResourceDictionary.MergedDictionaries>
 
-		<Style x:Key="border"
-					 TargetType="Border">
-			<Setter Property="BorderThickness"
-							Value="0,1,1,1" />
-			<Setter Property="BorderBrush"
-							Value="Black" />
-		</Style>
 
-		<ControlTemplate x:Key="header">
-			<DockPanel Background="LightGray"
-								 VerticalAlignment="Top">
-				<Grid Height="20"
+			<Style x:Key="border"
+					TargetType="Border"
+					>
+				<Setter Property="BorderBrush" Value="Black" />
+				<Setter Property="BorderThickness" Value="0,1,1,1" />
+			</Style>
+
+
+			<ControlTemplate x:Key="header"
+					>
+				<DockPanel
+						VerticalAlignment="Top"
+						Background="LightGray"
+						>
+					<Grid
+							Height="20"
 							DockPanel.Dock="Top"
-							Background="LightBlue">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="200" />
-						<ColumnDefinition Width="200" />
-						<ColumnDefinition Width="*" />
-					</Grid.ColumnDefinitions>
-					<Border Grid.Column="0"
-									BorderThickness="1"
-									Style="{StaticResource border}">
-						<Label Padding="0"
-									 Content="{Binding Title1}" />
-					</Border>
-					<Border Grid.Column="1"
-									Style="{StaticResource border}">
-						<Label Padding="0"
-									 Content="{Binding Title2}" />
-					</Border>
-					<Border Grid.Column="2"
-									Style="{StaticResource border}">
-						<Label Padding="0"
-									 Content="{Binding Title3}" />
-					</Border>
-				</Grid>
-				<ScrollViewer>
-					<ItemsPresenter />
-				</ScrollViewer>
-			</DockPanel>
-		</ControlTemplate>
+							Background="LightBlue"
+							>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="200" />
+							<ColumnDefinition Width="200" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Border
+								Grid.Column="0"
+								BorderThickness="1"
+								Style="{StaticResource border}"
+								>
+							<Label Content="{Binding Title1}"
+									Padding="0"
+									/>
+						</Border>
+						<Border
+								Grid.Column="1"
+								Style="{StaticResource border}"
+								>
+							<Label Content="{Binding Title2}"
+									Padding="0"
+									/>
+						</Border>
+						<Border
+								Grid.Column="2"
+								Style="{StaticResource border}"
+								>
+							<Label Content="{Binding Title3}"
+									Padding="0"
+									/>
+						</Border>
+					</Grid>
+					<ScrollViewer>
+						<ItemsPresenter />
+					</ScrollViewer>
+				</DockPanel>
+			</ControlTemplate>
 
-		<DataTemplate x:Key="items">
-			<Border BorderThickness="0,0,0,2">
-				<Grid Margin="-5,-3,-5,-2"
-							d:DataContext="{d:DesignData /SampleData/SampleCollectionSampleData.xaml}">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="200" />
-						<ColumnDefinition Width="200" />
-						<ColumnDefinition Width="*" />
-					</Grid.ColumnDefinitions>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="30" />
-					</Grid.RowDefinitions>
+			<DataTemplate x:Key="items"
+					>
+				<Border
+						BorderThickness="0,0,0,2"
+						>
+					<Grid
+							Margin="-5,-3,-5,-2"
+							d:DataContext="{d:DesignData /SampleData/SampleCollectionSampleData.xaml}"
+							>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="200" />
+							<ColumnDefinition Width="200" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="30" />
+						</Grid.RowDefinitions>
 
-						<TextBlock Text="{Binding SheetNumber}"
-											 Grid.Column="0" />
-						<TextBlock Text="{Binding SheetName}"
-											 Grid.Column="1" />
-						<TextBlock Text="{Binding SheetData}"
-											 Grid.Column="2" />
+						<TextBlock
+								Grid.Column="0"
+								Text="{Binding SheetNumber}"
+								/>
+						<TextBlock
+								Grid.Column="1"
+								Text="{Binding SheetName}"
+								/>
+						<TextBlock
+								Grid.Column="2"
+								Text="{Binding SheetData}"
+								/>
 
-				</Grid>
-			</Border>
-		</DataTemplate>
+					</Grid>
+				</Border>
+			</DataTemplate>
 
 
-
+		</ResourceDictionary>
 	</Window.Resources>
 
 	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="90" />
+		</Grid.RowDefinitions>
+
 		<ListBox x:Name="listBox"
-						 HorizontalAlignment="Left"
-						 VerticalAlignment="Top"
-						 HorizontalContentAlignment="Stretch"
-						 Background="Gray"
-						 Height="212"
-						 Width="740"
-						 Margin="24,19,0,0"
-						 Template="{StaticResource header}"
-						 ItemTemplate="{StaticResource items}"
-						 ItemsSource="{Binding sx}">
+				Grid.Row="0"
+				Margin="24,19,0,0"
+				Width="740"
+				Height="212"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				HorizontalContentAlignment="Stretch"
+				d:DataContext="{d:DesignInstance d:Type=local:MainWindow,
+																				 IsDesignTimeCreatable=True}"
+				Background="Gray"
+				ItemTemplate="{StaticResource items}"
+				ItemsSource="{Binding sx}"
+				Template="{StaticResource header}"
+				/>
 
-		</ListBox>
+		<Grid Name="ButtonGrid"
+				Grid.Row="1"
+				>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="5" />
+			</Grid.RowDefinitions>
 
-		<Button x:Name="button"
-						Content="Button"
-						HorizontalAlignment="Left"
-						Height="35"
-						Margin="634,364,0,0"
-						VerticalAlignment="Top"
-						Width="101"
-						Click="Button_Click" />
+
+			<Grid.Resources>
+				<Style x:Key="BtnBase"
+						TargetType="Button"
+						>
+					<Setter Property="Background" Value="#555555" />
+					<Setter Property="BorderBrush" Value="#555555" />
+					<Setter Property="BorderThickness" Value="1" />
+					<Setter Property="FontSize" Value="12" />
+					<Setter Property="Foreground" Value="White" />
+					<Setter Property="Margin" Value="2,1,2,1" />
+					<Setter Property="Padding" Value="0,1,0,0" />
+					<Setter Property="Template" Value="{StaticResource Button.Normal.ControlTemplate}" />
+					<Setter Property="VerticalContentAlignment" Value="Center" />
+				</Style>
+
+				<Style x:Key="StateTest"
+						TargetType="Button"
+						BasedOn="{StaticResource BtnBase}"
+						>
+					<Style.Triggers>
+						<Trigger Property="local:CustomProperties.GenericBooleanOne" Value="True">
+							<Setter Property="IsEnabled" Value="True" />
+						</Trigger>
+						<Trigger Property="local:CustomProperties.GenericBooleanOne" Value="False">
+							<Setter Property="IsEnabled" Value="False" />
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</Grid.Resources>
+
+
+			<Grid
+					Grid.RowSpan="2"
+					>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<Grid
+						Grid.Row="0"
+						>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="110" />
+						<ColumnDefinition Width="110" />
+						<ColumnDefinition Width="110" />
+					</Grid.ColumnDefinitions>
+					<Button x:Name="StateTest1"
+							Content="State Test 1"
+							Grid.Column="2"
+							Width="101"
+							Height="35"
+							local:CustomProperties.GenericBooleanOne="{Binding StateTestBool1}"
+							Style="{StaticResource StateTest}" />
+
+
+					<Button x:Name="StateTest2"
+							Content="State Test 2"
+							Grid.Column="1"
+							Width="101"
+							Height="35"
+							d:DataContext="{d:DesignInstance d:Type=local:MainWindow,
+																					 IsDesignTimeCreatable=True}"
+							local:CustomProperties.GenericBooleanOne="{Binding StateTestBool2}"
+							Style="{StaticResource StateTest}" />
+				</Grid>
+
+
+				<Grid
+						Grid.Row="1"
+						>
+					<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="110" />
+					<ColumnDefinition Width="110" />
+					<ColumnDefinition Width="110" />
+				</Grid.ColumnDefinitions>
+				
+					<Button x:Name="AddRows"
+							Content="Add Rows"
+
+							Grid.Column="3"
+							Width="101"
+							Height="35"
+							Click="AddRows_Click" />
+
+					<Button x:Name="ChangeState1"
+							Content="Change State 1"
+
+							Grid.Column="2"
+							Width="101"
+							Height="35"
+							Click="ChangeState1_Click" />
+
+
+					<Button x:Name="ChangeState2"
+							Content="Change State 2"
+
+							Grid.Column="1"
+							Width="101"
+							Height="35"
+							Click="ChangeState2_Click" /></Grid>
+			</Grid>
+
+		</Grid>
 
 	</Grid>
 </Window>

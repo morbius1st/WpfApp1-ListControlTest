@@ -1,0 +1,49 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:WpfExample"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d">
+
+	<SolidColorBrush x:Key="GridBorderGrey" Color="#FF909090" />
+
+	<SolidColorBrush x:Key="BkGrndUnUsedHdr" Color="#FF282828" />
+
+	<SolidColorBrush x:Key="BkGrndUnUsedDetail" Color="#FF888888" />
+
+	<SolidColorBrush x:Key="Item.MouseOver.Background" Color="#1F26A0DA" />
+	<SolidColorBrush x:Key="Item.MouseOver.Border" Color="#a826A0Da" />
+	<SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="#3DDADADA" />
+	<SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="#FFDADADA" />
+	<SolidColorBrush x:Key="Item.SelectedActive.Background" Color="#3D26A0DA" />
+	<SolidColorBrush x:Key="Item.SelectedActive.Border" Color="#FF26A0DA" />
+
+	<LinearGradientBrush x:Key="ShadowDetail" x:Name="ShadowDetail" StartPoint="0.5,0" EndPoint="0.5,1">
+		<GradientStop Offset="0.87" Color="Black" />
+		<GradientStop Offset="1" Color="#FFFDFDFF" />
+	</LinearGradientBrush>
+
+	<Style x:Key="controlPointLbl" TargetType="Label">
+		<Setter Property="Background" Value="#444444" />
+		<Setter Property="DataContext" Value="{Binding ElementName=mainWindow, Mode=OneWay}" />
+		<Setter Property="FontSize" Value="16" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="Height" Value="22" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="Margin" Value="2" />
+		<Setter Property="Padding" Value="0" />
+	</Style>
+
+	<Style
+		x:Key="controlPointLblDelta"
+		BasedOn="{StaticResource controlPointLbl}"
+		TargetType="Label">
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+
+	</Style>
+
+
+</ResourceDictionary>

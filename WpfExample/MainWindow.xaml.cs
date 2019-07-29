@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using WpfExample.SampleData;
 
@@ -13,6 +14,9 @@ namespace WpfExample
 		public string Title3 { get; set; } = "Third";
 
 		public SampleCollection sx { get; set; } = new SampleCollection();
+
+		public bool StateTestBool1 { get; set; } = false;
+		public bool StateTestBool2 { get; set; } = false;
 
 
 		public MainWindow()
@@ -31,7 +35,7 @@ namespace WpfExample
 			return new SampleDataClass() { SheetNumber = sNum, SheetName = sName, SheetData = sData};
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
+		private void AddRows_Click(object sender, RoutedEventArgs e)
 		{
 			sx.Add(MakeData("A-11", "Sht 01", "Sheet Data"));
 			sx.Add(MakeData("A-12", "Sht 02", "Sheet Data"));
@@ -40,8 +44,50 @@ namespace WpfExample
 			sx.Add(MakeData("A-15", "Sht 05", "Sheet Data"));
 		}
 
-#pragma warning disable CS0067 // The event 'MainWindow.PropertyChanged' is never used
+		private void ChangeState1_Click(object sender, RoutedEventArgs e)
+		{
+			StateTestBool1 = !StateTestBool1;
+
+			OnPropertyChange("StateTestBool1");
+		}
+		
+		private void ChangeState2_Click(object sender, RoutedEventArgs e)
+		{
+			StateTestBool2 = !StateTestBool2;
+
+			OnPropertyChange("StateTestBool2");
+		}
+
+
 		public event PropertyChangedEventHandler PropertyChanged;
-#pragma warning restore CS0067 // The event 'MainWindow.PropertyChanged' is never used
+
+		private void OnPropertyChange([CallerMemberName] string memberName = "")
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(memberName));
+		}
+
+	}
+
+	public class CustomProperties
+	{
+		public static readonly DependencyProperty GenericBoolOneProperty = DependencyProperty.RegisterAttached(
+			"GenericBooleanOne", typeof(bool), typeof(CustomProperties),
+			new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.AffectsParentArrange |
+				FrameworkPropertyMetadataOptions.AffectsParentMeasure | FrameworkPropertyMetadataOptions.AffectsArrange |
+				FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+
+	#region GenericBooleanOne
+
+		public static void SetGenericBooleanOne(UIElement e, bool value)
+		{
+			e.SetValue(GenericBoolOneProperty, value);
+		}
+
+		public static bool GetGenericBooleanOne(UIElement e)
+		{
+			return (bool) e.GetValue(GenericBoolOneProperty);
+		}
+
+	#endregion
 	}
 }
