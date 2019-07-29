@@ -25,7 +25,6 @@ using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResource
  * 3. all each line to have a check box to allow user to select lines for
  *		deletion
  * 4. confirm that delete line works, add line works
- * 5. add tables below startpoint / add undo / redo buttons
  * 
  * next steps:
  * 1. depending on user control question, make this transferable
