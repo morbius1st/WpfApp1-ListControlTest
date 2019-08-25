@@ -1,10 +1,15 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
 using WpfApp1_ListControlTest.SampleData;
 using WpfApp1_ListControlTest.ControlPtsWin;
 using WpfApp1_ListControlTest.ListBoxWithHdrAndFtr;
+using WpfApp1_ListControlTest.MainWinSupport;
 using WpfApp1_ListControlTest.MultiLineLB;
 using WpfApp1_ListControlTest.TopoPts;
 using WpfApp1_ListControlTest.TopoPtsData;
@@ -37,8 +42,10 @@ using TopoPtsResources = WpfApp1_ListControlTest.TopoPts.Support.TopoPtsResource
 
 namespace WpfApp1_ListControlTest
 {
-	public partial class MainWindow : Window
+	public partial class MainWindow : Window, INotifyPropertyChanged
 	{
+		public double GlyphActHeight { get; set; }
+
 		public TopoPoints tps { get; set; }  = new TopoPoints();
 		public TopoPointsTest TpTest { get; set; }
 
@@ -64,17 +71,26 @@ namespace WpfApp1_ListControlTest
 
 		public static ListBox Lb3 { get; set; }
 
+		public static MainWindow Me { get; private set; }
+
+		private string message;
+
 		public MainWindow()
 		{
 			TpTest = new TopoPointsTest(tps);
 
 			Tpts3Mgr = new TopoPts3Mgr();
 			TopoPointTest = new TopoPointsTest3(Tpts3Mgr.Tpts3, Tpts3Mgr);
+
 			InitializeComponent();
 
 			CreateSampleData();
 
-			TopoPointTest.ListTopoPtsTags();
+			ListBox3.SelectedIndex = 1;
+
+//			TopoPointTest.ListTopoPtsTags();
+
+
 		}
 
 		private void CreateSampleData()
@@ -97,6 +113,18 @@ namespace WpfApp1_ListControlTest
 		private void MainWindow_Loaded(object sender, RoutedEventArgs e)
 		{
 			loaded = true;
+
+			Me = this;
+
+			Me.Append = "Main Win Loaded\n";
+
+//			Glyphs G = CheckBox1.Template.FindName("Glyphs1", CheckBox1) as Glyphs;
+
+		}
+
+		private void ListViewTest()
+		{
+			
 		}
 
 		int PriorRowBeingEdited = 0;
@@ -295,6 +323,13 @@ namespace WpfApp1_ListControlTest
 		private void BtnInitialize_Click(object sender, RoutedEventArgs e)
 		{
 			Tpts3Mgr.LoadData();
+
+			ListBox3.SelectedIndex = -1;
+		}
+
+		private void BtnDebugMarker_Click(object sender, RoutedEventArgs e)
+		{
+			TopoPointTest.BtnDebugMarker_Click();
 		}
 
 		private void BtnAdd10ToXofStart_Click(object sender, RoutedEventArgs e)
@@ -342,17 +377,139 @@ namespace WpfApp1_ListControlTest
 			TopoPointTest.BtnChangeXof1_Click();
 		}
 
-		private void BtnDebugMarker_Click(object sender, RoutedEventArgs e)
+		private void BtnListMultiSelect_Click(object sender, RoutedEventArgs e)
 		{
-			TopoPointTest.BtnDebugMarker_Click();
+			TopoPointTest.BtnListMultiSelect_Click(ListBox3);
+		}
+		
+		private void BtnSelectAndListMultiSelect_Click(object sender, RoutedEventArgs e)
+		{
+			TopoPointTest.BtnSelectAndListMultiSelect_Click(ListBox3);
 		}
 
+
 	#endregion
+
+		public string Message
+		{
+			get => message;
+			set
+			{
+				message = value;
+				OnPropertyChange();
+			}
+		}
+
+		public string Append
+		{
+			set
+			{
+				Message += value;
+				Debug.Write(value);
+			}
+		}
+
+		public void ClearMessage()
+		{
+			Message = "";
+		}
+
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private void OnPropertyChange([CallerMemberName] string memberName = "")
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(memberName));
+		}
+
+		private int SomeSelected = 0;
+		private int NextSelect = 0;
+		private bool[] CurrentSelected;
+
+		private void CheckBox1_Click(object sender, RoutedEventArgs e)
+		{
+			Debug.WriteLine("master row selector clicked|");
+			// three options
+			// nothing selected - select everything
+			// all selected - select none
+			// some selected - select all then none then some
+
+			if (ListBox3.SelectedItems.Count > 0 &&
+				ListBox3.SelectedItems.Count < ListBox3.Items.Count
+				&& SomeSelected == 0
+				)
+			{
+				Debug.WriteLine("master row selector| saving someselected|");
+				// some, but not all, selected
+				// save which are selected
+				CurrentSelected = new bool[ListBox3.Items.Count];
+
+				foreach (TopoPoint3 item in ListBox3.SelectedItems)
+				{
+					CurrentSelected[item.Index] = true;
+					SomeSelected =  1; // using the some selected process
+					NextSelect = 1;
+				}
+			}
+
+
+			// nextselection mode is 3 and doing someselected
+			if (SomeSelected == 1 && NextSelect == 3)
+			{
+				Debug.WriteLine("master row selector| restore somselected| ");
+				ListBox3.SelectedItems.Clear();
+
+				for (var i = 0; i < CurrentSelected.Length; i++)
+				{
+					if (CurrentSelected[i])
+					{
+						ListBox3.SelectedItems.Add(ListBox3.Items[i]);
+					}
+				}
+
+				NextSelect = 1;
+
+				// all selected or nextselection mode is 2
+			} else if ((SomeSelected == 1 && NextSelect == 2) || ListBox3.SelectedItems.Count == ListBox3.Items.Count)
+			{
+				Debug.WriteLine("master row selector| clear all selected| ");
+
+				ListBox3.SelectedItems.Clear();
+
+				NextSelect = 3;
+
+				// none selected or just saved the list of some selected
+				// do this to select all
+			} else if ((SomeSelected == 1 && NextSelect == 1) || ListBox3.SelectedItems.Count == 0)
+			{
+				Debug.WriteLine("master row selector| select all| ");
+				ListBox3.SelectedItems.Clear();
+
+				for (var i = 0; i < ListBox3.Items.Count; i++)
+				{
+					ListBox3.SelectedItems.Add(ListBox3.Items[i]);
+				}
+
+				NextSelect = 2;
+			}
+
+
+
+		}
+
+		private void RowSelector_Click(object sender, RoutedEventArgs e)
+		{
+			Debug.WriteLine("row selector clicked| reset master row selector");
+			NextSelect = 0;
+			SomeSelected = 0;
+		}
 	}
+
 
 
 	public class CustomProperties
 	{
+
 
 		public static readonly DependencyProperty GenericBoolOneProperty = DependencyProperty.RegisterAttached(
 			"GenericBooleanOne", typeof(bool), typeof(CustomProperties),
@@ -365,6 +522,10 @@ namespace WpfApp1_ListControlTest
 			new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.AffectsParentArrange |
 				FrameworkPropertyMetadataOptions.AffectsParentMeasure | FrameworkPropertyMetadataOptions.AffectsArrange |
 				FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+
+		public static readonly DependencyProperty  GenericDoubleOneProperty = DependencyProperty.RegisterAttached(
+			"GenericDoubleOne", typeof(double), typeof(CustomProperties),
+			new FrameworkPropertyMetadata(0.0));
 
 	#region GenericBooleanOne
 
@@ -390,6 +551,20 @@ namespace WpfApp1_ListControlTest
 		public static bool GetGenericBooleanTwo(UIElement e)
 		{
 			return (bool) e.GetValue(GenericBoolTwoProperty);
+		}
+
+	#endregion
+
+	#region GenericDoubleOne
+
+		public static void SetGenericDoubleOne(UIElement e, double value)
+		{
+			e.SetValue(GenericDoubleOneProperty, value);
+		}
+
+		public static double GetGenericDoubleOne(UIElement e)
+		{
+			return (double) e.GetValue(GenericDoubleOneProperty);
 		}
 
 	#endregion

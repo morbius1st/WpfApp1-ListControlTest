@@ -1,0 +1,188 @@
+﻿<Window Name="mainWindow" Title="MainWindow"
+		x:Class="ParameterVue.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:cp="clr-namespace:ParameterVue.WpfSupport.CustomXAMLProperties"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:familyInfo="clr-namespace:ParameterVue.FamilyManager.FamilyInfo"
+		xmlns:local="clr-namespace:ParameterVue"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		Width="600"
+		Height="300"
+		DataContext="{Binding ElementName=mainWindow}"
+		Loaded="MainWindow_Loaded"
+		mc:Ignorable="d"
+		Background="#333333"
+		>
+	<Window.Resources>
+
+		<Style x:Key="{x:Static local:MainWindow.StyleName}"
+				TargetType="TextBox"
+				>
+			<Style.Triggers>
+				<Trigger Property="cp:CustomProperties.GenericBoolOne" Value="True">
+					<Setter Property="Foreground" Value="Red" />
+				</Trigger>
+
+			</Style.Triggers>
+
+		</Style>
+
+	</Window.Resources>
+
+	<Grid
+			Margin="0,0,-1.4,0.4"
+			Width="595"
+			HorizontalAlignment="Stretch"
+			>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="105" />
+
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="150" />
+			<RowDefinition Height="150" />
+
+		</Grid.RowDefinitions>
+
+		<Button x:Name="buttonTest2" Content="Test 2"
+				Grid.Row="0"
+				Grid.Column="1"
+				Margin="0,0,10.2,78"
+				Width="84"
+				Height="34"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Bottom"
+				RenderTransformOrigin="0.516,0.494"
+				Click="Button_Test2"
+				/>
+		<Button x:Name="buttonTest1" Content="Test 1"
+				Grid.Row="0"
+				Grid.Column="1"
+				Margin="0,0,10.2,39"
+				Width="84"
+				Height="34"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Bottom"
+				Click="Button_Test1"
+				/>
+		<Button x:Name="button" Content="Debug"
+				Grid.Row="0"
+				Grid.Column="1"
+				Margin="0,0,10.2,0"
+				Width="84"
+				Height="34"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Bottom"
+				Click="btnDebug_Click"
+				/>
+
+
+		<ScrollViewer
+				Grid.Row="0"
+				Grid.Column="0"
+				HorizontalScrollBarVisibility="Visible"
+				VerticalScrollBarVisibility="Auto"
+				>
+			<!--  VerticalAlignment="Stretch"  -->
+			<!--  HorizontalAlignment="Stretch"  -->
+			<!--  VerticalAlignment="top"  -->
+			<ListBox x:Name="listBox"
+					HorizontalContentAlignment="Stretch"
+					VerticalContentAlignment="Stretch"
+					d:DataContext="{d:DesignInstance d:Type=local:MainWindow,
+																					 IsDesignTimeCreatable=True}"
+					Background="#444444"
+					Foreground="White"
+					ItemsSource="{Binding Fm.Fd}"
+					>
+				<ListBox.Template>
+					<ControlTemplate>
+						<DockPanel>
+							<Border
+									Height="20"
+									DockPanel.Dock="Top"
+									BorderThickness="2"
+									BorderBrush="RoyalBlue"
+									>
+								<Grid Name="header"
+										>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="20" />
+										<ColumnDefinition Width="*" />
+										<!-- <ColumnDefinition Width="*" /> -->
+									</Grid.ColumnDefinitions>
+									<TextBlock
+											Grid.Column="0"
+											Padding="2,0,0,0"
+											Text="{Binding Fm.Cd.SelectedColumn, Mode=OneTime}"
+											/>
+									<TextBlock
+											Grid.Column="1"
+											Padding="2,0,0,0"
+											Text="{Binding Fm.Cd.NameColumn, Mode=OneTime}"
+											/>
+
+								</Grid>
+
+							</Border>
+							<ItemsPresenter Name="ItemsPresenter"
+									Margin="0"
+									DockPanel.Dock="Bottom"
+									/>
+						</DockPanel>
+					</ControlTemplate>
+				</ListBox.Template>
+				<ListBox.ItemTemplate>
+					<DataTemplate
+							DataType="{x:Type familyInfo:FamilyData}"
+							>
+
+						<Grid Name="data"
+								>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="20" />
+								<!-- <ColumnDefinition Width="100" /> -->
+								<ColumnDefinition Width="*" />
+
+								<!-- <ColumnDefinition Width="*" /> -->
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="20" />
+							</Grid.RowDefinitions>
+							<CheckBox
+									Grid.Column="0"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center"
+									IsChecked="{Binding Selected}"
+									/>
+							<TextBox
+									Grid.Column="1"
+									Text="{Binding Name}"
+									/>
+							<!--  <TextBox  -->
+							<!--  Grid.Column="2"  -->
+							<!--  cp:CustomProperties.GenericBoolOne="True"  -->
+							<!--  Text="{Binding Name}"  -->
+							<!--  Style="{DynamicResource {x:Static local:MainWindow.StyleName}}"  -->
+							<!--  />  -->
+
+						</Grid>
+
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</ScrollViewer>
+
+		<TextBlock
+				Grid.Row="1"
+				Name="textBlock"
+				Text="1"
+				Width="0"
+				Height="0"
+				/>
+
+	</Grid>
+</Window>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using WpfExample.SampleData;
@@ -7,6 +8,8 @@ namespace WpfExample
 {
 	public partial class MainWindow : Window, INotifyPropertyChanged
 	{
+		public ObservableCollection<SampleDataClass> Sxc { get; set; } = new ObservableCollection<SampleDataClass>();
+
 		public string WinTitle { get; set; } = "Window Title";
 
 		public string Title1 { get; set; } = "First";
@@ -28,6 +31,11 @@ namespace WpfExample
 			sx.Add(MakeData("A-03", "Sht 03", "Sheet Data"));
 			sx.Add(MakeData("A-04", "Sht 04", "Sheet Data"));
 			sx.Add(MakeData("A-05", "Sht 05", "Sheet Data"));
+
+			// note:  do NOY make a new instance of the property Sxc - this loses the binding
+			Sxc.Add(new SampleDataClass() { SheetNumber = "A-01b", SheetName = "name 01b", SheetData = "data 01b", SheetInfo = "info 01b", SheetInfo2 = "info2 01b"});
+			Sxc.Add(new SampleDataClass() { SheetNumber = "A-02b", SheetName = "name 02b", SheetData = "data 02b", SheetInfo = "info 02b", SheetInfo2 = "info2 02b"});
+			Sxc.Add(new SampleDataClass() { SheetNumber = "A-03b", SheetName = "name 03b", SheetData = "data 03b", SheetInfo = "info 03b", SheetInfo2 = "info2 03b"});
 		}
 
 		private SampleDataClass MakeData(string sNum, string sName, string sData)

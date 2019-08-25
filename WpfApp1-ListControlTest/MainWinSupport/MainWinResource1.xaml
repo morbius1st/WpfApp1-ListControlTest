@@ -1,4 +1,4 @@
-﻿<ResourceDictionary
+﻿<ResourceDictionary x:Class="WpfApp1_ListControlTest.MainWinSupport.MainWinResource1"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -16,6 +16,7 @@
 
 	<StackPanel
 			x:Key="ListBox1"
+			Name="LB1"
 			Orientation="Vertical"
 			>
 		<StackPanel.Resources>
@@ -539,13 +540,7 @@
 			Orientation="Vertical"
 			>
 		<StackPanel.Resources>
-			<ItemsPanelTemplate
-					x:Key="ItemPanels1"
-					>
-				<VirtualizingStackPanel
-						IsItemsHost="True"
-						/>
-			</ItemsPanelTemplate>
+
 		</StackPanel.Resources>
 		<Label
 				x:Name="label2"
@@ -559,7 +554,8 @@
 				/>
 
 		<ListView
-				x:Name="listView"
+				x:Name="listViewX"
+
 				Height="200"
 				HorizontalAlignment="left"
 				VerticalAlignment="Top"
@@ -573,6 +569,9 @@
 				ItemsSource="{Binding}"
 				>
 			<ListView.Resources>
+				<ItemsPanelTemplate x:Key="ItemPanels1">
+					<VirtualizingStackPanel IsItemsHost="True" />
+				</ItemsPanelTemplate>
 				<Style
 						TargetType="{x:Type Label}"
 						>

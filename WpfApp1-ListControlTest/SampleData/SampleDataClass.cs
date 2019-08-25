@@ -18,7 +18,6 @@ namespace WpfApp1_ListControlTest.SampleData
 		public string SheetData { get; set; }
 		public string SheetInfo { get; set; }
 		public string SheetInfo2 { get; set; }
-//		private bool _sheetBool;
 
 
 	}

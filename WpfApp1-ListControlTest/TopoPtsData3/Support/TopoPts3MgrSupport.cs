@@ -42,6 +42,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.Support
 			Tpts3.Append = "\n\ninit | @ support| *** end: load data ***\n\n";
 
 			Tpts3.Finalize(new TopoEndPoint(new XYZ3(lastX, lastY, lastZ)));
+
+			
 		}
 
 		private double CalcZ(double x, double y, double slope)

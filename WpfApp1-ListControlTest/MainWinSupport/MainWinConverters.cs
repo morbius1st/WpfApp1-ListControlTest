@@ -29,10 +29,7 @@ namespace WpfApp1_ListControlTest.MainWinSupport
 
 			double inches = fract * 12;
 
-
 			result = feet.ToString("F0") + "\'-" + inches.ToString("F2") + "\"";
-
-//			result = output;
 
 			return result;
 		}
@@ -66,6 +63,31 @@ namespace WpfApp1_ListControlTest.MainWinSupport
 		}
 	}
 	
+	[ValueConversion(typeof(int), typeof(bool?))]
+	public class ConvertIntToNullableBool : IMultiValueConverter
+	{
+		// convert from (int) to (bool?)
+		// using a maximum value
+		public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+		{
+			int val = (int) values[0];
+			int max = (int) values[1];
+			bool? result = null;
+
+			if (val == 0)
+				result = false;
+			else if (val == max)
+				result = true;
+
+			return result;
+		}
+
+		public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+		{
+			throw new NotSupportedException();
+		}
+	}
+		
 	[ValueConversion(typeof(double), typeof(string))]
 	public class TopoPoint2SlopeConverter : IValueConverter
 	{

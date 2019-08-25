@@ -99,6 +99,7 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 				Debug.Write(value);
 			}
 		}
+
 	#endif
 
 		public int IndexOfEndPoint => Items.Count - 1;
@@ -125,13 +126,15 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		// end the initial process of creating a topopoints collection
 		public void Finalize(TopoEndPoint end)
 		{
-			if (!CheckStatus(gotEndPoint)) { throw new InvalidOperationException("TopoPoints Not Ready to Finalize"); }
+			if (!CheckStatus(gotEndPoint)) { throw new 
+				InvalidOperationException("TopoPoints Not Ready to Finalize"); }
 
 			end.Index = IndexOfEndPoint;
 
 			base.SetItem(IndexOfEndPoint, end);
 
-			Items[IndexOfEndPoint].PropertyChanged += TopoPoints_PropertyChangedEndPt;
+			Items[IndexOfEndPoint].PropertyChanged += 
+				TopoPoints_PropertyChangedEndPt;
 
 			Status[gotEndPoint] = true;
 
@@ -154,11 +157,13 @@ namespace WpfApp1_ListControlTest.TopoPtsData3.TopoPts3
 		// does reindex only after "complete"
 		public void Insert(int idx, XYZ3 xyz)
 		{
-			if (!Status[gotStartPoint]) { throw new InvalidOperationException("Insert Disallowed Now"); }
+			if (!Status[gotStartPoint]) { throw new 
+				InvalidOperationException("Insert Disallowed Now"); }
 
 			if (!xyz.IsValid) { throw new ArgumentException("Invalid Point"); }
 
-			if (idx <= 0 || idx > IndexOfEndPoint) { throw new ArgumentException("Invalid Index"); }
+			if (idx <= 0 || idx > IndexOfEndPoint) { throw new 
+				ArgumentException("Invalid Index"); }
 
 			Append = "\ninsrt| @ TopoPoints3| insert | idx| [" + idx + "]";
 

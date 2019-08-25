@@ -115,6 +115,8 @@ namespace WpfApp1_ListControlTest.TopoPtsData3
 		{
 			_tpts3MgrSupport.LoadDesignData(Tpts3);
 
+
+
 			DataLoaded = true;
 		}
 

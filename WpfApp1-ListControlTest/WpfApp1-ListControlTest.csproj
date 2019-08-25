@@ -93,6 +93,9 @@
       <DependentUpon>ListBoxWithXHeaderAndFooter.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWinSupport\MainWinConverters.cs" />
+    <Compile Include="MainWinSupport\MainWinResource1.xaml.cs">
+      <DependentUpon>MainWinResource1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWinSupport\MainWinResource3.xaml.cs">
       <DependentUpon>MainWinResource3.xaml</DependentUpon>
     </Compile>
@@ -137,8 +140,8 @@
     <Compile Include="Validation\ValidationRule.cs" />
     <Compile Include="Converters\ValueConverters.cs" />
     <Compile Include="WpfResources\generic.cs">
-			<DependentUpon>generic.xaml</DependentUpon>
-		</Compile>
+      <DependentUpon>generic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WpfResources\ListBoxMultiLine1.cs" />
     <Page Include="ControlPtsWin\ControlPoints.xaml">
       <SubType>Designer</SubType>
@@ -206,7 +209,7 @@
     </Page>
     <Page Include="WpfResources\generic.xaml">
       <SubType>Designer</SubType>
-			<Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WpfResources\ListBoxMultiLine1.xaml">
       <SubType>Designer</SubType>

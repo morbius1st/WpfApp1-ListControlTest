@@ -4,17 +4,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A78D5D23-F7FF-44F2-A9E3-66EA90297411}</ProjectGuid>
-    <OutputType>library</OutputType>
-    <RootNamespace>WpfCustomControlLibrary</RootNamespace>
-    <AssemblyName>WpfCustomControlLibrary</AssemblyName>
+    <ProjectGuid>{0622974F-F8FD-4E86-92D7-29723D1776E8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ParameterVue</RootNamespace>
+    <AssemblyName>ParameterVue</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,6 +26,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,22 +52,34 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorPicker2.xaml.cs">
-      <DependentUpon>ColorPicker2.xaml</DependentUpon>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="FamilyManager\FamilyInfo\ColumnSpec.cs" />
+    <Compile Include="WpfSupport\ListBoxConfiguration.cs" />
+    <Compile Include="WpfSupport\WpfSupport.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
-    <Page Include="ColorPicker2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomListBox1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="WpfSupport\CustomXAMLProperties\CustomProperties.cs" />
+    <Compile Include="FamilyManager\FamilyInfo\TestData.cs" />
+    <Compile Include="FamilyManager\FamilyMgr.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomListBox1.xaml.cs">
-      <DependentUpon>CustomListBox1.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="FamilyManager\FamilyInfo\FamilyData.cs" />
+    <Compile Include="FamilyManager\FamilyInfo\ParameterSpec.cs" />
+    <Compile Include="FamilyManager\FamilyInfo\ColumnData.cs" />
+    <Compile Include="FamilyManager\FamilyInfo\ParameterValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,10 +103,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WpfData\WpfData.csproj">
-      <Project>{bfacb572-0436-40c1-9b71-c5ba1a3f67c1}</Project>
-      <Name>WpfData</Name>
-    </ProjectReference>
+    <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
