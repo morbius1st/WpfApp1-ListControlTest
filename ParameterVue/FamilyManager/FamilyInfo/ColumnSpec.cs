@@ -23,12 +23,14 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 	// holds the definition information about a column
 	public class ColumnSpec : INotifyPropertyChanged
 	{
+		private bool selected = false;
+
 		public ColumnSpec(ParameterSpec paramSpec)
 		{
 			ParamSpec = paramSpec;
 		}
 
-		private bool selected = false;
+		public ColumnSpec() {}
 
 		public bool Selected
 		{

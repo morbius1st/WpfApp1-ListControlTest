@@ -6,8 +6,8 @@ using System.Runtime.CompilerServices;
 #endregion
 
 
-// projname: ParameterVue.Parameters
-// itemname: Parameters
+// projname: ParameterVue
+// itemname: ParameterValue
 // username: jeffs
 // created:  8/18/2019 9:08:35 PM
 

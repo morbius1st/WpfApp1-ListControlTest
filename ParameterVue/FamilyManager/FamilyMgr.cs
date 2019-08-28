@@ -2,8 +2,12 @@
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing.Text;
 using System.Linq;
+using System.Windows;
+using Autodesk.Revit.DB;
 using ParameterVue.FamilyManager.FamilyInfo;
+using ParameterValue = ParameterVue.FamilyManager.FamilyInfo.ParameterValue;
 
 #endregion
 
@@ -44,24 +48,28 @@ namespace ParameterVue.FamilyManager
 			ObservableCollection<ParameterValue> p;
 
 			Fd.Add(new FamilyData("Family Name 1"));
-			p = Fd[Fd.Count - 1].Parameters;
+			p = Fd[Fd.Count - 1].ParameterValues;
 			p.Add(new ParameterValue("Value 1.1x", "Value 1.1x"));
 			p.Add(new ParameterValue("Value 1.2x", "Value 1.2x"));
 
 			Fd.Add(new FamilyData("Family Name 2"));
-			p = Fd[Fd.Count - 1].Parameters;
+			p = Fd[Fd.Count - 1].ParameterValues;
 			p.Add(new ParameterValue("Value 2.1x", "Value 2.1x"));
 			p.Add(new ParameterValue("Value 2.2x", "Value 2.2x"));
 
 			Fd.Add(new FamilyData("Family Name 3"));
-			p = Fd[Fd.Count - 1].Parameters;
+			p = Fd[Fd.Count - 1].ParameterValues;
 			p.Add(new ParameterValue("Value 3.1x", "Value 3.1x"));
 			p.Add(new ParameterValue("Value 3.2x", "Value 3.2x"));
 
-			Cd.ColumnSpecs.Add(new ColumnSpec(new ParameterSpec("Parameter 1", null, null, null, null)));
-			Cd.ColumnSpecs.Add(new ColumnSpec(new ParameterSpec("Parameter 2", null, null, null, null)));
-
-
+			Cd.ColumnSpecs.Add(new ColumnSpec(
+				new ParameterSpec("Parameter 1", StorageType.None, 
+					ParameterType.Invalid, UnitType.UT_Undefined, 
+					DisplayUnitType.DUT_UNDEFINED)));
+			Cd.ColumnSpecs.Add(new ColumnSpec(
+				new ParameterSpec("Parameter 2", StorageType.None,
+					ParameterType.Invalid, UnitType.UT_Undefined,
+					DisplayUnitType.DUT_UNDEFINED)));
 		}
 
 		// load a family's data
@@ -73,29 +81,52 @@ namespace ParameterVue.FamilyManager
 			FamilyData fd;
 
 			// get the first record
-			KeyValuePair<string, List<TestInfo>> k = TestData.TestFamilyData.First();
+			KeyValuePair<string, List<Parameter>> k = TestData.TestFamilyData.First();
 
-			// setup the parameter specifications
-			foreach (TestInfo ti in k.Value)
+			// setup the initial column specifications
+			foreach (Parameter p in k.Value)
 			{
-				ColumnSpec cs = new ColumnSpec(ti.ParamSpec);
+				ColumnSpec cs = CreateColumnSpec(p);
 
 				Cd.ColumnSpecs.Add(cs);
 			}
 
+			int col;
+
 			// get the value for each parameter
-			foreach (KeyValuePair<string, List<TestInfo>> kvp in TestData.TestFamilyData)
+			foreach (KeyValuePair<string, List<Parameter>> kvp in TestData.TestFamilyData)
 			{
+				col = 0;
+
 				fd = new FamilyData(kvp.Key);
 				fd.Selected = false;
 
-				foreach (TestInfo ti in kvp.Value)
+				foreach (Parameter p in kvp.Value)
 				{
-					fd.Parameters.Add(new ParameterValue(ti.ParameterValue));
+					fd.ParameterValues.Add(new ParameterValue(p.AsValueString()));
+
+					col++;
 				}
 
 				Fd.Add(fd);
 			}
+		}
+
+		private ColumnSpec CreateColumnSpec(Parameter p)
+		{
+			ColumnSpec cs = new ColumnSpec();
+
+			ParameterSpec ps = new ParameterSpec(
+				p.Definition.Name, p.StorageType, p.Definition.ParameterType,
+				p.Definition.UnitType, p.DisplayUnitType);
+
+			cs.ParamSpec = ps;
+			cs.Choices = null;
+			cs.ColumnAlignment = HorizontalAlignment.Left;
+			cs.ColumnWidth = 100;
+			cs.Control = null;
+
+			return cs;
 		}
 
 

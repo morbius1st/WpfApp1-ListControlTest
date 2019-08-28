@@ -17,16 +17,50 @@
 		>
 	<Window.Resources>
 
-		<Style x:Key="{x:Static local:MainWindow.StyleName}"
+		<Style x:Key="ColHeaderTbk"
+				TargetType="TextBlock"
+				>
+			<Setter Property="FontFamily" Value="{Binding ElementName=mainWindow, Path=lbc.HeaderFont.FontFamily, Mode=OneWay}" />
+			<Setter Property="FontSize" Value="{Binding ElementName=mainWindow, Path=lbc.HeaderFont.FontSize, Mode=OneWay}" />
+			<Setter Property="Padding" Value="2,4,2,4" />
+			<Setter Property="TextWrapping" Value="Wrap" />
+		</Style>
+
+		<Style x:Key="ColHeaderSymb"
+				TargetType="TextBlock"
+				BasedOn="{StaticResource ColHeaderTbk}"
+				>
+			<Setter Property="FontFamily" Value="{Binding ElementName=mainWindow, Path=lbc.SymbolrFont.FontFamily, Mode=OneWay}" />
+			<Setter Property="FontSize" Value="{Binding ElementName=mainWindow, Path=lbc.SymbolrFont.FontSize, Mode=OneWay}" />
+
+		</Style>
+
+
+		<Style x:Key="FieldBase"
 				TargetType="TextBox"
 				>
+			<Setter Property="VerticalContentAlignment" Value="Center" />
 			<Style.Triggers>
 				<Trigger Property="cp:CustomProperties.GenericBoolOne" Value="True">
 					<Setter Property="Foreground" Value="Red" />
 				</Trigger>
-
 			</Style.Triggers>
+		</Style>
 
+		<Style x:Key="RowHeaderTbx"
+				TargetType="TextBox"
+				BasedOn="{StaticResource FieldBase}"
+				>
+			<Setter Property="FontFamily" Value="{Binding ElementName=mainWindow, Path=lbc.RowHeaderFont.FontFamily, Mode=OneWay}" />
+			<Setter Property="FontSize" Value="{Binding ElementName=mainWindow, Path=lbc.RowHeaderFont.FontSize, Mode=OneWay}" />
+		</Style>
+
+		<Style x:Key="{x:Static local:MainWindow.StyleName}"
+				TargetType="TextBox"
+				BasedOn="{StaticResource FieldBase}"
+				>
+			<Setter Property="FontFamily" Value="{Binding ElementName=mainWindow, Path=lbc.ParameterFont.FontFamily, Mode=OneWay}" />
+			<Setter Property="FontSize" Value="{Binding ElementName=mainWindow, Path=lbc.ParameterFont.FontSize, Mode=OneWay}" />
 		</Style>
 
 	</Window.Resources>
@@ -102,7 +136,7 @@
 					<ControlTemplate>
 						<DockPanel>
 							<Border
-									Height="20"
+									MaxHeight="30"
 									DockPanel.Dock="Top"
 									BorderThickness="2"
 									BorderBrush="RoyalBlue"
@@ -116,31 +150,34 @@
 									</Grid.ColumnDefinitions>
 									<TextBlock
 											Grid.Column="0"
-											Padding="2,0,0,0"
 											Text="{Binding Fm.Cd.SelectedColumn, Mode=OneTime}"
+											Style="{StaticResource ColHeaderTbk}"
 											/>
 									<TextBlock
 											Grid.Column="1"
-											Padding="2,0,0,0"
 											Text="{Binding Fm.Cd.NameColumn, Mode=OneTime}"
+											Style="{StaticResource ColHeaderTbk}"
 											/>
 
 								</Grid>
 
 							</Border>
 							<ItemsPresenter Name="ItemsPresenter"
-									Margin="0"
+									Margin="0,0,0,0"
 									DockPanel.Dock="Bottom"
 									/>
 						</DockPanel>
 					</ControlTemplate>
 				</ListBox.Template>
-				<ListBox.ItemTemplate>
+				<ListBox.ItemTemplate
+				>
 					<DataTemplate
 							DataType="{x:Type familyInfo:FamilyData}"
-							>
+					>
 
 						<Grid Name="data"
+								Margin="-4,0,0,0"
+
 								>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="20" />
@@ -154,6 +191,7 @@
 							</Grid.RowDefinitions>
 							<CheckBox
 									Grid.Column="0"
+									Margin="0,0,3,0"
 									HorizontalAlignment="Center"
 									VerticalAlignment="Center"
 									IsChecked="{Binding Selected}"
@@ -161,6 +199,7 @@
 							<TextBox
 									Grid.Column="1"
 									Text="{Binding Name}"
+									Style="{StaticResource RowHeaderTbx}"
 									/>
 							<!--  <TextBox  -->
 							<!--  Grid.Column="2"  -->
@@ -176,12 +215,11 @@
 			</ListBox>
 		</ScrollViewer>
 
-		<TextBlock
+		<TextBlock Name="textBlock"
 				Grid.Row="1"
-				Name="textBlock"
-				Text="1"
 				Width="0"
 				Height="0"
+				Text="1"
 				/>
 
 	</Grid>

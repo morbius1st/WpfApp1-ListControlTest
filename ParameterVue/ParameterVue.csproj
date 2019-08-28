@@ -57,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="FamilyManager\FamilyInfo\ColumnSpec.cs" />
+    <Compile Include="FamilyManager\FamilyInfo\Parameter.cs" />
     <Compile Include="WpfSupport\ListBoxConfiguration.cs" />
     <Compile Include="WpfSupport\WpfSupport.cs" />
     <Page Include="MainWindow.xaml">

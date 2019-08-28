@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 #endregion
 
 
-// projname: ParameterVue.Parameters
+// projname: ParameterVue
 // itemname: FamilyData
 // username: jeffs
 // created:  8/18/2019 9:56:59 PM
@@ -21,13 +21,13 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 		public bool Selected { get; set; } = false;
 		public string Name { get; set; }
 
-		public ObservableCollection<ParameterValue> Parameters { get; set; }
+		public ObservableCollection<ParameterValue> ParameterValues { get; set; }
 
 		public FamilyData(string name)
 		{
 			Name = name;
 
-			Parameters = new ObservableCollection<ParameterValue>();
+			ParameterValues = new ObservableCollection<ParameterValue>();
 		}
 
 	}

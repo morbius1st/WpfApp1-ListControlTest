@@ -3,11 +3,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Autodesk.Revit.DB;
 
 #endregion
 
 
-// projname: ParameterVue.Parameters
+// projname: ParameterVue
 // itemname: Header
 // username: jeffs
 // created:  8/18/2019 9:07:11 PM
@@ -19,13 +20,13 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 	public class ParameterSpec : INotifyPropertyChanged
 	{
 		private string name;
-		private string storageType;
-		private string parameterType;
-		private string unitType;
-		private string dut;
+		private StorageType storageType;
+		private ParameterType parameterType;
+		private UnitType unitType;
+		private DisplayUnitType dut;
 
 
-		public ParameterSpec(string name, string storageType, string parameterType, string unitType, string dut)
+		public ParameterSpec(string name, StorageType storageType, ParameterType parameterType, UnitType unitType, DisplayUnitType dut)
 		{
 			this.name = name;
 			this.storageType = storageType;
@@ -40,13 +41,25 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 			set
 			{
 				if (name.Equals(value)) return;
+
+//				string[] parts = name.Split(' ');
+//
+//				if (parts.Length > 1)
+//				{
+//
+//				}
+//				else
+//				{
+//					name = value;
+//				}
+
 				name = value;
 
 				OnPropertyChange();
 			}
 		}
 
-		public string StorageType
+		public StorageType StorageType
 		{
 			get => storageType;
 			set
@@ -58,7 +71,7 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 			}
 		}
 
-		public string ParameterType
+		public ParameterType ParameterType
 		{
 			get => parameterType;
 			set
@@ -70,7 +83,7 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 			}
 		}
 
-		public string UnitType
+		public UnitType UnitType
 		{
 			get => unitType;
 			set
@@ -82,7 +95,7 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 			}
 		}
 
-		public string DUT
+		public DisplayUnitType DUT
 		{
 			get => dut;
 			set

@@ -69,33 +69,36 @@ namespace ParameterVue.WpfSupport
 			return b;
 		}
 
-		public static void AddHeader(Grid g, ColumnSpec h)
+		public static void AddHeader(Window w, Grid g, ColumnSpec h)
 		{
 			TextBlock tbk = new TextBlock();
 
-			System.Drawing.Graphics x = System.Drawing.Graphics.FromImage(new Bitmap(1, 1));
+//			System.Drawing.Graphics x = System.Drawing.Graphics.FromImage(new Bitmap(1, 1));
+//
+////			SizeF sz = x.MeasureString(h.ParamSpec.Name, ListBoxConfiguration.HeaderFont);
+////			Debug.WriteLine("header length via graphics| " + h.ParamSpec.Name 
+////				+ " = " + sz);
+//
+//			Window w = new Window();
+//
+//
+//			TextBlock t = MainWindow.tx;
+//
+//
+//			t.Text = h.ParamSpec.Name;
+//			
+//			t.TextWrapping = TextWrapping.NoWrap;
+//
+//			w.Content = t;
+//
+//			Debug.WriteLine("header length via textblock| " + h.ParamSpec.Name
+//				+ "= W| " + t.ActualWidth + " x H| " + t.ActualHeight );
+//
+//
 
-			SizeF sz = x.MeasureString(h.ParamSpec.Name, ListBoxConfiguration.HeaderFont);
-			Debug.WriteLine("header length via graphics| " + h.ParamSpec.Name 
-				+ " = " + sz);
+			Style s = (Style) w.FindResource("ColHeaderTbk");
 
-			Window w = new Window();
-
-
-			TextBlock t = MainWindow.tx;
-
-
-			t.Text = h.ParamSpec.Name;
-			
-			t.TextWrapping = TextWrapping.NoWrap;
-
-			w.Content = t;
-
-			Debug.WriteLine("header length via textblock| " + h.ParamSpec.Name
-				+ "= W| " + t.ActualWidth + " x H| " + t.ActualHeight );
-
-
-
+			tbk.Style = s;
 			tbk.Text = h.ParamSpec.Name;
 			tbk.HorizontalAlignment = h.ColumnAlignment;
 

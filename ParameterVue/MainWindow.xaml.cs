@@ -6,7 +6,10 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using ParameterVue.FamilyManager;
 using ParameterVue.FamilyManager.FamilyInfo;
+using ParameterVue.WpfSupport;
 using static ParameterVue.WpfSupport.WpfSupport;
+using static ParameterVue.WpfSupport.ListBoxConfiguration;
+
 
 namespace ParameterVue
 {
@@ -15,10 +18,13 @@ namespace ParameterVue
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public static string StyleName { get; set; } = "FieldTbx";
+		public static string StyleName { get; set; } = "ParameterTbx";
 		public static string GridHeaderName { get; set; } = "FieldTbx";
 
 		public static TextBlock tx;
+		private int count = 0;
+
+		public ListBoxConfiguration lbc { get;  set; } = new ListBoxConfiguration();
 
 
 		public FamilyMgr Fm { get; set; } = new FamilyManager.FamilyMgr();
@@ -44,34 +50,42 @@ namespace ParameterVue
 			listBox.ItemsSource = Fm.Fd;
 			listBox.UpdateLayout();
 
-//			vp = GetVirtualizingStackPanel(listBox);
-//
-//			ParameterSpec p = new ParameterSpec("Parameter 1", null, null, null, null);
-//			p.ColumnWidth = 100;
-//
-//			AddColumn(p);
-
 			AddColumns();
 
 			listBox.UpdateLayout();
 
-//			AddData();
 		}
 
-		private int count = 0;
+		private void ConfigureListBox()
+		{
+			Grid g = (Grid) FindNamedVisualChild<Grid>(listBox, "header");
+
+			foreach (UIElement ch in g.Children)
+			{
+				if (ch is TextBlock)
+				{
+					Control c = new Control();
+
+					((TextBlock) ch).FontFamily = RowHeaderFont.FontFamily;
+					((TextBlock) ch).FontSize = RowHeaderFont.FontSize;
+					((TextBlock) ch).FontStyle = RowHeaderFont.FontStyle;
+					((TextBlock) ch).FontStretch = RowHeaderFont.FontStretch;
+					((TextBlock) ch).FontWeight = RowHeaderFont.FontWeight;
+
+				}
+			}
+		}
+
 
 		private void Button_Test2(object sender, RoutedEventArgs e)
 		{
 			Debug.WriteLine("At button Test 2");
 
-			Fm.Fd[0].Parameters[0].ParamValue = "test " + count++;
-
+			Fm.Fd[0].ParameterValues[0].ParamValue = "test " + count++;
 		}
 
 		private void btnDebug_Click(object sender, RoutedEventArgs e)
 		{
-			
-
 			Debug.WriteLine("At debug Click");
 		}
 
@@ -129,12 +143,12 @@ namespace ParameterVue
 		{
 			Grid hg = (Grid) FindNamedVisualChild<Grid>(listBox, "header");
 
-			AddHeader(hg, h);
+			AddHeader(this, hg, h);
 
 			int row = 0;
 
-			string basePath = string.Format("Parameters[{0:D}]", col);
-			string tbxName = string.Format("Parameters{0:D}", col);
+			string basePath = string.Format("ParameterValues[{0:D}]", col);
+			string tbxName = string.Format("ParameterValues{0:D}", col);
 
 
 			VirtualizingStackPanel vp = GetVirtualizingStackPanel(listBox);
