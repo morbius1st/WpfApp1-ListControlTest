@@ -44,7 +44,7 @@ namespace ParameterVue.WpfSupport
 
 			tbx.HorizontalAlignment = HorizontalAlignment.Stretch;
 
-			Style s = (Style) w.FindResource(MainWindow.StyleName);
+			Style s = (Style) w.FindResource(MainWindow.FieldTbxStyleName);
 
 			tbx.Style = s;
 
@@ -96,10 +96,10 @@ namespace ParameterVue.WpfSupport
 //
 //
 
-			Style s = (Style) w.FindResource("ColHeaderTbk");
+			Style s = (Style) w.FindResource(MainWindow.ColHeaderTbkSTyleName);
 
 			tbk.Style = s;
-			tbk.Text = h.ParamSpec.Name;
+			tbk.Text = h.ColumnTitle;
 			tbk.HorizontalAlignment = h.ColumnAlignment;
 
 			AddControlToEndOfGrid(g, tbk, h.ColumnWidth);

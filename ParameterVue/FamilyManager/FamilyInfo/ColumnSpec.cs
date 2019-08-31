@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Autodesk.Revit.DB;
 
 #endregion
 
@@ -25,10 +26,8 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 	{
 		private bool selected = false;
 
-		public ColumnSpec(ParameterSpec paramSpec)
-		{
-			ParamSpec = paramSpec;
-		}
+//		public ColumnSpec(Parameter parameter) => Parameter = parameter;
+		public ColumnSpec(string columnTitle) => ColumnTitle = columnTitle;
 
 		public ColumnSpec() {}
 
@@ -44,6 +43,9 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 			}
 		}
 
+		// the title of this column = parameter name
+		public string ColumnTitle { get; set; } = null;
+
 		// the defined width for this column
 		public int ColumnWidth { get; set; } = 100;
 
@@ -54,7 +56,8 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 		public FrameworkElement Control { get; set; } = new TextBox();
 
 		// the parameter definition for this column
-		public ParameterSpec ParamSpec { get; set; } = null;
+//		public Parameter Parameter { get; set; } = null;
+//		public ParameterSpec ParamSpec { get; set; } = null;
 
 		// for columns that have a choices, this is the list of choices
 		public Choices Choices { get; set; }

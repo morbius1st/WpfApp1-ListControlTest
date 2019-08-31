@@ -43,9 +43,9 @@ namespace Autodesk.Revit.DB
 //
 //			LengthUnits.SetFormatOptions(UnitType.UT_Length, f);
 //		}
-
-
 	}
+
+	// this is a faux revit parameter
 	public class Parameter
 	{
 		private dynamic internalValue = null;

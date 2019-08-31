@@ -47,29 +47,37 @@ namespace ParameterVue.FamilyManager
 		{
 			ObservableCollection<ParameterValue> p;
 
-			Fd.Add(new FamilyData("Family Name 1"));
+			Fd.Add(new FamilyData("Family 1"));
 			p = Fd[Fd.Count - 1].ParameterValues;
-			p.Add(new ParameterValue("Value 1.1x", "Value 1.1x"));
-			p.Add(new ParameterValue("Value 1.2x", "Value 1.2x"));
+			p.Add(new ParameterValue(
+				TestData.DefineParameter(new []{"3/32\"" , "Text Size" , "Double "  , "105"    , "UT_SheetLength" , "DUT_FRACTIONAL_INCHES"})));
+			p.Add(new ParameterValue(
+				TestData.DefineParameter(new []{"Arial1" , "Text Font" , "string "  , "Text "  , "UT_Number"      , "(no unit type)" })));
+			p.Add(new ParameterValue(
+				TestData.DefineParameter(new []{"1/2\" " , "Tab Size"  , "Double "  , "105"    , "UT_SheetLength ", "DUT_FRACTIONAL_INCHES"})));
 
-			Fd.Add(new FamilyData("Family Name 2"));
+			Fd.Add(new FamilyData("Family 2"));
 			p = Fd[Fd.Count - 1].ParameterValues;
-			p.Add(new ParameterValue("Value 2.1x", "Value 2.1x"));
-			p.Add(new ParameterValue("Value 2.2x", "Value 2.2x"));
+			p.Add(new ParameterValue(
+				TestData.DefineParameter(new [] {"4/32\"" , "Text Size" , "Double "  , "105"    , "UT_SheetLength" , "DUT_FRACTIONAL_INCHES"})));
+			p.Add(new ParameterValue(
+				TestData.DefineParameter(new [] {"Arial2" , "Text Font" , "string "  , "Text "  , "UT_Number"      , "(no unit type)" })));
+			p.Add(new ParameterValue(
+				TestData.DefineParameter(new [] {"1/2\" " , "Tab Size"  , "Double "  , "105"    , "UT_SheetLength ", "DUT_FRACTIONAL_INCHES"})));
 
-			Fd.Add(new FamilyData("Family Name 3"));
+			Fd.Add(new FamilyData("Family 3"));
 			p = Fd[Fd.Count - 1].ParameterValues;
-			p.Add(new ParameterValue("Value 3.1x", "Value 3.1x"));
-			p.Add(new ParameterValue("Value 3.2x", "Value 3.2x"));
+			p.Add(new ParameterValue(
+				TestData.DefineParameter(new [] {"5/32\"" , "Text Size" , "Double "  , "105"    , "UT_SheetLength" , "DUT_FRACTIONAL_INCHES"})));
+			p.Add(new ParameterValue(
+				TestData.DefineParameter(new [] {"Arial3" , "Text Font" , "string "  , "Text "  , "UT_Number"      , "(no unit type)" })));
+			p.Add(new ParameterValue(
+				TestData.DefineParameter(new [] {"1/2\" " , "Tab Size"  , "Double "  , "105"    , "UT_SheetLength ", "DUT_FRACTIONAL_INCHES"})));
 
-			Cd.ColumnSpecs.Add(new ColumnSpec(
-				new ParameterSpec("Parameter 1", StorageType.None, 
-					ParameterType.Invalid, UnitType.UT_Undefined, 
-					DisplayUnitType.DUT_UNDEFINED)));
-			Cd.ColumnSpecs.Add(new ColumnSpec(
-				new ParameterSpec("Parameter 2", StorageType.None,
-					ParameterType.Invalid, UnitType.UT_Undefined,
-					DisplayUnitType.DUT_UNDEFINED)));
+			Cd.ColumnSpecs.Add(new ColumnSpec("Parameter 1"));
+			Cd.ColumnSpecs.Add(new ColumnSpec("Parameter 2"));
+			Cd.ColumnSpecs.Add(new ColumnSpec("Parameter 3"));
+
 		}
 
 		// load a family's data
@@ -103,7 +111,7 @@ namespace ParameterVue.FamilyManager
 
 				foreach (Parameter p in kvp.Value)
 				{
-					fd.ParameterValues.Add(new ParameterValue(p.AsValueString()));
+					fd.ParameterValues.Add(new ParameterValue(p));
 
 					col++;
 				}
@@ -116,12 +124,8 @@ namespace ParameterVue.FamilyManager
 		{
 			ColumnSpec cs = new ColumnSpec();
 
-			ParameterSpec ps = new ParameterSpec(
-				p.Definition.Name, p.StorageType, p.Definition.ParameterType,
-				p.Definition.UnitType, p.DisplayUnitType);
-
-			cs.ParamSpec = ps;
 			cs.Choices = null;
+			cs.ColumnTitle = p.Definition.Name;
 			cs.ColumnAlignment = HorizontalAlignment.Left;
 			cs.ColumnWidth = 100;
 			cs.Control = null;

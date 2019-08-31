@@ -44,46 +44,6 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 
 		private static void LoadData()
 		{
-//			TestFamilyData = new Dictionary<string, List<TestInfo>>();
-//
-//			List<TestInfo> h = new List<TestInfo>();
-//			//                    0                 1                         2           3          4                  5
-//			//                                    parameter                 storage     parameter   unit             display unit  
-//			//                  value             name                      type        type        type             type
-//			h.Add(new TestInfo("Arial"          , "Text Font"            , "string "  , "Text "  , "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("3/32\""         , "Text Size"			 , "Double "  , "105"    , "UT_SheetLength" , "DUT_FRACTIONAL_INCHES"));
-//			h.Add(new TestInfo("1/2\" "         , "Tab Size"			 , "Double "  , "105"    , "UT_SheetLength ", "DUT_FRACTIONAL_INCHES"));
-//			h.Add(new TestInfo("0"              , "Color"				 , "integer"  , "Invalid", "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("1"              , "Line Weight"			 , "Integer"  , "Invalid", "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("No "            , "Bold"				 , "Integer"  , "YesNo"  , "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("No "            , "Italic"				 , "Integer"  , "YesNo"  , "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("No "            , "Underline"			 , "Integer"  , "YesNo"  , "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("Opaque "        , "Background"			 , "Integer"  , "Invalid", "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("1"              , "Width Factor"		 , "Double "  , "Number ", "UT_Number"      , "DUT_GENERAL "         ));
-//			h.Add(new TestInfo("No "            , "Show Border"			 , "Integer"  , "YesNo"  , "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("1/128\" "       , "Leader/Border Offset" , "Double "  , "105"    , "UT_SheetLength ", "DUT_FRACTIONAL_INCHES"));
-//			h.Add(new TestInfo("Arrow 30 Degree", "Leader Arrowhead"     , "ElementId", "Invalid", "UT_Number"      , "(no unit type)"       ));
-//
-//			TestFamilyData.Add("3/32\" Arial", h);
-//
-//			h = new List<TestInfo>();
-//
-//			h.Add(new TestInfo("Arial"          , "Text Font"            , "String "  , "Text "  , "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("1/8\" "         , "Text Size"            , "Double "  , "105"    , "UT_SheetLength ", "DUT_FRACTIONAL_INCHES"));
-//			h.Add(new TestInfo("15/32\" "       , "Tab Size"             , "Double "  , "105"    , "UT_SheetLength ", "DUT_FRACTIONAL_INCHES"));
-//			h.Add(new TestInfo("0"              , "Color"                , "integer"  , "Invalid", "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("1"              , "Line Weight"          , "Integer"  , "Invalid", "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("No "            , "Bold"                 , "Integer"  , "YesNo"  , "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("No "            , "Italic"               , "Integer"  , "YesNo"  , "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("No "            , "Underline"            , "Integer"  , "YesNo"  , "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("Opaque "        , "Background"           , "Integer"  , "Invalid", "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("1"              , "Width Factor"         , "Double "  , "Number ", "UT_Number"      , "DUT_GENERAL "         ));
-//			h.Add(new TestInfo("No "            , "Show Border"          , "Integer"  , "YesNo"  , "UT_Number"      , "(no unit type)"       ));
-//			h.Add(new TestInfo("5/64\""         , "Leader/Border Offset" , "Double "  , "105"    , "UT_SheetLength ", "DUT_FRACTIONAL_INCHES"));
-//			h.Add(new TestInfo("Arrow 30 Degree", "Leader Arrowhead"     , "ElementId", "Invalid", "UT_Number"      , "(no unit type)"       ));
-//			
-//			TestFamilyData.Add("Schedule Default", h);
-
 			TestFamilyData = new Dictionary<string, List<Parameter>>();
 
 			List<Autodesk.Revit.DB.Parameter> px = new List<Parameter>();
@@ -130,7 +90,7 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 
 		}
 
-		private static Parameter DefineParameter(string[] pd)
+		public static Parameter DefineParameter(string[] pd)
 		{
 			bool result;
 			Parameter p = new Parameter();

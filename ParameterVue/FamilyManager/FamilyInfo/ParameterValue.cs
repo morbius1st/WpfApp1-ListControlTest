@@ -2,6 +2,7 @@
 
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Autodesk.Revit.DB;
 
 #endregion
 
@@ -17,34 +18,50 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 	// holds a single parameter item - data & header info
 	public class ParameterValue : INotifyPropertyChanged
 	{
-		private string paramValue;
+//		private string paramValue;
 		private string paramOrigValue;
 		private bool revised;
+		private bool invalid;
 
-		public ParameterValue(string paramValue, string paramOrigValue)
-		{
-			ParamValue = paramValue;
-			ParamOrigValue = paramOrigValue;
-		}
+		private Parameter parameter;
 
-		public ParameterValue(string paramValue)
+		public ParameterValue (Parameter parameter)
 		{
-			ParamValue = paramValue;
-			ParamOrigValue = paramValue;
+			this.parameter = parameter;
+
+			paramOrigValue = ParamValue;
+
+			revised = false;
+			invalid = false;
 		}
 
 		public string ParamValue
 		{
-			get => paramValue;
+			get => parameter.AsValueString();
 			set
 			{
-				if (!value.Equals(paramValue))
+				if (string.IsNullOrWhiteSpace(value)) return;
+
+				string priorValue = ParamValue;
+
+				bool result = parameter.SetValueString(value);
+
+				if (!result) // invalid value entered
 				{
-					paramValue = value;
+					invalid = true;
+					return;
+				}
 
-					updateRevised();
+				string newValue = parameter.AsValueString();
 
+				if (!newValue.Equals(priorValue))
+				{
+					Revised = true;
 					OnPropertyChange();
+				}
+				else
+				{
+					Revised = false;
 				}
 			}
 		}
@@ -52,24 +69,17 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 		public string ParamOrigValue
 		{
 			get => paramOrigValue;
-			set
-			{
-				if (!value.Equals(paramOrigValue))
-				{
-					paramOrigValue = value;
-
-					updateRevised();
-
-					OnPropertyChange();
-				}
-			}
-		}
-
-		private void updateRevised()
-		{
-			if (paramOrigValue == null || paramValue == null) return;
-
-			Revised = !(paramOrigValue.Equals(paramValue));
+//			private set
+//			{
+//				if (!value.Equals(paramOrigValue))
+//				{
+//					paramOrigValue = value;
+//
+//					updateRevised();
+//
+//					OnPropertyChange();
+//				}
+//			}
 		}
 
 		public bool Revised
@@ -82,6 +92,27 @@ namespace ParameterVue.FamilyManager.FamilyInfo
 					revised = value;
 					OnPropertyChange();
 				}
+			}
+		}
+
+		public bool Invalid
+		{
+			get => invalid;
+			set
+			{
+				invalid = value;
+				OnPropertyChange();
+			}
+		}
+
+		public void Commit()
+		{
+			if (revised)
+			{
+				paramOrigValue = parameter.AsValueString();
+
+				Revised = false;
+				Invalid = false;
 			}
 		}
 

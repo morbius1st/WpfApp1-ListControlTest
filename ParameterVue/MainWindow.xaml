@@ -17,22 +17,29 @@
 		>
 	<Window.Resources>
 
-		<Style x:Key="ColHeaderTbk"
+		<Style x:Key="{x:Static local:MainWindow.ColHeaderTbkSTyleName}"
 				TargetType="TextBlock"
 				>
 			<Setter Property="FontFamily" Value="{Binding ElementName=mainWindow, Path=lbc.HeaderFont.FontFamily, Mode=OneWay}" />
 			<Setter Property="FontSize" Value="{Binding ElementName=mainWindow, Path=lbc.HeaderFont.FontSize, Mode=OneWay}" />
+			<Setter Property="FontStretch" Value="{Binding ElementName=mainWindow, Path=lbc.HeaderFont.FontStretch, Mode=OneWay}" />
+			<Setter Property="FontStyle" Value="{Binding ElementName=mainWindow, Path=lbc.HeaderFont.FontStyle, Mode=OneWay}" />
+			<Setter Property="FontWeight" Value="{Binding ElementName=mainWindow, Path=lbc.HeaderFont.FontWeight, Mode=OneWay}" />
+			<Setter Property="Foreground" Value="{Binding ElementName=mainWindow, Path=lbc.HeaderFont.Foreground, Mode=OneWay}" />
 			<Setter Property="Padding" Value="2,4,2,4" />
 			<Setter Property="TextWrapping" Value="Wrap" />
 		</Style>
 
 		<Style x:Key="ColHeaderSymb"
 				TargetType="TextBlock"
-				BasedOn="{StaticResource ColHeaderTbk}"
+				BasedOn="{StaticResource {x:Static local:MainWindow.ColHeaderTbkSTyleName}}"
 				>
-			<Setter Property="FontFamily" Value="{Binding ElementName=mainWindow, Path=lbc.SymbolrFont.FontFamily, Mode=OneWay}" />
-			<Setter Property="FontSize" Value="{Binding ElementName=mainWindow, Path=lbc.SymbolrFont.FontSize, Mode=OneWay}" />
-
+			<Setter Property="FontFamily" Value="{Binding ElementName=mainWindow, Path=lbc.SymbolFont.FontFamily, Mode=OneWay}" />
+			<Setter Property="FontSize" Value="{Binding ElementName=mainWindow, Path=lbc.SymbolFont.FontSize, Mode=OneWay}" />
+			<Setter Property="FontStretch" Value="{Binding ElementName=mainWindow, Path=lbc.SymbolFont.FontStretch, Mode=OneWay}" />
+			<Setter Property="FontStyle" Value="{Binding ElementName=mainWindow, Path=lbc.SymbolFont.FontStyle, Mode=OneWay}" />
+			<Setter Property="FontWeight" Value="{Binding ElementName=mainWindow, Path=lbc.SymbolFont.FontWeight, Mode=OneWay}" />
+			<Setter Property="Foreground" Value="{Binding ElementName=mainWindow, Path=lbc.SymbolFont.Foreground, Mode=OneWay}" />
 		</Style>
 
 
@@ -47,20 +54,29 @@
 			</Style.Triggers>
 		</Style>
 
-		<Style x:Key="RowHeaderTbx"
+		<Style x:Key="{x:Static local:MainWindow.RowHeaderTbxStyleName}"
 				TargetType="TextBox"
 				BasedOn="{StaticResource FieldBase}"
 				>
 			<Setter Property="FontFamily" Value="{Binding ElementName=mainWindow, Path=lbc.RowHeaderFont.FontFamily, Mode=OneWay}" />
 			<Setter Property="FontSize" Value="{Binding ElementName=mainWindow, Path=lbc.RowHeaderFont.FontSize, Mode=OneWay}" />
+			<Setter Property="FontStretch" Value="{Binding ElementName=mainWindow, Path=lbc.RowHeaderFont.FontStretch, Mode=OneWay}" />
+			<Setter Property="FontStyle" Value="{Binding ElementName=mainWindow, Path=lbc.RowHeaderFont.FontStyle, Mode=OneWay}" />
+			<Setter Property="FontWeight" Value="{Binding ElementName=mainWindow, Path=lbc.RowHeaderFont.FontWeight, Mode=OneWay}" />
+			<Setter Property="Foreground" Value="{Binding ElementName=mainWindow, Path=lbc.RowHeaderFont.Foreground, Mode=OneWay}" />
 		</Style>
 
-		<Style x:Key="{x:Static local:MainWindow.StyleName}"
+		<Style x:Key="{x:Static local:MainWindow.FieldTbxStyleName}"
 				TargetType="TextBox"
 				BasedOn="{StaticResource FieldBase}"
 				>
 			<Setter Property="FontFamily" Value="{Binding ElementName=mainWindow, Path=lbc.ParameterFont.FontFamily, Mode=OneWay}" />
 			<Setter Property="FontSize" Value="{Binding ElementName=mainWindow, Path=lbc.ParameterFont.FontSize, Mode=OneWay}" />
+			<Setter Property="FontStretch" Value="{Binding ElementName=mainWindow, Path=lbc.ParameterFont.FontStretch, Mode=OneWay}" />
+			<Setter Property="FontStyle" Value="{Binding ElementName=mainWindow, Path=lbc.ParameterFont.FontStyle, Mode=OneWay}" />
+			<Setter Property="FontWeight" Value="{Binding ElementName=mainWindow, Path=lbc.ParameterFont.FontWeight, Mode=OneWay}" />
+			<Setter Property="Foreground" Value="{Binding ElementName=mainWindow, Path=lbc.ParameterFont.Foreground, Mode=OneWay}" />
+
 		</Style>
 
 	</Window.Resources>
@@ -151,13 +167,14 @@
 									<TextBlock
 											Grid.Column="0"
 											Text="{Binding Fm.Cd.SelectedColumn, Mode=OneTime}"
-											Style="{StaticResource ColHeaderTbk}"
+											Style="{StaticResource ColHeaderSymb}"
 											/>
 									<TextBlock
 											Grid.Column="1"
 											Text="{Binding Fm.Cd.NameColumn, Mode=OneTime}"
-											Style="{StaticResource ColHeaderTbk}"
+											Style="{DynamicResource {x:Static local:MainWindow.ColHeaderTbkSTyleName}}"
 											/>
+									<!--  Style="{StaticResource ColHeaderTbk}"  -->
 
 								</Grid>
 
@@ -169,15 +186,13 @@
 						</DockPanel>
 					</ControlTemplate>
 				</ListBox.Template>
-				<ListBox.ItemTemplate
-				>
+				<ListBox.ItemTemplate>
 					<DataTemplate
 							DataType="{x:Type familyInfo:FamilyData}"
-					>
+							>
 
 						<Grid Name="data"
 								Margin="-4,0,0,0"
-
 								>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="20" />
@@ -199,8 +214,9 @@
 							<TextBox
 									Grid.Column="1"
 									Text="{Binding Name}"
-									Style="{StaticResource RowHeaderTbx}"
+									Style="{DynamicResource {x:Static local:MainWindow.RowHeaderTbxStyleName}}"
 									/>
+							<!--  Style="{StaticResource RowHeaderTbx}"  -->
 							<!--  <TextBox  -->
 							<!--  Grid.Column="2"  -->
 							<!--  cp:CustomProperties.GenericBoolOne="True"  -->

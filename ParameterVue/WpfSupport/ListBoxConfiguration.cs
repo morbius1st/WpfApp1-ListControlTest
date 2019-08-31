@@ -1,12 +1,14 @@
 ﻿#region + Using Directives
-using System;
-using System.Collections.Generic;
+
+using System.ComponentModel;
 using System.Windows.Media;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
+using Brush = System.Windows.Media.Brush;
+using Color = System.Drawing.Color;
+using FontFamily = System.Windows.Media.FontFamily;
+using FontStyle = System.Windows.FontStyle;
 
 #endregion
 
@@ -19,38 +21,124 @@ using System.Windows.Controls;
 
 namespace ParameterVue.WpfSupport
 {
-    // information about the design / settings
-    // for a listbox
-	public class ListBoxConfiguration
+	// information about the design / settings
+	// for a listbox
+	public class ListBoxConfiguration : INotifyPropertyChanged
 	{
-        public static readonly Font DefaultFont = new Font("Arial");
+		public static readonly Font DefaultFont = new Font("Arial");
 
-        public static Font HeaderFont { get; set; } = DefaultFont;
-        public static Font SymbolrFont { get; set; } = new Font("ArialUni");
-        public static Font RowHeaderFont { get; set; } = DefaultFont;
-        public static Font ParameterFont { get; set; } = DefaultFont;
+		public static Font HeaderFont { get; set; } = new Font("Arial");
+		public static Font SymbolFont { get; set; } = new Font("ArialUni");
+		public static Font RowHeaderFont { get; set; } = new Font("Arial");
+		public static Font ParameterFont { get; set; } = new Font("Arial");
+
+		static ListBoxConfiguration()
+		{
+			HeaderFont.Foreground = new SolidColorBrush(Colors.Aqua);
+			SymbolFont.Foreground = new SolidColorBrush(Colors.Red);
+			RowHeaderFont.Foreground = new SolidColorBrush(Colors.DeepSkyBlue);
+			ParameterFont.Foreground = new SolidColorBrush(Colors.MediumBlue);
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private void OnPropertyChange([CallerMemberName] string memberName = "")
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(memberName));
+		}
 	}
 
-	public class Font
+	public class Font : INotifyPropertyChanged
 	{
-		public Font(string fontFamily = null, double fontSize = 10.0f, 
-			FontStyle fontStyle = default(FontStyle), 
-			FontWeight fontWeight = default(FontWeight), 
-			FontStretch fontStretch = default(FontStretch))
+		private FontFamily fontFamily;		
+		private double fontSize;		
+		private FontStyle fontStyle;
+		private FontWeight fontWeight;
+		private FontStretch fontStretch;
+		private Brush foreground;
+
+		public Font(string fontFamily = null, double fontSize = 10.0f,
+			FontStyle fontStyle = default(FontStyle),
+			FontWeight fontWeight = default(FontWeight),
+			FontStretch fontStretch = default(FontStretch),
+			Brush foreground = default(Brush)
+			)
 		{
 			FontFamily = new FontFamily(fontFamily ?? "Arial");
 			FontSize = fontSize;
 			FontStyle = fontStyle;
 			FontWeight = fontWeight;
 			FontStretch = fontStretch;
+			Foreground = foreground;
 		}
 
-		public FontFamily FontFamily { get; set; }
-		public double FontSize { get; set; }
-		public FontStyle FontStyle { get; set; }
-		public FontWeight FontWeight { get; set; }
-		public FontStretch FontStretch { get; set; }
+		public FontFamily FontFamily
+		{
+			get => fontFamily;
+			set
+			{
+				fontFamily = value;
+				OnPropertyChange();
+			}
+		}
 
+		public double FontSize
+		{
+			get => fontSize;
+			set
+			{
+				fontSize = value;
+				OnPropertyChange();
+			}
+		}
+
+		public FontStyle FontStyle
+		{
+			get => fontStyle;
+			set
+			{
+				fontStyle = value;
+				OnPropertyChange();
+			}
+		}
+
+		public FontWeight FontWeight
+		{
+			get => fontWeight;
+			set
+			{
+				fontWeight = value;
+				OnPropertyChange();
+			}
+		}
+
+		public FontStretch FontStretch
+		{
+			get => fontStretch;
+			set
+			{
+				fontStretch = value;
+				OnPropertyChange();
+			}
+		}
+
+		public Brush Foreground
+		{
+			get => foreground;
+			set
+			{
+				foreground = value; 
+				OnPropertyChange();
+			}
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private void OnPropertyChange([CallerMemberName] string memberName = "")
+		{
+			PropertyChanged?.Invoke(this,   new PropertyChangedEventArgs(memberName));
+		}
 	}
+
 
 }

@@ -18,14 +18,14 @@ namespace ParameterVue
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public static string StyleName { get; set; } = "ParameterTbx";
-		public static string GridHeaderName { get; set; } = "FieldTbx";
+		public static string ColHeaderTbkSTyleName { get; set; } = "ColHeaderTbk";
+		public static string RowHeaderTbxStyleName { get; set; } = "RowHeaderTbx";
+		public static string FieldTbxStyleName { get; set; } = "FieldTbx";
 
 		public static TextBlock tx;
 		private int count = 0;
 
 		public ListBoxConfiguration lbc { get;  set; } = new ListBoxConfiguration();
-
 
 		public FamilyMgr Fm { get; set; } = new FamilyManager.FamilyMgr();
 
@@ -55,27 +55,6 @@ namespace ParameterVue
 			listBox.UpdateLayout();
 
 		}
-
-		private void ConfigureListBox()
-		{
-			Grid g = (Grid) FindNamedVisualChild<Grid>(listBox, "header");
-
-			foreach (UIElement ch in g.Children)
-			{
-				if (ch is TextBlock)
-				{
-					Control c = new Control();
-
-					((TextBlock) ch).FontFamily = RowHeaderFont.FontFamily;
-					((TextBlock) ch).FontSize = RowHeaderFont.FontSize;
-					((TextBlock) ch).FontStyle = RowHeaderFont.FontStyle;
-					((TextBlock) ch).FontStretch = RowHeaderFont.FontStretch;
-					((TextBlock) ch).FontWeight = RowHeaderFont.FontWeight;
-
-				}
-			}
-		}
-
 
 		private void Button_Test2(object sender, RoutedEventArgs e)
 		{
@@ -168,6 +147,8 @@ namespace ParameterVue
         {
 			AddColumnAndData(Fm.Cd.ColumnSpecs[0], 0);
 			AddColumnAndData(Fm.Cd.ColumnSpecs[1], 1);
+			AddColumnAndData(Fm.Cd.ColumnSpecs[2], 2);
+
         }
     }
 
